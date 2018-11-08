@@ -1,0 +1,88 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+    security.user_checker:
+        class: ArgoMCMBuilder\UserBundle\Handler\UserChecker
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    clm.backoffice_path_twig:
+        class: ArgoMCMBuilder\BackOfficeBundle\Services\PathService
+        arguments: ["@templating.name_parser", "@templating.locator"]
+
+    clm_media_uploader:
+        class: ArgoMCMBuilder\MediaBundle\Helper\FileUploader
+        arguments: ['%media_directory%','%media_directory_image%','%media_directory_pdf%' ,'%dropzone_pdf_size%','%dropzone_video_size%','%dropzone_image_size%']
+
+    twig.localized_route_extension:
+        class: ArgoMCMBuilder\BackOfficeBundle\Services\LocalizedRouteExtension
+        tags:
+            - { name: twig.extension }
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+        arguments: ['@router']
+
+    clm_user.password_resetting:
+            class: ArgoMCMBuilder\UserBundle\Handler\PasswordResettingListener
+            arguments: ['@router']
+            tags:
+                - { name: kernel.event_subscriber }
+
+    form.type.company:
+            class: ArgoMCMBuilder\UserBundle\Form\Type\CompanyType
+            arguments: ["@security.context"]
+            tags:
+                - { name: form.type, alias: user_type }
+
+    crm.client:
+           alias: guzzle.client.auth_crm
+           alias: guzzle.client.add_binder
+           alias: guzzle.client.all_binders
+
+
+    veeva_vault.helper.tools:
+              class: ArgoMCMBuilder\VeevaVaultBundle\Helper\ToolsHelper
+              arguments: ['@service_container','@doctrine.orm.entity_manager']
+
+
+    company.form.flow.createBinder:
+              class: ArgoMCMBuilder\VeevaVaultBundle\Form\FormPdf\CreateBinderFlow
+              parent: craue.form.flow
+              arguments: ['@service_container']
+
+    company.form.flow.createBinderZip:
+                  class: ArgoMCMBuilder\VeevaVaultBundle\Form\FormZip\CreateBinderFlow
+                  parent: craue.form.flow
+                  arguments: ['@service_container']
+
+    company.form.flow.createBinderSteps:
+                  class: ArgoMCMBuilder\VeevaVaultBundle\Form\FormPdf\CreateBinderStep1Form
+                  arguments: ['@doctrine.orm.entity_manager','@service_container']
+                  tags:
+                     - { name: form.type}
+
+    company.form.flow.createBinderStepsZip:
+                  class: ArgoMCMBuilder\VeevaVaultBundle\Form\FormZip\CreateBinderStep1Form
+                  arguments: ['@doctrine.orm.entity_manager','@service_container']
+                  tags:
+                     - { name: form.type}
+
+    twig.veeva_name_extension:
+             class: ArgoMCMBuilder\VeevaVaultBundle\Twig\Extension\VeevaExtension
+             tags:
+                - { name: twig.extension }
+    twig.veeva_zip_name_extension:
+                 class: ArgoMCMBuilder\VeevaVaultBundle\Twig\Extension\VeevaZipNameExtension
+                 tags:
+                    - { name: twig.extension }
+    twig.veeva_clean_word_extension:
+                 class: ArgoMCMBuilder\VeevaVaultBundle\Twig\Extension\VeevaCleanWordExtension
+                 arguments:
+                    - @service_container
+                 tags:
+                    - { name: twig.extension }
+    mcm.aws_media:
+            class: ArgoMCMBuilder\MediaBundle\Services\AwsMedia
+            arguments: ["@doctrine.orm.entity_manager","%aws%"]

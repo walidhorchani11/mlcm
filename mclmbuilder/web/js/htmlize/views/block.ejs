@@ -1,0 +1,36 @@
+<% blocks.forEach(function(block){ %>
+  <div  class="sl-block" <% if (block.attributes) { %> <% Object.keys(block.attributes).forEach(function(key) { %> <%- key %> ="<%- block.attributes[key] %>"<% }); %> <%}%>  <% if (block.style) { %> style="<% Object.keys(block.style).forEach(function(key) { %> <%- key %>:<%- block.style[key] %> ;<% }); %> " <%}%> >
+        <div class="block-style"  <% if (block.blockStyle.style) { %>  style="<% Object.keys(block.blockStyle.style).forEach(function(key) { %> <%- key %>:<%- block.blockStyle.style[key] %> ;<% }); %>" <%}%>>
+            <% if (block.type === "text" || block.type == "scrollabletext" || block.type == "survey") { %>
+                  <%- include(dirname + '/views/blocks/text',  {content: block.blockStyle.blockcontent }); %>
+            <%}%>
+            <% if (block.type == "survey") { %>
+                  <div  class="<%= block.blockStyle.survey.class %>">
+                        <%- block.blockStyle.survey.html  %>
+                  </div>
+            <% } %>
+            <% if (block.type === "shape") { %>
+                  <%- include(dirname + '/views/blocks/shape',  {content: block.blockStyle.blockcontent }); %>
+            <%}%>
+            <% if (block.type === "image") { %>
+                  <%- include(dirname + '/views/blocks/image',  {content: block.blockStyle.blockcontent }); %>
+            <%}%>
+            <% if (block.type === "video") { %>
+                  <%- include(dirname + '/views/blocks/video',  {content: block.blockStyle.blockcontent }); %>
+            <%}%>
+            <% if (block.type === "table") { %>
+                  <%- include(dirname + '/views/blocks/table',  {content: block.blockStyle.blockcontent }); %>
+            <%}%>
+        </div>
+        <% if (block.linkedpopin != "") { %>
+            <div class="<%= block.linkedpopin.class %>" id="<%= block.linkedpopin.id %>" >
+                <%-block.linkedpopin.html%>
+            </div>
+        <%}%>
+        <% if (block.linkedscreen != "") { %>
+            <div class="<%= block.linkedscreen.class %>" id="<%= block.linkedscreen.id %>" >
+                <%-block.linkedscreen.html%>
+            </div>
+        <%}%>
+  </div>
+<%});%>

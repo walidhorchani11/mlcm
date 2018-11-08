@@ -1,0 +1,138 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}MCM Builder | TERMS AND CONDITIONS FOR MCM BUILDER FREE TRIAL ACCESS{% endblock %}
+{% block body %}
+
+    <style type="text/css">
+        div.terms {
+            height:400px;
+            border:1px solid #f8941a;
+            background:#fff;
+            padding: 5px;
+            overflow:auto;
+        }
+        #cgv {display: block;}
+        #cgv .modal-header {border: none;}
+        #cgv .modal-header .modal-title {line-height: 1; color: #fff; text-align: center; font-size: 28px;}
+        #cgv .modal-header h5.modal-title {font-size: 34px;}
+        #cgv .modal-dialog {width: 790px;}
+        #cgv .modal-content {background-color: transparent; box-shadow: none;}
+        #cgv .modal-body {padding: 10px 0 0 0;}
+        #cgv .modal-footer {border: none; padding: 15px 0 0 0;}
+/*
+        #cgv .modal-footer input[type=checkbox] {margin-right: 10px; visibility: hidden; width: 15px; height: 15px; margin-top: 3px;}
+        #cgv .modal-footer input[type=checkbox]:before {content: "";width: 15px;visibility: visible;height: 15px;display: inline-block;border: 1px solid #f8941a; line-height: 13px;}
+        #cgv .modal-footer input[type=checkbox]:checked:before {
+            content: "\f00c";
+            text-align: center;
+            color: #f8941a;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+        }
+*/
+        #cgv .modal-footer input[type=checkbox] {margin-right: 10px; /*! visibility: hidden; */ width: 15px; height: 15px; margin-top: 3px;opacity: 0;}
+        #cgv .msg-checkbox::before {content: "";width: 15px;visibility: visible;height: 15px;display: inline-block;border: 1px solid #f8941a; line-height: 13px;position: absolute;left: -25px;top: 1px;z-index: -1;}
+        #cgv .modal-footer input[type=checkbox]:checked + .msg-checkbox::after{
+            content: "\f00c";
+            text-align: center;
+            color: #f8941a;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+        }
+        #cgv .msg-checkbox::after {
+            display: inline-block;
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            left: -7px;
+            top: 0px;
+            margin-left: -20px;
+            padding-left: 3px;
+            padding-top: 1px;
+            font-size: 11px;
+            color: #555555;
+            content:"";
+            z-index: -1;
+        }
+        #cgv .modal-footer .msg-checkbox {color: #fff; font-size: 14px;position: relative;}
+        #cgv .modal-footer .msg-alert {display: none; clear: both; float: none !important; color: #f8941a; margin-top: 5px; padding-left: 25px; text-align: left;}
+        #cgv .modal-footer .apply-btn-wrapper {clear: both; text-align: center; margin-top: 20px;}
+        #cgv .modal-footer .btn-primary {background-color: #f8941a; border: none; padding: 15px 70px;font-weight: bold;}
+        .dont-agree { color: #f8941a !important; padding: 4px; font-weight: 600;  }
+        #agreeBtn.disabled{ background-color: #828282 !important;   }
+    </style>
+    <div class="modal fade in modal-pres"  id="cgv">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ 'user.cookies.title' | trans({}, 'users') }}</h4>
+                    <h5 class="modal-title">{{ 'user.cookies.freetrial' | trans({}, 'users') }}</h5>
+
+                </div>
+                <div class="modal-body">
+                    <div id="terms" class="terms">{{ content|raw }}</div>
+                </div>
+                <div class="modal-footer">
+                    <input type="checkbox" name="checkbox" value="check" id="agree" style="float: left" />
+                    <span class="msg-checkbox" style="float: left">
+{{ 'user.cookies.message1' | trans({}, 'users') }}</span>
+                    <br>
+                    <div class="msg-alert" style="float: left">
+                        {{ 'user.cookies.message2' | trans({}, 'users') }} </div>
+                    <div class="apply-btn-wrapper">
+                        <button id="agreeBtn" class="btn btn-primary disabled pull-left" disabled  data-style="zoom-in"
+                                onclick="checkAgree
+                        ();">
+                            {{ 'user.cookies.agree' | trans({}, 'users') }}
+                        </button>
+                        <button class="btn btn-default pull-right dont-agree"  data-style="zoom-in" onclick="checkdisAgree
+                        ();">I DO NOT AGREE
+                            & <br>I WILL
+                            BE DISCONNECTED</button>
+
+                    </div>
+
+                    <div class="col-md-12 text-white text-center login-copyright">
+                        <small>
+                            <strong>Argolife SAS au capital de 150 000 Euros - 85 boulevard Brune - 75014 Paris - RCS Paris B 822 004 024</strong>
+                        </small>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent () }}
+<script type="application/javascript">
+    jQuery( document ).ready(function() {
+
+        const agreeBtn = $("#agreeBtn");
+        $('#terms').on('scroll', function() {
+            if($(this).scrollTop() + $(this).innerHeight() + 100 >= $(this)[0].scrollHeight) {
+                 if(agreeBtn.hasClass('disabled')){
+                     agreeBtn.removeAttr("disabled");
+                     agreeBtn.removeClass("disabled");
+                }
+            }
+        });
+    })
+    function checkAgree() {
+        if(document.getElementById('agree').checked) {
+            jQuery('.middle-box').css('display', 'block');
+            $("#cgv .modal-footer .msg-alert").hide();
+            document.location.href = '{{ path('terms_enable', { 'flag': 20 }) }}';
+        } else {
+            $("#cgv .modal-footer .msg-alert").show();
+        }
+    }
+    function checkdisAgree() {
+        document.location.href = '{{ path('terms_enable', { 'flag': 10}) }}';
+    }
+</script>
+{% endblock javascripts %}

@@ -1,0 +1,105 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'companies' | trans({}, 'companies') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/dataTables/dataTables.colVis.css') }}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'companies' | trans({}, 'companies') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <strong>{{ 'MCMBuilder' | trans({}, 'presentations') }} </strong>
+                </li>
+                <li>
+                    <strong> {{ 'administration'| trans({}, 'project') }} </strong>
+                </li>
+                <li class="active">
+                    <strong>{{ 'companies' | trans({}, 'companies') }}</strong>
+                </li>
+            </ol>
+        </div>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="ibox">
+                <div class="ibox-tools">
+                    <a href="{{ path('clm_company_add') }}" class="btn btn-primary btn-xs pull-right">{{ 'companies.add_new_company' | trans({}, 'companies') }}</a>
+                </div>
+                <div class="ibox-content">
+            <div class="col-sm-12 clearfix" >
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="alert alert-warning">{{ flashMessage }}</div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">{{ flashMessage }}</div>
+                {% endfor %}
+
+                <table class="table table-striped table-bordered table-hover dataTables-companies" >
+                    <thead>
+                    <tr>
+                        <th>{{ 'companies.names' | trans({}, 'companies') }}</th>
+                        <th>{{ 'nbr_busers' | trans({}, 'companies') }}</th>
+                        <th>{{ 'nbr_presentations' | trans({}, 'companies') }}</th>
+                        <th>{{ 'companies.action' | trans({}, 'companies') }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for company in companies%}
+                        <tr>
+                            <td>{{ company.name }}</td>
+                            <td>{{ company.users|length }}</td>
+                            <td>{% set nbrPres = 0 %}
+                                {% for project in company.projects %}
+                                    {% set nbrPres = nbrPres + project.presentations|length %}
+                                {% endfor %}
+                                {{ nbrPres }}</td>
+                            <td class="text-nowrap action">
+                                <a href="{{ path('clm_company_edit',{id:company.id}) }}" class="btn"
+                                   data-toggle="tooltip" data-original-title="Edit" title="{{ 'company.infoBulle.edit' | trans({}, 'companies') }}">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                </a>
+
+                                <a href="javascript:void(0)" class="btn delete-company" data-toggle="tooltip"
+                                   data-original-title="Delete" data-href="{{ path('clm_company_delete',
+                                {id:company.id}) }}" title="{{ 'company.infoBulle.delete' | trans({}, 'companies') }}">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                        <script>
+                            var TWIGCompany = {};
+                            TWIGCompany.deletecompany  = "{{ 'companies.delete_text' | trans({}, 'companies') }}";
+                            TWIGCompany.deletecompanytext   = "{{ 'companies.delete_confirm' | trans({'%company%': company.name}, 'companies') }}";
+                        </script>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="2">
+                            <ul class="pagination pull-right"></ul>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+                    <div class="blc-csv">
+                        <a href="{{ path('clm_company_export') }}">{{ 'users.export' | trans({}, 'users') }}</a>
+                    </div>
+                    <div class="clear-both"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+    {{ parent () }}
+    <script src="{{ asset('js/plugins/dataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/dataTables/dataTables.colVis.js') }}"></script>
+    <script src="{{ asset('js/project/datatable.js') }}"></script>
+
+{% endblock %}

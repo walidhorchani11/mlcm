@@ -1,0 +1,106 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}Edit Binder{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div class="wrapper wrapper-content">
+        <div class="ibox">
+            <div class="ibox-content form-flow-veeva container">
+
+                {% if response %}
+                    <table border="1px">
+                        <tr>
+                            <td>
+                                <h2> Move Exist Document To Binder</h2>
+                            </td>
+                            <td>
+                                <h2> Add New Document</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table border="0.5px" style="overflow-y:scroll; height:500px; display: block">
+                                    <tr>
+                                        <td><h5>Document</h5></td>
+                                        <td><h5>Title</h5></td>
+                                        <td><h5>Creation Date</h5></td>
+                                        <td><h5>Add Document To Binder</h5></td>
+                                    </tr>
+                                    {% for data in datas %}
+
+                                        {% if not data.document.binder__v %}
+                                            <tr>
+                                                <td>{% if data.document.name__v %} {{ data.document.name__v }} {% endif %}</td>
+                                                <td>{% if data.document.type__v %} {{ data.document.type__v }} {% endif %}</td>
+                                                <td>{% if data.document.version_creation_date__v %} {{ data.document.version_creation_date__v }} {% endif %}</td>
+                                                <td>
+                                                    <small><a
+                                                                href="{{ path('move_document', {'id_binder': response,'id_document': data.document.id}) }}"
+                                                                class="as-form"
+                                                                data-method="delete"
+                                                        >{{ 'Add To Binder'|trans({}, 'button') }}</a></small>
+                                                </td>
+
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </table>
+                            </td>
+                            <td>
+                                <a
+                                        href="{{ path('veeva_steps', {'id_press': id_press,'id_binder': response}) }}"
+                                        class="as-form"
+                                        data-method="delete"
+                                >{{ 'Add New Document'|trans({}, 'button') }}</a>
+                            </td>
+                        </tr>
+                    </table>
+                {% else %}
+                    Retour Form Create Binder
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent () }}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

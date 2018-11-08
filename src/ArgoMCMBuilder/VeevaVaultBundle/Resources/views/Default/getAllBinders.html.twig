@@ -1,0 +1,130 @@
+<center><h1>Dashboard</h1></center>
+<br/>
+<table>
+    <tr>
+        <td>
+            <h2>
+                <a
+                        href="{{ path('add_binder_from_veeva') }}"
+                        class="as-form"
+                        data-method="add_binder"
+                >{{ ' Add New Binder'|trans({}, 'button') }}</a>
+            </h2>
+            <code>
+                <h3>This Binder well be add via POST with default parametres</h3>
+                <br/>
+                'name__v' => 'Binder From Symfony',<br/>
+                'type__v' => 'Multichannel Presentation',<br/>
+                'subtype__v' => '',<br/>
+                'lifecycle__v' => 'Binder Lifecycle',<br/>
+                'product__v' => '00P000000000601',<br/>
+                'country__v' => '00C000000000101',<br/>
+                'major_version_number__v' => '0',<br/>
+                'minor_version_number__v' => '1',<br/>
+            </code>
+        </td>
+        <td>
+            <h2>
+                <a
+                        href="{{ path('add_document_from_veeva') }}"
+                        class="as-form"
+                        data-method="add_document"
+                >{{ ' Add New Document'|trans({}, 'button') }}</a>
+            </h2>
+            <code>
+                <h3>This Document well be add via POST with default parametres && attachement Zip or jpg ...</h3>
+                <br/>
+                'name' => 'file','contents' => fopen('/home/argo/Bureau/file/vault.zip', 'r'),<br/>
+                'name' => 'name__v', 'contents' => 'Document From Symfony',<br/>
+                'name' => 'type__v','contents' => 'Promotional Piece',<br/>
+                'name' => 'subtype__v','contents' => '',<br/>
+                'name' => 'classification__v','contents' => '',<br/>
+                'name' => 'lifecycle__v','contents' => 'Promotional Piece',<br/>
+                'name' => 'major_version_number__v','contents' => '0',<br/>
+                'name' => 'minor_version_number__v','contents' => '1',<br/>
+                'name' => 'product__v','contents' => '00P000000000601',<br/>
+                'name' => 'country__v','contents' => '00C000000000101',<br/>
+            </code>
+        </td>
+        <td>
+            <h2>
+                <a href="{{ path('current_user') }}"
+                   class="as-form"
+                   data-method="current_user"
+                >{{ 'Mon Profil'|trans({}, 'button') }}
+                </a>
+            </h2>
+        </td>
+
+    </tr>
+</table>
+<br/>
+<table border="0.5px">
+    <tr>
+        <td><h5>Binder/Document</h5></td>
+        <td><h5>Title</h5></td>
+        <td><h5>Type</h5></td>
+        <td><h5>Creation Date</h5></td>
+        <td><h5>Delete</h5></td>
+        <td><h5>Update</h5></td>
+        <td><h5>Upload Document</h5></td>
+        <td><h5>Draft To Approved</h5></td>
+        <td><h5>Permitted Action</h5></td>
+        <td><h5>Document Details</h5></td>
+
+    </tr>
+    {% for data in datas %}
+        <tr>
+            <td>{% if data.document.binder__v %}  Binder {% else %}  Document {% endif %}</td>
+            <td>{% if data.document.name__v %} {{ data.document.name__v }} {% endif %}</td>
+            <td>{% if data.document.type__v %} {{ data.document.type__v }} {% endif %}</td>
+            <td>{% if data.document.version_creation_date__v %} {{ data.document.version_creation_date__v }} {% endif %}</td>
+            <td>
+                <small><a
+                            href="{{ path('delete_binder_from_veeva', {'id': data.document.id}) }}"
+                            class="as-form"
+                            data-method="delete"
+                    >{{ ' DELETE'|trans({}, 'button') }}</a></small>
+            </td>
+            <td>
+                <small><a
+                            href="{{ path('update_binder_from_veeva', {'id': data.document.id}) }}"
+                            class="as-form"
+                            data-method="update"
+                    >{{ ' UPDATE'|trans({}, 'button') }}</a></small>
+            </td>
+            <td>
+                {% if not data.document.binder__v %}
+                    <small><a
+                                href="{{ path('upload_document_to_veeva', {'id': data.document.id}) }}"
+                                class="as-form"
+                                data-method="upload"
+                        >{{ ' UPLOAD DOCUMENT'|trans({}, 'button') }}</a></small>
+                {% endif %}
+            </td>
+            <td>
+                <small><a
+                            href="{{ path('draft_to_approved', {'id': data.document.id}) }}"
+                            class="as-form"
+                            data-method="draft_approved"
+                    >{{ ' DRAFT TO APPROVED'|trans({}, 'button') }}</a></small>
+            </td>
+            <td>
+                <small><a
+                            href="{{ path('permitted_action', {'id': data.document.id}) }}"
+                            class="as-form"
+                            data-method="permitted_action"
+                    >{{ 'All PERMITTED ACTION'|trans({}, 'button') }}</a></small>
+            </td>
+            <td>
+                {% if not data.document.binder__v %}
+                    <small><a
+                                href="{{ path('document_details', {'id': data.document.id}) }}"
+                                class="as-form"
+                                data-method="document_details"
+                        >{{ 'DOCUMENT DETAILS'|trans({}, 'button') }}</a></small> {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+
+</table>

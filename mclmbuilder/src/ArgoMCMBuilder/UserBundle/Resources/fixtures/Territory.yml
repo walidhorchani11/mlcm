@@ -1,0 +1,8 @@
+model: ArgoMCMBuilder\UserBundle\Entity\Territory
+fixtures:
+    territory1:
+        name: territory1
+    territory2:
+        name: territory2
+    territory3:
+        name: territory3

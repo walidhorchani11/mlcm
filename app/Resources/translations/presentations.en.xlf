@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="presentations.presentations" resname="presentations">
+        <source>presentations</source>
+        <target>My presentations</target>
+      </trans-unit>
+      <trans-unit id="presentations.settings">
+        <source>presentations.settings</source>
+        <target>Settings</target>
+      </trans-unit>
+      <trans-unit id="presentations.my_active_clm_presentations">
+        <source>presentations.my_active_clm_presentations</source>
+        <target>My active CLM presentations</target>
+      </trans-unit>
+      <trans-unit id="presentations.MCMBuilder">
+        <source>MCMBuilder</source>
+        <target>MCM Builder</target>
+      </trans-unit>
+      <trans-unit id="presentations.MyPresentations">
+        <source>MyPresentations</source>
+        <target>My presentations</target>
+      </trans-unit>
+      <trans-unit id="presentations.new_clm_presentation" resname="presentations.new_clm_presentation">
+        <source>presentations.new_clm_presentation</source>
+        <target>Create new presentation</target>
+      </trans-unit>
+      <trans-unit id="presentations.back_to_my_presentations_list" >
+        <source>presentations.back_to_my_presentations_list</source>
+        <target>Back to my presentations list</target>
+      </trans-unit>
+      <trans-unit id="presentations.create_a_new_project" >
+        <source>presentations.create_a_new_project</source>
+        <target>Create a new project</target>
+      </trans-unit>
+      <trans-unit id="presentations.or" >
+        <source>presentations.or</source>
+        <target>or</target>
+      </trans-unit>
+      <trans-unit id="presentations.associate_the_presentation_to_an_existing_project" >
+        <source>presentations.associate_the_presentation_to_an_existing_project</source>
+        <target>Associate the presentation to an existing project</target>
+      </trans-unit>
+      <trans-unit id="presentations.my_archived_clm_presentations" >
+        <source>presentations.my_archived_clm_presentations</source>
+        <target>My archived CLM presentations</target>
+      </trans-unit>
+
+
+      <trans-unit id="presentations.edit_clm_presentation" resname="presentations.edit_clm_presentation">
+        <source>presentations.edit_clm_presentation</source>
+        <target>Edit clm presentation</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation-name">
+              <source>presentations.clm-presentation.name</source>
+              <target>CLM presentation name</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation">
+              <source>presentations.clm-presentation</source>
+              <target>CLM presentation</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-software">
+              <source>presentations.clm-software</source>
+              <target>CLM software</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation.type">
+              <source>type</source>
+              <target>Type</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation.name">
+              <source>name</source>
+              <target>Name</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation.all">
+              <source>all</source>
+              <target>All</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation.version">
+              <source>version</source>
+              <target>Version</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation.status">
+              <source>status</source>
+              <target>Status</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation.company">
+              <source>company</source>
+              <target>Company</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation.companies">
+          <source>companies</source>
+          <target>Companies</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation.owner">
+              <source>owner</source>
+              <target>Owner</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation.creation.date">
+              <source>creation.date</source>
+              <target>Creation Date</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation.last-update">
+              <source>last-update</source>
+              <target>Last update</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation.actions">
+              <source>action</source>
+              <target>Actions</target>
+      </trans-unit>
+      <trans-unit id="presentations.clm-presentation.software">
+              <source>software</source>
+              <target>Operating system</target>
+      </trans-unit>
+       <trans-unit id="presentations.change">
+              <source>change</source>
+              <target>Change</target>
+      </trans-unit>
+      <trans-unit id="presentations.edit_dataTable">
+              <source>dataTable.edit</source>
+              <target>Edit the content of the CLM presentation</target>
+      </trans-unit>
+      <trans-unit id="presentations.edit_dataTable_form">
+              <source>dataTable.editForm</source>
+              <target>Edit the details information of the presentation</target>
+      </trans-unit>
+      <trans-unit id="presentations.delete_dataTable">
+              <source>dataTable.delete</source>
+              <target>Delete the Presentation</target>
+      </trans-unit>
+      <trans-unit id="presentations.duplicate_dataTable">
+               <source>dataTable.duplicate</source>
+               <target>Duplicate</target>
+       </trans-unit>
+       <trans-unit id="presentations.play_dataTable">
+               <source>dataTable.play</source>
+               <target>Play</target>
+       </trans-unit>
+       <trans-unit id="presentations.sweetAlert_title_active">
+              <source>sweetAlert.active.title</source>
+              <target>Are you sure you want to archive this presentation?</target>
+      </trans-unit>
+      <trans-unit id="presentations.sweetAlert_text_active">
+              <source>sweetAlert.active.text</source>
+              <target>This CLM presentation will not be visible by the others members of the MCM Builder, only if you reactive it</target>
+      </trans-unit>
+      <trans-unit id="presentations.sweetAlert_confirm_button_active">
+              <source>sweetAlert.active.confirm_button</source>
+              <target>Yes, archive it!</target>
+      </trans-unit>
+      <trans-unit id="presentations.archive.title">
+              <source>presentations.archive.title</source>
+              <target>Archive the presentation</target>
+      </trans-unit>
+      <trans-unit id="presentations.active.title">
+              <source>presentations.active.title</source>
+              <target>Active the presentation</target>
+      </trans-unit>
+      <trans-unit id="presentations.sweetAlert_title_archive">
+              <source>sweetAlert.archive.title</source>
+              <target>Are you sure you want to archive this presentation?</target>
+      </trans-unit>
+      <trans-unit id="presentations.sweetAlert_text_archive">
+              <source>sweetAlert.archive.text</source>
+              <target>This CLM presentation will not be visible by the others members of the CLM Builder, only if you reactive it</target>
+      </trans-unit>
+      <trans-unit id="presentations.sweetAlert_confirm_button_archive">
+              <source>sweetAlert.archive.confirm_button</source>
+              <target>Yes, archive it!</target>
+      </trans-unit>
+     <trans-unit id="presentations.sweetAlert_title_delete">
+              <source>sweetAlert.delete.title</source>
+              <target>Are you sure you want to delete this presentation?</target>
+      </trans-unit>
+      <trans-unit id="presentations.sweetAlert_text_delete">
+              <source>sweetAlert.delete.text</source>
+              <target>You cannot undo this action.</target>
+      </trans-unit>
+     <trans-unit id="presentations.sweetAlert_title_duplicate">
+             <source>sweetAlert.duplicate.title</source>
+             <target>Are you sure you want to duplicate this presentation?</target>
+     </trans-unit>
+     <trans-unit id="presentations.sweetAlert_text_duplicate">
+             <source>sweetAlert.duplicate.text</source>
+             <target>You cannot undo this action.</target>
+     </trans-unit>
+      <trans-unit id="presentations.title_page_archived">
+              <source>title_page_archived</source>
+              <target>My archived presentation</target>
+      </trans-unit>
+       <trans-unit id="presentations.export_csv" resname="export.csv">
+            <source>export.csv</source>
+            <target>Export CSV</target>
+       </trans-unit>
+        <trans-unit id="presentations-proj.name" resname="proj-name">
+            <source>proj-name</source>
+            <target>Project name</target>
+        </trans-unit>
+        <trans-unit id="presentations.name" resname="presentation_name">
+            <source>presentation_name</source>
+            <target>Presentation name</target>
+        </trans-unit>
+        <trans-unit id="presentations.territories" resname="pres-territories">
+            <source>pres-territories</source>
+            <target>Territories</target>
+        </trans-unit>
+        <trans-unit id="pres.products" resname="pres-products">
+            <source>pres-products</source>
+            <target>Products</target>
+        </trans-unit>
+        <trans-unit id="pres.crm" resname="pres_crm">
+            <source>pres_crm</source>
+            <target>Clm type</target>
+        </trans-unit>
+        <trans-unit id="presentations.language" resname="pres-language">
+            <source>pres-language</source>
+            <target>Language</target>
+        </trans-unit>
+        <trans-unit id="presentations.system" resname="pres-system">
+            <source>pres-system</source>
+            <target>System</target>
+        </trans-unit>
+        <trans-unit id="presentations.resolution-x" resname="pres-resolution-x">
+            <source>pres-resolution-x</source>
+            <target>Resolution X</target>
+        </trans-unit>
+        <trans-unit id="presentations.resolution-y" resname="pres-resolution-y">
+            <source>pres-resolution-y</source>
+            <target>Resolution Y</target>
+        </trans-unit>
+        <trans-unit id="presentations.device" resname="pres-device">
+            <source>pres-device</source>
+            <target>Device</target>
+        </trans-unit>
+        <trans-unit id="presentations.type-conversion" resname="pres-type-conversion">
+            <source>pres-type-conversion</source>
+            <target>Type conversion</target>
+        </trans-unit>
+        <trans-unit id="presentations.save-and-start-presentation" resname="pres-save-and-start-presentation">
+            <source>pres-save-and-start-presentation</source>
+            <target>Save and start presentation</target>
+        </trans-unit>
+        <trans-unit id="presentations.select-data-start">
+            <source>presentations.select-data-start</source>
+            <target>Select data to show in your table</target>
+        </trans-unit>
+        <trans-unit id="presentations.add-data-to-table">
+            <source>presentations.add-data-to-table</source>
+            <target>Add data to my table</target>
+        </trans-unit>
+        <trans-unit id="choice_language">
+            <source>choice_language</source>
+            <target>Choice language</target>
+        </trans-unit>
+        <trans-unit id="p-project-name">
+            <source>p-project-name</source>
+            <target>Project name</target>
+        </trans-unit>
+        <trans-unit id="p-presentation-territory">
+            <source>p-presentation-territory</source>
+            <target>Choose your presentation territory</target>
+        </trans-unit>
+        <trans-unit id="presentations.territory">
+            <source>presentations.territory</source>
+            <target>Territory</target>
+        </trans-unit>
+        <trans-unit id="presentations.addFilter">
+            <source>presentations.addFilter</source>
+            <target>Add filter</target>
+        </trans-unit>
+        <trans-unit id="presentations.pharmacompany">
+            <source>presentations.pharmacompany</source>
+            <target>Pharma company</target>
+        </trans-unit>
+      <trans-unit id="presentations.pharmaagency">
+          <source>presentations.pharmaagency</source>
+          <target>Pharma agency</target>
+      </trans-unit>
+      <trans-unit id="presentations.search.more">
+          <source>presentations.search.more</source>
+          <target>Search more</target>
+      </trans-unit>
+      <trans-unit id="presentations.preview">
+          <source>presentations.preview</source>
+          <target>Preview</target>
+      </trans-unit>
+      <trans-unit id="choose-a-project">
+          <source>choose-a-project</source>
+          <target>Choose a project</target>
+      </trans-unit>
+      <trans-unit id="presentations.editDetail">
+          <source>presentations.editDetail</source>
+          <target>Edit presentation details</target>
+      </trans-unit>
+      <trans-unit id="presentations.presentation_type"  resname="presentation_type">
+          <source>presentation_type</source>
+          <target>CLM type</target>
+      </trans-unit>
+      <trans-unit id="presentations.title_page_createClm">
+            <source>title_page_createClm</source>
+            <target>Create new CLM</target>
+      </trans-unit>
+      <trans-unit id="presentation.success.delete">
+            <source>presentation.success.delete</source>
+            <target>The presentation is successfully deleted</target>
+      </trans-unit>
+      <trans-unit id="presentation.success.create">
+            <source>presentation.success.create</source>
+            <target>The presentation is successfully created</target>
+      </trans-unit>
+      <trans-unit id="presentation.success.edit">
+            <source>presentation.success.edit</source>
+            <target>The presentation is successfully edited</target>
+      </trans-unit>
+      <trans-unit id="presentation.success.disconnect">
+            <source>presentation.success.disconnect</source>
+            <target>The presentation is successfully disconnected</target>
+      </trans-unit>
+      <trans-unit id="presentation.search">
+            <source>presentation.search</source>
+            <target>Search</target>
+      </trans-unit>
+      <trans-unit id="choose_the_company">
+           <source>choose_the_company</source>
+           <target>Choose the company</target>
+      </trans-unit>
+      <trans-unit id="choose_the_owner">
+           <source>choose_the_owner</source>
+           <target>Choose the owner</target>
+      </trans-unit>
+      <trans-unit id="choose_presentation_type">
+         <source>choose_presentation_type</source>
+         <target>Choose the type</target>
+      </trans-unit>
+      <trans-unit id="presentation.editor">
+         <source>presentation.editor</source>
+         <target>Editor</target>
+      </trans-unit>
+      <trans-unit id="presentation.viewer">
+         <source>presentation.viewer</source>
+         <target>Viewer</target>
+      </trans-unit>
+      <trans-unit id="presentation.title.edit">
+         <source>presentation.title.edit</source>
+         <target>Edit Presentation</target>
+      </trans-unit>
+      <trans-unit id="presentation.announce.popup">
+         <source>presentation.announce.popup</source>
+         <target>We are pleased to announce that you can now insert a	video into your CLM presentation.</target>
+      </trans-unit>
+      <trans-unit id="presentation.announce.newIcon">
+         <source>presentation.announce.newIcon</source>
+         <target>Click on	the	new	icon available in your toolbar.</target>
+      </trans-unit>
+      <trans-unit id="presentation.announce.btn">
+         <source>presentation.announce.btn</source>
+         <target>I GOT IT!</target>
+      </trans-unit>
+      <trans-unit id="presentation.object.pdfemail">
+         <source>presentation.object.pdfemail</source>
+         <target>CLM Builder - Your PDF is ready for download</target>
+      </trans-unit>
+      <trans-unit id="presentation.object.zipemail">
+          <source>presentation.object.zipemail</source>
+          <target>CLM Builder - Your ZIP file is ready for download</target>
+      </trans-unit>
+      <trans-unit id="presentation.title.pdfemail">
+         <source>presentation.title.pdfemail</source>
+         <target>Dear</target>
+      </trans-unit>
+      <trans-unit id="presentation.success.pdfemail">
+         <source>presentation.success.pdfemail</source>
+         <target>Your PDF file is generated with success!</target>
+      </trans-unit>
+      <trans-unit id="presentation.success.zipemail">
+         <source>presentation.success.zipemail</source>
+         <target>Your zip file is generated with success!</target>
+      </trans-unit>
+      <trans-unit id="presentation.message.pdfemail">
+         <source>presentation.message.pdfemail</source>
+         <target>Please click on the link below to download the PDF export of your CLM presentation:</target>
+      </trans-unit>
+     <trans-unit id="presentation.message.zipemail">
+         <source>presentation.message.zipemail</source>
+         <target>Please click on the link below to download the ZIP export of your CLM presentation:</target>
+     </trans-unit>
+      <trans-unit id="presentation.messageemail.pdfemail">
+         <source>presentation.messageemail.pdfemail</source>
+         <target>In case of any questions please contact our support team through</target>
+      </trans-unit>
+     <trans-unit id="presentation.mcmteam.pdfemail">
+         <source>presentation.mcmteam.pdfemail</source>
+         <target>The MCM Builder Team </target>
+     </trans-unit>
+     <trans-unit id="presentation.msggenerate.pdf">
+         <source>presentation.msggenerate.pdf</source>
+         <target>The PDF generation can take a few seconds or minutes depending on the size of your CLM presentation.
+          You can close this pop in and you will receive an email notification when your PDF is ready for download.</target>
+     </trans-unit>
+     <trans-unit id="presentation.title.modal.pdf">
+         <source>presentation.title.modal.pdf</source>
+         <target>Select the format to export your PDF file:</target>
+     </trans-unit>
+     <trans-unit id="presentation.title.option.pdf">
+        <source>presentation.title.option.pdf</source>
+        <target>Options For Each Screen:</target>
+    </trans-unit>
+     <trans-unit id="presentation.chapter.option.pdf">
+        <source>presentation.chapter.option.pdf</source>
+        <target>Chapter Name</target>
+    </trans-unit>
+    <trans-unit id="presentation.screen.option.pdf">
+        <source>presentation.screen.option.pdf</source>
+        <target>Screen name</target>
+    </trans-unit>
+    <trans-unit id="presentation.page.option.pdf">
+        <source>presentation.page.option.pdf</source>
+        <target> Page id</target>
+    </trans-unit>
+     <trans-unit id="presentation.key.message.option.pdf">
+        <source>presentation.key.message.option.pdf</source>
+        <target>Key Message</target>
+    </trans-unit>
+    <trans-unit id="presentation.title.screen.option.pdf">
+        <source>presentation.title.screen.option.pdf</source>
+        <target>Title screen Name</target>
+    </trans-unit>
+    <trans-unit id="presentation.scrollable.text.option.pdf">
+        <source>presentation.scrollable.text.option.pdf</source>
+        <target>Scrollable text</target>
+    </trans-unit>
+    <trans-unit id="presentation.link.popin.option.pdf">
+        <source>presentation.link.popin.option.pdf</source>
+        <target>Link to popin</target>
+    </trans-unit>
+     <trans-unit id="presentation.link.screen.option.pdf">
+        <source>presentation.link.screen.option.pdf</source>
+        <target>Link to screen</target>
+    </trans-unit>
+    <trans-unit id="presentation.annimations.option.pdf">
+        <source>presentation.annimations.option.pdf</source>
+        <target>Animations</target>
+    </trans-unit>
+    <trans-unit id="presentation.link.pdf.option.pdf">
+        <source>presentation.link.pdf.option.pdf</source>
+        <target>Link to pdf</target>
+    </trans-unit>
+    <trans-unit id="presentation.references.option.pdf">
+        <source>presentation.references.option.pdf</source>
+        <target>References</target>
+    </trans-unit>
+     <trans-unit id="presentation.references.popup.option.pdf">
+        <source>presentation.references.popup.option.pdf</source>
+        <target>Reference Popup</target>
+    </trans-unit>
+     <trans-unit id="presentation.rcp.popup.option.pdf">
+        <source>presentation.rcp.popup.option.pdf</source>
+        <target>RCP Popup</target>
+    </trans-unit>
+    <trans-unit id="presentation.popin.option.pdf">
+        <source>presentation.popin.option.pdf</source>
+        <target>Popin</target>
+    </trans-unit>
+    <trans-unit id="presentation.annimation.slide.option.pdf">
+        <source>presentation.annimation.slide.option.pdf</source>
+        <target>Animation Slide</target>
+    </trans-unit>
+    <trans-unit id="presentation.reference.list.option.pdf">
+        <source>presentation.reference.list.option.pdf</source>
+        <target>Reference List</target>
+    </trans-unit>
+    <trans-unit id="presentation.rcp.list.option.pdf">
+        <source>presentation.rcp.list.option.pdf</source>
+        <target>PDF List</target>
+    </trans-unit>
+    <trans-unit id="presentation.survey.list.option.pdf">
+        <source>presentation.survey.list.option.pdf</source>
+        <target>Survey List</target>
+    </trans-unit>
+     <trans-unit id="presentation.flowdiagram.option.pdf">
+        <source>presentation.flowdiagram.option.pdf</source>
+        <target>Flow-diagram</target>
+    </trans-unit>
+    <trans-unit id="presentation.check.all.option.pdf">
+       <source>presentation.check.all.option.pdf</source>
+       <target>Check All</target>
+    </trans-unit>
+    <trans-unit id="presentation.comments.pdf">
+       <source>presentation.comments.pdf</source>
+       <target>Comments</target>
+     </trans-unit>
+     <trans-unit id="presentation.list.pdf">
+       <source>presentation.list.pdf</source>
+       <target>List PCR and PDF LinK</target>
+     </trans-unit>
+     <trans-unit id="presentation.error.pdf">
+        <source>presentation.error.pdf</source>
+        <target>Your PDF has not been generated. Please contact our support team through</target>
+     </trans-unit>
+     <trans-unit id="presentation.success.pdf">
+       <source>presentation.success.pdf</source>
+       <target>Your PDF is generated with success! Url:</target>
+     </trans-unit>
+        <trans-unit id="37c5da0a5d8478eed8b98f414e4f3813" resname="Connected user">
+            <source>Connected user</source>
+            <target>__Connected user</target>
+        </trans-unit>
+        <trans-unit id="20db0bfeecd8fe60533206a2b5e9891a" resname="First name">
+            <source>First name</source>
+            <target>__First name</target>
+        </trans-unit>
+        <trans-unit id="8d3f5eff9c40ee315d452392bed5309b" resname="Last name">
+            <source>Last name</source>
+            <target>__Last name</target>
+        </trans-unit>
+        <trans-unit id="ce8ae9da5b7cd6c3df2929543a9af92d" resname="Email">
+            <source>Email</source>
+            <target>__Email</target>
+        </trans-unit>
+        <trans-unit id="b08190e627cb09b6d4782f213946ddfe" resname="Connected At">
+            <source>Connected At</source>
+            <target>__Connected At</target>
+        </trans-unit>
+        <trans-unit id="91d522fe68c9ac8ac16026371421018f" resname="Last Access">
+            <source>Last Access</source>
+            <target>__Last Access</target>
+        </trans-unit>
+        <trans-unit id="004bf6c9a40003140292e97330236c53" resname="Action">
+            <source>Action</source>
+            <target>__Action</target>
+        </trans-unit>
+        <trans-unit id="004bf6c9a400031402d92e97330236c53" resname="Action">
+            <source>Logout</source>
+            <target>_Logout</target>
+        </trans-unit>
+
+        <trans-unit id="bff96afc836b4ac8d86e1c57b75d78ca" resname="Get Selected">
+            <source>Get Selected</source>
+            <target>__Get Selected</target>
+        </trans-unit>
+        <trans-unit id="8807c97721e343cdc1fa2444cc00415b" resname="Thumb">
+            <source>Thumb</source>
+            <target>__Thumb</target>
+        </trans-unit>
+        <trans-unit id="1f32f46846b963b3e3703ca86661eb10" resname="Preseantaion name">
+            <source>Preseantaion name</source>
+            <target>__Preseantaion name</target>
+        </trans-unit>
+        <trans-unit id="e7b47c58815acf1d3afa59a84b5db7fb" resname="Company Name">
+            <source>Company Name</source>
+            <target>__Company Name</target>
+        </trans-unit>
+        <trans-unit id="6cb2830007af9ceb6ce55b4560dc650a" resname="Project ID">
+            <source>Project ID</source>
+            <target>__Project ID</target>
+        </trans-unit>
+        <trans-unit id="7adea0d9c77aabccd8bb67ae0a832d59" resname="Project name">
+            <source>Project name</source>
+            <target>__Project name</target>
+        </trans-unit>
+        <trans-unit id="d17efbd222e844de81fff09b1e63fcad" resname="DB Slide">
+            <source>DB Slide</source>
+            <target>__DB Slide</target>
+        </trans-unit>
+        <trans-unit id="08efa7f888dd6194300f87eebd4c4b3d" resname="DB Popin">
+            <source>DB Popin</source>
+            <target>__DB Popin</target>
+        </trans-unit>
+        <trans-unit id="40033c1a9ca61e693a9d0aed7b038989" resname="PATH Slide">
+            <source>PATH Slide</source>
+            <target>__PATH Slide</target>
+        </trans-unit>
+        <trans-unit id="ee450fedf22ce4b3e384314643ba005f" resname="PATH Popin">
+            <source>PATH Popin</source>
+            <target>__PATH Popin</target>
+        </trans-unit>
+    </body>
+  </file>
+</xliff>

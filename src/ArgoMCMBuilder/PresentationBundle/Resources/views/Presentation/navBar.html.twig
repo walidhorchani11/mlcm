@@ -1,0 +1,499 @@
+<div class="sidebar" id="edit-bar">
+    <div class="secondary">
+        <button class="button btn-clm-parameters style no-arrow">
+            <span class="icon-list"><img src="{{ asset('img/images/icons/m-setting.png') }}" title="" alt="" /></span>
+            <span class="text-btn">{{ 'presentationedit.presentation-settings' | trans({}, 'presentationedit') }}</span>
+        </button>
+
+        <button class="button btn-clm-map arrange no-arrow">
+            <span class="icon-list"><img src="{{ asset('img/images/icons/diagram.png') }}" title="" alt="" /></span>
+            <span class="text-btn">{{ 'presentationedit.flow-diagram' | trans({}, 'presentationedit') }}</span>
+        </button>
+
+        <button class="button btn-screen-parameters settings no-arrow">
+            <span class="icon-list"><img src="{{ asset('img/images/icons/screnn-settings.png') }}" title="" alt="" /></span>
+            <span class="text-btn">{{ 'presentationedit.screen-settings' | trans({}, 'presentationedit') }}</span>
+        </button>
+
+        <button class="button btn-pdf-list revisions no-arrow">
+            <span class="icon-list"><img src="{{ asset('img/images/icons/icon-pdf.png') }}" title="" alt="" /></span>
+            <span class="text-btn">{{ 'presentationedit.pdf-list' | trans({}, 'presentationedit') }}</span>
+        </button>
+
+        <button class="button references-list import  no-arrow">
+            <span class="icon-list"><img src="{{ asset('img/images/icons/m-ref-list.png') }}" title="" alt="" /></span>
+            <span class="text-btn">{{ 'presentationedit.references-list' | trans({}, 'presentationedit') }}</span>
+        </button>
+
+        {#  <button class="button medialibrary no-arrow"><span class="icon fa fa-file-image-o"></span><span
+                      class="text-btn">Media library</span></button>#}
+
+        <button class="button export btn-popin-params no-arrow">
+            <span class="icon-list"><img src="{{ asset('img/images/icons/popin-settings.png') }}" title="" alt="" /></span>
+            <span class="text-btn">{{ 'presentationedit.popin-settings' | trans({}, 'presentationedit') }}</span>
+        </button>
+
+        <button class="button popin no-arrow">
+            <span class="icon-list"><img src="{{ asset('img/images/icons/popin-list.png') }}" title="" alt="" /></span>
+            <span class="text-btn">{{ 'presentationedit.popin-list' | trans({}, 'presentationedit') }}</span>
+        </button>
+
+        {#<button class="button btn-popin-list export no-arrow"><span
+                     class="icon i-brush"></span><span
+                     class="close icon i-x"></span><span
+                     class="text-btn">Popin PARAMETERS</span></button>#}
+    </div>
+    <div class="primary save-menu">
+        <!--<button class="button undo disabled">
+                                <span><img src="{{ asset('img/images/pictos/undo.png') }}" title="" alt="" /></span>
+                            </button>-->
+        <!-- <button class="button disabled save"><i class="fa fa-save"></i></button>-->
+        <span class="saveBtn" data-toggle="tooltip">
+            <button type="button" class="btn button save btn-primary" data-toggle="modal" data-saved="true" data-thumb="false" data-target="#modal_save_presentation">
+                <span><img src="{{ asset('img/images/pictos/disquette.png') }}" /></span>
+                {#
+              <span class="spinner centered" data-spinner-radius="7" data-spinner-length="4" data-spinner-width="2" data-spinner-color="#bbbbbb" data-spinner-state="spinning"><div class="" role="progressbar" style="position: relative; width: 0px; z-index: auto; left: 13px; top: 13px;"><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-100-25-0-12 1s linear infinite;"><div style="position: absolute; width: 6px; height: 2px; background: rgb(187, 187, 187); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(0deg) translate(7px, 0px); border-radius: 1px;"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-100-25-1-12 1s linear infinite;"><div style="position: absolute; width: 6px; height: 2px; background: rgb(187, 187, 187); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(30deg) translate(7px, 0px); border-radius: 1px;"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-100-25-2-12 1s linear infinite;"><div style="position: absolute; width: 6px; height: 2px; background: rgb(187, 187, 187); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(60deg) translate(7px, 0px); border-radius: 1px;"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-100-25-3-12 1s linear infinite;"><div style="position: absolute; width: 6px; height: 2px; background: rgb(187, 187, 187); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(90deg) translate(7px, 0px); border-radius: 1px;"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-100-25-4-12 1s linear infinite;"><div style="position: absolute; width: 6px; height: 2px; background: rgb(187, 187, 187); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(120deg) translate(7px, 0px); border-radius: 1px;"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-100-25-5-12 1s linear infinite;"><div style="position: absolute; width: 6px; height: 2px; background: rgb(187, 187, 187); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(150deg) translate(7px, 0px); border-radius: 1px;"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-100-25-6-12 1s linear infinite;"><div style="position: absolute; width: 6px; height: 2px; background: rgb(187, 187, 187); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(180deg) translate(7px, 0px); border-radius: 1px;"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-100-25-7-12 1s linear infinite;"><div style="position: absolute; width: 6px; height: 2px; background: rgb(187, 187, 187); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(210deg) translate(7px, 0px); border-radius: 1px;"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-100-25-8-12 1s linear infinite;"><div style="position: absolute; width: 6px; height: 2px; background: rgb(187, 187, 187); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(240deg) translate(7px, 0px); border-radius: 1px;"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-100-25-9-12 1s linear infinite;"><div style="position: absolute; width: 6px; height: 2px; background: rgb(187, 187, 187); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(270deg) translate(7px, 0px); border-radius: 1px;"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-100-25-10-12 1s linear infinite;"><div style="position: absolute; width: 6px; height: 2px; background: rgb(187, 187, 187); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(300deg) translate(7px, 0px); border-radius: 1px;"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-100-25-11-12 1s linear infinite;"><div style="position: absolute; width: 6px; height: 2px; background: rgb(187, 187, 187); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(330deg) translate(7px, 0px); border-radius: 1px;"></div></div></div></span>
+                                                                          #}
+
+            </button>
+        </span>
+        <!-- <button type="button" class="btn button manual-save  disabled" data-toggle="modal"
+                data-target="#modal_save_presentation">
+            <i class="fa fa-save"></i>
+        </button> -->
+    </div>
+    <div class="dropdown container-saideBarbtn">
+        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            <span><img src="{{ asset('img/images/pictos/add.png')}}" /></span>
+
+        </button>
+        <ul class="dropdown-menu addList" aria-labelledby="dLabel">
+            <span class="picto-F"><img src="{{ asset('img/images/pictos/tri-fleche.png')}}" /></span>
+            {# pdf with JS #}
+            {#<li>
+                <a class="line-btn" id="pdfgen" href="#">
+                    <button type="button" class="btn button">
+                        <span><img src="{{ asset('img/images/icons/edit-pdf-s.png')}}" /></span>
+                    </button>
+                    <span class="lint-to-pdf">{{ 'presentationedit.download-pdf' | trans({}, 'presentationedit') }}</span>
+                </a>
+            </li>#}
+            <li>
+                <a class="line-btn" id="printPdf" href="#">
+                    <button type="button" class="btn button">
+                        <span><img src="{{ asset('img/images/icons/edit-pdf-s.png') }}"/></span>
+                    </button>
+                    <span class="lint-to-pdf">{{ 'presentationedit.download-pdf' | trans({}, 'presentationedit') }}</span>
+                </a>
+            </li>
+            <!-- <li>
+
+                                    <a class="line-btn" id="generate_pdf_btn2" href="#">
+
+                                       <button type="button" class="btn button">
+                                           <span><img src="{{ asset('img/images/icons/edit-pdf-s.png')}}" /></span>
+                                    </button>
+                                       <span class="lint-to-pdf">{{ 'presentationedit.download-pdf' | trans({}, 'presentationedit') }}</span>
+
+                                    </a>
+                                </li> -->
+            <li>
+
+                <a class="line-btn" id="zip">
+                    <button type="button" class="button">
+                        <span><img src="{{ asset('img/images/icons/download.png')}}" /></span>
+
+                    </button>
+                    <span class="link-down">{{ 'presentationedit.download-zip' | trans({}, 'presentationedit') }}</span>
+                </a>
+            </li>
+            <li>
+                <a class="line-btn preview" id="preview_presentation" href="#">
+                    <button  class="button">
+                        <span><img src="{{ asset('img/images/icons/preview.png')}}"></span>
+                    </button> <span class="link-view">{{ 'presentationedit.preview-presentation' | trans({}, 'presentationedit') }}</span>
+                    {# <div class="preview-controls">
+                         <button class="button preview-controls-button preview-controls-exit grey l"
+                                 data-tooltip="Resume editing"
+                                 data-tooltip-direction="b" data-tooltip-delay="1000">
+                             <span class="icon i-pen-alt2"></span>
+                         </button>
+                         <a class="button preview-controls-button preview-controls-external grey l"
+                            href="https://slides.com/mohammedmejri/new#"x
+                            data-tooltip="Present this deck"
+                            data-tooltip-direction="b">
+                             <span class="icon i-play"></span>
+                         </a>
+                     </div>
+                    #} </a>
+            </li>
+
+            {% if app.user.company.veevaUrl is not empty and app.user.company.veevaApi is not empty %}
+                {% if isBinderZip is empty %}
+                    {% set keyZip = path('zip_veeva_steps',{'id_press':  app.request.get('idPres') }) %}
+                {% else %}
+                    {% set keyZip = path('dashboard_vault_zip',{'id_press':  app.request.get('idPres')}) %}
+                {% endif %}
+                {% if isBinderPdf is empty %}
+                    {% set keyPdf =path('veeva_steps',{'id_press':  app.request.get('idPres') }) %}
+                {% else %}
+                    {% set keyPdf = path('dashboard_vault_pdf',{'id_press':  app.request.get('idPres')}) %}
+                {% endif %}
+                <li>
+                    <a class="line-btn preview" id="preview_presentation_pdf"
+                       href="{{ keyPdf }}">
+                        <button class="button">
+                            <span style="color: #ea8b03;background: #ffffff;font-size: 10px;font-weight: bold;padding: 5px;font-family: cursive;">PDF</span>
+                        </button>
+                        <span class="link-view">Push PDF to Vault</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="line-btn preview" id="preview_presentation_zip"
+                       href="{{ keyZip }}">
+                        <button class="button">
+                            <span style="color: #ea8b03;background: #ffffff;font-size: 10px;font-weight: bold;padding: 5px;font-family: cursive;">ZIP</span>
+                        </button>
+                        <span class="link-view">Push ZIP to Vault</span>
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a title="Your company has no Vault URL configured. Please contact your administrator."
+                       class="line-btn preview" id="preview_presentation_pdf_blocked"
+                       href="#">
+                        <button class="button">
+                            <span style="color: #ea8b03;background: #ffffff;font-size: 10px;font-weight: bold;padding: 5px;font-family: cursive;">PDF</span>
+                        </button>
+                        <span class="link-view">Push PDF to Vault</span>
+                    </a>
+                </li>
+                <li>
+                    <a title="Your company has no Vault URL configured. Please contact your administrator."
+                       class="line-btn preview" id="preview_presentation_zip_blocked"
+                       href="#">
+                        <button class="button">
+                            <span style="color: #ea8b03;background: #ffffff;font-size: 10px;font-weight: bold;padding: 5px;font-family: cursive;">ZIP</span>
+                        </button>
+                        <span class="link-view">Push ZIP to Vault</span>
+                    </a>
+                </li>
+
+            {% endif %}
+        </ul>
+    </div>
+    <button class="button zipLimit">
+        <span id="hoverLimitZipAlert"> {{ 'presentationedit.message-alert-status-default' | trans({}, 'presentationedit') }}</span>
+        <i class="fa fa-file-archive-o level1" aria-hidden="true"></i>
+        <i class="fa fa-exclamation-triangle level2" aria-hidden="true"></i>
+        <i class="fa fa-times-circle-o level3" aria-hidden="true"></i>
+    </button>
+    <div class="secondary version-label">
+        <button id="versionLabel" type="button" class="btn button no-arrow">
+            <span> {{ 'presentationedit.version-history' | trans({},'presentationedit') }}</span>
+        </button>
+    </div>
+    <button class="button savepop">{{ 'presentationedit.save-and-quit' | trans({}, 'presentationedit') }}</button>
+    <button class="button arrangediag" id="arrangediag" style="display:none">{{ 'presentationedit.arrange' | trans({}, 'presentationedit') }}</button>
+    <button class="button validatearrange" id="validatearrange" style="display:none">{{ 'presentationedit.validatearrange' | trans({}, 'presentationedit') }}</button>
+    <!--modal content save presentation-->
+    <div class="modal fade in modal-pres" id="modal_save_presentation" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div  class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                                aria-hidden="true">×</span><span class="sr-only">{{ 'presentationedit.close' | trans({}, 'presentationedit') }}</span>
+                    </button>
+                    <h4 class="modal-title">{{ 'presentationedit.save-presentation' | trans({}, 'presentationedit') }}</h4>
+                    <small class="font-bold">
+                        {{ 'presentationedit.plese-add-comment' | trans({}, 'presentationedit') }}:
+                    </small>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="saveForm">
+                        <textarea id="txtr-comment" rows="5" cols="85">{{ data.comment }}</textarea>
+                        <div class="status">{{ 'presentationedit.current-version' | trans({}, 'presentationedit') }} : <span id="rev-version"> {{ version }} </span></div>
+                        {#<div class="form-group state-save">#}
+                            {#<select class="form-control select2-hidden-accessible" name="state"#}
+                                    {#tabindex="-1" aria-hidden="true">#}
+                                {#<option value="1">{{ 'presentationedit.in-progress' | trans({}, 'presentationedit') }}</option>#}
+                                {#<option value="2">{{ 'presentationedit.active' | trans({}, 'presentationedit') }}</option>#}
+                            {#</select>#}
+                        {#</div>#}
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" id="backup_pres"
+                            data-dismiss="modal">{{ 'presentationedit.leave-without-saving' | trans({}, 'presentationedit') }}
+                    </button>
+                    <button class="ladda-button ladda-button-save btn btn-primary" data-style="zoom-in"id="save_pres">
+                        <span class="ladda-label">{{ 'presentationedit.save-changes' | trans({}, 'presentationedit') }}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+    <!--modal content download zip -->
+    <div class="modal fade in modal-pres" id="modal_download_zip" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                                aria-hidden="true">×</span><span class="sr-only">{{ 'presentationedit.close' | trans({}, 'presentationedit') }}</span>
+                    </button>
+                    <h4 class="modal-title">{{ 'Download Zip' | trans({}, 'presentationedit') }}</h4>
+                    <small class="font-bold">
+                        {{ 'Select the format to export your presentation:' | trans({}, 'presentationedit') }}
+                    </small>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="saveForm">
+                        <div class="form-group">
+                            <select class="form-control" id="clm">
+                                <option value="mi">{{ 'presentationedit.mi' | trans({}, 'presentationedit') }}</option>
+                                <option value="veeva">{{ 'presentationedit.veeva' | trans({},
+                                    'presentationedit')
+                                    }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="radio"><label><input type="radio" name="type_convert" value="deep" checked="checked"/><span>{{ 'Mono sequence' | trans({}, 'presentationedit') }}</span></label></div>
+                            <div class="radio"><label><input type="radio" name="type_convert" value="wide" /><span>{{ 'Multi sequence' | trans({}, 'presentationedit') }}</span></label></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" id="backup_pres"
+                            data-dismiss="modal">{{ 'Cancel' | trans({}, 'presentationedit') }}
+                    </button>
+                    <button class="btn btn-primary"  data-style="zoom-in"id="download_zip">{{ 'Apply' | trans({}, 'presentationedit') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+    <!--modal content download zip -->
+    <div class="modal fade in modal-pres" id="modal_empty_pageid" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                                aria-hidden="true">×</span><span class="sr-only">{{ 'presentationedit.close' | trans({}, 'presentationedit') }}</span>
+                    </button>
+                    <h4 class="modal-title">{{ 'MISSING PAGE ID' | trans({}, 'presentationedit') }}</h4>
+                    <small class="font-bold">
+                        {{ 'You cannot download the CLM zip file because the page ID is missing:' | trans({}, 'presentationedit') }}
+                    </small>
+                </div>
+                <div class="modal-body">
+                <p>
+                    The naming convention for MI-Touch has been created to keep consistency across all presentations to enable uniform reporting across all products and therapy areas. The page ID per each screen must follow this naming convention:
+                </p>
+                {% if "merck" == env %}
+                    <p>
+                        <b>MONTH-DAY-PRODUCT CODE-COUNTRY CODE-CHAPTER SCREEN NUMBER-BEHAVIOURAL DRIVERS - CHAPTER NAME - SCREEN NAME</b><br />
+                        <i>Example: Nov-15-REBIFXX-XX-000-000-XX-CNAME-SNAME</i>
+                    </p>
+                {% endif %}
+                {% if "argo" == env %}
+                    <p>
+                        <b>NOM PRODUIT-CODE PRODUIT-CHAPTER NUMBER-CHAPTER NAME-SCREEN NUMBER-SCREEN NAME-POP IN NAME-RELEASE DATE</b><br />
+                        <i>Example: Comigral01-C01-Activity Profile-S01-Diagnosis-POP IN Methodology-FEB15</i>
+                    </p>
+                {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white"
+                            data-dismiss="modal">{{ 'Close' | trans({}, 'presentationedit') }}
+                    </button>
+                    {% if "merck" == env %}
+                        <button class="btn btn-primary" data-style="zoom-in"id="pageid_details">{{ 'More details' | trans({}, 'presentationedit') }}</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+    <!--modal content download Pdf -->
+    <div class="modal fade in modal-pres" id="modal_download_pdf" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                        <span class="sr-only">{{ 'presentationedit.close' | trans({}, 'presentationedit') }}</span>
+                    </button>
+                    <h4 class="modal-title">{{ 'presentationedit.download-pdf' | trans({}, 'presentationedit') }}</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>{{ 'presentation.title.modal.pdf' | trans({}, 'presentations') }}</h4>
+                    <form method="post" id="saveForm">
+                        <div class="form-group">
+                            <div class="radio"><label><input class="bt_pdf_mi" type="radio" name="type_convert" id="bt-pdf-mi-viva"
+                                     value="mi" checked="checked"/>
+                                    <span>{{ 'Mi Nexxus' | trans({}, 'presentationedit') }}</span></label></div>
+                            <div class="radio"><label><input class="bt_pdf_mi" type="radio" name="type_convert" id="bt-pdf-mi-viva"
+                                                              value="veeva" />
+                                    <span>{{ 'Veeva iRep' | trans({}, 'presentationedit') }}</span></label></div>
+                        </div>
+                        <h4>{{ 'presentation.title.option.pdf' | trans({}, 'presentations') }}</h4>
+                        <input type="checkbox" id="check-all" > {{ 'presentation.check.all.option.pdf' |trans({},'presentations') }} <br>
+                        <div id="checkboxes">
+                            <div class="col-sm-6">
+                            <input type="checkbox" value="chapter-name" > {{ 'presentation.chapter.option.pdf' |trans({}, 'presentations') }} <br>
+                            <input type="checkbox" value="name-screen"> {{ 'presentation.screen.option.pdf' | trans({},'presentations') }}<br>
+                            <span class="page_id"> <input type="checkbox" value="page-id"> {{ 'presentation.page.option.pdf' | trans({},'presentations') }}<br></span>
+                            <span class="key_message" hidden="true"><input type="checkbox" value="key-message">
+                                {{'presentation.key.message.option.pdf' | trans({},'presentations') }} <br></span>
+                            <input type="checkbox" value="title-screen-name" > {{'presentation.title.screen.option.pdf' |trans({},'presentations') }}<br>
+                            <input type="checkbox" value="scrollable-txt" > {{'presentation.scrollable.text.option.pdf' |trans({},'presentations') }} <br>
+                            <input type="checkbox" value="link-popin" > {{'presentation.link.popin.option.pdf' |trans({},'presentations') }} <br>
+                            <input type="checkbox" value="link-screen" > {{'presentation.link.screen.option.pdf'|trans({},'presentations') }} <br>
+                            <input type="checkbox" value="animations" > {{'presentation.annimations.option.pdf' |trans({},'presentations') }}  <br>
+                            <input type="checkbox" value="link-pdf" > {{'presentation.link.pdf.option.pdf' |trans({},'presentations') }} <br>
+                            <input type="checkbox" value="references" > {{'presentation.references.option.pdf' |trans({},'presentations') }} <br>
+                            </div>
+                            <div>
+                            <input type="checkbox" value="ref-popup" > {{'presentation.references.popup.option.pdf'|trans({},'presentations') }} <br>
+                            <input type="checkbox" value="rcp-popup" > {{'presentation.rcp.popup.option.pdf' |trans({},'presentations') }} <br>
+                            <input type="checkbox" value="popin" > {{'presentation.popin.option.pdf' |trans({},'presentations') }} <br>
+                            <input type="checkbox" value="annimation-slide" > {{'presentation.annimation.slide.option.pdf'|trans({},'presentations') }} <br>
+                            <input type="checkbox" value="list-ref" >  {{'presentation.reference.list.option.pdf'|trans({},'presentations') }}<br>
+                            <input type="checkbox" value="list-rcp" > {{'presentation.rcp.list.option.pdf'|trans({},'presentations') }}<br>
+                            <input type="checkbox" value="survey" > {{'presentation.survey.list.option.pdf'|trans({},'presentations') }}<br>
+                            <input type="checkbox" value="flow-diagram" > {{'presentation.flowdiagram.option.pdf'|trans({},'presentations') }} <br>
+                            <input type="checkbox" value="comments" > {{'presentation.comments.pdf'|trans({},'presentations') }} <br>
+                            <input type="checkbox" value="link-rcp-pdf" > {{'presentation.list.pdf'|trans({}, 'presentations') }} <br>
+                            </div>
+                     </div>
+                    </form>
+                    <br>
+                    <br>
+                    <span id="msg-generate-pdf" hidden="false">{{ 'presentation.msggenerate.pdf' | trans({},'presentations') }}</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" id="backup_pres"
+                            data-dismiss="modal">{{ 'Close' | trans({}, 'presentationedit') }}
+                    </button>
+                    <button class="ladda-button ladda-button-pdf btn btn-primary"  data-style="zoom-in" id="download_pdf_note">
+                        <span class="ladda-label">{{ 'Apply' | trans({}, 'presentationedit') }}</span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+    <!--modal content version history -->
+    <div class="modal fade in modal-pres" id="modal_version_history" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                        <span class="sr-only">{{ 'presentationedit.close' | trans({}, 'presentationedit') }}</span>
+                    </button>
+                    <h4 class="modal-title"> {{ 'presentationedit.version-history' | trans({},'presentationedit') }} </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-bordered table-hover dataTables-example dataTable"
+                           border="1" id="list-revision">
+                        <thead>
+                        <tr>
+                            <th>{{ 'presentationedit.version-number' | trans({},'presentationedit') }}</th>
+                            <th>{{ 'presentationedit.version-comments' | trans({},'presentationedit') }}</th>
+                            <th>{{ 'presentationedit.version-created-by' | trans({},'presentationedit') }}</th>
+                            <th>{{ 'presentationedit.version-save-at' | trans({},'presentationedit') }}</th>
+                            <th>{{ 'presentationedit.version-based-on-version' | trans({},'presentationedit') }}</th>
+                            <th>{{ 'presentationedit.version-veeva-vault' | trans({},'presentationedit') }}</th>
+                            <th>{{ 'presentationedit.version-actions' | trans({},'presentationedit') }}</th>
+                        </tr>
+                        </thead>
+                        {% for revision in revisions %}
+                            <tr id="{{ revision.id }}">
+                            {% if revision.version is not null  %}
+                            <td class="version-revision"> V{{ revision.version }}</td>
+                            {% endif %}
+                            {% if revision.comment|length > 0   %}
+                                <td class="revision-comment"> {{ revision.comment }}</td>
+                            {% else %}
+                                <td class="revision-comment"> - </td>
+                            {% endif %}
+                            <td  class="revision-user"> {{ revision.firstname }} {{ revision.lastname }} </td>
+                            <td  class="revision-create-at"> {{ revision.createdAt|date('d-m-Y H:i') }}</td>
+                            {% if revision.parent is not null    %}
+                                <td  class="revision-parent"> {{ revision.parent }}  </td>
+                            {% else %}
+                                <td  class="revision-parent"> -  </td>
+                            {% endif %}
+                            <td  class="revision-veeva-vault"> -  </td>
+                            <td>
+                            <a target="_blank" href="{{ path('presentations_preview',  {'idRev':  revision.id }) }}">
+                                 <i class="p-view-icon"></i></a>
+                            <a class="upload-new-version" id="{{ revision.id }}" > <i class="fa fa-rotate-left"></i></a>
+                            </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+    <!--modal content upload new version history -->
+    <div class="modal fade in modal-pres" id="modal_upload_new_version_history" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                        <span class="sr-only">{{ 'presentationedit.close' | trans({}, 'presentationedit') }}</span>
+                    </button>
+                    <h4 class="modal-title"> {{ 'presentationedit.version-history' | trans({},'presentationedit') }} </h4>
+                </div>
+                <div class="modal-body" >
+                    <span class="idRevSave" hidden></span>
+                        <p> {{ 'presentationedit.upload-version-message' | trans({},'presentationedit') }} <span class="old-version"></span>?<br>
+                            {{ 'presentationedit.new-version-message' | trans({},'presentationedit') }} <span class="new-version"></span>
+                            {{ 'presentationedit.create-automatically-message' | trans({},'presentationedit') }}
+                            <span class="old-version"></span>.
+                            {{ 'presentationedit.version-history-message' | trans({},'presentationedit') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="ladda-button ladda-button-pdf btn btn-primary"  data-style="zoom-in"
+                            id="cancel-new-version">
+                        <span class="ladda-label">  {{ 'presentationedit.cancel' | trans({},'presentationedit') }} </span>
+                    </button>
+                    <button class="ladda-button ladda-button-pdf btn btn-primary"  data-style="zoom-in"
+                            id="save-new-version">
+                        <span class="ladda-label"> {{ 'presentationedit.back-past' | trans({},'presentationedit') }} </span>
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+
+    <!-- Fix Line Height in Prod -->
+    <div class="modal inmodal" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content animated flipInY">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Dear {{ user.fullname }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size:19px;">{{ 'presentation.announce.popup' | trans({}, 'presentations') }}.</p>
+                    <p style="font-size:19px;">{{ 'presentation.announce.newIcon' | trans({}, 'presentations') }}</p>
+                    <img src="{{ asset('img/fixLine.png') }}" width="100px" height="100px" style="display: block;margin: 0 auto;"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="fixLine">
+                        {{ 'presentation.announce.btn' | trans({}, 'presentations') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Fix Line Height in Prod -->
+</div>

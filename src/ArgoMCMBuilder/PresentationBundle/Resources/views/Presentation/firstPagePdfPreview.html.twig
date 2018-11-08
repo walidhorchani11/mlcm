@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link href="{{ asset('preview_pdf/css/pdf-previw.css') }}" rel="stylesheet">
+    <link href="{{ asset('preview_pdf/css/reset.css') }}" rel="stylesheet">
+</head>
+<body>
+<div id="conteneur" class="cover-page">
+    <div class="compagny-logo">
+        <img src="{{urlLogo }}" alt="Company logo" />
+    </div>
+    <h1><span>{{  'presentationedit.storyboard' | trans({}, 'presentationedit') }}</span><br />
+        {{  'presentationedit.of-the-presentation' | trans({}, 'presentationedit') }}</h1>
+    <hr />
+    <h6>{{ companyName }} {{  'presentationedit.merck-presentation' | trans({}, 'presentationedit') }} </h6>
+    <div class="storyboard-details">
+        <strong>{{  'presentationedit.project' | trans({}, 'presentationedit') }} </strong>{{ projectName }}<br>
+        <strong>{{  'presentationedit.generated-on' | trans({}, 'presentationedit') }} </strong>{{ curentDate }}<br>
+        <strong>{{  'presentationedit.project-owner' | trans({}, 'presentationedit') }} </strong>{{  projectOwnerName}}<br>
+        <strong>{{  'presentationedit.presentation-owner' | trans({}, 'presentationedit') }} </strong>{{ presOwnerName }}
+    </div>
+    <div class="mcm-logo">
+        <img src="{{ asset('preview_pdf/images/mcm-logo.png') }}" alt="MCM Builder">
+    </div>
+</div>
+
+</body>
+</html>

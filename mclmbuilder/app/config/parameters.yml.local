@@ -1,0 +1,21 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 192.168.91.5
+    database_port: null
+    database_name: merck_HZI
+    database_user: DEV_user
+    database_password: 666r666
+    mailer_transport: gmail
+    mailer_host: smtp.gmail.com
+    mailer_user: devtestserveur1@argolife.fr
+    mailer_password: 2hv6D6Dt
+    mailer_encryption: ssl
+    mailer_port: 465
+    secret: 02c766c11aabcd9b1c08b5f17fd24ebb2684ec94
+    session_handler_redis_save_path: 'redis://localhost'
+    presentations_thumbnails: _Thumbs
+    piwik_disabled: false
+    phantom_preview: ''
+    pdf_directory: .eu-west-1.argolife.internal
+    s3_domain: 'https://s3-eu-west-1.amazonaws.com'
+    translation: true

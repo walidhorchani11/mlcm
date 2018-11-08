@@ -1,0 +1,12 @@
+<section <% if (section.class) { %>class="<%= section.class %>"<% } %><% if(section.attributes) { Object.keys(section.attributes).forEach(function(key, value){ %> <%= key %>="<%= section.attributes[key] %>"<% }); } %>>
+<% childs = section.children; blocks = section.blocks; %>
+<% if (childs) { %>
+    <% childs.forEach(function(child){ %>
+    <%- include section-child -%>
+    <% }); %>
+<% } else { %>
+    <% blocks.forEach(function(block){ %>
+    <%- include block -%>
+    <% }); %>
+<% } %>
+</section>

@@ -1,0 +1,66 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}Login Veeva{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div class="wrapper wrapper-content">
+        <div class="ibox">
+            <div class="middle-box-veeva animated fadeInDown ibox-content form-flow-veeva" id="login-form-vault-style">
+                <div class="title-veeva-cnx text-center">
+                    <!--<div class="veeva-cnx"></div>-->
+                </div>
+                {{ form_start(form) }}
+                {% if not form.vars.valid %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
+                <div class="vault-url"><h4>VEEVA VAULT URL: <span>{{ veevaUrl }}</span></h4></div>
+                <hr />
+                {% if veevaUrl is not empty %}
+                    <div class="form-group email-veeva">
+                        <div class="vault-url">EMAIL:</div>
+                        {{ form_row(form.Email, {'attr': {'class': 'form-control','id': 'email','placeholder': 'Enter email'}}) }}
+                    </div>
+
+                    <div class="form-group password-veeva">
+                        <div class="vault-url">PASSWORD:</div>
+                        {{ form_row(form.Password, {'attr': {'class': 'form-control','id': 'pwd','placeholder': 'Enter password'}}) }}
+                    </div>
+                    <hr />
+                    <div class="login-btn text-center">
+                        {{ form_row(form.Login, {'attr': {'class': 'btn btn-default'}}) }}
+                        {{ form_end(form) }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger">
+                        ADD YOUR VEEVA <strong>URL CONNECTION!</strong>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent () }}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,355 @@
+.craue_formflow_buttons {
+    overflow: hidden
+}
+
+.craue_formflow_buttons {
+    margin: auto;
+}
+
+.craue_formflow_steplist li {
+    line-height: 1.5em;
+    font-size: 15px;
+}
+
+#data-of-document {
+    clear: both;
+    color: #696969;
+    padding: 40px 80px;
+}
+.craue_formflow_buttons .btn:first-letter {
+    text-transform: uppercase;
+}
+.bottom-form-veeva {
+    padding-bottom: 30px !important;
+    overflow: hidden;
+}
+.craue_formflow_steplist li.craue_formflow_skipped_step {
+    text-decoration: line-through
+}
+
+/*.craue_formflow_steplist li.craue_formflow_done_step:after {
+    content: ' \2713'
+}*/
+
+.craue_formflow_steplist li.craue_formflow_current_step {
+    font-weight: 700;
+    /* font-size: 1.2em; */
+    color: #0c4171;
+}
+
+.craue_formflow_buttons {
+    margin-top: 45px;
+}
+
+.craue_formflow_buttons .btn-back {
+    background: #181b3f;
+    color: #ffffff;
+    opacity: 0.5;
+}
+
+.flow-steps {
+    float: left;
+    padding: 20px 50px 250px 20px;
+    background-color: #dbdcf4
+}
+
+.flow-form {
+    float: left;
+    width: 600px;
+    margin-top: 10px;
+    margin-left: 10px
+}
+
+.flow-form label {
+    display: inline-block;
+    width: 160px
+}
+
+.flow-form input[type="text"] {
+    width: 300px
+}
+
+ol.craue_formflow_steplist li {
+    float: left;
+    padding: 1px 32px 6px 1px;
+}
+
+.form-flow-veeva .form-control {
+    border: 1px solid #d1d2d4;
+    font-size: 0.9em !important;
+    margin-bottom: 4px;
+}
+
+.craue_formflow_buttons .btn {
+    padding: 8px 25px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.flow-form textarea {
+    width: 550px;
+    height: 200px
+}
+
+.flow-form dl dt {
+    float: left;
+    width: 100px
+}
+
+.data-usage-notice {
+    padding: 10px 20px;
+    background-color: #f4dbdc;
+    color: #836a6b;
+    display: inline-block
+}
+
+.clear {
+    clear: both
+}
+
+form[name=CreateBinderStep1] {
+    clear: both;
+}
+
+.form-flow-veeva li {
+    color: #ff0000;
+}
+
+.craue_formflow_steplist li {
+    color: #8e8e8e;
+}
+
+.craue_formflow_buttons .btn-primary {
+     margin: 0 auto;
+}
+.required-text{
+    padding-left:5% !important;
+}
+.form-flow-veeva fieldset {
+    padding: 9px;
+    border: 1px solid #30456a;
+    margin-bottom: 30px;
+    border-radius: 3px;
+}
+.bottom-form-veeva .btn-back {
+    margin-right: 10px;
+}
+.form-flow-veeva legend {
+    display: block;
+    width: auto;
+    margin-bottom: 5px;
+    background: #fff;
+    padding: 2px 5px 2px 5px;
+    color: #908c8c;
+    overflow: hidden;
+    font-weight: 700;
+    border: 0px;
+    font-size: 1.13em;
+    text-transform: uppercase;
+
+}
+
+div[text='Create binder step1'] {
+    display: none;
+}
+
+.form-flow-veeva .help {
+    font-size: 10px;
+    color: #6b7890;
+    padding: 0px 0px 0px 21px;
+    display: block;
+    max-width: 515px;
+    margin-left: 22%;
+}
+
+.form-doc-veeva #CreateBinderStep1_name__v {
+    display: none;
+}
+
+.form-doc-veeva label[for=CreateBinderStep1_name__v] {
+    display: none;
+}
+
+.form-zip-veeva div, .form-doc-veeva div {
+    padding: 3px 15px 2px 7px;
+}
+
+.form-zip-veeva input, .form-doc-veeva input {
+    width: 76% !important;
+}
+
+.form-zip-veeva select, .form-doc-veeva select {
+    width: 76% !important;
+}
+div#CreateBinderStep1 {
+    padding: 30px 15px 2px 30px;
+}
+.form-zip-veeva label, .form-doc-veeva label {
+    width:24% !important;
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.alert-warning-differ {
+    width: 87%;
+    margin: auto;
+    color: #8c8a88;
+    background-color: rgba(255, 231, 200, 0.68);
+    padding: 9px 13px 14px 63px;
+    border: 1px solid #ebccd1;
+    border-radius: 4px;
+}
+#message-area .alert-warning-differ .glyphicon{
+    display: none;
+}
+
+
+.title-warning-differ {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.alert-warning-differ .alert-dismissible .close {
+    position: relative;
+    top: -2px;
+    right: 11px;
+    color: inherit;
+}
+
+#presentation_table a {
+    /* color: #73430f;*/
+    color: #0c4171;
+}
+
+#presentation_table {
+    color: #676a6c;
+    margin: 25px 6px 52px 13px;
+}
+
+#presentation_table th {
+    font-weight: 100;
+}
+
+#presentation_table thead th {
+    font-weight: 600;
+    color: #3f4244;
+    text-transform: uppercase;
+}
+
+#presentation_table .active {
+    background: transparent;
+}
+
+#CreateBinderStep1 div.tab-pane {
+    padding: 28px;
+    /* border: 1px solid #b1abab;*/
+}
+
+.form-flow-veeva div.tab-pane legend {
+    display: block;
+    padding: 0;
+    font-size: 1em;
+    line-height: inherit;
+    color: #8e8e8e;
+    border: 0;
+}
+
+#data-of-document .title-accord {
+    font-size: 1.1em;
+    font-weight: 100;
+}
+
+#data-of-document .panel-default > .panel-heading {
+    color: #333;
+    background-color: transparent;
+    border-color: #ddd;
+
+}
+
+#data-of-document a {
+    color: #30456a;
+}
+
+.panel-heading .accordion-toggle:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+    float: right;
+    color: #30456a;
+}
+
+.panel-heading .accordion-toggle.collapsed:after {
+    content: "\e080";
+}
+
+#disconnectModal .btn {
+    background: #f8991d;
+    border: 1px solid #f8991d;
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+#disconnectModal p {
+    text-align: center;
+}
+
+#disconnectModal .modal-body {
+    padding: 20px 30px 30px 30px;
+    font-size: 1.3em;
+}
+
+th.active a {
+    color: #ff9900 !important;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.form-control:focus {
+    border-color: #181b3f;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.has-error .form-control:focus {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.select-all-vault input {
+    width: 2% !important;
+}
+
+.finishdocument, .finishbinder {
+    background-color: #ffffff;
+    border-color: #181b3f;
+    color: #181b3f;
+}
+
+.finishdocument:hover, .finishdocument:focus, .finishdocument:active, .finishdocument.active, .finishdocument:checked,
+.finishbinder:hover, .finishbinder:focus, .finishbinder:active, .finishbinder.active, .finishbinder:checked {
+    background-color: #ffffff;
+    border-color: #181b3f;
+    color: #181b3f;
+}
+.craue_formflow_buttons.craue_formflow_button_count_2,
+.craue_formflow_buttons.craue_formflow_button_count_3{
+    float: right;
+}
+fieldset#CreateBinderStep1_veeva_life_cycle_binder {
+    margin-top: 30px;
+}
+
+.alert-warning-differ {
+    text-align: left !important;
+    font-size: 12px !important;
+    padding: 10px;
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.alert-warning-differ .close{
+    position: relative;
+    top: -2px;
+    right: 2px;
+    color: inherit;
+}

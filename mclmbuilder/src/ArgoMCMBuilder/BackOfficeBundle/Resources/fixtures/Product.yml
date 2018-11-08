@@ -1,0 +1,6 @@
+model: ArgoMCMBuilder\BackOfficeBundle\Entity\Product
+fixtures:
+    product1:
+        name: product1
+        company: company1
+        country: Tunisia

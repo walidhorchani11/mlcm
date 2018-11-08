@@ -1,0 +1,82 @@
+#menu a.home {
+    width: 50px;
+    height: 65px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url("theme/theme1/images/picto-home.png");
+    line-height: 65px;
+    display: block;
+    background-size: 28px auto;
+    position: absolute;
+    left: 0;
+}
+
+#menu a.home {
+    width: 50px;
+    height: 65px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    line-height: 65px;
+    display: block;
+    background-size: 30px auto;
+    position: absolute;
+    left: 0;
+    {% set url = "theme/theme1/images/picto-home-active.png" %}
+    {% if extension1 is defined and extension1 is not empty %}
+    {% set url = "theme/theme1/images/pictoHome." ~ extension1 %}
+    {% endif %}
+    background-image: url({{ url|raw }}) !important;
+}
+
+#menu a.home.current {
+    {% set url = "theme/theme1/images/picto-home-active.png" %}
+    {% if extension1 is defined and extension1 is not empty %}
+        {% set url = "theme/theme1/images/pictoHome." ~ extension1 %}
+    {% endif %}
+    background-image: url({{ url|raw }}) !important;
+    background-position: center center
+}
+
+{% if extension2 is defined and extension2 is not empty %}
+#menu .minMenu div.ref {
+    height: 30px;
+    width: 30px;
+    left: 107px;
+    top: 20px;
+    background: url("theme/theme1/images/pictoRef.{{ extension2 }}") center center no-repeat;
+    background-size: contain !important;
+}
+{% else %}
+#menu .minMenu div.ref {
+    height: 19.5px;
+    width: 22px;
+    background: url("theme/theme1/images/ic-doc.png") center center no-repeat;
+    left: 108px;
+    background-size: contain !important;
+    top: 29px
+}
+{% endif %}
+
+
+{% if extension3 is defined and extension3 is not empty %}
+#menu .minMenu div.doc {
+    height: 30px;
+    width: 30px;
+    left: 71px;
+    top: 20px;
+    background-size: contain !important;
+    background: url("theme/theme1/images/pictoRcp.{{ extension3 }}") center center no-repeat;
+}
+{% else %}
+#menu .minMenu div.doc {
+    height: 22px;
+    width: 22px;
+    background: url("theme/theme1/images/ic-ref.png") center center no-repeat;
+    left: 77px;
+    top: 29px;
+    background-size: contain
+}
+{% endif %}
+
+
+

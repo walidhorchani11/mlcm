@@ -1,0 +1,9 @@
+<div class="<%= content.class %>"
+      <% if (content.attributes) { %> <% Object.keys(content.attributes).forEach(function(key) { %> <%- key %> ="<%- content.attributes[key] %>"<% }); %> <%}%>
+     style="<% if (content.style) { %> <% Object.keys(content.style).forEach(function(key) { %> <%- key %>:<%- content.style[key] %> ;<% }); %> <%}%>" >
+
+    <svg xmlns="<%= content.data.xmlns %>" width="<%= content.data.width %>" height="<%= content.data.height %>" version="<%= content.data.version %>" viewBox="<%= content.data.viewBox %>" preserveAspectRation="<%= content.data.preserveAspectRation %>">
+           <%- content.data.data %>
+    </svg>
+
+</div>

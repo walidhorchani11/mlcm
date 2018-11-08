@@ -1,0 +1,68 @@
+<article class="projector">
+    <div id="zip_size_alert" style="display: none;">
+        <div class="estimated-shared-size"><b>Estimated shared resource size: </b></div>
+        <div class="shared-size-progressbar">
+            <div class="progress active progress-striped">
+                <div style="width: 50%" aria-valuemax="{{ max_size_zip }}" aria-valuemin="0" aria-valuenow="50" role="progressbar"
+                     class="progress-bar progress-bar-default">
+                </div>
+            </div>
+            <span class="size-mention"><span id="shared_size_val"></span>Mb/
+                <span id="shared_max_size_val"></span>Mb</span>
+        </div>
+        <div class="estimated-screen-size"><b>Estimated screen size: </b></div>
+        <div class="screen-size-progressbar">
+            <div class="progress active progress-striped">
+                <div style="width: 50%" aria-valuemax="{{ max_size_zip }}" aria-valuemin="0" aria-valuenow="50" role="progressbar"
+                     class="progress-bar progress-bar-warning">
+                </div>
+            </div>
+            <span class="size-mention">
+                <span id="screen_size_val"></span>Mb/
+                <span id="screen_max_size_val"></span>Mb</span>
+        </div>
+        <div class="estimated-presentation-size"><b>Estimated CLM presentation size: </b></div>
+        <div class="presentation-size-progressbar">
+            <div class="progress active progress-striped">
+                <div style="width: 50%" aria-valuemax="{{ max_size_zip }}" aria-valuemin="0" aria-valuenow="50" role="progressbar"
+                     class="progress-bar progress-bar-danger">
+                </div>
+            </div>
+            <span class="size-mention">
+                <span id="presentation_size_val"></span>Mb/
+                <span id="presentation_max_size_val"></span>Mb</span>
+        </div>
+        <div class="zip-size-warning">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true" style="padding-right: 5px;"></i>
+            <span id="" >{{ 'presentationedit.message-alert-status-default' | trans({}, 'presentationedit') }}
+        </div>
+    </div>
+    <div class="reveal-viewport theme-font-montserrat theme-color-white-blue">
+        <div class="reveal slide" role="application" data-transition-speed="default"
+             data-background-transition="none">
+             <div class="slides"></div>
+             <div class="slidespop" style="display: none"></div>
+             <div id="tempReferences" style="display:none"></div>
+
+
+            <div class="backgrounds">
+                <div class="slide-background present" data-loaded="true"></div>
+            </div>
+            <div class="progress"><span></span></div>
+            <aside class="controls">
+                <button class="navigate-left" aria-label="previous slide" disabled="disabled"></button>
+                <button class="navigate-right" aria-label="next slide" disabled="disabled"></button>
+                <button class="navigate-up" aria-label="above slide" disabled="disabled"></button>
+                <button class="navigate-down" aria-label="below slide" disabled="disabled"></button>
+            </aside>
+            <div class="pause-overlay"></div>
+            {#Title Text#}
+        </div>
+    </div>
+    <div class="icon add-horizontal-slide show" data-tooltip="Add new slide&lt;br&gt;(Hold shift for blank)" data-tooltip-alignment="l" data-tooltip-delay="1500">
+        <span class="icon i-plus"></span>
+    </div>
+    <div class="icon add-vertical-slide show" data-tooltip="Add new slide&lt;br&gt;(Hold shift for blank)" data-tooltip-alignment="t" data-tooltip-delay="1500">
+        <span class="icon i-plus"></span>
+    </div>
+</article>

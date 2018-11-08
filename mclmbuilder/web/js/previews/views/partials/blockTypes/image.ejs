@@ -1,0 +1,1 @@
+<img src="<%- content.data.src %>" <% if (content.data.attributes) { Object.keys(content.data.attributes).forEach(function(key, value){ %><%= key %>="<%= content.data.attributes[key] %>" <% }); } %> />

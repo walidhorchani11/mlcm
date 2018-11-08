@@ -1,0 +1,50 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'Newsletter' | trans({}, 'newsletter') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'Newsletter' | trans({}, 'newsletter') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    {{ 'MCMBuilder' | trans({}, 'media') }}
+                </li>
+                <li class="active">
+                    <strong>{{ 'Newsletter' | trans({}, 'newsletter') }}</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content">
+                <div class="ibox">
+
+                    <div class="ibox-content">
+                        <h2>{{ newsletter.subject }}</h2><br>
+                        {{ newsletter.textMessage|raw }}
+                        <br>
+
+
+                        {{ form_start(delete_form) }}
+                        <a href="{{ path('newsletter_index') }}" class="btn btn-primary btn-xs">Back to the list</a>
+                        <a href="{{ path('newsletter_edit', { 'id': newsletter.id }) }}" class="btn btn-primary btn-xs">Edit</a>
+                        <input type="submit" value="Delete" class="btn btn-primary btn-xs">
+                        {{ form_end(delete_form) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+    {% block javascripts %}
+    {% endblock %}
+

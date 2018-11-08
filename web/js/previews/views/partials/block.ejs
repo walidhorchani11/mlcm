@@ -1,0 +1,8 @@
+<div class="<% if (block.class) { %><%= block.class %><% } %>" <% if (block.style) { Object.keys(block.attributes).forEach(function(key, value){ %><%= key %>="<%= block.attributes[key] %>" <% }); } %><% if (block.style) { %>style="<% Object.keys(block.style).forEach(function(key, value){ %><%= key %>:<%= block.style[key] %>;<% }); %>"<% } %>>
+    <div class="block-style<% if (block.blockStyle.class) { %> <%= block.blockStyle.class %><% } %>"<% if (block.blockStyle.style) { %> style="<% Object.keys(block.blockStyle.style).forEach(function(key, value){ %><%= key %>:<%= block.blockStyle.style[key] %>;<% }); %>"<% } %>>
+        <% content = block.blockStyle.blockcontent; blockType = block.type; %>
+        <%- include block-content %>
+    </div>
+    <% if (block.linkedscreen != '') { %><div class="<%= block.linkedscreen.class %>" id="<%= block.linkedscreen.id %>"><%= block.linkedscreen.data %></div><% } %>
+    <% if (block.linkedpopin != '') { %><div class="<%= block.linkedpopin.class %>" id="<%= block.linkedpopin.id %>"><%= block.linkedpopin.data %></div><% } %>
+</div>

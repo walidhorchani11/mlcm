@@ -1,0 +1,93 @@
+button.savepop {
+    display: none;
+}
+
+@media screen and (max-width: 1280px) {
+
+    .dataTables_length {padding: 0 0 0 80% !important;}
+    .list-pop-line .item-pop, .line-popin {
+        margin: 15px 40px 25px 15px !important;
+        padding: 35px;
+        width: 20%;
+        }
+
+    .blc-popin {padding: 12px;}
+    .popfilter {
+        margin: 0 20px 0 0;
+        width: 100%;
+        }
+
+    html.decks.edit .sidebar .primary .button,
+    html.decks.edit .sidebar .secondary .button {font-size: 0.7em;}
+    html.decks.edit  .sidebar .secondary .button span.text-btn {font-size: 0.8em;}
+    button.ColVis_Button {left: 18% !important;}
+
+   .project-list table tr td.project-actions {width: 160px;}
+    html.decks.edit .sidebar .secondary .button {padding: 10px 2px;}
+    button.savepop {
+        font-size: 0.7em;
+        font-weight: bold;
+    }
+
+}/*fin css max-width: 1280px*/
+
+/* hack Chrome / Safari */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .survey-sideBar select option{
+        color: #fff;
+        background: #2a3d5f;
+    }
+    #survey_sideBar .addButton .fa-plus::before {padding:3px 4px 1px !important;}
+
+
+
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1439px){
+    html.decks.edit  .sidebar .secondary .button span.text-btn {font-size: 0.9em;}
+    button.ColVis_Button {left: 17% !important;}
+    .dataTables_length {padding: 0 0 0 80% !important;}
+    .project-list table tr td.project-actions {width: 160px;}
+    html.decks.edit .sidebar .secondary .button {padding: 10px 3px;}
+    button.savepop {
+        font-size: 0.7em;
+        font-weight: bold;
+        }
+}
+
+#loader_pdf {
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding: 0;
+    background-color: #fff; /*dim the background*/
+    z-index: 1000;
+    color: #0e102b !important;
+}
+
+.loadertext {
+    position: absolute;
+    top: 43%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    font-size: 35px !important;
+    font-weight: 600;
+}
+
+.displayLoader {
+    position: absolute;
+    top: -30%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+
+html .has-error .form-control {
+    border-color: #ed5565 !important;
+}

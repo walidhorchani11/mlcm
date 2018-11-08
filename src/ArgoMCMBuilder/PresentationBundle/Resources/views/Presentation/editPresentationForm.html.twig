@@ -1,0 +1,162 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'presentations.new_clm_presentation'| trans({}, 'presentations') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'presentations'| trans({}, 'presentations') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <strong>{{ 'MCMBuilder' | trans({}, 'presentations') }}</strong>
+                </li>
+                <li>
+                    <strong> {{ 'MyPresentations' | trans({}, 'presentations') }}</strong>
+                </li>
+                <li>
+                    <strong> {{ 'presentations.new_clm_presentation'| trans({}, 'presentations') }} </strong>
+                </li>
+            </ol>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="{{ path('presentations') }}" class="btn btn-primary">{{ 'presentations.back_to_my_presentations_list'| trans({}, 'presentations') }}</a>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="wrapper wrapper-content">
+        <div class="ibox">
+            <div class="ibox-content">
+
+                <div class="col-sm-12">
+                    <div class="box box-primary">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            {#*********************************************************  Modal add localisation **********************************************#}
+                            <div class="modal inmodal" id="add_local" tabindex="-1"
+                                 role="dialog" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content animated fadeIn" style="font-size: 11px;">
+                                        <div class="modal-header">
+                                            <button type="button" class="close"
+                                                    data-dismiss="modal"><span
+                                                        aria-hidden="true">×</span><span
+                                                        class="sr-only">Close</span>
+                                            </button>
+                                            <h4 class="modal-title">Add Localisation</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="tabss">
+                                                <ul>
+                                                    <li><a href="#tabs-1">New Localisation</a></li>
+                                                    <li><a href="#tabs-2">Localisation List</a></li>
+                                                </ul>
+                                                <div id="tabs-1">
+                                                    <form action="" id="myForm" method="post">
+
+                                                        <label>Choose a territory</label>
+                                                        <select name="territories" class="form-control" id="territory" reuired>
+
+                                                        </select>
+                                                        <label>Choose a Company</label>
+                                                        <select name="campany" class="form-control" id="companyTerritory">
+
+                                                        </select>
+                                                        <input type="submit" class="btn btn-success" value="Add Localisation" />
+
+                                                    </form>
+                                                </div>
+                                                <div id="tabs-2">
+                                                    <table class="table table-striped table-bordered table-hover user-result-table-custom">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Territory</th>
+                                                            <th>Campany name </th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="skeleton-table">
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-success saveLoc" style="float: right">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {#*********************************************** end modal ***************************************************#}
+                                {#{% if is_granted('ROLE_MANAGER') %}#}
+                                {#<label for="create_presentation_project2" class="required">{{ 'presentations.associate_the_presentation_to_an_existing_project'| trans({}, 'presentations') }}</label>#}
+                                {#<span>{{ 'presentations.or'| trans({}, 'presentations') }}</span>#}
+                                {#<a href="{{ path('projects_create_new_project') }}" class="btn btn-primary">{{ 'presentations.create_a_new_project'| trans({}, 'presentations') }}</a>#}
+                                {#{% endif %}#}
+                            {{ form_start(presForm,{'attr': {'id': 'form_edit_pres','class':'form_edit'}}, {'action': path('create_new_pres'), 'method': 'POST'}) }}
+
+                            {{ form_widget(presForm) }}
+                            {{ form_end(presForm) }}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clear-both"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent () }}
+    <script>
+
+            var waitPath            = "{{ asset('img/wait.gif') }}";
+            var urlCompanyTerritory = "{{ path('get_company_by_master') }}";
+            var urlGetTerritory     = "{{ path('getTerritoriesByProject') }}";
+            var url                 = "{{ path('projects_create_new_project') }}";
+            var urlListProduct      = "{{ path('get_products_by_company') }}";
+            var localisation        = [];
+            function initLocalisationTable(){
+                    if($(".addLoc").length){
+                        $(".addLoc").show();
+                    }else {
+                        $("#create_presentation_company").after("<a  class='addLoc' style='font-size: 16px;color: #018aff;'>+addLocalisation</a>");
+                    }
+                    var idCompany  = $("#create_presentation_company").val();
+                    $.get(urlCompanyTerritory, {idCompany:idCompany}, function(Resp){
+                        $('#companyTerritory').append("<option value='' selected>Choose a Company</option>");
+                        for (var k = 0; k < Resp.listCompany.length; k++) {
+
+                            if(Resp.listCompany[k].id != idCompany) {
+                                $('#companyTerritory').append("<option value=" + Resp.listCompany[k].id + ">" + Resp.listCompany[k].name + "</option>");
+                            }
+                        }
+                    });
+                    {% for loc in localisations %}
+                    localisation.push ({
+                        idTerr: "{{ loc.territory.id }}" ,
+                        labelTerr: "{{ loc.territory.name }}" ,
+                        idCamp: "{{ loc.company.id }}",
+                        labelCamp: "{{ loc.company.name }}"
+                    });
+
+                    $("#create_presentation_territory option[value= {{ loc.territory.id }} ]").hide();
+                    $("#territory option[value= {{ loc.territory.id }} ]").hide();
+                    $("#skeleton-table").append("<tr><td>{{ loc.territory.name }}</td><td>{{ loc.company.name }}</td><td><a data-idTr='{{ loc.territory.id }}' data-idCamp='{{ loc.company.id }}' class='delete-affected'>x</a></td></tr>");
+
+                    {% endfor %}
+
+                    $( "#tabss" ).tabs( "option", "active", 1 );
+                }
+
+    </script>
+    <script src="{{ asset('js/presentation/editPresentationForm.js') }}"></script>
+{% endblock %}

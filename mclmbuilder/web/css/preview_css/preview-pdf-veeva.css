@@ -1,0 +1,9 @@
+/* preview-pdf-veeva */
+
+.slides #wrapperMenuScroll .link-to-home {
+    margin-left: 60px !important;
+}
+.slides .menu {
+    width: 735px;
+    left: 102px !important;
+}

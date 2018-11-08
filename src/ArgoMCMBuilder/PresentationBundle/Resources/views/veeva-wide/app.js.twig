@@ -1,0 +1,981 @@
+/*
+ _______________________________________________________
+ _      ____    ____   ____           _____  ____
+ / \    |    \  |      |    | |     | |      |
+ /   \   |  __/  |  __  |    | |     | |__    |_
+ /_____\  |   \   |    | |    | |     | |      |
+ /       \ |    \  |____| |____| |____ | |      |____
+ _______________________________________________________
+ __________________________________________________________
+
+ */
+
+var app = app || {};
+
+app = function () {
+};
+
+
+app.stage = {
+
+    library: ["jquery-1.11.2.min", "jquery_ui", "veeva-library-4.2", "iscroll", "touchPunch", "touchSwipe.min", "velocity.min", "velocity.ui.min", "veeva_survey"],
+    request: null,
+    slide: {
+        id: null,
+        flowName: null
+    },
+    defaultFlow: "flow1",
+    flow: null,
+    flowKey: null,
+    events: null,
+    eventsEnd: null,
+    submenuIsHidden: false,
+    canClick: 1,
+    disableScroll : false,
+    _load: function () {
+
+        var _this = this;
+        this.request = new XMLHttpRequest,
+            data = sessionStorage.getItem('flow');
+
+        _this.slide.flowName = data ? data : _this.defaultFlow;
+
+        if ('ontouchstart' in window) {
+            this.events = "touchstart";
+            this.eventsEnd = "touchend";
+        } else {
+            this.events = "mousedown";
+            this.eventsEnd = "mouseup";
+        }
+
+        this.helper.loadLib(function () {
+            _this._construct(SLIDE.start());
+        }, this);
+        setTimeout(function () {
+            _this.helper.initvideos('#stage .content .reveal.ready section');
+        }, 500);
+    },
+    _construct: function (slide) {
+
+        var _this = this;
+        // Set ID
+        this.slide.id = slide.id;
+
+        // Get flow
+        $.getScript('../shared/{{ shared }}/js/flows.js').done(function () {
+
+            _this.flow = flows[_this.slide.flowName];
+            _this.presentation = flows.presentation_name;
+            // Get key
+            for (var e in _this.flow) {
+
+                if (_this.flow[e].id == _this.slide.id) {
+                    _this.flowKey = e;
+                }
+            }
+
+            // Load HTML && CSS
+            _this.helper.loadAll(function () {
+                _this.selectedMenu();
+                _this.handleEvents();
+            }, _this);
+
+        });
+
+    },
+    selectedMenu: function () {
+        // Set Chapter
+        $('#menu').find('[data-chapter="' + this.flow[this.flowKey].chapter + '"]')
+            .addClass('current');
+
+        // Set subChapter
+        $('.subMenu').find('[data-link="' + this.slide.id + '"]')
+            .addClass('current');
+
+        //home logo
+        if ($("#menu a.home").attr('data-link' ) == this.slide.id){
+            $("#menu a.home").addClass('current')
+        }else{
+            $("#menu a.home").removeClass('current')
+        }
+        this.flow[this.flowKey].ref.length > 0 ? $('.minMenu .ref').css({
+                opacity: 1
+            }) : "";
+        this.flow[this.flowKey].doc.length > 0 ? $('.minMenu .doc').css({
+                opacity: 1 ,
+            }) : "";
+
+        var customNavbarAppearance = $(".content [data-custom-navbar-appearance]").attr("data-custom-navbar-appearance");
+        if (customNavbarAppearance != undefined) {
+            switch (customNavbarAppearance) {
+                case "standard":
+                    $("#stage").attr("data-prevent-tap", "false");
+                    $("#menu").attr("data-prevent-tap", "");
+                    $(".hide-menu").each(function (index, elm) {
+                        if (($(this).is(".subMenu") == false && _this.submenuIsHidden == false) || ($(this).is(".subMenu") == false && _this.submenuIsHidden == true)) {
+                            $(this).removeClass("hide-menu");
+                        }
+                    });
+                    break;
+                case "Hide-all":
+                    $("#stage").attr("data-prevent-tap", "true");
+                    $("#menu").attr("data-prevent-tap", "true");
+                    $("#menu, .subMenu, .maxMenu").each(function (index, elm) {
+                        if ($(this).is(".subMenu") == true) {
+                            {
+                                $(this).addClass("hide-menu");
+                            }
+                        } else {
+                            $(this).addClass("hide-menu");
+                        }
+                    });
+                    break;
+                case "Hide-chapters":
+                    $("#stage").attr("data-prevent-tap", "false");
+                    $("#menu").attr("data-prevent-tap", "");
+                    $("#menu").is(".hide-menu") ? $("#menu").removeClass("hide-menu") : null;
+                    $(".maxMenu").is(".hide-menu") == false ? $(".maxMenu").addClass("hide-menu") : null;
+                    $(".subMenu").is(".hide-menu") == false ? $(".subMenu").addClass("hide-menu") : null;
+
+                    break;
+            }
+        } else {
+            $("#menu").attr("data-prevent-tap", "");
+            $(".hide-menu").each(function (index, elm) {
+                if (($(this).is(".subMenu") == false && _this.submenuIsHidden == false) || ($(this).is(".subMenu") == false && _this.submenuIsHidden == true)) {
+                    $(this).removeClass("hide-menu");
+                }
+            });
+        }
+        /* End customize navbar appearance (zip) */
+
+    },
+    handleEvents: function () {
+
+        var _this = this;
+
+        var wrapperMenuScroll = $('#stage #wrapperMenuScroll');
+        if (wrapperMenuScroll != undefined && $(wrapperMenuScroll).length > 0) {
+            $(wrapperMenuScroll).remove();
+        }
+
+        //open modal
+        $(document).on(_this.events, '[data-popup]:not(.in)', function (e) {
+            e.stopPropagation();
+            var popinName = $(this).attr('data-popup'),
+                button = $(this);
+            button.addClass('in');
+
+            $.ajax({
+                url: 'popup/' + popinName + '.json',
+                dataType: "json",
+                success: function (data) {
+                    var htmlPopin = _this.helper.popinEjsHtml(data);
+                    _this.saveClickStreamData(data.attributes['data-popin-name']);
+                    $('#popup [contentPopup]').empty();
+                    $('#popup [contentPopup]').append(htmlPopin);
+                    /*$('#stage').css(
+                        "z-index", "9999"
+                    )*/
+                    $('#popup[data-popup]').css({
+                        display: "block"
+                    });
+                    $('#popup [contentPopup] section').css({
+                        display: "block"
+                    });
+                    $('#popup[data-popup]')
+                        .velocity({
+                            opacity: 1
+                        }, {
+                            duration: 400
+                        });
+                    /* Center popin (horizontal/vertical) */
+                    var popinHPos = ($("#stage").outerWidth() - $("#boxPopup").outerWidth()) / 2,
+                            popinVPos = ($("#stage").outerHeight() - $("#boxPopup").outerHeight()) / 2;
+
+                    $("#boxPopup").css({
+                        "left": popinHPos + "px",
+                        "top": popinVPos + "px"
+                    });
+                    /* End center popin (horizontal/vertical) */
+                    /*******************************************Animation_aut*************************************************************/
+                    jQuery('.popin').find(".sl-block").each(function () {
+                        var $block_animat = $(this).attr("data-block-anim"),
+                                $block_content = $(this).find(".sl-block-content") ;
+                        if ($block_animat != "tap" && $block_content.attr("data-animation-type") != undefined) {
+                            (($block_content.attr("data-animation-type") == "fade-out") || ($block_content.attr("data-animation-type") == "fade-out-edit") ) ? $block_content.css('opacity', '1') : $block_content.css('opacity', '1');
+                            $block_content.attr("data-animation-type-aut", $block_content.attr("data-animation-type") + "-aut").removeAttr('data-animation-type');
+                            $block_content.attr("data-duration-aut", parseFloat($block_content.css("transition-duration")) * 1000);
+                            $block_content.attr("data-delay-aut", parseFloat($block_content.css("transition-delay")) * 1000);
+
+                            $block_content.css("transition-delay", '');
+                            $block_content.css("transition-duration", '');
+                        }
+                        else if ($block_animat != "aut" && ($block_content.attr("data-animation-type") == "fade-out-edit")) {
+                            $block_content.attr("data-animation-type", "fade-out");
+                        }
+                        $block_content.css('opacity', '');
+                        var TypeAnimation = $block_content.attr("data-animation-type-aut");
+                        if (TypeAnimation != undefined) {
+                            var TDuration = parseInt($block_content.attr("data-duration-aut"));
+                            var Tdelay = parseInt($block_content.attr("data-delay-aut"));
+                            if (TypeAnimation == "fade-in-aut") {
+                                $block_content.hide();
+                                $block_content.delay(Tdelay).fadeIn(TDuration);
+                            }
+                            else if ((TypeAnimation == "fade-out-aut") || (TypeAnimation == "fade-out-edit-aut")) {
+                                $block_content.css('opacity', '1').css('display', 'block');
+                                if ($block_content.css('opacity') == '1' && $block_content.css('display') == 'block') {
+                                    $block_content.delay(Tdelay).fadeOut(TDuration);
+                                }
+                            }
+                            else if (TypeAnimation == "slide-up-aut") {
+                                $(this).find(" .sl-block-content").hide();
+                                $(this).find(" .sl-block-content").delay(Tdelay).show("slide", {direction: "down"}, TDuration);
+                            }
+                            if (TypeAnimation == "slide-down-aut") {
+                                $(this).find(" .sl-block-content").hide();
+                                $(this).find(" .sl-block-content").delay(Tdelay).show("slide", {direction: "up"}, TDuration);
+                            }
+                            else if (TypeAnimation == "slide-right-aut") {
+                                $(this).find(" .sl-block-content").hide();
+                                $block_content.delay(Tdelay).show("slide", {
+                                    direction: "left"
+                                }, TDuration);
+                            }
+                            else if (TypeAnimation == "slide-left-aut") {
+                                $(this).find(" .sl-block-content").hide();
+                                $block_content.delay(Tdelay).show("slide", {
+                                    direction: "right"
+                                }, TDuration);
+                            }
+                            else if (TypeAnimation == "scale-up-aut") {
+                                var animatedElm = $(this);
+                                animatedElm.css("transform"," scale(0)").css("transition", "all 0s");
+                                setTimeout(function () {
+                                    var TDurationS = TDuration/1000;
+                                    animatedElm.css("transform"," scale(1)").css("transition", "all "+TDurationS+"s");
+                                }, Tdelay);
+                            }
+                            else if (TypeAnimation == "scale-down-aut") {
+                                var animatedElm = $(this);
+                                animatedElm.css("transform"," scale(1.7)").css("transition", "all 0s");
+                                setTimeout(function () {
+                                    var TDurationS = TDuration/1000;
+                                    animatedElm.css("transform"," scale(1)").css("transition", "all "+TDurationS+"s");
+                                }, Tdelay);
+                            }
+                        }
+                    });
+                    setTimeout(function () {
+                        _this.helper.initvideos('#popup section.popin');
+                    }, 500);
+                    $('.sl-block[data-block-type="scrollabletext"]').addClass('noSwipe');
+                }
+            });
+        });
+        $(document).on(_this.events, '[data-video]', function (e) {
+            e.stopPropagation();
+            var videoAttr = $(this).attr('data-video'),
+                video = $(this).find('video');
+
+            if (typeof videoAttr !== 'undefined' && videoAttr !== '' && video[0] !== '') {
+                video.attr('preload', 'none');
+                if (video[0].paused) {
+                    $(this).find('.video-placeholder').hide();
+                    video[0].play(),
+                        video.attr({'played': true, 'controls': true})
+                    return;
+                }
+                $(this).find('.video-placeholder').show();
+                video[0].pause(),
+                    video.attr({'played': false, 'controls': false})
+            }
+        });
+        // Btn close popup
+        $(document).on("click", '#popup [btnclose]', function (e) {
+            e.stopPropagation();
+            $('[data-popup].in').removeClass('in');
+            $('#popup [contentPopup]').empty();
+            $('#popup').velocity({
+                opacity: 0
+            }, {
+                display: "none",
+                duration: 300
+            });
+            /*$('#stage').css(
+                    "z-index", "1"
+            )*/
+        });
+
+        // Btn open rcp
+        $(document).on("click", '.minMenu .doc:not(".show")', function (e) {
+            e.stopPropagation();
+            var rcpInjectedLength = $('#rcp  > #box > #scroller > div > ul > li').length;
+
+            if (rcpInjectedLength == 1 ) {
+                var filename = $('#rcp  > #box > #scroller > div > ul > li > a').attr('data-file-name');
+                _this.gotToPDF(filename);
+            }else{
+
+                $(this).addClass('show');
+                if (_this.flow[_this.flowKey].doc.length > 0) {
+
+                    $('#rcp').velocity({
+                        opacity: 1
+                    }, {
+                        display: "block",
+                        duration: 300
+                    });
+                }
+            }
+        });
+
+        // Btn close rcp
+        $(document).on("click", '#rcp [btnclose]', function () {
+            $('.minMenu .doc').removeClass('show');
+            $('#rcp').velocity({
+                opacity: 0
+            }, {
+                display: "none",
+                duration: 300
+            });
+        });
+
+        // Btn open reference
+        $(document).on("click", '.minMenu .ref:not(".show")', function (e) {
+            e.stopPropagation();
+            $(this).addClass('show');
+            if (_this.flow[_this.flowKey].ref.length > 0) {
+
+                $('#reference').velocity({
+                    opacity: 1
+                }, {
+                    display: "block",
+                    duration: 300
+                });
+                $('#reference').promise().done(function() {
+                    setTimeout(function() {
+                        var scrollerRefHeight = $("#reference #box").height(),
+                            scrollerRefTitleHeight = $("#reference #box").find(".title").outerHeight(true);
+                        //console.log(scrollerRefHeight + " / " + scrollerRefTitleHeight);
+                        $("#reference #scrollerRef > div:first-child").outerHeight(scrollerRefHeight - (scrollerRefTitleHeight + 20));
+                    }, 200);
+                });
+
+                // setTimeout(function(){
+                //    var scroller = new iScroll("scroller", {
+                //        vScroll: true,
+                //        vScrollbar: false,
+                //        hideScrollbar: false,
+                //        bounce: false
+                //     });
+                // },200);
+            }
+        });
+
+        // Btn close reference
+        $(document).on("click", '#reference [btnclose]', function () {
+
+            $('.minMenu .ref').removeClass('show');
+            $('#reference').velocity({
+                opacity: 0
+            }, {
+                display: "none",
+                duration: 300
+            });
+        });
+
+        // Data link
+        $(document).on(_this.eventsEnd, "[data-link]", function (e) {
+            e.stopPropagation();
+            var newScreen = $(this).attr('data-link');
+            setTimeout(function(){
+                if(ARGO.canClick == 1){
+                    _this.changeSlide(newScreen);
+                }
+            }, 500);
+        });
+        // Open PDF
+        $(document).on("click", '[data-file-name]', function (e) {
+            e.stopPropagation();
+            var filename = $(this).attr('data-file-name');
+            _this.gotToPDF(filename);
+        });
+        $(document).on("click", '[data-pdf-name]', function (e) {
+            e.stopPropagation();
+            var filename = $(this).attr('data-pdf-name');
+            _this.goToPdfScreen(filename);
+        });
+        // Swipe
+        $('#stage .content').swipe({
+            swipe: function (event, direction) {
+
+                var max = _this.flow.length - 1,
+                    key = parseInt(_this.flowKey);
+                //if swip to left is disabled
+                if (direction == "left" && screen < max && $("#stage .content .reveal .slides > section").attr("data-block-left-nav") == "true") {
+                    $('#stage .content').swipe('disable');
+                    return false;
+                }
+                if (direction == "left" && (key + 1) <= max && ($("#stage .content .reveal .slides > section").attr("data-block-left-nav") == "false" || $("#stage .content .reveal .slides > section").attr("data-block-left-nav") == undefined)) {
+                    var newScreen = _this.flow[parseInt(_this.flowKey) + 1].id;
+                    _this.changeSlide(newScreen);
+                }
+                //if swip to right is disabled
+                if (direction == "right" && screen < max && $("#stage .content .reveal .slides > section").attr("data-block-right-nav") == "true") {
+                    $('#stage .content').swipe('disable');
+                    return false;
+                }
+                if (direction == "right" && (key - 1) >= 0 && ($("#stage .content .reveal .slides > section").attr("data-block-right-nav") == "false" || $("#stage .content .reveal .slides > section").attr("data-block-right-nav") == undefined)) {
+                    var newScreen = _this.flow[parseInt(_this.flowKey) - 1].id;
+                    _this.changeSlide(newScreen);
+                }
+            }
+        });
+
+        setTimeout(function(){
+            //$('#warraper > [warraper="scrollerMenu"] , #scrollerSub').css('width', '3000px');
+            var widthMenu       = 0,
+                widthSubMenu    = 0;
+
+            $('#warraper > [warraper="scrollerMenu"] a').each(function(){
+                widthMenu += $(this).outerWidth(true);
+            });
+
+            $('#scrollerSub a').each(function(){
+                widthSubMenu += $(this).outerWidth(true);
+            });
+
+            $('#warraper > [warraper="scrollerMenu"]').width(parseInt(widthMenu) + 50);
+            $('#scrollerSub').css({
+                width : parseInt(widthSubMenu)+ 25,
+                display : "inline-flex"
+            });
+
+            $('#warraper').css({
+                position: "absolute",
+                top: "5px",
+                width: '717px'
+            });
+            $(' #menu .subMenu').each(function(){
+                $(this).hasClass('current') ? console.info('inti scroll!') : $(this).remove()
+            });
+            if ($('#warraperSub').hasClass('fullWidthSubmenu')){
+                $('#warraperSub').css({
+                    'width':  '1024px',
+                    'margin-left' : '10px'
+                });
+                $('.subMenu.current').css({
+                    maxWidth : '1024px'
+                })
+            }else {
+                $('#warraperSub').css({
+                    'width':  '450px',
+                    'margin-left' : '10px'
+                });
+                $('.subMenu.current').css({
+                    maxWidth : '450px'
+                })
+            }
+
+            if(_this.disableScroll != true){
+                _this.helper.intiScroll();
+            }
+        },300)
+
+        setTimeout(function () {
+            $('#stage .content').removeClass('hide');
+            $('section').removeClass('past').addClass('present');
+            $('section').removeClass('future').addClass('present');
+        }, 150);
+        setTimeout(function () {
+            //animation
+            $(document).on(_this.events, "[data-block-anim=tap]", function (e) {
+                var TypeAnimation = $(this).find("[data-animation-type-tap]").attr("data-animation-type-tap"),
+                    dataAnimationBlockType = $(this).find(".sl-block-content").attr("data-animation-type-tap");
+                _this.helper.animBlock(dataAnimationBlockType, $(this));
+            });
+
+            /* Animation launched by click on the object (reset) */
+            $("[data-block-anim=tap]").each(function (index, elm) {
+                var this_ = $(this);
+                if (this_.find(".sl-block-content").attr("data-animation-type-tap") != "fade-out-edit-tap") {
+                    this_.find(".sl-block-content").css('opacity', '0');
+                }
+                var dataObjectBeforeAnimStyle;
+                this_.find(".sl-block-content").css({
+                    "transition-delay": "",
+                    "transition-duration": ""
+                }).promise().done(function () {
+                    dataObjectBeforeAnimStyle = this_.find(".sl-block-content").attr("style");
+                    this_.find(".sl-block-content").attr("data-style", dataObjectBeforeAnimStyle)
+                });
+            });
+            /* End animation launched by click on the object (reset) */
+            /* Fix animation BY TAP */
+            $(".content .reveal").removeClass("ready");
+            if ($("#stage .content .reveal .slides").find("section").attr("data-trigger-anim-byclick") == "false" || $("#stage .content .reveal .slides").find("section").attr("data-trigger-anim-byclick") == undefined) {
+                setTimeout(function () {
+                    $(".reveal :not('stack'):not('.popin') .sl-block .sl-block-content[data-animation-type='fade-out-edit']").each(function () {
+                        if ($(this).attr('data-delay-tap') == undefined) {
+                            $(this).attr('data-animation-type', 'fade-out');
+                        }
+                    });
+                    $("#stage .content .reveal").addClass("ready");
+                }, 100);
+            }
+            $(document).off(_this.events, ".content").on(_this.events, ".content", function (e) {
+                //e.preventDefault();
+                $(".reveal :not('stack'):not('.popin') .sl-block .sl-block-content[data-animation-type='fade-out-edit']").each(function () {
+                    if ($(this).attr('data-delay-tap') == undefined) {
+                        $(this).attr('data-animation-type', 'fade-out');
+                    }
+                });
+
+                if ($(this).find(".reveal").not(".ready").length > 0) {
+                    $(this).find(".reveal").addClass("ready");
+                }
+            });
+
+            $("[data-block-anim=tap]").each(function (index, elm) {
+                var this_ = $(this),
+                    dataStyle = $(this).find(".sl-block-content").attr("data-style"),
+                    dataRemovedAnimBlockType = $(this).find(".sl-block-content").attr("data-animation-type-tap");
+
+                this_.find(".sl-block-content").attr("style", dataStyle);
+                _this.helper.hideAnimBlock(dataRemovedAnimBlockType, this_);
+            });
+            /* End fix animation */
+        }, 140);
+        $('.sl-block[data-block-type="scrollabletext"]').addClass('noSwipe');
+    },
+    changeSlide: function (newScreen) {
+        try {
+            com.veeva.clm.gotoSlide(newScreen + '.zip');
+        } catch (e) {
+            window.location = "../" + newScreen + "/" + newScreen + ".html";
+        }
+    },
+    init: function (flow, screen) {
+        sessionStorage.setItem('flow', flow);
+        this.changeSlide(screen);
+
+    },
+    gotToPDF: function (pdfName) {
+        var isMobile = false;
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            isMobile = true;
+        }
+        var eTarget = (isMobile == true) ? '_parent' : '_blank';
+        window.open('../shared/{{ shared }}/theme/theme1/pdf/' + pdfName, eTarget);
+    },
+    goToPdfScreen: function (pdfname) {
+        var isMobile = false;
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            isMobile = true;
+        }
+        var eTarget = (isMobile == true) ? '_parent' : '_blank';
+        window.open('pdf/' + pdfname, eTarget);
+    },
+    savedClickstream: function (result) {
+    },
+    saveClickStreamData: function (DescriptionPopin) {
+        var clickStream = {};
+        clickStream.Track_Element_Description_vod__c = "Track popup";
+        clickStream.Answer_vod__c = DescriptionPopin;
+        var myJSONText = JSON.stringify(clickStream);
+        request = "veeva:saveObject(Call_Clickstream_vod__c),value(" + myJSONText + "),callback(savedClickstream)";
+        document.location = request;
+    },
+    helper: {
+
+        loadAll: function (callback, _this) {
+
+            var theme = "../shared/{{ shared }}/theme/" + _this.flow[_this.flowKey].theme,
+                textRef = _this.flow[_this.flowKey].ref,
+                textDoc = _this.flow[_this.flowKey].doc;
+
+            _this.helper.ajax_('./screen.json', "json", function(data){
+                $('#stage .slides').append(_this.helper.ejsTemplate(data));
+
+                var blocks = data.blocks,
+                    i = 0 ;
+
+                while (blocks[i]) {
+                    var type  =blocks[i].type;
+                    if (type === "survey"){
+                        var veevaL      = $('<script src="../shared/{{ shared }}/lib/veeva-library-4.2.js"></script>'),
+                            veevaSur    = $('<script src="../shared/{{ shared }}/lib/veeva_survey.js"></script>'),
+                            mcmSurvey   = $('<script src="../shared/{{ shared }}/lib/mcm-survey.js"></script>');
+
+                        $('body').append(veevaL, veevaSur, mcmSurvey);
+                        break;
+                    }
+                    i++;
+                }
+            });
+
+            // Load global css
+            _this.helper.ajax_("../shared/{{ shared }}/css/main.css", "text", function (theme) {
+                $("<style>", {
+                    type: "text/css"
+                }).appendTo($("head")).append(theme)
+            });
+
+            // Load eidtor css
+            // _this.helper.ajax_("../shared/{{ shared }}/css/editor.css", "text", function (theme) {
+            //     $("<style>", {
+            //         type: "text/css"
+            //     }).appendTo($("head")).append(theme)
+            // });
+
+            //load popup css
+            _this.helper.ajax_(theme + "/popup/popup.css", "text", function (css) {
+                $("<style>", {
+                    type: "text/css"
+                }).appendTo($("head")).append(css);
+            });
+
+            // Load reference css
+            _this.helper.ajax_(theme + "/reference/reference.css", "text", function (css) {
+                $("<style>", {
+                    type: "text/css"
+                }).appendTo($("head")).append(css);
+            });
+
+            // Load rcp css
+            _this.helper.ajax_(theme + "/rcp/rcp.css", "text", function (css) {
+                $("<style>", {
+                    type: "text/css"
+                }).appendTo($("head")).append(css);
+            });
+            // Load css template
+            _this.helper.ajax_(theme + "/css/main.css", "text", function (css) {
+                $("<style>", {
+                    type: "text/css"
+                }).appendTo($("head")).append(css)
+            });
+
+            // Load reference html
+            _this.helper.ajax_(theme + "/reference/reference.html", "text", function (html) {
+                $("body").append(html);
+
+                textRef.length > 0 ? $('#reference [content]').html(textRef) : "";
+            });
+
+            // Load popup html
+            _this.helper.ajax_(theme + "/popup/popup.html", "text", function (html) {
+                $("#stage > .content >.reveal").append(html);
+            });
+            // Load rcp html
+            _this.helper.ajax_(theme + "/rcp/rcp.html", "text", function (html) {
+                $("body").append(html);
+
+                textDoc.length > 0 ? $('#rcp [content]').html(textDoc) : "";
+            });
+
+            // Load html template
+            _this.helper.ajax_(theme + "/menu.html", "text", function (html) {
+                $("<div>", {
+                    id: "menu"
+                }).appendTo($("#stage")).append(html);
+
+                if($("#stage").find(".maxMenu").is("[data-disable-scroll=true]")){
+                    _this.disableScroll = true;
+                }
+
+                callback();
+            });
+
+        },
+        loadLib: function (callback, _this) {
+            var jsScript;
+
+            for (var e in _this.library) {
+                _this.request.open("GET", "../shared/{{ shared }}/lib/" + _this.library[e] + ".js", !1);
+                _this.request.send(null);
+                jsScript += _this.request.responseText;
+            }
+
+            var DSLScript = document.createElement("script");
+            DSLScript.innerHTML = jsScript,
+                DSLScript.type = "text/javascript",
+                document.body.appendChild(DSLScript),
+                document.body.removeChild(DSLScript);
+
+            callback();
+        },
+        ajax_: function (path, type, callback) {
+            $.ajax({
+                url: path,
+                dataType: type,
+                success: function (a) {
+                    callback(a)
+                }
+            });
+        },
+        animBlock: function (typeAnimation, animatedElm) {
+            var TDuration = parseInt(animatedElm.find("[data-animation-type-tap]").attr("data-duration-tap")),
+                    Tdelay = parseInt(animatedElm.find("[data-animation-type-tap]").attr("data-delay-tap"));
+            if (animatedElm.find(".sl-block-content").attr("data-animation-type-tap") != "fade-out-edit-tap") {
+                animatedElm.find(".sl-block-content").css('opacity', '1');
+            }
+
+            if (typeAnimation != undefined) {
+                if (typeAnimation == "fade-in-tap") {
+                    animatedElm.find("[data-animation-type-tap]").hide();
+                    animatedElm.find("[data-animation-type-tap]").delay(Tdelay).fadeIn(TDuration);
+                } else if (typeAnimation == "fade-out-edit-tap") {
+                    animatedElm.find("[data-animation-type-tap]").css('opacity', '1').css('display', 'block');
+                    animatedElm.find("[data-animation-type-tap]").delay(Tdelay).fadeOut(TDuration);
+                    setTimeout(function () {
+                        animatedElm.find("[data-animation-type-tap]").delay(Tdelay).css('opacity', '0').css('display', 'block');
+                    }, Tdelay + 1000);
+                } else if (typeAnimation == "slide-up-tap") {
+                    animatedElm.find("[data-animation-type-tap]").hide();
+                    animatedElm.find("[data-animation-type-tap]").delay(Tdelay).show("slide", {
+                        direction: "down"
+                    }, TDuration);
+                } else if (typeAnimation == "slide-down-tap") {
+                    animatedElm.find("[data-animation-type-tap]").hide();
+                    animatedElm.find("[data-animation-type-tap]").delay(Tdelay).show("slide", {
+                        direction: "up"
+                    }, TDuration);
+                } else if (typeAnimation == "slide-right-tap") {
+                    animatedElm.find("[data-animation-type-tap]").hide();
+                    animatedElm.find("[data-animation-type-tap]").delay(Tdelay).show("slide", {
+                        direction: "left"
+                    }, TDuration);
+                } else if (typeAnimation == "slide-left-tap") {
+                    animatedElm.find("[data-animation-type-tap]").hide();
+                    animatedElm.find("[data-animation-type-tap]").delay(Tdelay).show("slide", {
+                        direction: "right"
+                    }, TDuration);
+                } else if (typeAnimation == "scale-up-tap") {
+                    animatedElm.css("transform", " scale(0)").css("transition", "all 0s");
+                    setTimeout(function () {
+                        var TDurationS = TDuration / 1000;
+                        animatedElm.css("transform", " scale(1)").css("transition", "all " + TDurationS + "s");
+                    }, Tdelay);
+                } else if (typeAnimation == "scale-down-tap") {
+
+                    animatedElm.css("transform", " scale(1.4)").css("transition", "all 0s");
+                    setTimeout(function () {
+                        var TDurationS = TDuration / 1000;
+                        animatedElm.css("transform", " scale(1)").css("transition", "all " + TDurationS + "s");
+                    }, Tdelay);
+
+                }
+            }
+        },
+        hideAnimBlock: function (typeAnimation, toBeHiddenElm) {
+            if (typeAnimation == "fade-in-tap") {
+                toBeHiddenElm.find("[data-animation-type-tap]").clearQueue().stop();
+            } else if (typeAnimation == "fade-out-edit-tap") {
+                toBeHiddenElm.find("[data-animation-type-tap]").clearQueue().stop();
+            } else if (typeAnimation == "slide-up-tap") {
+                toBeHiddenElm.find("[data-animation-type-tap]").clearQueue().stop();
+            } else if (typeAnimation == "slide-down-tap") {
+                toBeHiddenElm.find("[data-animation-type-tap]").clearQueue().stop();
+            } else if (typeAnimation == "slide-right-tap") {
+                toBeHiddenElm.find("[data-animation-type-tap]").clearQueue().stop();
+            } else if (typeAnimation == "slide-left-tap") {
+                toBeHiddenElm.find("[data-animation-type-tap]").clearQueue().stop();
+            } else if (typeAnimation == "scale-up-tap") {
+                toBeHiddenElm.find("[data-animation-type-tap]").clearQueue().stop();
+            } else if (typeAnimation == "scale-down-tap") {
+                toBeHiddenElm.find("[data-animation-type-tap]").clearQueue().stop();
+            }
+        },
+        initvideos: function (selector) {
+            var $videos = $(selector).find('.sl-block[data-block-type="video"]');
+
+            if ($videos.length > 0) {
+                $videos.find('.video-placeholder').remove();
+                $videos.each(function (index, value) {
+                    var $elm = $(value),
+                        poster = $elm.attr('data-video-poster'),
+                        autoplay = $elm.attr('data-video-autoplay'),
+                        video = $elm.find('video');
+                    $elm.append('<div class="video-placeholder"></div>');
+                    if (typeof poster !== 'undefined' && poster !== '') {
+                        video.removeAttr('controls');
+                    }
+                    if (typeof autoplay !== 'undefined' && autoplay === 'true') {
+                        $elm.removeAttr('poster');
+                        $elm.find('.video-placeholder').remove();
+                        video.removeAttr('poster');
+                        video.attr({'controls': 'controls', 'autoplay': true});
+                        video[0].play();
+                    }
+                });
+            }
+        },
+        intiScroll: function(){
+            var scrollMenu = new iScroll("warraper", {
+                scrollbarClass: "scroll",
+                hideScrollbar: true,
+                checkDOMChange: true,
+                checkDOMChanges: true,
+                vScroll: false,
+                hScroll: true,
+                onScrollMove: function() {
+                    ARGO.canClick = 0;
+                    //console.log("canClick: " + ARGO.canClick);
+                },
+                onScrollEnd: function() {
+                    setTimeout(function(){
+                        ARGO.canClick = 1;
+                    }, 500);
+                    //console.log("canClick touchend " + ARGO.canClick);
+                }
+
+            });
+            if (typeof $('#warraperSub') != "undefined" && $('#warraperSub').length > 0) {
+
+                var scrollSubMenu =  new iScroll("warraperSub", {
+                    scrollbarClass: "scroll",
+                    hideScrollbar: true,
+                    checkDOMChange: true,
+                    checkDOMChanges: true,
+                    vScroll: false,
+                    hScroll: true,
+                    onScrollMove: function() {
+                        ARGO.canClick = 0;
+                        //console.log("canClick: " + ARGO.canClick);
+                    },
+                    onScrollEnd: function() {
+                        setTimeout(function(){
+                            ARGO.canClick = 1;
+                        }, 500);
+                        //console.log("canClick touchend " + ARGO.canClick);
+                    }
+                });
+                scrollSubMenu.scrollToElement('#menu > .subMenu.current > #warraperSub > #scrollerSub > a.current', 0);
+            }
+            scrollMenu.scrollToElement('#menu > .maxMenu > #warraper > div[warraper="scrollerMenu"] > a.current', 0);
+        },
+        ejsTemplate : function(data){
+            var textVideo   = 'Your browser does not support the video tag.',
+                image           = '<img src="<%= content.data.src%>" <% if (content.data.attributes) { %> <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> <%}%>>',
+                video           = '<video id="video" <% if (content.data.attributes) { %> <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> <%}%> >' +
+                    '<source  src="<%= content.data.source %>">'+textVideo+'</video>',
+                text            = '<%- content.data %>',
+                table           = '<%- content.data.data%>',
+                shape           = '<svg <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> ><%- content.data.data %></svg>',
+                linkedpopin     = '<div class="<%= block.linkedpopin.class %>" id="<%= block.linkedpopin.id %>" ><%-block.linkedpopin.data%></div>',
+                linkedscreen    = '<div class="<%= block.linkedscreen.class %>" id="<%= block.linkedscreen.id %>" ><%-block.linkedscreen.data%></div>',
+                blocks          = '<div class="<%=content.class%>"  <% if (content.attributes) { %> <% Object.keys(content.attributes).forEach(function(key) { %> <%- key %> ="<%- content.attributes[key] %>"<% }); %> <%}%> style="<% if (content.style) { %> <% Object.keys(content.style).forEach(function(key) { %> <%- key %>:<%- content.style[key] %> ;<% }); %> <%}%>">'
+                    +'<% switch (type) {'
+                    +'case "image" : %>'
+                    + image
+                    +'<% break;'
+                    +'case "video" : %>'
+                    + video
+                    +'<% break;'
+                    +'case "shape" : %>'
+                    + shape
+                    +'<% break;'
+                    +'case "survey" : %>'
+                    + text
+                    +'<% break;'
+                    +'case "text" : %>'
+                    + text
+                    +'<% break;'
+                    +'case "scrollabletext" : %>'
+                    + text
+                    +'<% break;'
+                    +'case "table" : %>'
+                    + table
+                    + '<% break;'
+                    + '} %></div>'
+                ,
+                surveryBlock    = '<% if (block.type == "survey") { %>'
+                    +'<div  class="<%= survey.class %>">'
+                    +'<%- survey.data  %>'
+                    +'</div><% } %>',
+                $section        = '<section class="<%=section.class%>" <% if (section.attributes) { %> <% Object.keys(section.attributes).forEach(function(key) { %> <%- key %> ="<%- section.attributes[key] %>"<% }); %>' +
+                    ' <%}%> <% if (section.styles) { %> style="<% Object.keys(section.styles).forEach(function(key) { %> <%- key %>:<%- section.styles[key] %> ;<% }); %> " <%}%>>'
+                    +'<% blocks = section.blocks %>'
+                    +'<% if(blocks) { %>'
+                    +'<% blocks.forEach(function(block) { %>'
+                    +'<div class="<%= block.class %>" <% if (block.attributes){ %> <% Object.keys(block.attributes).forEach(function(key) { %> <%- key %> ="<%- block.attributes[key] %>"<% }); %> <%}%>'
+                    +'<% if (block.style) { %> style="<% Object.keys(block.style).forEach(function(key) { %> <%- key %>:<%- block.style[key] %> ;<% }); %> " <%}%>>'
+                    +'<div class="block-style"  <% if (block.blockStyle.style){ %>  style="<% Object.keys(block.blockStyle.style).forEach(function(key) { %> <%- key %>:<%- block.blockStyle.style[key] %> ;<% }); %>" <%}%>>'
+                    +'<% content = block.blockStyle.blockcontent ; type =  block.type; survey = block.blockStyle.survey %>'
+                    + blocks
+                    + surveryBlock
+                    + '<% if (block.linkedpopin != "") { %>'+linkedpopin+'<%}%>'
+                    + '<% if (block.linkedscreen != "") { %>'+linkedscreen+'<%}%>'
+                    +'</div>'
+                    +'</div>'
+                    +'<% }) %>'
+                    +'<% } %>'
+                    +'</section>',
+                htmlSlides      = ejs.render($section, {section: data} );
+            return htmlSlides;
+        },
+        popinEjsHtml : function(data){
+            var textVideo   = 'Your browser does not support the video tag.',
+                image           = '<img src="<%= content.data.src%>" <% if (content.data.attributes) { %> <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> <%}%>>',
+                video           = '<video id="video" <% if (content.data.attributes) { %> <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> <%}%> >' +
+                    '<source  src="<%= content.data.source %>">'+textVideo+'</video>',
+                text            = '<%- content.data %>',
+                table           = '<%- content.data.data%>',
+                shape           = '<svg <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> ><%- content.data.data %></svg>',
+                blocks          = '<div class="<%=content.class%>"  <% if (content.attributes) { %> <% Object.keys(content.attributes).forEach(function(key) { %> <%- key %> ="<%- content.attributes[key] %>"<% }); %> <%}%> style="<% if (content.style) { %> <% Object.keys(content.style).forEach(function(key) { %> <%- key %>:<%- content.style[key] %> ;<% }); %> <%}%>">'
+                    +'<% switch (type) {'
+                    +'case "image" : %>'
+                    + image
+                    +'<% break;'
+                    +'case "video" : %>'
+                    + video
+                    +'<% break;'
+                    +'case "shape" : %>'
+                    + shape
+                    +'<% break;'
+                    +'case "survey" : %>'
+                    + text
+                    +'<% break;'
+                    +'case "text" : %>'
+                    + text
+                    +'<% break;'
+                    +'case "scrollabletext" : %>'
+                    + text
+                    +'<% break;'
+                    +'case "table" : %>'
+                    + table
+                    + '<% break;'
+                    + '} %></div>'
+                ,
+                surveryBlock    = '<% if (block.type == "survey") { %>'
+                    +'<div  class="<%= survey.class %>">'
+                    +'<%- survey.data  %>'
+                    +'</div><% } %>',
+                $section        = '<section class="<%=section.class%>" <% if (section.attributes) { %> <% Object.keys(section.attributes).forEach(function(key) { %> <%- key %> ="<%- section.attributes[key] %>"<% }); %>' +
+                    ' <%}%> <% if (section.style) { %> style="<% Object.keys(section.style).forEach(function(key) { %> <%- key %>:<%- section.style[key] %> ;<% }); %> " <%}%>>'
+                    +'<% blocks = section.blocks %>'
+                    +'<% if(blocks) { %>'
+                    +'<% blocks.forEach(function(block) { %>'
+                    +'<div class="<%= block.class %>" <% if (block.attributes){ %> <% Object.keys(block.attributes).forEach(function(key) { %> <%- key %> ="<%- block.attributes[key] %>"<% }); %> <%}%>'
+                    +'<% if (block.style) { %> style="<% Object.keys(block.style).forEach(function(key) { %> <%- key %>:<%- block.style[key] %> ;<% }); %> " <%}%>>'
+                    +'<div class="block-style"  <% if (block.blockStyle.style){ %>  style="<% Object.keys(block.blockStyle.style).forEach(function(key) { %> <%- key %>:<%- block.blockStyle.style[key] %> ;<% }); %>" <%}%>>'
+                    +'<% content = block.blockStyle.blockcontent ; type =  block.type; survey = block.blockStyle.survey %>'
+                    + blocks
+                    + surveryBlock
+                    +'</div>'
+                    +'</div>'
+                    +'<% }) %>'
+                    +'<% } %>'
+                    +'</section>',
+                popinHtml      = ejs.render($section, {section: data} );
+            return popinHtml;
+        }
+    }
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+    ARGO = Object.create(app.stage);
+    ARGO._load();
+});

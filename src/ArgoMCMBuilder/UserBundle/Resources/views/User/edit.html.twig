@@ -1,0 +1,158 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'users.edit_user' | trans({}, 'users') }}{% endblock %}
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+
+        <div class="col-sm-12">
+            <button class="btn btn-default pull-right">
+                <a href="{{ path('clm_users_list') }}"> {{ 'edit_user_retour'|trans({}, 'users') }}</a>
+            </button>
+        </div>
+
+        <div class="col-sm-4">
+            <h2>{{ 'users.edit_user' | trans({}, 'users') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <strong>{{ 'MCMBuilder' | trans({}, 'presentations') }} </strong>
+                </li>
+                <li>
+                    <strong> {{ 'administration'| trans({}, 'project') }} </strong>
+                </li>
+                <li>
+                    <a href="{{ path('clm_users_list') }}">  <strong>{{ 'users' | trans({}, 'users') }}</strong></a>
+                </li>
+                <li class="active">
+                    <strong>{{ 'users.edit_user' | trans({}, 'users') }}</strong>
+                </li>
+            </ol>
+        </div>
+
+        <div class="wrapper wrapper-content">
+            <div class="col-sm-12">
+
+                {% for type, messages in app.session.flashBag.all %}
+                    {% for message in messages %}
+                        <div class="{{ type }}">
+                            {{ message|trans({}, 'FOSUserBundle') }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+
+                {{ form_start(form, {'method': 'post', 'multipart':'true', 'action': path('clm_user_edit',{id:user.id}), 'attr': {'class': 'clm_user_edit'}}) }}
+
+                <div class="form-group">
+                    {{ form_label(form.firstname, 'form.first_name',{ 'attr': {'class': 'control-label'} }) }} :
+                    {{ form_errors(form.firstname) }}
+                    {{ form_widget(form.firstname) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.lastname, 'form.last_name',{ 'attr': {'class': 'control-label'} }) }} :
+                    {{ form_errors(form.lastname) }}
+                    {{ form_widget(form.lastname) }}
+                </div>
+
+                <div class="form-group">
+
+                    <a href="#" class="btn" data-toggle="modal" data-target="#form_password" data-original-title="Edit">
+                        {{ 'users.password_update' | trans({}, 'users') }}
+                    </a>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="fos_user_profile_form_email" class="required">email : </label>
+
+                    <input type="email" id="" name="" required="required" class="form-control" palceholder="E-mail" disabled="disabled" value="{{ user.email }}">
+                </div>
+                {#<div class="form-group">
+
+                    {{ form_label(form.email, 'email : ', { 'attr': {'class': 'control-label' } }) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email, { 'attr': {'disabled': 'disabled' }} ) }}
+                </div>#}
+
+                <div class="form-group">
+                    {{ form_label(form.occupation, 'form.occupation',{ 'attr': {'class': 'control-label'} }) }} :
+                    {{ form_errors(form.occupation) }}
+                    {{ form_widget(form.occupation) }}
+                </div>
+
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <div class="form-group">
+                        {{ form_label(form.roles, 'form.roles',{ 'attr': {'class': 'control-label'} }) }} :
+                        {{ form_errors(form.roles) }}
+                        {{ form_widget(form.roles) }}
+                    </div>
+
+                <div class="form-group">
+                    {{ form_label(form.company, 'Company', { 'attr': {'class': 'control-label'} }) }} :
+                    {{ form_errors(form.company) }}
+                    {{ form_widget(form.company) }}
+                </div>
+                {% endif %}
+
+
+                {% if user.picture %}
+                    <div class="form-group file-content">
+                        <img src="{{ asset(['uploads/users/', user.picture]|join) }}" alt="user picture" width="150" height="150"/>
+                    </div>
+                {% endif %}
+
+                <div class="form-group">
+                    {{ form_widget(form.file, { 'id': 'input-file' }) }}
+                    {{ form_errors(form.file) }}
+                    <a href="javascript:void(0)" id="btn-file-reset">{{ 'users.edit_user_del_avatar' |trans({}, 'users') }}</a>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'users') }}" class="btn"/>
+                </div>
+                {{ form_end(form) }}
+
+                <div class="modal inmodal" id="form_password" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content animated fadeIn">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                <i class="fa fa-clock-o modal-icon"></i>
+                                <h4 class="modal-title">{{ 'users.password_update' | trans({}, 'users') }}</h4>
+                            </div>
+                            <div class="modal-body">
+
+
+                                {{ form_start(form_password, { 'action': path('clm_user_password_edit', {id:user.id}), 'attr': { 'class': 'fos_user_change_password' } }) }}
+                                {{ form_widget(form_password) }}
+                                <div>
+                                    <input type="submit" value="{{ 'form.password.submit'|trans({}, 'users') }}" />
+                                </div>
+                                {{ form_end(form_password) }}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        {% if display_modal == 1 %}
+
+            $(window).load(function(){
+                $('#form_password').modal('show');
+            });
+
+        {% endif %}
+    </script>
+    <script>
+        var TWIG_USER = {};
+        TWIG_USER.idUser = "{{ user.id }}";
+    </script>
+    <script src="{{ asset('js/set-default-picture-for-user.js') }}"></script>
+{% endblock %}

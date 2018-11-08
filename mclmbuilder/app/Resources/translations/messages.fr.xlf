@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="dashboard" resname="dashboard">
+        <source>dashboard</source>
+        <target>Tableau de bord</target>
+      </trans-unit>
+      <trans-unit id="my_projects" resname="My Projects">
+        <source>My Projects</source>
+        <target>Mes projets</target>
+      </trans-unit>
+      <trans-unit id="my_CLM_presentations" resname="My CLM Presentations">
+        <source>My CLM Presentations</source>
+        <target>Mes présentations CLM</target>
+      </trans-unit>
+      <trans-unit id="my_active_CLM" resname="My active CLM">
+        <source>My active CLM</source>
+        <target>Mes présentations CLM actives</target>
+      </trans-unit>
+      <trans-unit id="create_new_CLM" resname="Create new CLM">
+        <source>Create new CLM</source>
+        <target>Créer une présentation CLM</target>
+      </trans-unit>
+      <trans-unit id="my_archived_CLM" resname="My archived CLM">
+        <source>My archived CLM</source>
+        <target>Mes présentations CLM archivées</target>
+      </trans-unit>
+      <trans-unit id="my_emails_templates" resname="My Emails Templates">
+        <source>My Emails Templates</source>
+        <target>Mes modèles d'emails</target>
+      </trans-unit>
+      <trans-unit id="alerts_and_notifications" resname="Alerts and Notifications">
+        <source>Alerts and Notifications</source>
+        <target>Alertes and notifications</target>
+      </trans-unit>
+      <trans-unit id="administration" resname="Administration">
+        <source>Administration</source>
+        <target>Administration</target>
+      </trans-unit>
+      <trans-unit id="workflows" resname="Workflows">
+        <source>Workflows</source>
+        <target>Procédures</target>
+      </trans-unit>
+      <trans-unit id="companies" resname="Companies">
+        <source>Companies</source>
+        <target>Compagnie</target>
+      </trans-unit>
+      <trans-unit id="territories" resname="Territories">
+        <source>Territories</source>
+        <target>Territoires</target>
+      </trans-unit>
+      <trans-unit id="groups" resname="Groups">
+        <source>Groups</source>
+        <target>Groupes</target>
+      </trans-unit>
+      <trans-unit id="users" resname="Users">
+        <source>Users</source>
+        <target>Utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="products" resname="Products">
+        <source>Products</source>
+        <target>Produits</target>
+      </trans-unit>
+      <trans-unit id="media_library" resname="Mediathéque">
+        <source>Mediathéque</source>
+        <target>Mediathéque</target>
+      </trans-unit>
+      <trans-unit id="welcome_to_clm">
+        <source>welcome_to_clm</source>
+        <target>Bienvenue dans le CLM Builder</target>
+      </trans-unit>
+      <trans-unit id="save">
+        <source>save</source>
+        <target>Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="retour">
+        <source>retour</source>
+        <target>Retour</target>
+      </trans-unit>
+      <trans-unit id="french">
+        <source>french</source>
+        <target>français</target>
+      </trans-unit>
+      <trans-unit id="english">
+        <source>english</source>
+        <target>anglais</target>
+      </trans-unit>
+      <trans-unit id="choose">
+        <source>choose</source>
+        <target>choisissez</target>
+      </trans-unit>
+      <trans-unit id="all.presentation">
+        <source>All presentations</source>
+        <target>__All presentations</target>
+      </trans-unit>
+      <trans-unit id="connected.user">
+        <source>Connected users</source>
+        <target>__Connected users</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

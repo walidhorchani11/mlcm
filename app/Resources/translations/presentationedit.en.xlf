@@ -1,0 +1,978 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <header>
+            <tool tool-id="symfony" tool-name="Symfony"/>
+        </header>
+        <body>
+            <trans-unit id="presentationedit.loading">
+                <source>presentationedit.loading</source>
+                <target>Loading</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.profile">
+                <source>presentationedit.profile</source>
+                <target>Profile</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.update-password">
+                <source>presentationedit.update-password</source>
+                <target>Update password</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.presentation-saved">
+                <source>presentationedit.presentation-saved</source>
+                <target>Your presentation has been successfully saved.</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.presentation-settings">
+                <source>presentationedit.presentation-settings</source>
+                <target>Presentations settings</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.flow-diagram">
+                <source>presentationedit.flow-diagram</source>
+                <target>Flow diagram</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.screen-settings">
+                <source>presentationedit.screen-settings</source>
+                <target>Screen settings</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.popin-settings">
+                <source>presentationedit.popin-settings</source>
+                <target>Pop in settings</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.pdf-add-Button">
+               <source>presentationedit.pdf-add-Button</source>
+               <target>Add</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.additionalText">
+               <source>presentationedit.additionalText</source>
+               <target>Additional Text</target>
+            </trans-unit>
+             <trans-unit id="presentationedit.additionalTextTitle">
+                <source>presentationedit.additionalTextTitle</source>
+                <target>Enter your additional text here :</target>
+             </trans-unit>
+             <trans-unit id="presentationedit.pdf-msg">
+                <source>presentationedit.pdf-msg</source>
+                <target>No pdf related to this presentation</target>
+              </trans-unit>
+            <trans-unit id="presentationedit.pdf-list">
+                <source>presentationedit.pdf-list</source>
+                <target>PDF list</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.references-list">
+                <source>presentationedit.references-list</source>
+                <target>References list</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.popin-list">
+                <source>presentationedit.popin-list</source>
+                <target>Pop in list</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.download-pdf">
+                <source>presentationedit.download-pdf</source>
+                <target>Download PDF</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.download-zip">
+                <source>presentationedit.download-zip</source>
+                <target>Download ZIP</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.preview-presentation">
+                <source>presentationedit.preview-presentation</source>
+                <target>Preview presentation</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.save-and-quit">
+                <source>presentationedit.save-and-quit</source>
+                <target>Save and quit</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.arrange">
+                <source>presentationedit.arrange</source>
+                <target>Reorganise screens</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.validatearrange">
+                <source>presentationedit.validatearrange</source>
+                <target>Validate</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.close">
+                <source>presentationedit.close</source>
+                <target>Close</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.save-presentation">
+                <source>presentationedit.save-presentation</source>
+                <target>Save presentations</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.plese-add-comment">
+                <source>presentationedit.plese-add-comment</source>
+                <target>Please add a comment or any specific information to share with other users</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.current-version">
+                <source>presentationedit.current-version</source>
+                <target>Current version</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.in-progress">
+                <source>presentationedit.in-progress</source>
+                <target>In progress</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.active">
+                <source>presentationedit.active</source>
+                <target>Active</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.leave-without-saving">
+                <source>presentationedit.leave-without-saving</source>
+                <target>Leave without saving</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.save-changes">
+                <source>presentationedit.save-changes</source>
+                <target>Save Changes</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.screen-name">
+                <source>presentationedit.screen-name</source>
+                <target>Screen name</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.screen-name-visibilty">
+                <source>presentationedit.screen-name-visibilty</source>
+                <target>The screen name will be visible on the presentation navigation bar</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.asset-id">
+                <source>presentationedit.asset-id</source>
+                <target>Asset ID</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.enter-asset-id">
+                <source>presentationedit.enter-asset-id</source>
+                <target>Please enter the current screen asset ID:</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.enter-screen-name">
+                <source>presentationedit.enter-screen-name</source>
+                <target>Enter the screen name...</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.enter-screen-id">
+                <source>presentationedit.enter-screen-id</source>
+                <target>Enter the screen ID...</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.key-message">
+                <source>presentationedit.key-message</source>
+                <target>Key message</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.enter-key-message">
+                <source>presentationedit.enter-key-message</source>
+                <target>Please enter the current screen key message</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.asset-description">
+                <source>presentationedit.asset-description</source>
+                <target>Page ID</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.screen-asset-description">
+                <source>presentationedit.screen-asset-description</source>
+                <target>Please enter the current screen page id. The page ID per each screen must follow this naming convention</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.argolife-pageid-naming">
+                <source>presentationedit.argolife-pageid-naming</source>
+                <target>NOM PRODUIT-CODE PRODUIT-CHAPTER NUMBER-CHAPTER NAME-SCREEN NUMBER-SCREEN NAME-POP IN NAME-RELEASE DATE</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.argolife-pageid-naming-exemple">
+                <source>presentationedit.argolife-pageid-naming-exemple</source>
+                <target>Comigral01-C01-Activity Profile-S01-Diagnosis-POP IN Methodology-FEB15</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.merck-pageid-naming">
+                <source>presentationedit.merck-pageid-naming</source>
+                <target>MONTH-DAY-PRODUCT CODE-COUNTRY CODE-CHAPTER SCREEN NUMBER-BEHAVIOURAL DRIVERS - CHAPTER NAME - SCREEN NAME</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.merck-pageid-naming-exemple">
+                <source>presentationedit.merck-pageid-naming-exemple</source>
+                <target>Nov-15-REBIFXX-XX-000-000-XX-CNAME-SNAME</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.empty-pageid-error">
+                <source>presentationedit.empty-pageid-error</source>
+                <target>Please enter the required fields</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.used-pageid-error">
+                <source>presentationedit.used-pageid-error</source>
+                <target>You have already used the same page ID in another screen in this CLM presentation</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.screen-description">
+                <source>presentationedit.screen-description</source>
+                <target>Enter the page id...</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.customize-screen">
+                <source>presentationedit.customize-screen</source>
+                <target>Customize screen</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.custumise-sceen-background-message">
+                <source>presentationedit.custumise-sceen-background-message</source>
+                <target>You can customize screen background and it will be applied only on this current screen</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.background-color">
+                <source>presentationedit.background-color</source>
+                <target>Background color</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.background-image">
+                <source>presentationedit.background-image</source>
+                <target>Background image</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.image">
+                <source>presentationedit.image</source>
+                <target>Image</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.ok">
+                <source>presentationedit.ok</source>
+                <target>OK</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.cancel">
+                <source>presentationedit.cancel</source>
+                <target>Cancel</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.animation.tab">
+                <source>presentationedit.animation.tab</source>
+                <target>Animation by tap</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.customize.navigation">
+                <source>presentationedit.customize.navigation</source>
+                <target>Customize navigation bar</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.standard.navigation">
+                <source>presentationedit.standard.navigation</source>
+                <target>Standard navigation bar</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.hide.navigation">
+                <source>presentationedit.hide.navigation</source>
+                <target>Hide the whole navigation bar</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.hide.screen.navigation">
+                <source>presentationedit.hide.screen.navigation</source>
+                <target>Hide only the screen and the chapter names</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.customize-appearence">
+                <source>presentationedit.customize-appearence</source>
+                <target>Customize appearence</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.presentation-logo">
+                <source>presentationedit.presentation-logo</source>
+                <target>Presentation logo</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.logo">
+                <source>presentationedit.logo</source>
+                <target>Logo</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.popin-reference-close-icon">
+                <source>presentationedit.popin-reference-close-icon</source>
+                <target>Pop in and references close icon</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.close-icon">
+                <source>presentationedit.close-icon</source>
+                <target>Close icon</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.overlay-settings">
+                <source>presentationedit.overlay-settings</source>
+                <target>Overlay settings</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.overlay-color">
+                <source>presentationedit.overlay-color</source>
+                <target>Overlay color</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.overlay-transparency">
+                <source>presentationedit.overlay-transparency</source>
+                <target>Overlay transparency</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.screens-settings">
+                <source>presentationedit.screens-settings</source>
+                <target>Screens settings</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.background-applied-presentation-screen">
+                <source>presentationedit.background-applied-presentation-screen</source>
+                <target>This background will be applied for all the presentation screens</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.navigation-bar">
+                <source>presentationedit.navigation-bar</source>
+                <target>Navigation bar</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.color-settings">
+                <source>presentationedit.color-settings</source>
+                <target>Color settings</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.menu-color">
+                <source>presentationedit.menu-color</source>
+                <target>Menu color</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.select-item-color">
+                <source>presentationedit.select-item-color</source>
+                <target>Selected item color</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.font-color">
+                <source>presentationedit.font-color</source>
+                <target>Font color</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.font-active-color">
+                <source>presentationedit.font-active-color</source>
+                <target>Activated color</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.select-font-size">
+                <source>presentationedit.select-font-size</source>
+                <target>Select font size</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.submenu">
+                <source>presentationedit.submenu</source>
+                <target>Submenu</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.disableScroll">
+                <source>presentationedit.disableScroll</source>
+                <target>Disable scroll</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.highlight-active-menu">
+                <source>presentationedit.highlight-active-menu</source>
+                <target>Highlight active menu</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.pop-in-settings">
+                <source>presentationedit.pop-in-settings</source>
+                <target>Pop in settings</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.dimensions-settings">
+                <source>presentationedit.dimensions-settings</source>
+                <target>Dimensions settings</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.width">
+                <source>presentationedit.width</source>
+                <target>Width</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.height">
+                <source>presentationedit.height</source>
+                <target>Height</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.background-applied-presentation-popin">
+                <source>presentationedit.background-applied-presentation-popin</source>
+                <target>This background will be applied for all the presentation pop in</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.background-popin">
+                <source>presentationedit.background-popin</source>
+                <target>Background pop in</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.references-settings">
+                <source>presentationedit.references-settings</source>
+                <target>References settings</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.color-dimentions-settings">
+                <source>presentationedit.color-dimentions-settings</source>
+                <target>Color and dimensions settings</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.text-color">
+                <source>presentationedit.text-color</source>
+                <target>Text color</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.background-applied-presentation-references">
+                <source>presentationedit.background-applied-presentation-references</source>
+                <target>This background will be applied for all the presentation references</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.background-reference">
+                <source>presentationedit.background-reference</source>
+                <target>Background reference</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.search-popin">
+                <source>presentationedit.search-popin</source>
+                <target>Search pop in</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.background-button">
+                <source>presentationedit.background-button</source>
+                <target>Background button</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.search-popin-by-name">
+                <source>presentationedit.search-popin-by-name</source>
+                <target>Seach pop in by name</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.search-name">
+                <source>presentationedit.search-name</source>
+                <target>Pop in Name</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.references-sheet">
+                <source>presentationedit.references-sheet</source>
+                <target>References sheet</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.screen-linked-references">
+                <source>presentationedit.screen-linked-references</source>
+                <target>Screen linked references</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.add-references">
+                <source>presentationedit.add-references</source>
+                <target>Add references</target>
+            </trans-unit>
+            <trans-unit id="Reference-description">
+                <source>Reference-description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.refrences-sheet">
+                <source>presentationedit.refrences-sheet</source>
+                <target>References sheet</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.pdf-sheet">
+                <source>presentationedit.pdf-sheet</source>
+                <target>List PDF</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.screen-linked-refrences">
+                <source>presentationedit.screen-linked-refrences</source>
+                <target>Screen linked references</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.screen-linked-pdf">
+                <source>presentationedit.screen-linked-pdf</source>
+                <target>CLM Screen linked PDF</target>
+                </trans-unit>
+            <trans-unit id="presentationedit.save">
+                <source>presentationedit.save</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.pop-in-appearance">
+                <source>presentationedit.pop-in-appearance</source>
+                <target>Pop in appearence</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.upload">
+                <source>presentationedit.upload</source>
+                <target>Upload</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.select-survey-type">
+                <source>presentationedit.select-survey-type</source>
+                <target>Select a survey type</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.select-survey">
+                <source>presentationedit.select-survey</source>
+                <target>Select a survey</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.check-box">
+                <source>presentationedit.check-box</source>
+                <target>Check box</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.radio-button">
+                <source>presentationedit.radio-button</source>
+                <target>Radio button</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.dropdown-list">
+                <source>presentationedit.dropdown-list</source>
+                <target>Dropdown list</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.input-field">
+                <source>presentationedit.input-field</source>
+                <target>Input field</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.add-list">
+                <source>presentationedit.add-list</source>
+                <target>Add list</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.your-answer-here">
+                <source>presentationedit.your-answer-here</source>
+                <target>Your answer here</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.add-answer">
+                <source>presentationedit.add-answer</source>
+                <target>Add a new answer</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.customize-submit-button">
+                <source>presentationedit.customize-submit-button</source>
+                <target>Customize submit button</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.text-button">
+                <source>presentationedit.text-button</source>
+                <target>Text button</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.text-size">
+                <source>presentationedit.text-size</source>
+                <target>Text size</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.button-name">
+                <source>presentationedit.button-name</source>
+                <target>Button name</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.button-preview">
+                <source>presentationedit.button-preview</source>
+                <target>Button preview</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.send">
+                <source>presentationedit.send</source>
+                <target>Send</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.add-this-button">
+                <source>presentationedit.add-this-button</source>
+                <target>Add this button</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.enter-popin-name">
+                <source>presentationedit.enter-popin-name</source>
+                <target>Enter the pop in name</target>
+            </trans-unit>
+             <trans-unit id="presentationedit.title.session">
+                <source>presentationedit.title.session</source>
+                <target>Session expired</target>
+             </trans-unit>
+            <trans-unit id="presentationedit.message.session">
+                <source>presentationedit.message.session</source>
+                <target>You are no longer signed in to MCM. This can happen when you leave the page idle for too long. Click on “Login” to sign in.</target>
+            </trans-unit>
+           <trans-unit id="presentationedit.logo-reference">
+                <source>presentationedit.logo-reference</source>
+                <target>References icon</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.logo-home-url">
+                <source>presentationedit.logo-home-url</source>
+                <target>Home icon</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.logo-reference-btn">
+                <source>presentationedit.logo-reference-btn</source>
+                <target>Logo</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.logo-rcp-url">
+                <source>presentationedit.logo-rcp-url</source>
+                <target>PI icon</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.ref-title">
+                    <source>presentationedit.ref-title</source>
+                    <target>Title</target>
+            </trans-unit>
+             <trans-unit id="presentationedit.ref-content">
+                    <source>presentationedit.ref-content</source>
+                    <target>Content size </target>
+            </trans-unit>
+            <trans-unit id="presentationedit.background">
+                    <source>presentationedit.background</source>
+                    <target>Background</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.Content-appearance">
+                    <source>presentationedit.Content-appearance</source>
+                    <target>Content appearance</target>
+            </trans-unit>
+             <trans-unit id="presentationedit.background-size">
+                    <source>presentationedit.background-size</source>
+                    <target>Background size </target>
+            </trans-unit>
+             <trans-unit id="presentationedit.stretch">
+                    <source>presentationedit.stretch</source>
+                    <target>Stretch image vertically</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.fit">
+                    <source>presentationedit.fit</source>
+                    <target>Fit image horizontally</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.size-title">
+                    <source>presentationedit.size-title</source>
+                    <target>Title size</target>
+            </trans-unit>
+             <trans-unit id="presentationedit.storyboard">
+                    <source>presentationedit.storyboard</source>
+                    <target>STORYBOARD</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.of-the-presentation">
+                    <source>presentationedit.of-the-presentation</source>
+                    <target>OF THE PRESENTATION</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.merck-presentation">
+                    <source>presentationedit.merck-presentation</source>
+                    <target> Presentation</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.project">
+                    <source>presentationedit.project</source>
+                    <target>PROJECT:</target>
+            </trans-unit>
+            <trans-unit id="presentationedit.generated-on">
+                    <source>presentationedit.generated-on</source>
+                    <target>GENERATED ON:</target>
+            </trans-unit>
+           <trans-unit id="presentationedit.project-owner">
+                    <source>presentationedit.project-owner</source>
+                    <target>PROJECT OWNER:</target>
+           </trans-unit>
+           <trans-unit id="presentationedit.presentation-owner">
+                    <source>presentationedit.presentation-owner</source>
+                    <target>PRESENTATION OWNER:</target>
+           </trans-unit>
+           <trans-unit id="presentationedit.clm-presentation-owner">
+                    <source>presentationedit.clm-presentation-owner</source>
+                    <target>CLM presentation owner:</target>
+           </trans-unit>
+           <trans-unit id="presentationedit.storyboard-version">
+                    <source>presentationedit.storyboard-version</source>
+                    <target>STORYBOARD Version:</target>
+           </trans-unit>
+           <trans-unit id="presentationedit.copyright-pdf">
+                    <source>presentationedit.copyright-pdf</source>
+                    <target>Created with MCM Builder – Copyright © 2016 Argolife  SAS, a viihealth company</target>
+           </trans-unit>
+           <trans-unit id="presentationedit.submenuHeight">
+                    <source>presentationedit.submenuHeight</source>
+                    <target>Wide submenu </target>
+           </trans-unit>
+           <trans-unit id="presentationedit.fonts">
+                    <source>presentationedit.fonts</source>
+                    <target>Fonts</target>
+           </trans-unit>
+           <trans-unit id="presentationedit.mi">
+                    <source>presentationedit.mi</source>
+                    <target>Mi Nexxus </target>
+            </trans-unit>
+           <trans-unit id="presentationedit.veeva">
+                    <source>presentationedit.veeva</source>
+                    <target>Veeva CLM </target>
+            </trans-unit>
+          <trans-unit id="presentation.infoBulle.text">
+             <source>presentation.infoBulle.text</source>
+             <target>Text</target>
+          </trans-unit>
+          <trans-unit id="presentation.infoBulle.image">
+             <source>presentation.infoBulle.image</source>
+             <target>Image</target>
+          </trans-unit>
+          <trans-unit id="presentation.infoBulle.video">
+             <source>presentation.infoBulle.video</source>
+             <target>Video</target>
+          </trans-unit>
+          <trans-unit id="presentation.infoBulle.shape">
+             <source>presentation.infoBulle.shape</source>
+             <target>Shape</target>
+          </trans-unit>
+          <trans-unit id="presentation.infoBulle.line">
+             <source>presentation.infoBulle.line</source>
+             <target>Line</target>
+          </trans-unit>
+          <trans-unit id="presentation.infoBulle.iframe">
+             <source>presentation.infoBulle.iframe</source>
+             <target>Iframe</target>
+          </trans-unit>
+          <trans-unit id="presentation.infoBulle.table">
+             <source>presentation.infoBulle.table</source>
+             <target>Table</target>
+          </trans-unit>
+          <trans-unit id="presentation.infoBulle.html">
+             <source>presentation.infoBulle.html</source>
+             <target>Html</target>
+          </trans-unit>
+          <trans-unit id="presentation.infoBulle.math">
+             <source>presentation.infoBulle.math</source>
+             <target>Math</target>
+          </trans-unit>
+          <trans-unit id="presentation.infoBulle.snippet">
+             <source>presentation.infoBulle.snippet</source>
+             <target>Snippet</target>
+          </trans-unit>
+          <trans-unit id="presentation.infoBulle.survey">
+             <source>presentation.infoBulle.survey</source>
+             <target>Survey</target>
+          </trans-unit>
+          <trans-unit id="presentation.infoBulle.code">
+             <source>presentation.infoBulle.code</source>
+             <target>Code</target>
+          </trans-unit>
+          <trans-unit id="presentationedit.chapter-name">
+             <source>presentationedit.chapter-name</source>
+             <target>CHAPTER NAME</target>
+          </trans-unit>
+          <trans-unit id="presentationedit.chapter-name-description">
+             <source>presentationedit.chapter-name-description</source>
+             <target>Enter the chapter name...</target>
+          </trans-unit>
+          <trans-unit id="presentationedit.Deactivate-Swipe">
+             <source>presentationedit.Deactivate-Swipe</source>
+             <target>Deactivate Swipe</target>
+          </trans-unit>
+          <trans-unit id="presentationedit.Deactivate-forward-swipe">
+             <source>presentationedit.Deactivate-forward-swipe</source>
+             <target>Deactivate forward swipe</target>
+          </trans-unit>
+          <trans-unit id="presentationedit.Deactivate-backward-swipe">
+             <source>presentationedit.Deactivate-backward-swipe</source>
+             <target>Deactivate backward swipe</target>
+          </trans-unit>
+          <trans-unit id="presentation.upload.text">
+             <source>presentation.upload.text</source>
+             <target>Upload</target>
+          </trans-unit>
+          <trans-unit id="presentation.upload.dragAndDrop">
+             <source>presentation.upload.dragAndDrop</source>
+             <target>Drag and Drop Files</target>
+          </trans-unit>
+          <trans-unit id="presentation.upload.search">
+             <source>presentation.upload.search</source>
+             <target>search</target>
+          </trans-unit>
+          <trans-unit id="presentation.Create-Reference">
+             <source>Create-Reference</source>
+             <target>Create Reference</target>
+          </trans-unit>
+          <trans-unit id="presentation.Reference-title">
+             <source>Reference-title</source>
+             <target>Reference Title</target>
+          </trans-unit>
+          <trans-unit id="presentation.subsection">
+             <source>presentation.subsection</source>
+             <target>Subsection</target>
+          </trans-unit>
+          <trans-unit id="presentation.add_subsection">
+             <source>presentation.add_subsection</source>
+             <target>Add Subsection</target>
+          </trans-unit>
+          <trans-unit id="presentation.infobulle.saved">
+             <source>presentation.infobulle.saved</source>
+             <target>Click to save</target>
+          </trans-unit>
+          <trans-unit id="presentation.infobulle.changesSaved">
+             <source>presentation.infobulle.changesSaved</source>
+             <target>Latest changes are saved</target>
+          </trans-unit>
+          <trans-unit id="presentation.tostrSavePres">
+             <source>presentation.tostrSavePres</source>
+             <target>Your presentation has been successfully saved.</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.videoAction">
+             <source>presentation.toolbar.videoAction</source>
+             <target>Video Actions</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.defaultPoster">
+             <source>presentation.toolbar.defaultPoster</source>
+             <target>Default Poster</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.autoPlay">
+             <source>presentation.toolbar.autoPlay</source>
+             <target>Video Autoplay</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.uploadVideoPoster">
+             <source>presentation.toolbar.uploadVideoPoster</source>
+             <target>Upload Video Poster</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.linkToScreen">
+             <source>presentation.toolbar.linkToScreen</source>
+             <target>Link to Screen</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.linkToPopin">
+             <source>presentation.toolbar.linkToPopin</source>
+             <target>Link to Popin</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.linkToPdf">
+             <source>presentation.toolbar.linkToPdf</source>
+             <target>Link to PDF</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.addQuestion">
+             <source>presentation.toolbar.addQuestion</source>
+             <target>Add question</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.addResponse">
+             <source>presentation.toolbar.addResponse</source>
+             <target>Add response</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.addInputField">
+             <source>presentation.toolbar.addInputField</source>
+             <target>Add an Input Field</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.deleteBackground">
+             <source>presentation.toolbar.deleteBackground</source>
+             <target>Delete this background</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.scrollableText">
+              <source>presentation.toolbar.scrollableText</source>
+              <target>Scrollable text</target>
+          </trans-unit>
+          <trans-unit id="presentation.popupEditHTML.title">
+             <source>presentation.popupEditHTML.title</source>
+             <target>Edit HTML</target>
+          </trans-unit>
+          <trans-unit id="presentation.popupEditHTML.slideClasses">
+             <source>presentation.popupEditHTML.slideClasses</source>
+             <target>Slide classes</target>
+          </trans-unit>
+          <trans-unit id="presentation.popupEditHTML.cancel">
+             <source>presentation.popupEditHTML.cancel</source>
+             <target>cancel</target>
+          </trans-unit>
+          <trans-unit id="presentation.popupEditHTML.save">
+             <source>presentation.popupEditHTML.save</source>
+             <target>save</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.columns">
+             <source>presentation.toolbar.options.columns</source>
+             <target>Columns</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.rows">
+             <source>presentation.toolbar.options.rows</source>
+             <target>Rows</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.header">
+             <source>presentation.toolbar.options.header</source>
+             <target>Header</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.cellPadding">
+             <source>presentation.toolbar.options.cellPadding</source>
+             <target>Cell padding</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.borderWidth">
+             <source>presentation.toolbar.options.borderWidth</source>
+             <target>Border width</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.borderColor">
+             <source>presentation.toolbar.options.borderColor</source>
+             <target>Border color</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.opacity">
+             <source>presentation.toolbar.options.opacity</source>
+             <target>Opacity</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.depth">
+             <source>presentation.toolbar.options.depth</source>
+             <target>Depth</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.moveBAck">
+             <source>presentation.toolbar.options.moveBAck</source>
+             <target>Move to back</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.moveFront">
+             <source>presentation.toolbar.options.moveFront</source>
+             <target>Move to front</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.duplicate">
+             <source>presentation.toolbar.options.duplicate</source>
+             <target>Duplicate</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.remove">
+             <source>presentation.toolbar.options.remove</source>
+             <target>Delete</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.shape">
+             <source>presentation.toolbar.options.shape</source>
+             <target>Shape</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.shapeColor">
+             <source>presentation.toolbar.options.shapeColor</source>
+             <target>Color</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.animationType">
+             <source>presentation.toolbar.options.animationType</source>
+             <target>Launch animation by tap</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.effect">
+             <source>presentation.toolbar.options.effect</source>
+             <target>Effect</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.duration">
+             <source>presentation.toolbar.options.duration</source>
+             <target>Duration</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.delay">
+             <source>presentation.toolbar.options.delay</source>
+             <target>Delay</target>
+          </trans-unit>
+          <trans-unit id="presentation.toolbar.options.border">
+             <source>presentation.toolbar.options.border</source>
+             <target>border</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.searchMsg">
+             <source>presentation.mediaLibrary.searchMsg</source>
+             <target>Please enter a search term</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.noResultMsg">
+             <source>presentation.mediaLibrary.noResultMsg</source>
+             <target>No results for</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.noTypeMsg">
+             <source>presentation.mediaLibrary.noTypeMsg</source>
+             <target>There is no media of this type</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.noTagMsg">
+             <source>presentation.mediaLibrary.noTagMsg</source>
+             <target>No media has been added to this tag</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.title">
+             <source>presentation.mediaLibrary.title</source>
+             <target>Title</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.creationDate">
+             <source>presentation.mediaLibrary.creationDate</source>
+             <target>Creation Date</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.size">
+             <source>presentation.mediaLibrary.size</source>
+             <target>Size</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.legend">
+             <source>presentation.mediaLibrary.legend</source>
+             <target>Legend</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.resolution">
+             <source>presentation.mediaLibrary.resolution</source>
+             <target>Resolution</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.save">
+             <source>presentation.mediaLibrary.save</source>
+             <target>Save</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.cancel">
+             <source>presentation.mediaLibrary.cancel</source>
+             <target>Cancel</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.header">
+             <source>presentation.mediaLibrary.header</source>
+             <target>Media Library</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.uploadBtn">
+             <source>presentation.mediaLibrary.uploadBtn</source>
+             <target>Upload</target>
+          </trans-unit>
+          <trans-unit id="presentation.mediaLibrary.searchInput">
+             <source>presentation.mediaLibrary.searchInput</source>
+             <target>Search</target>
+          </trans-unit>
+          <trans-unit id="version-history-message">
+             <source>presentationedit.version-history-message</source>
+             <target>You will still be able to back to a previous version by using "version history".</target>
+          </trans-unit>
+          <trans-unit id="version-based-on-version">
+             <source>presentationedit.version-based-on-version</source>
+             <target>Based on version.</target>
+          </trans-unit>
+          <trans-unit id="back-past">
+             <source>presentationedit.back-past</source>
+             <target>Yes, let's go back to the past</target>
+          </trans-unit>
+          <trans-unit id="create-automatically-message">
+            <source>presentationedit.create-automatically-message</source>
+            <target>is going to be created automatically based on</target>
+          </trans-unit>
+          <trans-unit id="new-version-message">
+            <source>presentationedit.new-version-message</source>
+            <target>A new version</target>
+          </trans-unit>
+          <trans-unit id="upload-version-message">
+            <source>presentationedit.upload-version-message</source>
+            <target>Are you sure you want to upload the version</target>
+          </trans-unit>
+          <trans-unit id="version-history">
+            <source>presentationedit.version-history</source>
+            <target>VERSION HISTORY</target>
+          </trans-unit>
+          <trans-unit id="version-number">
+            <source>presentationedit.version-number</source>
+            <target>Version Number</target>
+          </trans-unit>
+          <trans-unit id="version-comments">
+            <source>presentationedit.version-comments</source>
+            <target>Comments</target>
+          </trans-unit>
+          <trans-unit id="version-created-by">
+            <source>presentationedit.version-created-by</source>
+            <target>Created by</target>
+          </trans-unit>
+          <trans-unit id="version-save-at">
+            <source>presentationedit.version-save-at</source>
+            <target> Save at</target>
+          </trans-unit>
+          <trans-unit id="version-veeva-vault">
+             <source>presentationedit.version-veeva-vault</source>
+             <target> Veeva vault</target>
+          </trans-unit>
+          <trans-unit id="version-actions">
+            <source>presentationedit.version-actions</source>
+            <target> Actions </target>
+          </trans-unit>
+          <trans-unit id="message-alert-status-default">
+             <source>presentationedit.message-alert-status-default</source>
+             <target>You still have enough space to insert more content into your CLM presentation.</target>
+          </trans-unit>
+          <trans-unit id="message-alert-status-warning">
+             <source>presentationedit.message-alert-status-warning</source>
+             <target>You are approaching to the ZIP file limit. Some actions related to the ZIP file may become unavailable soon.</target>
+          </trans-unit>
+          <trans-unit id="message-alert-status-dangerous">
+             <source>presentationedit.message-alert-status-dangerous</source>
+             <target>Some actions related to the zip are not available. Remove some content in order to be available again.</target>
+          </trans-unit>
+          <trans-unit id="zip-msg">
+            <source>presentationedit.zip-msg</source>
+            <target> generation can take a few seconds or minutes depending on the size of your CLM presentation. You can close this pop in and you will receive an email notification when your ZIP is ready for download.</target>
+          </trans-unit>
+        </body>
+    </file>
+</xliff>

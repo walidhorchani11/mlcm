@@ -1,0 +1,92 @@
+<div class="survey-sideBar" id="survey_sideBar">
+    <h4>{{ 'presentationedit.select-survey-type' | trans({}, 'presentationedit') }}:</h4>
+    <select class="form-control m-b" id="select_survey">
+        <option>{{ 'presentationedit.select-survey' | trans({}, 'presentationedit') }}</option>
+        <option value="checkbox">{{ 'presentationedit.check-box' | trans({}, 'presentationedit') }}</option>
+        <option value="radio_type">{{ 'presentationedit.radio-button' | trans({}, 'presentationedit') }}</option>
+        <option value="list_type">{{ 'presentationedit.dropdown-list' | trans({}, 'presentationedit') }}</option>
+        <option value="input_text">{{ 'presentationedit.input-field' | trans({}, 'presentationedit') }}</option>
+    </select>
+
+
+    <div class="button-survey btn-chbox-container"></div>
+    <div class="button-survey btn-radio-container"></div>
+    <div class="button-survey btn-textField-container"></div>
+
+
+    {#select#}
+
+    <div class="add-select-question-wrapper">
+        <button class="btn btn-primary" id="add_select_question">{{ 'presentationedit.add-list' | trans({}, 'presentationedit') }}</button>
+    </div>
+    <div class="wrapper-select-survey">
+        <!--<input type="text" name="select_survey_name" class="select-survey-name" placeholder="Select name..." style="box-sizing: border-box; max-width: 100%;" /><br />-->
+
+        <div class="wrapper-answer-survey">
+            <label class="label-survey-response"></label>
+            <input type="text" class="select-survey-response" placeholder="{{ 'presentationedit.your-answer-here' | trans({}, 'presentationedit') }}..." />
+            <a class="pull-right remove-answer"><i class="fa fa-times"></i></a>
+        </div>
+
+        <div class="button add-answer-list">
+            <span class="add-answer">{{ 'presentationedit.add-answer' | trans({}, 'presentationedit') }}</span>
+        </div>
+    </div>
+
+    <h4>{{ 'presentationedit.customize-submit-button' | trans({}, 'presentationedit') }}:</h4>
+    <!--<button class="btn btn-primary" id="">add BTN TEST</button>-->
+    <div>
+        <label>{{ 'presentationedit.text-button' | trans({}, 'presentationedit') }}</label><br />
+        <input type="text" name="submit_color_name" id="submit_color_name" Placeholder="{{ 'presentationedit.button-name' | trans({}, 'presentationedit') }}..."/>
+    </div>
+    <div class="label-blc">
+        <label class="text-size-bg">&nbsp;</label><br />
+        <select class="form-control" name="btn_text_size" id="btn_text_size">
+            <option>8</option>
+            <option>10</option>
+            <option>12</option>
+            <option>14</option>
+            <option>16</option>
+            <option>18</option>
+            <option>22</option>
+            <option>24</option>
+            <option>26</option>
+            <option>28</option>
+            <option>36</option>
+            <option>46</option>
+            <option>72</option>
+        </select>
+    </div>
+    <div class="edit-all-font">
+        <label>{{ 'presentationedit.font-color' | trans({}, 'presentationedit') }}</label>
+        <input type="text" name="bg-font-submit-color" id="bg-font-submit-color" /><a class="pull-right remove-bg-submit-color"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="edit-all-font">
+        <label>{{ 'presentationedit.background-color' | trans({}, 'presentationedit') }}</label>
+        <input type="text" name="bg-btn-submit-color" id="bg-btn-submit-color" /><a class="pull-right remove-btn-submit-color"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="edit-all-font">
+        <label>{{ 'presentationedit.font-active-color' | trans({}, 'presentationedit') }}</label>
+        <input type="text" name="bg-font-Activated-submit-color" id="bg-font-Activated-submit-color" /><a class="pull-right remove-Activebg-submit-color"><i class="fa fa-times"></i></a>
+    </div>
+    <label class="hidden">{{ 'presentationedit.background-image' | trans({}, 'presentationedit') }}</label>
+    <div class="wrapper-button-submit-upload">
+        <div class="media-library-uploader" id="bg_button_submit_upload">
+            <div class="media-library-uploader-button">
+                {{ 'presentationedit.background-button' | trans({}, 'presentationedit') }}
+                <span class="upload-icon"><img src="{{ asset('img/images/icons/download-b.png') }}"   alt="Upload Background Button"  title="Upload Background Button" class="img-circle" /></span>
+                <span class="icon i-cloud-upload2"></span>
+            </div>
+            <div class="media-library-uploader-list"></div>
+        </div>
+    </div>
+    <h4>{{ 'presentationedit.button-preview' | trans({}, 'presentationedit') }}</h4>
+    <div class="preview-submit-btn">
+        <button id="submitButton" type="button" class="submit-btn-preview">{{ 'presentationedit.send' | trans({}, 'presentationedit') }}</button>
+    </div>
+    <div class="addButton add-btn">
+        <i class="fa fa-plus"></i> <span class="submit-append-btn">{{ 'presentationedit.add-this-button' | trans({}, 'presentationedit') }}</span>
+    </div>
+
+
+</div>

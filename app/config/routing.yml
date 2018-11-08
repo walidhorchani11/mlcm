@@ -1,0 +1,112 @@
+dashboard:
+    resource: "@DashboardBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr|ar
+    defaults:
+        _locale: en
+    options:
+        expose: true
+
+argo_mcm_builder_media:
+    resource: "@ArgoMCMBuilderMediaBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr|ar
+    defaults:
+        _locale: en
+    options:
+        expose: true
+
+notification:
+    resource: "@NotificationBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr|ar
+    defaults:
+        _locale: en
+    options:
+        expose: true
+
+approved_email:
+    resource: "@ApprovedEmailBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr|ar
+    defaults:
+        _locale: en
+    options:
+        expose: true
+
+presentation:
+    resource: "@PresentationBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr|ar
+    defaults:
+        _locale: en
+    options:
+        expose: true
+
+api:
+    resource: "@PresentationBundle/Controller/V1/"
+    type: annotation
+    prefix: /api/v1
+
+
+project:
+    resource: "@ProjectBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr|ar
+    defaults:
+        _locale: en
+    options:
+        expose: true
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr|ar
+    defaults:
+        _locale: en
+    options:
+        expose: true
+
+back_office:
+    resource: "@BackOfficeBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr|ar
+    defaults:
+        _locale: en
+    options:
+        expose: true
+
+veeva_vault:
+    resource: "@VeevaVaultBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr
+    defaults:
+        _locale: en
+    options:
+        expose: true
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+elfinder:
+     resource: "@FMElfinderBundle/Resources/config/routing.yml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

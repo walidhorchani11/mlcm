@@ -1,0 +1,811 @@
+<div class="sidebar-panel">
+    <section class="settings screen-parameters">
+        <div class="overlay-section"></div>
+        <div class="panel-body sl-form">
+            <div class="panel-group">
+                <!--Screen name-->
+                <div class="unit text ">
+                    <div class="inline-box">
+                        <h3>{{ 'presentationedit.screen-name' | trans({}, 'presentationedit') }}</h3>
+                        <p>{{ 'presentationedit.screen-name-visibilty' | trans({}, 'presentationedit') }}</p>
+                        <label for="screen-name" class="hidden">{{ 'presentationedit.screen-name' | trans({}, 'presentationedit') }}</label>
+                        <input id="screen-name" name="screen-name" size="30" type="text"
+                               placeholder="{{ 'presentationedit.enter-screen-name' | trans({}, 'presentationedit') }}" class="form-control"
+                               maxlength="100">
+                        <div class="toolbar-option toolbar-divider"
+                             data-option-type="divider"></div>
+                        <!--<h3>{{ 'presentationedit.asset-id' | trans({}, 'presentationedit') }}</h3>
+                                            <p>{{ 'presentationedit.enter-asset-id' | trans({}, 'presentationedit') }}</p>
+                                            <input id="screen-id" name="screen-id" size="30" type="text" class="form-control"
+                                                   placeholder="{{ 'presentationedit.enter-screen-id' | trans({}, 'presentationedit') }}" maxlength="100">-->
+                    </div>
+                    <div class="inline-box">
+                        <h3>{{ 'presentationedit.chapter-name' | trans({}, 'presentationedit') }}</h3>
+                        <label for="chapter-name" class="hidden">{{ 'presentationedit.chapter-name' | trans({}, 'presentationedit') }}</label>
+                        <input id="chapter-name" name="chapter-name" size="30" type="text"
+                               placeholder="{{ 'presentationedit.chapter-name-description' | trans({}, 'presentationedit') }}" class="form-control"
+                               maxlength="100">
+                        <div class="toolbar-option toolbar-divider"
+                             data-option-type="divider"></div>
+                        <!--<h3>{{ 'presentationedit.asset-id' | trans({}, 'presentationedit') }}</h3>
+                                            <p>{{ 'presentationedit.enter-asset-id' | trans({}, 'presentationedit') }}</p>
+                                            <input id="screen-id" name="screen-id" size="30" type="text" class="form-control"
+                                                   placeholder="{{ 'presentationedit.enter-screen-id' | trans({}, 'presentationedit') }}" maxlength="100">-->
+                    </div>
+                    <!--<div class="toolbar-option toolbar-divider" data-option-type="divider"></div>-->
+                    <div class="inline-box">
+                        <!--Key message-->
+                        <h3>{{ 'presentationedit.key-message' | trans({}, 'presentationedit') }}</h3>
+                        <div id="box_key_message">
+                            <p>{{ 'presentationedit.enter-key-message' | trans({}, 'presentationedit') }}</p>
+                            <label class="hidden">{{ 'presentationedit.key-message' | trans({}, 'presentationedit') }}</label>
+                            <input id="key-msg" name="key-msg" size="30" type="text" placeholder="{{ 'presentationedit.key-message' | trans({}, 'presentationedit') }}..."
+                                   class="l" maxlength="200">
+                        </div>
+                        <!--ASSET DESCRIPTION-->
+                        <div class="toolbar-option toolbar-divider"
+                             data-option-type="divider"></div>
+                        <h3>{{ 'presentationedit.asset-description' | trans({}, 'presentationedit') }}<sup>*</sup></h3>
+                        <div id="description_assets">
+                            <p>{{ 'presentationedit.screen-asset-description' | trans({}, 'presentationedit') }}:<br />
+                                <span id="key-msg-details-argo" class="hidden"><b>{{ 'presentationedit.argolife-pageid-naming' | trans({}, 'presentationedit') }}</b><br />
+                                <i>Example: {{ 'presentationedit.argolife-pageid-naming-exemple' | trans({}, 'presentationedit') }}</i></span>
+
+                                <span id="key-msg-details-merck" class="hidden"><b>{{ 'presentationedit.merck-pageid-naming' | trans({}, 'presentationedit') }}</b><br />
+                                <i>Example: {{ 'presentationedit.merck-pageid-naming-exemple' | trans({}, 'presentationedit') }}</i></span>
+                            </p>
+                            <input id="screen-description" name="screen-description" size="30" type="text"
+                                   placeholder="{{ 'presentationedit.screen-description' | trans({}, 'presentationedit') }}" class="l"
+                                   maxlength="100">
+                            <div id="error-empty-field" class="error-recommended-field hidden">{{ 'presentationedit.empty-pageid-error' | trans({}, 'presentationedit') }}</div>
+                            <div id="error-used-keymsg" class="error-recommended-field hidden">{{ 'presentationedit.used-pageid-error' | trans({}, 'presentationedit') }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="unit separator"></div>
+                <!--Customize screen-->
+                <div class="unit">
+                    <h3>{{ 'presentationedit.customize-screen' | trans({}, 'presentationedit') }}</h3>
+                    <div id="customize_screen">
+                        <p>{{ 'presentationedit.custumise-sceen-background-message' | trans({}, 'presentationedit') }}</p>
+                        <label class="inline-label">{{ 'presentationedit.background-color' | trans({}, 'presentationedit') }}</label>
+                        <input type="text" name="bg-screen-color" id="bg-screen-color">
+                        <div class="toolbar-option toolbar-divider"
+                             data-option-type="divider"></div>
+                        <label class="inline-label">{{ 'presentationedit.background-image' | trans({}, 'presentationedit') }}</label>
+                        <div class="wrapper-bg-screen-image" >
+                            <div class="media-library-uploader " id="bg_screen_upload">
+                                <div class="media-library-uploader-button">{#{{ 'presentationedit.image' | trans({}, 'presentationedit') }}#}
+                                    <span class="icon i-cloud-upload2"></span>
+                                    <span class="upload-icon"><img src="{{ asset('img/images/icons/download-b.png') }}"   alt="Upload Logo"  title="Upload Logo" class="img-circle" /></span>
+                                    <!--<input class="file-input" id="bg_screen_upload" type="file">-->
+                                </div>
+                                <div class="media-library-uploader-list"></div>
+                            </div>
+                            <div class="bg-screen-image"></div>
+                        </div>
+
+                        <div class="toolbar-option toolbar-divider"  data-option-type="divider"></div>
+                        <h4>{{ 'presentationedit.background-size' | trans({}, 'presentationedit') }}</h4>
+                        <div class="fields-wrapper sel-container">
+                            <select class="form-control m-b sl-select"  id="bg-size-screen">
+                                <option value="initial">Initial</option>
+                                <option value="cover">Stretch</option>
+                                <option value="contain">Fit</option>
+                            </select>
+                        </div>
+                        <div class="toolbar-option toolbar-divider"  data-option-type="divider"></div>
+                        <div class="toggles fields-wrapper">
+                               <h3 id="Block_Nav_Legend">
+                                   {{ 'presentationedit.Deactivate-Swipe' | trans({}, 'presentationedit') }}
+                               </h3>
+                                <div class="sl-checkbox outline">
+                                    <input type="checkbox" id="Block_Left_nav" value="BlockLeftNav">
+                                    <label for="Block_Left_nav" class="labBox">
+                                        {{ 'presentationedit.Deactivate-forward-swipe' | trans({}, 'presentationedit') }}
+                                    </label>
+                                </div>
+                                <div class="sl-checkbox outline">
+                                    <input type="checkbox" id="Block_right_nav" value="BlockRightNav">
+                                    <label for="Block_right_nav" class="labBox">{{ 'presentationedit.Deactivate-backward-swipe' | trans({}, 'presentationedit') }}</label>
+                                </div>
+                            <div class="toolbar-option toolbar-divider"
+                                 data-option-type="divider"></div>
+
+
+                        <div class="sl-checkbox outline">
+                                <input type="checkbox" id="trigger_anim_by_click" value="triggerAnimByClick">
+                                <label for="trigger_anim_by_click" class="labBox">{{ 'presentationedit.animation.tab' | trans({}, 'presentationedit') }}</label>
+                            </div>
+
+                        </div>
+                        <div class="toolbar-option toolbar-divider"
+                             data-option-type="divider"></div>
+                        <div class="fields-wrapper custom-navbar">
+                            <div class="section selector">
+                                <h3>{{ 'presentationedit.customize.navigation' | trans({}, 'presentationedit') }}</h3>
+                                <select class="form-control m-b sl-select juste-for-test" name="custom-navbar-appearance" id="custom-navbar-appearance">
+                                    <option value="standard">{{ 'presentationedit.standard.navigation' | trans({}, 'presentationedit') }}</option>
+                                    <option value="Hide-all">{{ 'presentationedit.hide.navigation' | trans({}, 'presentationedit') }}</option>
+                                    <option value="Hide-chapters">{{ 'presentationedit.hide.screen.navigation' | trans({}, 'presentationedit') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="panel-footer">
+            <button class="button cancel grey xl">{{ 'presentationedit.cancel' | trans({}, 'presentationedit') }}</button>
+            <button class="button save xl">{{ 'presentationedit.ok' | trans({}, 'presentationedit') }}</button>
+        </footer>
+    </section>
+    <!--settings CLM-->
+    <section class="settings-clm style">
+        <div class="overlay-section"></div>
+        <div class="panel-body">
+            <div class="sl-themeoptions">
+                <div class="section selector theme">
+                    <!--bloc Customize APPEARENCE-->
+                    <div class="unit text">
+                        <h3>{{ 'presentationedit.customize-appearence' | trans({}, 'presentationedit') }} </h3>
+                        <div id="customize_appearence">
+                            <h4>{{ 'presentationedit.presentation-logo' | trans({}, 'presentationedit') }} </h4>
+                            <form method="post" action="/">
+                                <div class="wrapper-logo-pres">
+                                    <div class="media-library-uploader" id="logo_pres_upload">
+                                        <div class="media-library-uploader-button">{#{{ 'presentationedit.logo' | trans({}, 'presentationedit') }}#}
+                                            <span class="icon i-cloud-upload2"></span>
+                                            <span class="upload-icon"><img src="{{ asset('img/images/icons/download-b.png') }}"   alt="Upload Logo"  title="Upload Logo" class="img-circle" /></span>
+                                            <!--<input class="file-input" id="logo_pres_upload"type="file">-->
+                                        </div>
+                                        <div class="media-library-uploader-list"></div>
+                                    </div>
+                                    <div class="em-style">Max 90 * 50 (px)</div>
+                                    <div class="logo-pres"></div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="toolbar-option toolbar-divider"
+                             data-option-type="divider"></div>
+                        <h4>{{ 'presentationedit.popin-reference-close-icon' | trans({}, 'presentationedit') }}</h4>
+                        <div id="main_item">
+                            <div class="wrapper-bg-btn-close">
+                                <div class="media-library-uploader" id="bg_btn_close">
+                                    <div class="media-library-uploader-button">{#{{ 'presentationedit.close-icon' | trans({}, 'presentationedit') }}#}
+                                        <span class="upload-icon"><img src="{{ asset('img/images/icons/download-b.png') }}"   alt="Close Icon"  title="Close Icon" class="img-circle" /></span>
+                                        <span class="icon i-cloud-upload2"></span>
+                                        <!--<input class="file-input" id="bg_btn_close" type="file">-->
+                                    </div>
+                                    <div class="media-library-uploader-list"></div>
+                                </div>
+                                <div class="em-style">Max 30 * 30 (px)</div>
+                                <div class="bg-btn-close"></div>
+                            </div>
+                            <div class="toolbar-option toolbar-divider"
+                                 data-option-type="divider"></div>
+                            <h4>{{ 'presentationedit.overlay-settings' | trans({}, 'presentationedit') }}</h4>
+                            <label class="inline-label">{{ 'presentationedit.overlay-color' | trans({}, 'presentationedit') }}</label>
+                            <input type="text" name="bg-ref-overlay-color"
+                                   id="bg-ref-overlay-color"/>
+                            <!--<div class="toolbar-option toolbar-divider"
+                                                     data-option-type="divider"></div>
+                                                <label class="inline-label">{{ 'presentationedit.overlay-transparency' | trans({}, 'presentationedit') }}</label>
+                                                <div class="stepper" id="overlay_ref_opacity">
+                                                    <div class="stepper-progress"></div>
+                                                    <input type="text" class="stepper-number" min="0" max="100">
+                                                </div>-->
+                        </div>
+                    </div>
+                    <div class="unit separator"></div>
+                    <!--bloc SCREENS PARAMETERS-->
+                    <div class="unit text">
+                        <h3>{{ 'presentationedit.screens-settings' | trans({}, 'presentationedit') }}</h3>
+                        <div id="clm_bg_screen">
+                            <h4>{{ 'presentationedit.background-color' | trans({}, 'presentationedit') }}</h4>
+                            <p>{{ 'presentationedit.background-applied-presentation-screen' | trans({}, 'presentationedit') }}:
+                            </p>
+                            <input type="text" name="bg-pres-color" id="bg-pres-color"/>
+                            <!--<div id="bg-pres-color"><div></div></div>-->
+                            <div class="toolbar-option toolbar-divider"
+                                 data-option-type="divider"></div>
+                            <h4>{{ 'presentationedit.background-image' | trans({}, 'presentationedit') }}</h4>
+                            <p>{{ 'presentationedit.background-applied-presentation-screen' | trans({}, 'presentationedit') }}:
+                            </p>
+                            <div class="wrapper-bg-pres">
+                                <div class="media-library-uploader" id="bg_pres_upload">
+                                    <div class="media-library-uploader-button">{#{{ 'presentationedit.background-image' | trans({}, 'presentationedit') }}<br />#}
+                                        <span class="upload-icon"><img src="{{ asset('img/images/icons/download-b.png') }}"   alt="Upload Logo"  title="Upload Logo" class="img-circle" /></span>
+                                        <span class="icon i-cloud-upload2"></span>
+                                        <!--<input class="file-input" id="bg_pres_upload" type="file">-->
+                                    </div>
+                                    <div class="media-library-uploader-list"></div>
+                                </div>
+                                <div class="bg-pres"></div>
+                            </div>
+                            <div class="toolbar-option toolbar-divider"   data-option-type="divider"></div>
+                            <h4>{{ 'presentationedit.background-size' | trans({}, 'presentationedit') }}</h4>
+                            <div class="fields-wrapper sel-container">
+                                <select class="form-control m-b sl-select"  id="bg-size-pres">
+                                    <option value="initial">Resize image proportionally</option>
+                                    <option value="cover">{{ 'presentationedit.stretch' | trans({}, 'presentationedit') }}</option>
+                                    <option value="contain">{{ 'presentationedit.fit' | trans({}, 'presentationedit') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="unit separator"></div>
+                    <!--bloc NAVIGATION BAR -->
+                    <div class="unit text">
+                        <h3>{{ 'presentationedit.navigation-bar' | trans({}, 'presentationedit') }}</h3>
+                        <div id="navigation_bar">
+                            <h4>{{ 'presentationedit.color-settings' | trans({}, 'presentationedit') }}</h4>
+                            <div class="box-filed">
+                                <label class="inline-label">{{ 'presentationedit.menu-color' | trans({}, 'presentationedit') }}</label>
+                                <input type="text" name="bg-menu-color" id="bg-menu-color"/>
+                            </div>
+                            <div class="box-filed">
+                                <label class="inline-label">{{ 'presentationedit.select-item-color' | trans({}, 'presentationedit') }}</label>
+                                <input type="text" name="current-item-color"
+                                       id="current-item-color"/>
+                            </div>
+                            <div class="box-filed">
+                                <label class="inline-label">{{ 'presentationedit.font-color' | trans({}, 'presentationedit') }}</label>
+                                <input type="text" name="font-menu-color" id="font-menu-color"/>
+                            </div>
+                            <div class="toolbar-option toolbar-divider"
+                                 data-option-type="divider"></div>
+                            <div class="fields-wrapper font-list"></div>
+                            <div class="fields-wrapper sel-container">
+                                <span class="att-Container"><img src="{{ asset('img/images/pictos/Tt-size.png') }}"   alt="Text Size"  title="Text Size"/></span>
+                                <select class="form-control m-b sl-select" name="font-size-select" id="font-size-select">
+                                    <option>{{ 'presentationedit.select-font-size' | trans({}, 'presentationedit') }}...</option>
+                                    <option value="8">8</option>
+                                    <option value="10">10</option>
+                                    <option value="12">12</option>
+                                    <option value="14">14</option>
+                                    <option value="16">16</option>
+                                    <option value="18">18</option>
+                                    <option value="22">22</option>
+                                    <option value="24">24</option>
+                                    <option value="26">26</option>
+                                    <option value="28">28</option>
+                                </select>
+                            </div>
+
+                            <div class="clear-both"></div>
+                            <div class="toggles fields-wrapper">
+                                <div class="sl-checkbox outline">
+                                    <input type="checkbox" id="allow_submenu" value="submenu">
+                                    <label for="allow_submenu" class="labBox"> {{ 'presentationedit.submenu' | trans({}, 'presentationedit') }}</label>
+                                </div>
+                                <div class="sl-checkbox outline">
+                                    <input type="checkbox" id="allow_submenuHeight" value="submenu">
+                                    <label for="allow_submenuHeight" class="labBox"> {{ 'presentationedit.submenuHeight' | trans({}, 'presentationedit') }}</label>
+                                </div>
+                                <div class="sl-checkbox outline">
+                                    <input type="checkbox" id="highlight_menu" value="submenu">
+                                    <label for="highlight_menu" class="labBox"> {{ 'presentationedit.highlight-active-menu' | trans({}, 'presentationedit') }}</label>
+                                </div>
+                                <div class="sl-checkbox outline">
+                                    <input type="checkbox" id="disable_scroll" value="disableScroll">
+                                    <label for="disable_scroll" class="labBox"> {{ 'presentationedit.disableScroll' | trans({}, 'presentationedit') }}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Home icon -->
+                        <div class="toolbar-option toolbar-divider"
+                             data-option-type="divider"></div>
+
+                        <div class="panel-group panelIconLogo" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                            {{ 'presentationedit.logo-home-url' | trans({}, 'presentationedit') }}
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse ">
+                                    <div class="panel-body">
+                                        <div class="wrapper-logo-home">
+                                            <div class="media-library-uploader" id="logo_home_upload">
+                                                <div class="media-library-uploader-button">{#{{ 'presentationedit.logo-reference-btn' | trans({}, 'presentationedit') }}#}
+                                                    <span class="upload-icon"><img src="{{ asset('img/images/icons/download-b.png') }}"   alt="Upload Background"  title="Upload Upload Background" class="img-circle" /></span>
+                                                    <span class="icon i-cloud-upload2"></span>
+                                                    <!--<input class="file-input" id="bg_ref_upload" type="file">-->
+                                                </div>
+                                                <div class="media-library-uploader-list"></div>
+                                            </div>
+                                            <div class="em-style">Max 30 * 30 (px)</div>
+                                            <div class="logo-home-link"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="toolbar-option toolbar-divider" data-option-type="divider"></div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                            {{ 'presentationedit.logo-reference' | trans({}, 'presentationedit') }}
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="wrapper-logo-ref">
+                                            <div class="media-library-uploader" id="logo_ref_upload">
+                                                <div class="media-library-uploader-button">{#{{ 'presentationedit.logo-reference-btn' | trans({}, 'presentationedit') }}<br />#}
+                                                    <span class="upload-icon"><img src="{{ asset('img/images/icons/download-b.png') }}"   alt="Upload Background"  title="Upload Upload Background" class="img-circle" /></span>
+                                                    <span class="icon i-cloud-upload2"></span>
+                                                    <!--<input class="file-input" id="bg_ref_upload" type="file">-->
+                                                </div>
+                                                <div class="media-library-uploader-list"></div>
+                                            </div>
+                                            <div class="em-style">Max 30 * 30 (px)</div>
+                                            <div class="logo-ref-link"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="toolbar-option toolbar-divider" data-option-type="divider"></div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                            {{ 'presentationedit.logo-rcp-url' | trans({}, 'presentationedit') }}
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="wrapper-rcp-logo">
+                                            <div class="media-library-uploader" id="logo_rcp_upload">
+                                                <div class="media-library-uploader-button">{#{{ 'presentationedit.logo-reference-btn' | trans({}, 'presentationedit') }}<br />#}
+                                                    <span class="upload-icon"><img src="{{ asset('img/images/icons/download-b.png') }}"   alt="Upload Background"  title="Upload Upload Background" class="img-circle" /></span>
+                                                    <span class="icon i-cloud-upload2"></span>
+                                                    <!--<input class="file-input" id="bg_ref_upload" type="file">-->
+                                                </div>
+                                                <div class="media-library-uploader-list"></div>
+                                            </div>
+                                            <div class="em-style">Max 30 * 30 (px)</div>
+                                            <div class="logo-rcp-link"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="unit separator"></div>
+                    <!--bloc POP IN APPEARENCE 1-->
+                    <div class="fields-wrapper unit">
+                        <h3>{{ 'presentationedit.pop-in-settings' | trans({}, 'presentationedit') }}</h3>
+                        <div id="popin_clm">
+                            <h4>{{ 'presentationedit.dimensions-settings' | trans({}, 'presentationedit') }}</h4>
+                            <div class="box-filed">
+                                <label class="inline-label">{{ 'presentationedit.width' | trans({}, 'presentationedit') }}</label>
+                                <div class="stepper fields-wrapper" id="popup_width">
+                                    <div class="stepper-progress"></div>
+                                    <input type="text" class="stepper-number">
+                                </div>
+                            </div>
+
+                            <div class="box-filed">
+                                <label class="inline-label">{{ 'presentationedit.height' | trans({}, 'presentationedit') }}</label>
+                                <div class="stepper fields-wrapper" id="popup_height">
+                                    <div class="stepper-progress"></div>
+                                    <input type="text" class="stepper-number">
+                                </div>
+                            </div>
+
+                            <div class="toolbar-option toolbar-divider"
+                                 data-option-type="divider"></div>
+
+                            <h4>{{ 'presentationedit.background-color' | trans({}, 'presentationedit') }}</h4>
+                            <p>
+                                {{ 'presentationedit.background-applied-presentation-popin' | trans({}, 'presentationedit') }}:
+                            </p>
+                            <input type="text" name="bg-popup-color" id="bg-popup-color"/>
+
+                            <div class="toolbar-option toolbar-divider"
+                                 data-option-type="divider"></div>
+                            <h4>{{ 'presentationedit.background-image' | trans({}, 'presentationedit') }}</h4>
+                            <p>
+                                {{ 'presentationedit.background-applied-presentation-popin' | trans({}, 'presentationedit') }}:
+                            </p>
+                            <div class="wrapper-bg-popup popsett">
+                                <div class="media-library-uploader" id="bg_popup_upload">
+                                    <div class="media-library-uploader-button">{#{{ 'presentationedit.background-popin' | trans({}, 'presentationedit') }}<br />#}
+                                        <span class="upload-icon"><img src="{{ asset('img/images/icons/download-b.png') }}"   alt="Upload Logo"  title="Upload Logo" class="img-circle" /></span>
+                                        <span class="icon i-cloud-upload2"></span>
+                                        <!--<input class="file-input" id="bg_popup_upload" type="file">-->
+                                    </div>
+                                    <div class="media-library-uploader-list"></div>
+                                </div>
+                                <div class="bg-popup"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="unit separator"></div>
+                    <!--bloc  REFERENCE APEARANCE-->
+                    <div class="fields-wrapper unit text">
+                        <h3>{{ 'presentationedit.references-settings' | trans({}, 'presentationedit') }}</h3>
+                        <div id="reference_apearance">
+                            <h4>{{ 'presentationedit.color-dimentions-settings' | trans({}, 'presentationedit') }}</h4>
+                            <div class="box-filed">
+                                <label class="inline-label">{{ 'presentationedit.text-color' | trans({}, 'presentationedit') }}</label>
+                                <input type="text"  class="form-group" name="text-ref-color" id="text-ref-color"/>
+                            </div>
+                            <div class="box-filed">
+                                <label class="inline-label">{{ 'presentationedit.width' | trans({}, 'presentationedit') }}</label>
+                                <div class="stepper fields-wrapper" id="ref_width">
+                                    <div class="stepper-progress"></div>
+                                    <input type="text" class="stepper-number form-group">
+                                </div>
+                            </div>
+
+                            <div class="box-filed">
+                                <label class="inline-label">{{ 'presentationedit.height' | trans({}, 'presentationedit') }}</label>
+                                <div class="stepper fields-wrapper" id="ref_height">
+                                    <div class="stepper-progress"></div>
+                                    <input type="text" class="stepper-number">
+                                </div>
+                            </div>
+
+                            <!-- font refer-->
+                            <div class="toolbar-option toolbar-divider" data-option-type="divider"></div>
+                            <div class="panel-group panelIconLogo" id="accordionRef">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionRef" href="#refCollapse">
+                                                {{ 'presentationedit.Content-appearance' | trans({}, 'presentationedit') }}
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="refCollapse" class="panel-collapse collapse ">
+                                        <div class="panel-body">
+                                            <div class="fields-wrapper font-list-ref"></div>
+                                            <h4 class="font-normal">{{ 'presentationedit.ref-title' | trans({}, 'presentationedit') }}</h4>
+                                            <input type="text" id="content-ref-title"  class="form-control">
+                                            <h4 class="font-normal">{{ 'presentationedit.size-title' | trans({}, 'presentationedit') }}</h4>
+                                            <div class="fields-wrapper sel-container">
+                                                <span class="att-Container"><img src="{{ asset('img/images/pictos/Tt-size.png') }}"   alt="Text Size"  title="Text Size"/></span>
+                                                <select class="form-control m-b sl-select" name="font-size-select-ref" id="font-size-select-ref">
+                                                    <option>{{ 'presentationedit.select-font-size' | trans({}, 'presentationedit') }}...</option>
+                                                    <option value="8">8</option>
+                                                    <option value="10">10</option>
+                                                    <option value="12">12</option>
+                                                    <option value="14">14</option>
+                                                    <option value="16">16</option>
+                                                    <option value="18">18</option>
+                                                    <option value="22">22</option>
+                                                    <option value="24">24</option>
+                                                    <option value="26">26</option>
+                                                    <option value="28">28</option>
+                                                    <option value="36">36</option>
+                                                    <option value="46">46</option>
+                                                    <option value="72">72</option>
+                                                </select>
+                                            </div>
+                                            <h4 class="font-normal">{{ 'presentationedit.ref-content' | trans({}, 'presentationedit') }}</h4>
+                                            <div class="fields-wrapper sel-container">
+                                                <span class="att-Container"><img src="{{ asset('img/images/pictos/Tt-size.png') }}"   alt="Text Size"  title="Text Size"/></span>
+                                                <select class="form-control m-b sl-select" name="font-size-select-ref-content" id="font-size-select-ref-content">
+                                                    <option>{{ 'presentationedit.select-font-size' | trans({}, 'presentationedit') }}...</option>
+                                                    <option value="8">8</option>
+                                                    <option value="10">10</option>
+                                                    <option value="12">12</option>
+                                                    <option value="14">14</option>
+                                                    <option value="16">16</option>
+                                                    <option value="18">18</option>
+                                                    <option value="22">22</option>
+                                                    <option value="24">24</option>
+                                                    <option value="26">26</option>
+                                                    <option value="28">28</option>
+                                                    <option value="36">36</option>
+                                                    <option value="46">46</option>
+                                                    <option value="72">72</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="toolbar-option toolbar-divider" data-option-type="divider"></div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionRef" href="#backCollapse">
+                                                {{ 'presentationedit.background' | trans({}, 'presentationedit') }}
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="backCollapse" class="panel-collapse collapse ">
+                                        <div class="panel-body">
+                                            <h4 class="font-normal">{{ 'presentationedit.background-color' | trans({}, 'presentationedit') }}</h4>
+                                            <p>{{ 'presentationedit.background-applied-presentation-references' | trans({}, 'presentationedit') }}:</p>
+                                            <input type="text" name="bg-ref-color" id="bg-ref-color"/>
+                                            <h4 class="font-normal">{{ 'presentationedit.background-image' | trans({}, 'presentationedit') }}</h4>
+                                            <p>{{ 'presentationedit.background-applied-presentation-references' | trans({}, 'presentationedit') }}:</p>
+                                            <div class="wrapper-bg-ref">
+                                                <div class="media-library-uploader" id="bg_ref_upload">
+                                                    <div class="media-library-uploader-button">{#{{ 'presentationedit.background-reference' | trans({}, 'presentationedit') }}<br />#}
+                                                        <span class="upload-icon"><img src="{{ asset('img/images/icons/download-b.png') }}"   alt="Upload Background"  title="Upload Upload Background" class="img-circle" /></span>
+                                                        <span class="icon i-cloud-upload2"></span>
+                                                        <!--<input class="file-input" id="bg_ref_upload" type="file">-->
+                                                    </div>
+                                                    <div class="media-library-uploader-list"></div>
+                                                </div>
+                                                <div class="bg-ref"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!--End bloc -->
+                </div>
+            </div>
+        </div>
+        <footer class="panel-footer">
+            <button class="button cancel defaultBtn xl">{{ 'presentationedit.cancel' | trans({}, 'presentationedit') }}</button>
+            <button class="button save xl">{{ 'presentationedit.ok' | trans({}, 'presentationedit') }}</button>
+        </footer>
+        <div class="sl-scroll-shadow-top"></div>
+        <div class="sl-scroll-shadow-bottom"></div>
+    </section>
+    <section class="popin">
+    </section>
+    <section class="section-popin-list popin popup-container">
+        <div class="panel-body">
+            <div class="sidebar-container">
+                <div class="top-bloc-popin">
+                    <div class="addpopin"><button class="btn btn-primary addpopin" type="button"> <i class="fa fa-plus"></i>
+                        </button></div>
+                    <form role="search" class="popin-form-custom" action="/">
+                        <div class="form-group">
+                            <label class="hidden">{{ 'presentationedit.search-popin' | trans({}, 'presentationedit') }}</label>
+                            <div class="popfilter">
+                                <input type="text" placeholder="{{ 'presentationedit.search-popin-by-name' | trans({}, 'presentationedit') }}" class="form-control" name="filterpop">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="section items-pop list-pop-line additems-popin">
+                    <div class="item-pop line-popin">
+                        <hr />
+                    </div>
+                </div>
+
+            </div>
+            <div class="clear-both"></div>
+        </div>
+        <footer class="panel-footer">
+            <button class="button cancel grey xl">{{ 'presentationedit.cancel' | trans({}, 'presentationedit') }}</button>
+            <button class="button save xl">{{ 'presentationedit.ok' | trans({}, 'presentationedit') }}</button>
+        </footer>
+    </section>
+    <section class="import references">
+        {% if "merck" == env %}
+            <style>
+                .sl-block .ref-container {
+                    opacity: 0;
+                }
+            </style>
+        {% endif %}
+        <div class="overlay-section"></div>
+        <div class="panel-body sl-form">
+            <div class="section list-ref">
+                <div class="sidebar-container">
+                    <ul class="nav nav-tabs navs-2">
+                        <li class="active"><a data-toggle="tab" href="index.html#tab-1"
+                                              aria-expanded="true">
+                                {{ 'presentationedit.refrences-sheet' | trans({}, 'presentationedit') }}
+                            </a>
+                        </li>
+                        <li><a data-toggle="tab" href="index.html#tab-2"
+                               aria-expanded="false">
+                                {{ 'presentationedit.screen-linked-refrences' | trans({}, 'presentationedit') }}
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+                            <!--Add References-->
+                            <div class="item-ref box-add-ref">
+                                <h3>{{ 'presentationedit.add-references' | trans({}, 'presentationedit') }}</h3>
+                                {{ form_start(formRef,{'attr': {'id':'reForm'}}) }}
+                                {{ form_widget(formRef) }}
+                                {{ form_end(formRef) }}
+                            </div>
+                            <div class="section scrollBar-ref">
+                                {% for ref in references %}
+                                    <div class="item-ref sheet" id="{{ ref.code }}">
+                                        <input type="hidden" class="refId" name="refId" value="{{ ref.id }}"/>
+                                        <span class="title ref-title" id="{{ ref.code }}">{{ ref.title }}</span>
+                                        <a href="javascript:void(0)" class="ref-link close-link pull-right" data-toggle="tooltip" data-original-title="Delete Reference" data-href="{{ path('pres_delete_reference',{id:ref.id}) }}"><i class="fa fa-trash"></i></a>
+                                        <a class="ref-link ref-edit pull-right"><i class="fa fa-edit"></i></a>
+
+                                        <a class="ref-link cancel-link pull-right"><i class="fa fa-close"></i></a>
+                                        <a class="ref-link ref-save pull-right"><i class="fa fa-save"></i></a>
+
+                                        <div class="ref-desc">{{ ref.description|raw }}</div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-pane">
+
+                            {% if "merck" ==env %}
+                                <!--Add_Subsection-->
+                                <div id="content1">
+                                    <h3>{{ 'presentation.subsection' | trans({}, 'presentationedit') }}</h3>
+                                    <!-- This <div> will be used to display the editor content. -->
+                                    <div class="section import-Subsection">
+                                    </div>
+                                </div>
+                                <!--End_Add_Subsection-->
+                                <p>
+                                    <input class="button"  onclick="SL.editor.controllers.Addtext.createEditor();" type="button" value="{{ 'presentation.add_subsection' | trans({}, 'presentationedit') }}" id="create">
+                                    <input class="button" onclick="SL.editor.controllers.Addtext.removeEditor();" type="button" value="Save" id="remove" style="display:none">
+                                </p>
+                                <textarea id="editor1">
+                                </textarea>
+                            {% endif %}
+                            <div class="section import-from-file linked-ref">
+                            </div>
+                            <button type="button" class="references-ok button save xl pull-right" >{{ 'presentationedit.save' | trans({}, 'presentationedit') }}</button>
+                        </div>
+                        {% if "merck" == env %}
+                            {#<div id="tab-3" class="tab-pane">
+                                <div class="section">
+                                    <div class="item-ref" id="additional-block">
+
+                                        {% if additionalText != NULL or additionalText !="" %}
+                                            <div class="icons-addit"><a class="close-additional pull-right" style="margin-left:10px"><i class="fa fa-trash"></i></a><a class="additional-edit pull-right" style="margin-left:10px"><i class="fa fa-edit"></i></a><a class="cancel-additional pull-right" style="margin-left:10px;display: none;"><i class="fa fa-close"></i></a><a class="save-addit pull-right" style="display: none;margin-left:10px;"><i class="fa fa-save"></i></a></div>
+                                            <div class="additional-desc">{{ additionalText|raw|nl2br }}</div>
+                                        {% else %}
+                                            <span class='title'>{{ 'presentationedit.additionalTextTitle' | trans({}, 'presentationedit') }}</span><textarea id='addtitional_desc' name='addtitional_desc' class='import-input'></textarea><button type='button' class='button xl pull-right' id='save_additonal' >{{ 'presentationedit.save' | trans({}, 'presentationedit') }}</button>
+                                        {% endif %}
+                                    </div>
+
+                                </div>
+                            </div>#}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="panel-footer">
+            <!--button class="button cancel grey xl">Cancel</button-->
+            <button class="button save xl">{{ 'presentationedit.ok' | trans({}, 'presentationedit') }}</button>
+        </footer>
+        <!--/footer-->
+    </section>
+    <section class="export">
+        <!--  <div class="overlay-section"></div>-->
+        <div class="panel-body">
+            <div class="panel-group">
+                <!--bloc POP IN APPEARENCE 2-->
+                <div class="fields-wrapper unit">
+                    <h3>{{ 'presentationedit.pop-in-appearance' | trans({}, 'presentationedit') }}</h3>
+                    <div class="form-group">
+                        <input name="popin-name" class="popin_name form-control" size="30" type="text" placeholder="{{ 'presentationedit.enter-popin-name' | trans({}, 'presentationedit') }}..." class="form-control" maxlength="100">
+                    </div>
+                    <div class="box-filed">
+                        <label class="inline-label">{{ 'presentationedit.width' | trans({}, 'presentationedit') }}</label>
+                        <div class="stepper fields-wrapper" id="screen_popup_width">
+                            <div class="stepper-progress"></div>
+                            <input type="text" class="stepper-number" onChange="getStepperWidthValue(this)">
+                        </div>
+                    </div>
+                    <div class="box-filed">
+                        <label class="inline-label">{{ 'presentationedit.height' | trans({}, 'presentationedit') }}</label>
+                        <div class="stepper fields-wrapper" id="screen_popup_height">
+                            <div class="stepper-progress"></div>
+                            <input type="text" class="stepper-number" onChange="getStepperHeightValue(this)">
+                        </div>
+                    </div>
+                    <select class="form-control m-b sl-select hide" id="popin_style">
+                        <option disabled selected>Popin Style</option>
+                        <option data-type="polygon-clip-rhombus">Rhombus</option>
+                        <option data-type="polygon-clip-square">Square</option>
+                        <option data-type="polygon-clip-rectangle">rectangle</option>
+                        <option data-type="polygon-clip-rhomboid">Rhomboid</option>
+                        <option data-type="polygon-clip-kite">Kite</option>
+                        <option data-type="polygon-clip-trapezoid">Trapezoid</option>
+                        <option data-type="polygon-clip-trapezoid-isosceles">Isosceles</option>
+                        <option data-type="polygon-clip-triangle-equilateral">Equilateral</option>
+                        <option data-type="polygon-clip-triangle-isosceles">Isosceles</option>
+                        <option data-type="polygon-clip-triangle-scalene">Scalene</option>
+                        <option data-type="polygon-clip-triangle-right">Right</option>
+                        <option data-type="polygon-clip-pentagon">Pentagon</option>
+                        <option data-type="polygon-clip-hexagon">Hexagon</option>
+                        <option data-type="polygon-clip-heptagon">Heptagon</option>
+                        <option data-type="polygon-clip-octagon">Octagon</option>
+                        <option data-type="polygon-clip-star">Star</option>
+                    </select>
+                    <div class="toolbar-option toolbar-divider" data-option-type="divider"></div>
+                    <label>{{ 'presentationedit.background-color' | trans({}, 'presentationedit') }}</label>
+                    <input type="text" name="bg-popup-color" id="bg_popup_screen_color2"/>
+                    <div class="toolbar-option toolbar-divider" data-option-type="divider"></div>
+                    <h4>{{ 'presentationedit.background-image' | trans({}, 'presentationedit') }}</h4>
+                    <div class="wrapper-bg-popup">
+                        <div class="media-library-uploader" id="bg_popup_upload2">
+                            <div class="bg_popup_upload2">
+                                <div class="media-library-uploader-button">{#{{ 'presentationedit.background-popin' | trans({}, 'presentationedit') }}#}
+                                    <span class="upload-icon"><img src="{{ asset('img/images/icons/download-b.png') }}"   alt="Upload image"  title="Upload image" class="Upload image" /></span>
+                                    <span class="icon i-cloud-upload2"></span>
+                                </div>
+                                <div class="media-library-uploader-list"></div>
+                            </div>
+                            <div class="bg-popup"></div>
+                            <div class='del-bg-popup hide'><a><i class='fa fa-trash'></i>Delete this background</a></div>
+                        </div>
+                    </div>
+                    <div class="wrapper-bg-popup">
+                        <button id="savePopin" class="button save xl pull-right m-sm">{{ 'presentationedit.ok' | trans({}, 'presentationedit') }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="panel-footer">
+
+        </footer>
+
+    </section>
+    <section class="revisions pdf-list">
+        <div class="overlay-section"></div>
+        <div class="panel-body sl-form" style="margin: 20px;background: #2a3d5f;padding: 20px;">
+            <div class="section list-pdf">
+                <div class="sidebar-container">
+                    <h3>{{ 'presentationedit.screen-linked-pdf' | trans({}, 'presentationedit') }} : </h3>
+                    <div class="row rcp-actions">
+                        <div class="col-md-6">
+                            <button id="uploadRcpFile" type="button" class="btn btn-warning rcp-upload-btn">{{ 'presentationedit.upload' | trans({}, 'presentationedit') }}</button>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="search" class="rcp-search-input pull-right" placeholder="{{ 'presentation.upload.search' | trans({}, 'presentationedit') }}" id="search-pdf-list">
+                        </div>
+                    </div>
+                    <div id="linked-rcp">
+                        <div class="section import-from-file linked-ref linked-pdf">
+                            {% if pdfbyrev is defined and pdfbyrev | length  > 0 %}
+                                {% for pdf in pdfbyrev %}
+                                    <div class="item-pdf" id="{{ pdf.id }}">
+                                        <div class="pull-left left-rcp-details">
+                                            <span class="icon-list"><img src="{{ asset('img/images/icons/icon-pdf.png') }}" title="" alt="" /></span>
+                                            <span class="title pdf-title2" data-id="{{ pdf.id }}" id="pdf_title">{{ pdf.title }}</span>
+                                            <span class="title pdf-title">{{ pdf.labelMedia }}</span>
+                                        </div>
+                                        <div class="icon-rcp pull-right">
+                                            <a class="ref-link edit-pdf-title"><i class="fa fa-edit"></i></a>
+                                            <a class="ref-link cancel-pdf-title hidden"><i class="fa fa-close"></i></a>
+                                            <a class="ref-link save-pdf-title hidden"><i class="fa fa-save"></i></a>
+                                            <a href="{{pdf.url}}" class="btn btn-sm" target="_blank" title="View"><i class="p-view-icon"></i> </a>
+                                            <a class="PDF_Presentation pull-right linkedpdf" id="{{ pdf.id }}"><i class="fa fa-link" aria-hidden="true" ></i> </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p class="msgPDF">{{ 'presentationedit.pdf-msg' | trans({}, 'presentationedit') }}</p>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="panel-footer">
+            <button class="button save xl">{{ 'presentationedit.ok' | trans({}, 'presentationedit') }}</button>
+        </footer>
+    </section>
+</div>

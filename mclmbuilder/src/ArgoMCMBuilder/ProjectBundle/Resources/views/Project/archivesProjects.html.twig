@@ -1,0 +1,113 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'projects.my.archive.project' | trans({}, 'project') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/dataTables/dataTables.colVis.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'projects.my.archive.project' | trans({}, 'project') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    {{ 'MCMBuilder' | trans({}, 'project') }}
+                </li>
+                <li>
+                    {{ 'my_project' | trans({}, 'project') }}
+                </li>
+                <li class="active">
+                    <strong>{{ 'projects.my.archive.project' | trans({}, 'project') }}</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content">
+                <div class="ibox">
+                    {% if is_granted('ROLE_MANAGER') %}
+                    <div class="ibox-tools">
+                        <a href="{{ path('projects_create_new_project') }}" class="btn btn-primary btn-xs">
+                            {{ 'projects.create.new.project'|trans({}, 'project') }}
+                        </a>
+                    </div>
+                    {% endif %}
+                    <div class="ibox-content">
+                        <div class=" col-md-12">
+                            <div class="col-sm-4 form-group">
+                                <label for="ownerName">{{ 'project.owner.name'|trans({}, 'project') }} : </label>
+                                <input type="text" name="ownerName" id="ownerName" placeholder="{{ 'project.owner.name'|trans({}, 'project') }}" class="form-control">
+                            </div>
+
+                            <div class="col-sm-4 form-group">
+                                <label for="startDate">{{ 'project.filter.startDate'|trans({}, 'project') }} : </label>
+                                {#<input type="text" name="startDate" id="startDate" placeholder="start date" class="form-control">#}
+                                {#<select name="startDate" id="startDate" class="form-control">#}
+                                    {#<option value="" selected>{{ 'project.filter.startDate'|trans({}, 'project') }}</option>#}
+                                {#</select>#}
+                                <div class="input-group date">
+                                    <input type="text" name="startDate" id="startDate" placeholder="{{ 'now'|date('Y-m-d') }}"  class="form-control date-picker-bootstrap">
+                                    <span role="button" class="input-group-addon" id="search-date-pick"><i class="glyphicon glyphicon-search"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 form-group">
+                                <label for="companyName">{{ 'project.filter.pharmaCompany'|trans({}, 'project') }} : </label>
+                                <select name="companyName" id="companyName" class="form-control">
+                                    <option value="" selected>All</option>
+                                </select>
+                            </div>
+                        </div>
+                        <table class="projects-status-table table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>{{ 'project.project.name'|trans({}, 'project') }}</th>
+                                <th>{{ 'pharma.company'|trans({}, 'companies') }}</th>
+                                <th>{{ 'project.owner.name'|trans({}, 'project') }}</th>
+                                <th>{{ 'project.startDate'|trans({}, 'project') }}</th>
+                                <th>{{ 'project.actions'|trans({}, 'project') }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <div class="blc-csv">
+                            <a href="{{ path('project_export_list', {isActive: '10'}) }}"> {{ 'export.csv' | trans({}, 'project') }}</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent () }}
+    <script>
+        var TWIG = {};
+        TWIG.currentLanguage = "{{ app.request.getLocale() }}";
+        TWIG.twigParent = 'archive';
+        TWIG.route = 'projects_archives_projects_list';
+        TWIG.archiveTitle = '{{ 'projects.list.popup.archive.title' | trans({}, 'project') }}';
+        TWIG.archiveMessage = '{{ 'projects.list.popup.archive.message' | trans({}, 'project') }}';
+        TWIG.archiveBtConf = '{{ 'projects.list.popup.archive.btconf' | trans({}, 'project') }}';
+        TWIG.LabelView = '{{ 'view' | trans({}, 'project') }}';
+        TWIG.LabelEdit = '{{ 'edit' | trans({}, 'project') }}';
+        TWIG.LabelDelete = '{{ 'delete' | trans({}, 'project') }}';
+        TWIG.LabelDuplicate = '{{ 'project.duplicate' | trans({}, 'project') }}';
+        TWIG.cancel = '{{ 'sweetAlert.cancel.text' | trans({}, 'project') }}';
+        TWIG.removeTitle = '{{ 'projects.list.popup.delete.title' | trans({}, 'project') }}';
+        TWIG.removeMessage = '{{ 'projects.list.popup.delete.message' | trans({}, 'project') }}';
+        TWIG.removeBtnConf = '{{ 'projects.list.popup.delete.btconf' | trans({}, 'project') }}';
+        TWIG.activeBtn  = '{{ 'project.activeBtn'  | trans({}, 'project') }}';
+        TWIG.archiveBtn = '{{ 'project.archiveBtn' | trans({}, 'project') }}';
+        </script>
+    <script src="{{ asset('js/plugins/dataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/dataTables/dataTables.colVis.js') }}"></script>
+    <script src="{{ asset('js/project/datatable.js') }}"></script>
+    <script src="{{ asset('js/projects-ajax-dataTable.js') }}"></script>
+{% endblock %}

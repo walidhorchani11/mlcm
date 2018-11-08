@@ -1,0 +1,90 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'Newsletter' | trans({}, 'newsletter') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/dataTables/dataTables.colVis.css') }}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'Newsletter' | trans({}, 'newsletter') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    {{ 'MCMBuilder' | trans({}, 'media') }}
+                </li>
+                <li class="active">
+                    <strong>{{ 'Newsletter' | trans({}, 'newsletter') }}</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content">
+                <div class="ibox">
+                    <div class="ibox-content">
+
+                        <a href="{{ path('newsletter_new') }}" class="btn btn-primary btn-xs" id="get-selected">Create new Newsletter</a>
+                        <a href="{{ path('newsletter_send') }}" class="btn btn-primary btn-xs" id="get-selected">Send new Newsletter</a>
+                        <table id="newsletter-table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th width="1px">#</th>
+                                <th>Subject</th>
+                                <th width=200px>Action</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+    {% block javascripts %}
+        {{ parent () }}
+
+        <script src="{{ asset('js/plugins/dataTables/datatables.min.js') }}"></script>
+        <script src="{{ asset('js/plugins/dataTables/dataTables.colVis.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                $('#newsletter-table').DataTable({
+                    scrollX:        true,
+                    scrollCollapse: true,
+                    paging:         true,
+                    fixedColumns:   true,
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": Routing.generate('newsletter_index'),
+                    "sAjaxDataProp": "data",
+                    "pageLength": 10,
+                    "columnDefs": [
+                        {
+                            "targets": 0,
+                            "data": 'id'
+                        },{
+                            "targets": 1,
+                            "data": 'subject'
+                        }, {
+                            "targets": -1,
+                            "searchable": false,
+                            "data": "id",
+                            "render": function (data, type, full, meta) {
+                                var ch = '';
+                                ch += '<a href="'+Routing.generate('newsletter_show', { id: data })+'" class="btn btn-inline btn-primary btn-sm ladda-button" data-style="expand-right" data-size="s"><span class="ladda-label">Show</span><span class="ladda-spinner"></span></a> ';
+                                ch += '<a href="'+Routing.generate('newsletter_send', { id: data })+'" class="btn btn-inline btn-primary btn-sm ladda-button" data-style="expand-right" data-size="s"><span class="ladda-label">Send</span><span class="ladda-spinner"></span></a> ';
+                                ch += '<a href="'+Routing.generate('newsletter_edit', { id: data })+'" class="btn btn-inline btn-primary btn-sm ladda-button" data-style="expand-right" data-size="s"><span class="ladda-label">Edit</span><span class="ladda-spinner"></span></a> ';
+                                return ch;
+                            }
+                        }]
+                });
+            });
+        </script>
+    {% endblock %}
+

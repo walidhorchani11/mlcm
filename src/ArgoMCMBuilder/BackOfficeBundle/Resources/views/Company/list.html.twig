@@ -1,0 +1,43 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'companies' | trans({}, 'companies') }}</h2>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <strong>{{ 'companies.list' | trans({}, 'companies') }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="#" class="btn btn-primary">This is action area</a>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="col-sm-12 bg-danger" style="padding: 25px; margin-top: 3px;">
+                <h3>{{ 'companies' | trans({}, 'companies') }}</h3>
+                <ul>
+                    <li><a href="{{ path('company_create_new_company') }}">{{ 'companies.add_new_company' | trans({}, 'companies') }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent () }}
+
+{% endblock %}

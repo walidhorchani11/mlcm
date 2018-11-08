@@ -1,0 +1,31 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'users' | trans({}, 'users') }}</h2>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <strong>{{ 'users' | trans({}, 'users') }} | {{ 'users.list' | trans({}, 'users') }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="#" class="btn btn-primary">This is action area</a>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent () }}
+
+{% endblock %}

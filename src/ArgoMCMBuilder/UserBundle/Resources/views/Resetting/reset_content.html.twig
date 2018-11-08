@@ -1,0 +1,34 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="text-center">
+
+    <h1 class="logo-name">
+        <img src="{{ asset('img/images/connexion/logo-connexion.png') }}" alt="MCM Builder" title="MCM Builder"/>
+    </h1>
+
+    <div class="ibox-content frm-reset-pass">
+        <h2 class="font-bold text-center">Reset password </h2>
+        <div class="row">
+            <div class="col-md-12">
+            <div>
+                {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset form-group' } }) }}
+                {{ form_widget(form) }}
+                <div>
+                    <input type="submit" class="btn btn-primary block full-width m-b" value="{{ 'resetting.reset.submit'|trans }}" />
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+            </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12 text-white text-center">
+            <small>
+                <strong>&copy; {{ 'now'|date('Y') }} {{ 'dashboard.copyright' |trans({}, 'dashboard') }}</strong>
+            </small>
+        </div>
+    </div>
+
+</div>

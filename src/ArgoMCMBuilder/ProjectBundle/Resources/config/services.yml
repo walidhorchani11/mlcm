@@ -1,0 +1,10 @@
+services:
+  service.argomcmbuilder_project.project:
+        class: ArgoMCMBuilder\ProjectBundle\Services\ProjectService
+        arguments: ["@doctrine.orm.entity_manager", "@logger", "@translator"]
+        tags:
+            - { name: monolog.logger, channel: ProjectService }
+
+  mcm.cloner_project:
+      class: ArgoMCMBuilder\ProjectBundle\Services\ClonerProject
+      arguments: ["@doctrine.orm.entity_manager", "@filesystem", "%thumbnails%", "@service_container"]

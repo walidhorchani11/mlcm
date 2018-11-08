@@ -1,0 +1,18 @@
+<% if (refs.length > 0) { %>
+    <% refs.forEach(function(ref) { %>
+        <div class="refSection" id="<%= ref.data_id%>">
+            <% dataRef = ref.Refs %>
+            <div class="item-ref-wrapper">
+                <% dataRef.forEach(function(item) { %>
+                    <div class="row-ref">
+                        <span class="codeRef"><%- item.value %></span>
+                        <span class="descRef"><%- item.description %></span>
+                    </div>
+                <%})%>
+                <% if (ref.additional_text.length){ %>
+                    <span> <%- ref.additional_text %> </span>
+                <%}%>
+            </div>
+        </div>
+    <% }) %>
+<% } %>

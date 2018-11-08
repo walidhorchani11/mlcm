@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html class="sl-root decks export loaded ua-phantomjs reveal-viewport theme-font-montserrat theme-color-white-blue">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ 'presentations.preview' | trans({}, 'presentations') }}
+        || {{ 'MCMBuilder' | trans({}, 'presentations') }}</title>
+    <meta name="description" content="Slides">
+    <!-- <meta content="authenticity_token" name="csrf-param"/>
+    <meta content="RbJ1+Qd6BjYXTomHj396N4j+KUauk3MQXaTYM89ic8s=" name="csrf-token"/> -->
+    <link rel="stylesheet" href="{{ asset('css/preview_css/preview.css', absolute=true) }}">
+    <link href="{{ asset('css/editorfonts.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/popins.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="reveal">
+    {% if "merck" == env %}
+        <style>
+            .sl-block .ref-container {
+                opacity: 0;
+            }
+        </style>
+    {% endif %}
+
+        <div class="slides">
+            <div class="BlockRcpOverlay" style="display: none"></div>
+            <div class="BlockRefsOverlay" style="display: none"></div>
+            <div class='BlockRef' style='display: none'><span class='ref-close-btn'></span><h3>Reference</h3><div class='wrapper-refs'></div><span class='arrow-after'></span></div>
+            <div class="linked-pdf" id="boxRcp" style="display: none;">
+                <div id="textRcp">
+                    {% for pdf in pdfList %}
+                        {% set title = "" %}
+                        {% if pdf.title is not empty %}
+                            {% set title = pdf.title %}
+                        {% elseif pdf.labelMedia is not empty %}
+                            {% set title = pdf.labelMedia %}
+                        {% else %}
+                            {% set title = "link" ~ loop.index %}
+                        {% endif %}
+                        <a target="-_blank" href="{{ pdf.url }}">{{ title }}</a>
+                    {% endfor %}
+                </div>
+                <div id="boxRcpClose"></div>
+                <span class="arrow-after"></span>
+            </div>
+        </div>
+        <div class="slidespop" style="display: none"></div>
+        <div id="tempReferences" style="display:none"></div>
+
+    <div class="popinmodal" style="display: none;">
+        <div class="modal-container">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var TWIG = {},
+        jsonParam       =  {{ data.preSettings | raw }} ;
+    TWIG.plateform  = "";
+</script>
+
+<!-- <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
+<script src="https://npmcdn.com/ejs@2.5.7/ejs.min.js"></script> -->
+<script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
+<script src="{{ asset('reveal/3.5.0/reveal.js') }}"></script>
+<script>
+    var jsonParam   = {{ data.preSettings | raw }},
+        data        = {
+            "slides"    : {{ data.slides | raw }},
+            "popins"    : {{ data.popin | raw }},
+            "linkedRef" : {{ data.linkedRef | raw }},
+            "menu"      : {{ data.menuJson | raw }}
+        };
+</script>
+<script src="{{ asset('js/build/editor-preview.js') }}"></script>
+<script>
+    // data = {
+    //     "slides"    : {{ data.slides | raw }},
+    //     "popin"     : {{ data.popin | raw }},
+    //     "linkedRef" : {{ data.linkedRef | raw }},
+    //     "menu"      : {{ data.menuJson | raw }}
+    // };
+
+      let textVideo       = 'Your browser does not support the video tag.',
+            image           = `<img src="<%= content.data.src%>" <% if (content.data.attributes) { %> <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> <%}%>>`,
+            video           = `<video id="video" <% if (content.data.attributes) { %> <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> <%}%> >
+                                    <source  src="<%= content.data.source %>">
+                                     ${textVideo}
+                                </video>`,
+            text            = `<%- content.data %>`,
+            table           = `<%- content.data.data%>`,
+            shape           = `<svg <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> >
+                                   <%- content.data.data %>
+                                </svg>`,
+            linkedpopin     = `<div class="<%= block.linkedpopin.class %>" id="<%= block.linkedpopin.id %>" ><%-block.linkedpopin.data%></div>`,
+            linkedscreen    = `<div class="<%= block.linkedscreen.class %>" id="<%= block.linkedscreen.id %>" ><%-block.linkedscreen.data%></div>`,
+            blocks          = ` <div class="<%=content.class%>"  <% if (content.attributes) { %> <% Object.keys(content.attributes).forEach(function(key) { %> <%- key %> ="<%- content.attributes[key] %>"<% }); %> <%}%> style="<% if (content.style) { %> <% Object.keys(content.style).forEach(function(key) { %> <%- key %>:<%- content.style[key] %> ;<% }); %> <%}%>">
+
+                                    <% switch (type) {
+                                        case 'image' : %>
+                                                 ${image}
+                                            <% break;
+                                        case 'video' : %>
+                                                 ${video}
+                                            <% break;
+                                        case 'shape' : %>
+                                                ${shape}
+                                            <% break;
+                                        case 'survey' : %>
+                                               ${text}
+                                            <% break;
+                                        case 'text' : %>
+                                                ${text}
+                                            <% break;
+                                        case 'scrollabletext' : %>
+                                                ${text}
+                                            <% break;
+                                        case 'table' : %>
+                                                ${table}
+                                            <% break;
+                                } %>
+                                </div>
+                              `,
+            surveryBlock    = `<% if (block.type == "survey") { %>
+                                      <div  class="<%= survey.class %>">
+                                            <%- survey.data  %>
+                                      </div>
+                                <% } %>`,
+            children        = `<section class='<%=section.class%>' <% if (section.attributes) { %> <% Object.keys(section.attributes).forEach(function(key) { %> <%- key %> ="<%- section.attributes[key] %>"<% }); %> <%}%>>
+                                     <% blocks = section.blocks; childs = section.children %>
+                                     <% if (blocks) { %>
+                                       <% blocks.forEach(function(block){ %>
+                                             <div class="<%= block.class %>" <% if (block.attributes) { %> <% Object.keys(block.attributes).forEach(function(key) { %> <%- key %> ="<%- block.attributes[key] %>"<% }); %> <%}%>
+                                                 <% if (block.style) { %> style="<% Object.keys(block.style).forEach(function(key) { %> <%- key %>:<%- block.style[key] %> ;<% }); %> " <%}%>
+                                               >
+                                                 <div class="block-style"  <% if (block.blockStyle.style) { %>  style="<% Object.keys(block.blockStyle.style).forEach(function(key) { %> <%- key %>:<%- block.blockStyle.style[key] %> ;<% }); %>" <%}%>>
+                                                       <% content = block.blockStyle.blockcontent ; type =  block.type; survey = block.blockStyle.survey %>
+                                                         ${blocks}
+                                                         ${surveryBlock}
+                                                       <% if (block.linkedpopin != "") { %>${linkedpopin}<%}%>
+                                                       <% if (block.linkedscreen != "") { %>${linkedscreen}<%}%>
+                                                 </div>
+                                             </div>
+                                       <%})%>
+                                     <% } %>
+                            </section>`,
+            $section        = `<% slides.forEach(function(section){ %>
+                                     <section class='<%=section.class%>' <% if (section.attributes) { %> <% Object.keys(section.attributes).forEach(function(key) { %> <%- key %> ="<%- section.attributes[key] %>"<% }); %> <%}%>>
+                                              <% blocks = section.blocks; childs = section.children %>
+                                              <% if(childs) { %>
+                                                  <% childs.forEach(function(section){ %>
+                                                      ${children}
+                                                  <%})%>
+                                              <%} else { %>
+                                                  <% if (blocks) { %>
+                                                    <% blocks.forEach(function(block){ %>
+                                                          <div class="<%= block.class %>" <% if (block.attributes) { %> <% Object.keys(block.attributes).forEach(function(key) { %> <%- key %> ="<%- block.attributes[key] %>"<% }); %> <%}%>
+                                                              <% if (block.style) { %> style="<% Object.keys(block.style).forEach(function(key) { %> <%- key %>:<%- block.style[key] %> ;<% }); %> " <%}%>
+                                                            >
+                                                              <div class="block-style"  <% if (block.blockStyle.style) { %>  style="<% Object.keys(block.blockStyle.style).forEach(function(key) { %> <%- key %>:<%- block.blockStyle.style[key] %> ;<% }); %>" <%}%>>
+                                                                    <% content = block.blockStyle.blockcontent ; type =  block.type; survey = block.blockStyle.survey %>
+                                                                      ${blocks}
+                                                                      ${surveryBlock}
+                                                                    <% if (block.linkedpopin != "") { %>${linkedpopin}<%}%>
+                                                                    <% if (block.linkedscreen != "") { %>${linkedscreen}<%}%>
+
+                                                              </div>
+                                                          </div>
+                                                    <%})%>
+                                                  <% } %>
+                                              <% } %>
+                                     </section>
+                                <% }); %>`,
+            $popin          = `<% if (popins.length > 0) { %>
+                                <% popins.forEach(function(section){ %>
+                                         <section class='<%=section.class%>' <% if (section.attributes) { %> <% Object.keys(section.attributes).forEach(function(key) { %> <%- key %> ="<%- section.attributes[key] %>"<% }); %> <%}%>
+                                                  <% if (section.style) { %> style="<% Object.keys(section.style).forEach(function(key) { %> <%- key %> :<%- section.style[key] %>;<% }); %>" <%}%>>
+                                                  <% blocks = section.blocks%>
+                                                    <% if (blocks) { %>
+                                                      <% blocks.forEach(function(block){ %>
+                                                            <div class="<%= block.class %>" <% if (block.attributes) { %> <% Object.keys(block.attributes).forEach(function(key) { %> <%- key %> ="<%- block.attributes[key] %>"<% }); %> <%}%>
+                                                                <% if (block.style) { %> style="<% Object.keys(block.style).forEach(function(key) { %> <%- key %>:<%- block.style[key] %> ;<% }); %> " <%}%>
+                                                              >
+                                                                <div class="block-style"  <% if (block.blockStyle.style) { %>  style="<% Object.keys(block.blockStyle.style).forEach(function(key) { %> <%- key %>:<%- block.blockStyle.style[key] %> ;<% }); %>" <%}%>>
+                                                                      <% content = block.blockStyle.blockcontent ; type =  block.type; survey = block.blockStyle.survey %>
+                                                                        ${blocks}
+                                                                        ${surveryBlock}
+                                                                </div>
+                                                            </div>
+                                                      <%})%>
+                                                    <% } %>
+                                         </section>
+                                    <% }); %>
+                                  <% } %>`,
+            $reference      = `<% if (refs.length > 0) { %>
+                                <% refs.forEach(function(ref){ %>
+                                      <div class="refSection"   id="<%= ref.data_id%>">
+                                          <% dataRef = ref.Refs%>
+                                          <div class="item-ref-wrapper">
+                                              <% dataRef.forEach(function(item){ %>
+                                                <div class="row-ref">
+                                                    <span class="codeRef"><%- item.value %></span>
+                                                    <span class="descRef"><%- item.description %></span>
+                                                </div>
+                                              <%})%>
+                                              <% if (ref.additional_text.length){ %>
+                                                <span > <%- ref.additional_text %> </span>
+                                              <%}%>
+                                          </div>
+
+                                      </div>
+                                  <%})%>
+                                <% } %>`;
+            // htmlSlides      = ejs.render($section, {slides: data.slides} );
+            // htmlPopin       = ejs.render($popin ,  {popins : data.popin});
+            // htmlRef         = ejs.render($reference,{refs : data.linkedRef});
+    $(function(){
+        //   $('.slides').prepend(htmlSlides);
+        //   $('.slidespop').prepend(htmlPopin);
+        //   $('#tempReferences').prepend(htmlRef);
+        //   Reveal.initialize({
+        //       controls: true,
+        //       progress: true,
+        //       history: true,
+        //       showNotes: SLConfig.deck.share_notes,
+        //       slideNumber: SLConfig.deck.slide_number,
+          //
+        //       autoSlide: SLConfig.deck.auto_slide_interval || 0,
+        //       autoSlideStoppable: true,
+          //
+        //       rollingLinks: false,
+        //       center: SLConfig.deck.center || false,
+        //       loop: SLConfig.deck.should_loop || false,
+        //       rtl: SLConfig.deck.rtl || false,
+          //
+        //       transition: SLConfig.deck.transition,
+        //       backgroundTransition: SLConfig.deck.background_transition,
+        //       width : 1024,
+        //       height : 768,
+        //       minScale : 1,
+        //       maxScale : 1
+        //   });
+          //
+        //   Reveal.sync();
+        //   Reveal.slide(0, undefined)
+    });
+</script>
+
+<script src="{{ asset('js/presentation_js/vars_for_scroll.js') }}"></script>
+<script>
+
+    function AnimationPopinAuto() {
+        jQuery('.popinmodal').find(".sl-block").each(function () {
+            if ($(this).attr("data-block-anim") != "tap" && $(this).find((".sl-block-content")).attr("data-animation-type") != undefined) {
+                (($(this).find((".sl-block-content")).attr("data-animation-type") == "fade-out") || ($(this).find((".sl-block-content")).attr("data-animation-type") == "fade-out-edit") ) ? $(this).find(".sl-block-content").css('opacity', '1') : $(this).find(".sl-block-content").css('opacity', '1');
+                $(this).find((".sl-block-content")).attr("data-animation-type-aut", $(this).find((".sl-block-content")).attr("data-animation-type") + "-aut").removeAttr('data-animation-type');
+                $(this).find((".sl-block-content")).attr("data-duration-aut", parseFloat($(this).find(".sl-block-content").css("transition-duration")) * 1000);
+                $(this).find((".sl-block-content")).attr("data-delay-aut", parseFloat($(this).find(".sl-block-content").css("transition-delay")) * 1000);
+
+
+                $(this).find(".sl-block-content").css("transition-delay", '');
+                $(this).find(".sl-block-content").css("transition-duration", '');
+            }
+            else if ($(this).attr("data-block-anim") != "aut" && ($(this).find((".sl-block-content")).attr("data-animation-type") == "fade-out-edit")) {
+                $(this).find((".sl-block-content")).attr("data-animation-type", "fade-out");
+            }
+        });
+        jQuery('.popinmodal').find(".sl-block").each(function () {
+            $(this).find(".sl-block-content").css('opacity', '');
+            var TypeAnimation = $(this).find((".sl-block-content")).attr("data-animation-type-aut");
+            if (TypeAnimation != undefined) {
+                var TDuration = parseInt($(this).find((".sl-block-content")).attr("data-duration-aut"));
+                var Tdelay = parseInt($(this).find((".sl-block-content")).attr("data-delay-aut"));
+                if (TypeAnimation == "fade-in-aut") {
+                    $(this).find(".sl-block-content").hide();
+                    $(this).find(".sl-block-content").delay(Tdelay).fadeIn(TDuration);
+                }
+                else if ((TypeAnimation == "fade-out-aut") || (TypeAnimation == "fade-out-edit-aut")) {
+                    $(this).find(".sl-block-content").css('opacity', '1').css('display', 'block');
+                    if ($(this).find(".sl-block-content").css('opacity') == '1' && $(this).find(".sl-block-content").css('display') == 'block') {
+                        $(this).find(".sl-block-content").delay(Tdelay).fadeOut(TDuration);
+                    }
+                }
+                else if (TypeAnimation == "slide-up-aut") {
+                    $(this).find(" .sl-block-content").hide();
+                    $(this).find(" .sl-block-content").delay(Tdelay).show("slide", {direction: "down"}, TDuration);
+                }
+                if (TypeAnimation == "slide-down-aut") {
+                    $(this).find(" .sl-block-content").hide();
+                    $(this).find(" .sl-block-content").delay(Tdelay).show("slide", {direction: "up"}, TDuration);
+                }
+                else if (TypeAnimation == "slide-right-aut") {
+                    $(this).find(" .sl-block-content").hide();
+                    $(this).find(".sl-block-content").delay(Tdelay).show("slide", {
+                        direction: "left"
+                    }, TDuration);
+                }
+                else if (TypeAnimation == "slide-left-aut") {
+                    $(this).find(" .sl-block-content").hide();
+                    $(this).find(".sl-block-content").delay(Tdelay).show("slide", {
+                        direction: "right"
+                    }, TDuration);
+                }
+                else if (TypeAnimation == "scale-up-aut") {
+
+                    var animatedElm = $(this).find(" .sl-block-content");
+                    animatedElm.css("transform"," scale(0)").css("transition", "all 0s");
+                    setTimeout(function () {
+                        var TDurationS = TDuration/1000;
+                        animatedElm.css("transform"," scale(1)").css("transition", "all "+TDurationS+"s");
+                    }, Tdelay);
+                }
+                else if (TypeAnimation == "scale-down-aut") {
+                    var animatedElm = $(this).find(" .sl-block-content");
+                    animatedElm.css("transform"," scale(1.4)").css("transition", "all 0s");
+                    setTimeout(function () {
+                        var TDurationS = TDuration/1000;
+                        animatedElm.css("transform"," scale(1)").css("transition", "all "+TDurationS+"s");
+                    }, Tdelay);
+
+                }
+            }
+        });
+    }
+    function ButtonSurveyPopinChangeColor() {
+        jQuery('.popinmodal').find(".submit-btn-preview").off("click").on("click", function () {
+            $(this).css('background-color', $(this).attr('activated-color'));
+        });
+    }
+    function AnimationSlideTap(){
+        jQuery(".sl-block").each(function () {
+            if (jQuery(this).attr("data-block-anim") == "tap" && jQuery(this).find((".sl-block-content")).attr("data-animation-type") != undefined && jQuery(this).find((".sl-block-content")).attr("data-animation-type").indexOf("-tap") == -1) {
+                ((jQuery(this).find((".sl-block-content")).attr("data-animation-type") == "fade-out") || (jQuery(this).find((".sl-block-content")).attr("data-animation-type") == "fade-out-edit") ) ?
+                        jQuery(this).find(".sl-block-content").css('opacity', '1') : jQuery(this).find(".sl-block-content").css('opacity', '0');
+                jQuery(this).find((".sl-block-content")).attr("data-animation-type-tap", jQuery(this).find((".sl-block-content")).attr("data-animation-type") + "-tap").removeAttr('data-animation-type');
+            }
+            else if (jQuery(this).attr("data-block-anim") != "tap" && (jQuery(this).find((".sl-block-content")).attr("data-animation-type") == "fade-out-edit")) {
+                jQuery(this).find((".sl-block-content")).attr("data-animation-type", "fade-out");
+            }
+        });
+        jQuery(document).on('click', '.sl-block', function () {
+            var $block_content =jQuery(this).find(".sl-block-content"),
+                $transition_delay = $block_content.css("transition-delay"),
+                $transition_duration = $block_content.css("transition-duration");
+
+
+            if(!(parseFloat($transition_delay.split("s")[0]) == parseFloat(0)) && jQuery(this).attr("data-block-anim") == "tap"){
+                $block_content.attr("data-delay-tap", parseFloat($transition_delay.split("s")[0])*1000);
+                $block_content.attr("data-duration-tap", parseFloat($transition_duration.split("s")[0])*1000);
+                $block_content.css("transition-delay", '');
+                $block_content.css("transition-duration", '');
+                $block_content.css('opacity', '1');
+            }
+            var TypeAnimation = jQuery(this).find((".sl-block-content")).attr("data-animation-type-tap");
+            if (TypeAnimation != undefined) {
+                var TDuration = parseInt(jQuery(this).find((".sl-block-content")).attr("data-duration-tap"));
+                var Tdelay = parseInt(jQuery(this).find((".sl-block-content")).attr("data-delay-tap"));
+                if (TypeAnimation == "fade-in-tap") {
+                    jQuery(this).find(".sl-block-content").hide();
+                    jQuery(this).find(".sl-block-content").delay(Tdelay).fadeIn(TDuration);
+                }
+                else if ((TypeAnimation == "fade-out-tap") || (TypeAnimation == "fade-out-edit-tap")) {
+                    var objanim = jQuery(this).find(".sl-block-content");
+                    objanim .css('opacity', '1').css('display', 'block');
+                    if (objanim .css('opacity') == '1' && objanim .css('display') == 'block') {
+                        objanim .delay(Tdelay).fadeOut(TDuration);
+                       setTimeout(function () {
+                           objanim .css('opacity', '0');
+                           objanim .css('display', 'block');
+                        }, Tdelay + 1000);
+
+                    }
+                }
+                else if (TypeAnimation == "slide-up-tap") {
+                    jQuery(this).find(" .sl-block-content").hide();
+                    jQuery(this).find(" .sl-block-content").delay(Tdelay).show("slide", {direction: "down"}, TDuration);
+                }
+                if (TypeAnimation == "slide-down-tap") {
+                    jQuery(this).find(" .sl-block-content").hide();
+                    jQuery(this).find(" .sl-block-content").delay(Tdelay).show("slide", {direction: "up"}, TDuration);
+                }
+                else if (TypeAnimation == "slide-right-tap") {
+                    jQuery(this).find(" .sl-block-content").hide();
+                    jQuery(this).find(".sl-block-content").delay(Tdelay).show("slide", {
+                        direction: "left"
+                    }, TDuration);
+                }
+                else if (TypeAnimation == "slide-left-tap") {
+                    jQuery(this).find(" .sl-block-content").hide();
+                    jQuery(this).find(".sl-block-content").delay(Tdelay).show("slide", {
+                        direction: "right"
+                    }, TDuration);
+                }
+                else if (TypeAnimation == "scale-up-tap") {
+                    var animatedElm = $(this);
+                    animatedElm.css("transform"," scale(0)").css("transition", "all 0s");
+                    setTimeout(function () {
+                        var TDurationS = TDuration/1000;
+                        animatedElm.css("transform"," scale(1)").css("transition", "all "+TDurationS+"s");
+                    }, Tdelay);
+                }
+                else if (TypeAnimation == "scale-down-tap") {
+                    var animatedElm = $(this);
+                    animatedElm.css("transform"," scale(1.7)").css("transition", "all 0s");
+                    setTimeout(function () {
+                      var TDurationS = TDuration/1000;
+                        animatedElm.css("transform"," scale(1)").css("transition", "all "+TDurationS+"s");
+                    }, Tdelay);
+                }
+            }
+        });
+
+    }
+
+</script>
+<script src="{{ asset('reveal/sLConfig.js') }}"></script>
+<script src="{{ asset('reveal/tender.js') }}"></script>
+<script src="{{ asset('reveal/preview.js') }}"></script>
+<!-- <script src="{{ asset('reveal/revealConfig.js') }}"></script> -->
+<script src="{{ asset('js/presentation_js/jquery-ui.js') }}"></script>
+<script src="{{ asset('js/presentation_js/iscroll.js') }}"></script>
+<script src="{{ asset('js/presentation_js/tap-animation.js') }}"></script>
+<script src="{{ asset('js/plugins/reveal.js-menu/menu.js') }}"></script>
+
+<script>
+    // function initvideos() {
+    //     var $videos = $(event.currentSlide).find('.sl-block[data-block-type="video"]');
+    //
+    //     if ($videos.length > 0) {
+    //         $videos.find('.video-placeholder').remove();
+    //         $videos.each(function(index, value) {
+    //             var $elm        = $(value),
+    //                     poster      = $elm.attr('data-video-poster'),
+    //                     autoplay    = $elm.attr('data-video-autoplay'),
+    //                     video       = $elm.find('video');
+    //
+    //             video[0].currentTime = 0;
+    //             video[0].load();
+    //             $elm.append('<div class="video-placeholder"></div>');
+    //             if (typeof poster !== 'undefined' && poster !== '') {
+    //                 video.attr('poster', poster);
+    //                 video.removeAttr('controls');
+    //             }
+    //             if (typeof autoplay !== 'undefined' && autoplay === 'true') {
+    //                 $elm.find('.video-placeholder').remove();
+    //                 video[0].play();
+    //                 video.attr('controls', 'controls');
+    //             }
+    //         });
+    //     }
+    // }
+    function initbuttonRefPreview(){
+        var reference           = $('.ref-link'),
+            //referenceExist      = $(Reveal.getCurrentSlide()).find(".item-ref-wrapper").length > 0 ,
+            sectionId           = $(Reveal.getCurrentSlide()).data('id'),
+            referenceExist   = $(`#${sectionId}`).length > 0 ;
+
+        !referenceExist ? reference.css('opacity','0.5') : reference.css('opacity','1');
+    }
+    function closeReference (e){
+        e.preventDefault();
+        $('.BlockRcpOverlay').hide();
+        $('#wrapperMenuScroll .overlayMenu').remove();
+        $('.BlockRef').hide().promise().done(function () {
+            $('.BlockRef').find(".wrapper-refs").empty();
+            Reveal.configure({
+                controls: true,
+                progress: true,
+                keyboard: true,
+                overview: true,
+                touch: true
+            });
+            $("#wrapperMenuScroll").removeClass("forbidden-click");
+
+        });
+    }
+    function  setReferenceData(blockRef, currentRefsection) {
+        blockRef.css({
+            "background-color"  : jsonParam.dataBgRefColor,
+            "background-image"  : `url('${jsonParam.dataBgRefImg}')`,
+            "width"             : jsonParam.dataRefWidth,
+            "height"            : jsonParam.dataRefHeight,
+            "color"             : jsonParam.dataTextRefColor
+        });
+        blockRef.find('.arrow-after').css('border-top-color', jsonParam.dataBgRefColor);
+        blockRef.find('h3').css({
+            "font-size" : `${jsonParam.dataFontSizeTitleRef}px`,
+            "font-family" : jsonParam.dataMenuFontTitleRef
+        });
+        blockRef.find('h3').html(jsonParam.dataTitleRefContent);
+
+        blockRef.find('.wrapper-refs').css({
+            "font-size" : `${jsonParam.dataFontSizeRefContent}px`,
+            "font-family" : jsonParam.dataMenuFontTitleRef
+        });
+        blockRef.find('.wrapper-refs').html(currentRefsection.html());
+    }
+    $(document).ready(function () {
+        // Reveal.addEventListener('ready', function(event) {
+        //            initvideos();
+        // });
+        var colorRcpOverlay = $('.BlockRefsOverlay').css('background-color');
+        $('.BlockRcpOverlay').css('background-color' , colorRcpOverlay);
+
+        $('.wrapper-refs').find('sup').each(function() {
+            $(this).css( 'font-size',parseInt($($(this).parent().get( 0 )).css( 'font-size').split('px')[0])/2);
+        });
+        $(".BlockRef").each(function (index, elm) {
+            var wrapperRefsHeight = $(this).height() - /*$(this).find("h3").outerHeight()*/38;
+            $(this).find(".wrapper-refs").outerHeight(wrapperRefsHeight);
+            //console.log($(this).height() + " / " + $(this).find("h3").outerHeight() + " / " + wrapperRefsHeight);
+        });
+        $('section > .BlockRef,section > .BlockRefOverlay').remove();
+        InitMenuPreview();
+        // $(".sl-block").each(function () {
+        //     var $SLblock = $(this);
+        //     if ($SLblock.find('.sl-block-content').closest('.block-style').length == 0) {
+        //         var z_index = $SLblock.find('.sl-block-content')[0].style.zIndex;
+        //         $SLblock.find(".sl-block-content").wrapAll("<div class='block-style'></div>");
+        //     }
+        //     $SLblock.find(".block-style").css("z-index", z_index);
+        // });
+
+        /* Scroll active menu swiping (in preview) */
+        // $(".wrapper-submenu ul").not(".has-levelSecond").remove();
+        Reveal.addEventListener('slidechanged', function (event) {
+            $('#wrapperMenuScroll .overlayMenu').remove();
+            $('.BlockRefsOverlay').hide();
+            $('.BlockRcpOverlay').hide();
+            $('.BlockRef').hide();
+            $('#boxRcp').hide();
+            // initvideos();
+            initbuttonRefPreview();
+            closeReference(event);
+            //setScrollToMenuPreview();
+            $(".reveal .sl-block .sl-block-content[data-animation-type-tap]").css('opacity','0');
+            $('.reveal .sl-block .sl-block-content[data-animation-type-tap="fade-out-edit-tap"]').css('opacity','1').css('display','block');
+
+
+            setTimeout(function(){
+                if (jQuery("section.present").not(".stack").attr("data-trigger-anim-byclick") == "true") {
+                    jQuery(".reveal").removeClass("ready");
+                }
+                else {
+                    jQuery(".reveal").addClass("ready");
+                }
+            }, 10);
+
+        });
+    });
+
+    document.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+    }, false);
+    $(document).ready(function () {
+        if (jsonParam.dataBgBtnClose != ""){
+            $('.BlockRef .ref-close-btn , #boxRcpClose').css('background-image',`url(${jsonParam.dataBgBtnClose})`)
+        }
+        var reference           = $('.ref-link'),
+            blockRef            = $('.BlockRef'),
+            closeBtn            = blockRef.find(".ref-close-btn");
+
+
+         $('.BlockRcpOverlay').css('background-color', jsonParam.dataBgRefOverlaycolor);
+         initbuttonRefPreview();
+         $(document).on('click', '.ref-link',function (e) {
+           var   sectionId           = $(Reveal.getCurrentSlide()).data('id'),
+                 currentRefsection   = $("#tempReferences").find(`#${sectionId}`);
+
+            e.preventDefault();
+             if (currentRefsection.length > 0 ) {
+                setReferenceData(blockRef, currentRefsection);
+                $('.BlockRcpOverlay').show();
+                blockRef.show();
+                blockRef.show().promise().done(function () {
+                    Reveal.configure({
+                        controls: false,
+                        progress: false,
+                        keyboard: false,
+                        overview: false,
+                        touch: false
+                    });
+                    $("#wrapperMenuScroll").addClass("forbidden-click");
+                    const overLay = "<div class='overlayMenu'></div>";
+                    if ( $(Reveal.getCurrentSlide()).find(".item-ref-wrapper").length > 0){
+                        if ($('#wrapperMenuScroll .overlayMenu').length === 0)
+                            $(overLay).insertBefore('#wrapperMenuScroll .link-to-home');
+                    }
+                });
+            }
+        });
+        closeBtn.on('click', function (e) {
+            closeReference(e);
+        });
+
+
+        //RCP PREVIEW POPIN
+        var length = '{{ pdfList|length }}';
+        var url_oneRcp = jQuery('div#textRcp a').attr('href');
+        if (length == 1) {
+            jQuery("#boxRcp").css("opacity", 0);
+            jQuery(".BlockRcpOverlay").hide();
+            jQuery(".rcp-link-eadv").attr("href", url_oneRcp).attr('target', '_blank');
+        }
+        else {
+            var RcpLink = jQuery('.rcp-link-eadv'),
+                    closeRcp = jQuery('#boxRcp #boxRcpClose');
+            if($("#get-all-ul").attr("data-bg-btn-close") != "" && $("#get-all-ul").attr("data-bg-btn-close") != undefined){
+                closeRcp.css("background-image", "url(" + $("#get-all-ul").attr("data-bg-btn-close") + ")");
+            }
+
+            RcpLink.click(function (e) {
+                e.preventDefault();
+                $('.BlockRcpOverlay').show();
+                lenRcp = jQuery('.linked-pdf a').is('a') ? "someString".length : 0;
+                if (lenRcp > 0) {
+                    $('.BlockRcpOverlay').show();
+                    $('#boxRcp').show();
+                }
+                const overLay = "<div class='overlayMenu'></div>";
+                if (length > 1){
+                    if ($('#wrapperMenuScroll .overlayMenu').length === 0)
+                        $(overLay).insertBefore('#wrapperMenuScroll .link-to-home');
+                }
+
+
+            });
+            closeRcp.click(function (e) {
+                e.preventDefault();
+                jQuery('.BlockRcpOverlay').hide();
+                jQuery(this).parent().hide();
+                $('#wrapperMenuScroll .overlayMenu').remove();
+            });
+        }
+
+        jQuery('.sl-block .sl-block-content .link').on('click', function () {
+            numberslide = $(this).attr("class");
+            slide_index = numberslide.indexOf(" ");
+            slide_to = numberslide.substring(0, slide_index);
+            var indices = Reveal.getIndices(document.querySelector('[data-id="' + slide_to + '"]'));
+            Reveal.slide(indices.h, indices.v);
+        });
+        // open popin function
+        var color_screen_present = "";
+        jQuery(".sl-block").each(function () {
+            if (typeof $(this).attr('data-block-type') !== 'undefined' && $(this).attr('data-block-type') === 'video') {
+                $(this).find('video#video').attr({
+                    'autoplay' : false,
+                    'controls' : false
+                })
+            }
+            if ($(this).not('[data-block-anim]')) {
+                $(document).off('click', '.sl-block').on('click', '.sl-block', function () {
+                    if (typeof $(this).attr('data-block-type') !== 'undefined' && $(this).attr('data-block-type') === 'video') {
+                        var video           = $(this).find('video#video'),
+                                autoplayoption  = $(this).attr('data-video-autoplay');
+
+                        if (video[0].paused) {
+                            $(this).find('.video-placeholder').hide();
+                            video[0].play(),
+                                    video.attr({ 'played' : true, 'controls' : true })
+                            return;
+                        }
+                        $(this).find('.video-placeholder').show();
+                        video[0].pause(),
+                                video.attr({ 'played' : false, 'controls' : false })
+                    }
+                    if ($(this).find('#linkedscreen')) {
+                        var ScreenId = $(this).find('#linkedscreen').text();
+                        if (ScreenId !== '') {
+
+                            var indices = $('.slides section[data-id="' + ScreenId + '"]');
+                            Reveal.slide(indices.data("index-h"), indices.data("index-v"));
+                        }
+                    }
+                    if ($(this).find('#linkedpopin')) {
+
+                        var popinId = $(this).find('#linkedpopin').text(),
+                                modalCloseHtml = jsonParam.dataBgBtnClose === "" ? '<span class="close"><img src="/img/close_ref.png"></span>' : `<span class="close"><img src="${jsonParam.dataBgBtnClose}"></span>`  ,
+                                modalContainer = $('.popinmodal'),
+                                modalContent = $('.popinmodal .modal-content'),
+                                overlay_color = jsonParam.dataBgRefOverlaycolor,
+                                bg_close = jsonParam.dataBgBtnClose;
+
+                        if (popinId !== '') {
+                            var popinContent = $('.slidespop section.popin[data-id="' + popinId + '"]').clone();
+                            if (popinContent !== '') {
+                                $(popinContent).append(modalCloseHtml);
+                                if (bg_close !== '' && bg_close.length > 0) {
+                                    $(popinContent).find('.close').html('<img src="' + bg_close + '">');
+                                }
+                                //$(popinContent).css('transform', 'scale(0.89)')
+                                modalContent.append(popinContent);
+                                modalContainer.show();
+                                modalContent.find('.popin').show();
+                                $('.BlockRcpOverlay').show();
+                                //$('.popinmodal .modal-container').css('background-color', overlay_color).css('opacity', opacity_pop);
+                                var videosmodal = modalContent.find('.sl-block[data-block-type="video"]');
+
+                                if (videosmodal.length > 0) {
+                                    videosmodal.each(function(index, value) {
+                                        var $elm        = $(value),
+                                                poster      = $elm.attr('data-video-poster'),
+                                                autoplay    = $elm.attr('data-video-autoplay'),
+                                                video       = $elm.find('video');
+
+                                        $elm.append('<div class="video-placeholder"></div>');
+                                        if (video !== '' && typeof poster !== 'undefined' && poster !== '') {
+                                            video.attr('poster', poster);
+                                            video.removeAttr('controls');
+                                        }
+                                        if (video !== '' && typeof autoplay !== 'undefined' && autoplay === 'true') {
+                                            $elm.find('.video-placeholder').remove();
+                                            video[0].play();
+                                            video.attr('controls', 'controls');
+                                        }
+                                    });
+                                }
+                                Reveal.configure({controls: false, keyboard: false, overview: false});
+                            }
+                        }
+
+                    }
+
+                    var basicPath   = window.location.protocol + '//' + window.location.host,
+                            pdfUrl      = $(this).data('pdf-link');
+
+                    if (typeof pdfUrl !== 'undefined' && pdfUrl !== '') {
+                        window.open(pdfUrl, '_blank');
+                    }
+                    if($(this).attr('data-popup') != undefined && $(this).attr('data-popup') != "") {
+                        AnimationPopinAuto();
+                        ButtonSurveyPopinChangeColor();
+                    }
+                })
+            }
+        });
+
+
+        jQuery(document).on('click', '.popinmodal .close', function () {
+            var modalContainer  = $('.popinmodal'),
+                    modalContent    = $('.popinmodal .modal-content'),
+                    videos          = modalContent.find('video');
+
+            if (videos.length > 0) {
+                videos.each(function() {
+                    this.pause();
+                    this.currentTime = 0;
+                });
+            }
+
+            modalContent.children().remove();
+            modalContainer.hide();
+            modalContent.find('.popin').hide();
+            $('.BlockRcpOverlay').hide();
+            //jQuery('.popinmodal .modal-container').css('background-color', 'none').css('opacity', 1);
+            Reveal.configure({controls: true, keyboard: true});
+        });
+        jQuery( document ).ready(function() {
+            AnimationSlideTap();
+        });
+        jQuery('.reveal .slides section.popin').hide();
+        jQuery('.reveal .slidespop').append($('.slides section.popin'));
+        jQuery('.reveal .slidespop').hide();
+        jQuery('.reveal .slidespop #menu').remove();
+        jQuery('.slides').remove('section.popin');
+        jQuery('.reveal .slidespop section.popin').removeClass('overflowing');
+
+        /* Stop auto animation when DOM is ready */
+        if (jQuery("section.present").not(".stack").attr("data-trigger-anim-byclick") == "true") {
+            jQuery(".reveal").removeClass("ready");
+        }
+        else {
+            jQuery(".reveal").addClass("ready");
+        }
+
+        jQuery(document).off("click", ".slides").on("click", ".slides", function () {
+
+            if (jQuery("section.present").not(".stack").attr("data-trigger-anim-byclick") == "true") {
+                jQuery(".reveal").addClass("ready");
+            }
+        });
+        jQuery(".submit-btn-preview").off("click").on("click", function() {
+            $(this).css('background-color', $(this).attr('activated-color'));
+        });
+    });
+</script>
+
+
+
+ </body>
+</html>

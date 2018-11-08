@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}{% endblock %} || MCM Builder</title>
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="{{ asset('css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="{{ asset('js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/dropzone/basic.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/dropzone/dropzone.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/media-mcm.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style-mcm.css') }}" rel="stylesheet">
+
+    <!-- Sweet Alert -->
+    <link href="{{ asset('css/plugins/sweetalert/sweetalert.css') }}" rel="stylesheet">
+    {#<link href="{{ asset('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/dataTables/dataTables.colVis.css') }}" rel="stylesheet">#}
+
+    <!-- Date picker -->
+    <link rel="stylesheet" href="{{ asset('css/plugins/datapicker/datepicker3.css') }}" media="all">
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/images/favicon.png') }}" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/hot-sneaks/jquery-ui.css" />
+
+    {% block stylesheets %}
+
+    {% endblock %}
+    {% include "piwik.html.twig" %}
+
+</head>
+<body class="skin-1 pace-done back-office-wrapper">
+<div id="wrapper">
+    <!--<a href="{{ path('fos_user_security_logout') }}">
+        {{ 'layout.logout' |trans({}, 'FOSUserBundle') }}
+    </a>-->
+
+    {% block left_menu %}
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element"> <span>
+                                {% if app.user.picture %}
+                                    <img alt="image" class="img-circle" src="{{ asset(['uploads/users/', app.user.picture]|join) }}" width="48" height="48"/>
+                                {% else %}
+                                    <img alt="image" class="img-circle" src="{{ asset('avatar.png') }}" width="48" height="48"/>
+                                {% endif %}
+                             </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"></strong>
+                             </span> <span class="text-muted text-xs block">{{ app.user.firstname }} {{ app.user.lastname }}<b
+                                            class="caret"></b></span> </span> </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="{{ path('fos_user_profile_edit') }}">{{ 'users.profile' | trans({}, 'users') }}</a></li>
+                                <li><a href="{{ path('fos_user_change_password') }}">{{ 'users.password_update' | trans({}, 'users') }}</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                              <span class="avatar-profile">
+                                {% if app.user.picture %}
+                                    <img alt="image" class="img-circle"
+                                         src="{{ asset(['uploads/users/', app.user.picture]|join) }}" width="48"
+                                         height="48"/>
+                                {% else %}
+                                    <img alt="image" class="img-circle" src="{{ asset('avatar.png') }}" width="48"
+                                         height="48"/>
+                                {% endif %}
+                             </span>
+                        </div>
+                    </li>
+                    {{ knp_menu_render('backoffice_menu', { 'template': 'BackOfficeBundle:Menu:knp_menu.html.twig' }) }}
+                </ul>
+            </div>
+        </nav>
+    {% endblock left_menu %}
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            {% block header %}
+                {% include "BackOfficeBundle:Contents:header.html.twig" %}
+            {% endblock header %}
+        </div>
+
+        {% block message_area %}
+            {% include "BackOfficeBundle:Contents:messageAreaContent.html.twig" %}
+        {% endblock message_area %}
+        {% block content %}{% endblock %}
+
+
+        {{ render(controller('VeevaVaultBundle:VeevaPdf:generalVaultConnect')) }}
+
+    </div>
+</div>
+{% block footer %}
+    {% include "BackOfficeBundle:Contents:footer.html.twig" %}
+{% endblock footer %}
+    {% block javascripts %}
+    <!-- Main scripts -->
+    <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="{{ asset('js/inspinia.js') }}"></script>
+    <script src="{{ asset('js/plugins/pace/pace.min.js') }}"></script>
+    <!-- DROPZONE -->
+    <script src="{{ asset('js/plugins/dropzone/dropzone.js') }}"></script>
+
+    <script src="{{ asset('js/plugins/sweetalert/sweetalert.min.js') }}"></script>
+
+        <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+    <script>
+            var TWIG = {};
+            TWIG.currentLanguage            = "{{ app.request.getLocale() }}";
+            TWIG.deleteuser                 = "{{ 'users.delete_confirm' | trans({}, 'users') }}";
+            TWIG.deleteusertext             = "{{ 'users.delete_text' | trans({}, 'users') }}";
+            TWIG.deletecompanytext          = "{{ 'companies.delete_text' | trans({}, 'companies') }}";
+            TWIG.deletecompany              = "{{ 'companies.delete_confirm' | trans({}, 'companies') }}";
+            {#TWIG.activeproject   = "{{ 'projects.list.popup.active' | trans({}, 'project') }}";#}
+            {#TWIG.archiveproject   = "{{ 'projects.list.popup.archive' | trans({}, 'project') }}";#}
+            TWIG.territoriesproject         = "{{ 'project.territories' | trans({}, 'project') }}";
+            TWIG.chooseproject              = "{{ 'project.choose' | trans({}, 'project') }}";
+            TWIG.disconnect                 = "{{ 'projects.list.popup.disconnect' | trans({}, 'project') }}";
+            TWIG.disconnectCancel           = "{{ 'projects.list.popup.disconnect.cancel' | trans({}, 'project') }}";
+            TWIG.deletepres                 = "{{ 'projects.list.popup.deletepres' | trans({}, 'project') }}";
+            TWIG.approvedpres               = "{{ 'projects.approuved.presentation' | trans({}, 'project') }}";
+            TWIG.usernamesearch             = "{{ 'users.username_search' | trans({}, 'users') }}";
+            TWIG.isUniqueTitle              = "{{ path('is_unique_title') }}";
+            TWIG.isUniqueTitlePres          = "{{ path('is_unique_PresTitle') }}";
+            TWIG.urlTestModeEdit            = "{{ path('test_mode_edit_pres') }}";
+            TWIG.sweetAlert                 = {};
+            TWIG.sweetAlert.duplicateTitle  = '{{ 'sweetAlert.duplicate.title' | trans({}, 'presentations') }}';
+            TWIG.sweetAlert.duplicateText   = '{{ 'sweetAlert.duplicate.text' | trans({}, 'presentations') }}';
+            TWIG.choose                     = '{{ 'choose' | trans({}, 'messages') }}';
+            TWIG.userid                     =  "{{ app.user.id}}";
+
+    </script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/custom-mcm.js') }}"></script>
+
+    {#<script src="{{ asset('js/plugins/dataTables/datatables.min.js') }}"></script>#}
+    {#<script src="{{ asset('js/plugins/dataTables/dataTables.colVis.js') }}"></script>#}
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+    <!-- datepicker js  -->
+    <script src="{{ asset('js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
+
+    {#<script src="{{ asset('js/alert.js') }}"></script>#}
+        <!-- <script src="{{ asset('js/js-cookie.js') }}"></script>
+        <script src="{{ asset('js/build/cronjob.js') }}"></script> -->
+{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+#menu .minMenu, #menu .maxMenu, #menu .subMenu, #maxMenu, #maxMenu a.home {
+    background-color : {{ menuColor |raw }} !important;
+}
+
+#maskMenu, #menu a.home {
+   background-color : {{ menuColor|raw }}!important;
+}
+
+#menu .maxMenu a.current, #menu .subMenu a.current {
+    color : {{ itemColor|raw }}!important;
+}
+
+#menu .maxMenu a, #menu .subMenu a {
+    color : {{ fontColor| raw }}!important;
+}
+
+{##menu .minMenu div.ref {#}
+    {#{% if logoRef is not empty  %}#}
+        {#{{ logoRef|replace({';': '!important;'})|raw }}#}
+        {#background-repeat: no-repeat !important;#}
+        {#background-size: contain !important;#}
+        {#background-position: center center !important;#}
+        {#height: 30px !important;#}
+        {#width: 30px !important;#}
+        {#top: 15px !important;#}
+    {#{% endif %}#}
+{#}#}
+
+
+#menu .maxMenu a, #menu .subMenu a {
+    font-family: {{ fontFamily |raw }} !important;
+}
+
+#menu .maxMenu a , #menu .subMenu a{
+    font-size: {{ fontSize |raw }}px!important;
+}
+
+
+#menu {
+    display: block !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+#menu .subMenu.hide-menu, #menu.hide-menu, #menu .maxMenu.hide-menu {
+    opacity: 0 !important;
+}
+
+#menu.hide-menu {
+    z-index: -1 !important;
+}
+
+#menu .subMenu.hide-menu *, #menu.hide-menu *, #menu .maxMenu.hide-menu * {
+    pointer-events: none !important;
+}
+
+#menu.hide-menu .subMenu {
+    pointer-events: all !important;
+}

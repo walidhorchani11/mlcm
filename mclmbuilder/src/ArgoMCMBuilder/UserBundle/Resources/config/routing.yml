@@ -1,0 +1,48 @@
+#user routes
+fos_user:
+    resource: "routing/all.xml"
+fos_user_group:
+    resource: "routing/group.xml"
+    prefix: /group
+clm_users_list:
+    path:     /admin/users/list
+    defaults: { _controller: UserBundle:User:index }
+clm_users_transfert:
+    path:     /admin/users/transfert/{id}
+    defaults: { _controller: UserBundle:User:transfertUser }
+clm_users_transfert_ajax:
+    path:     /admin/users/transfert.json
+    defaults: { _controller: UserBundle:User:transfertUserAjax }
+    methods: POST
+clm_user_edit:
+    path:     /admin/user/edit/{id}
+    defaults: { _controller: UserBundle:User:editUser }
+clm_user_delete:
+    path:     /admin/user/delete/{id}
+    defaults: { _controller: UserBundle:User:delete }
+clm_user_password_edit:
+    path:     /admin/user/edit_password/{id}
+    defaults: { _controller: UserBundle:User:changePassword }
+clm_users_export:
+    path:     /admin/users/export
+    defaults: { _controller: UserBundle:User:export }
+clm_user_delete_content:
+    path:     /admin/users/delete/{id}
+    defaults: { _controller: UserBundle:User:deleteUser }
+
+#company routes
+clm_company_list:
+    path:     /admin/company/list
+    defaults: { _controller: UserBundle:Company:index }
+clm_company_add:
+    path:     /admin/company/add
+    defaults: { _controller: UserBundle:Company:add }
+clm_company_edit:
+    path:     /admin/company/edit/{id}
+    defaults: { _controller: UserBundle:Company:edit }
+clm_company_delete:
+    path:     /admin/company/delete/{id}
+    defaults: { _controller: UserBundle:Company:delete }
+clm_company_export:
+    path:     /admin/company/export
+    defaults: { _controller: UserBundle:Company:export }

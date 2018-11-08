@@ -1,0 +1,10 @@
+    {{ piwik('setDomains', "*."~piwik_domain ) }}
+    {% if app.user.username is defined %}
+        {{ piwik('setUserId', app.user.username) }}
+    {% endif %}
+    {{ piwik('trackAllContentImpressions') }}
+    {{ piwik('enableHeartBeatTimer') }}
+    {{ piwik("trackGoal", 1) }}
+
+
+    {{ piwik_code() }}

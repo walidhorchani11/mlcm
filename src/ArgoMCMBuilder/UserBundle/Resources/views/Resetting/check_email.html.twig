@@ -1,0 +1,44 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+
+    <div class="passwordBox animated fadeInDown">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ibox-content">
+                    <h2 class="font-bold text-center">{{ 'users.password.title' | trans({}, 'users') }}</h2>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form class="m-t fos_user_resetting_request" role="form" action="{{ path('fos_user_resetting_send_email') }}" method="POST" >
+                                <div class="form-group">
+                                    <label for="username">{{ 'users.email' | trans({}, 'users') }}</label>
+                                    <input type="email" id="username" name="username" required="required" class="form-control" value="{{ email }}"  disabled/>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary block full-width m-b" disabled>{{ 'resetting.request.submit'|trans }}</button>
+
+                                <p class="text-center">
+                                    {{ 'users.password.resetting.text' | trans({}, 'users') }}
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row">
+            <div class="col-md-12 text-white text-center">
+                <small>
+                    <strong>&copy; {{ 'now'|date('Y') }} {{ 'dashboard.copyright' |trans({}, 'dashboard') }}</strong>
+                </small>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,539 @@
+<?php
+
+namespace ArgoMCMBuilder\MediaBundle\Entity;
+
+use ArgoMCMBuilder\PresentationBundle\Entity\Revision;
+use ArgoMCMBuilder\UserBundle\Entity\Company;
+use ArgoMCMBuilder\UserBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Video.
+ *
+ * @ORM\Table(name="mcm_video")
+ * @ORM\Entity(repositoryClass="ArgoMCMBuilder\MediaBundle\Repository\VideoRepository")
+ */
+class Video
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    public $id;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255, nullable=true)
+     */
+    private $url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="label_media", type="string", length=255, nullable=true)
+     */
+    private $labelMedia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="size", type="integer", nullable=true)
+     */
+    private $size;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="inline", type="boolean", nullable=true)
+     */
+    private $inline;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="thumb_url", type="string", length=255, nullable=true)
+     */
+    private $thumbUrl;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="height", type="integer", nullable=true)
+     */
+    private $height;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="width", type="integer" , nullable=true)
+     */
+    private $width;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content_type", type="string", length=255, nullable=true)
+     */
+    private $contentType;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="master", type="boolean", nullable=true)
+     */
+    private $master;
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="shared", type="boolean", nullable=true)
+     */
+    private $shared;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="legend", type="text", nullable=true)
+     */
+    private $legend;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable = true)
+     */
+    protected $updated;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="flag", type="integer", nullable=true,options={"default" : 10})
+     */
+    protected $flag;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ArgoMCMBuilder\UserBundle\Entity\User", cascade={"persist"})
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", onDelete="CASCADE")
+     **/
+    protected $owner;
+    /**
+     * @ORM\ManyToOne(targetEntity="ArgoMCMBuilder\UserBundle\Entity\Company", cascade={"persist"})
+     * @ORM\JoinColumn(name="company_id", referencedColumnName="id", onDelete="CASCADE")
+     **/
+    protected $Company;
+    /**
+     * @ORM\ManyToMany(targetEntity="ArgoMCMBuilder\PresentationBundle\Entity\Revision", mappedBy="video")
+     * @ORM\JoinColumn(name="revision_id", referencedColumnName="id", onDelete="CASCADE" )
+     */
+    protected $revisionVideo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bucket_name", type="string", length=255, nullable=true)
+     */
+    protected $bucketName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="key_media", type="string", length=255, nullable=true)
+     */
+    protected $key;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->revisionVideo = new ArrayCollection();
+        $this->shared = 0;
+        $this->master = 0;
+        $this->legend = '';
+    }
+
+    /**
+     * Gets triggered only on insert.
+     *
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created = new \DateTime('now');
+    }
+
+    /**
+     * Set owner.
+     *
+     * @param User $owner
+     *
+     * @return Video
+     */
+    public function setOwner(User $owner = null)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner.
+     *
+     * @return \ArgoMCMBuilder\UserBundle\Entity\User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * Set company.
+     *
+     * @param Company $company
+     *
+     * @return Video
+     */
+    public function setCompany(Company $company = null)
+    {
+        $this->Company = $company;
+
+        return $this;
+    }
+
+    /**
+     * @param Revision $revisionVideo
+     *
+     * @return Video
+     */
+    public function addRevisionVideo(Revision $revisionVideo)
+    {
+        $this->revisionVideo[] = $revisionVideo;
+
+        return $this;
+    }
+
+    /**
+     * @param Revision $revisionVideo
+     */
+    public function removeRevisionVideo(Revision $revisionVideo)
+    {
+        $this->revisionVideo->removeElement($revisionVideo);
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl(string $url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabelMedia(): string
+    {
+        return $this->labelMedia;
+    }
+
+    /**
+     * @param string $labelMedia
+     */
+    public function setLabelMedia(string $labelMedia)
+    {
+        $this->labelMedia = $labelMedia;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSize(): ?string
+    {
+        return $this->size;
+    }
+
+    /**
+     * @param string $size
+     */
+    public function setSize(?string $size)
+    {
+        $this->size = $size;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInline(): bool
+    {
+        return $this->inline;
+    }
+
+    /**
+     * @param bool $inline
+     */
+    public function setInline(bool $inline)
+    {
+        $this->inline = $inline;
+    }
+
+    /**
+     * @return string
+     */
+    public function getThumbUrl(): string
+    {
+        return $this->thumbUrl;
+    }
+
+    /**
+     * @param string $thumbUrl
+     */
+    public function setThumbUrl(string $thumbUrl)
+    {
+        $this->thumbUrl = $thumbUrl;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * @param int $height
+     */
+    public function setHeight(int $height)
+    {
+        $this->height = $height;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * @param int $width
+     */
+    public function setWidth(int $width)
+    {
+        $this->width = $width;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContentType(): string
+    {
+        return $this->contentType;
+    }
+
+    /**
+     * @param string $contentType
+     */
+    public function setContentType(string $contentType)
+    {
+        $this->contentType = $contentType;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMaster(): bool
+    {
+        return $this->master;
+    }
+
+    /**
+     * @param bool $master
+     */
+    public function setMaster(bool $master)
+    {
+        $this->master = $master;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isShared(): bool
+    {
+        return $this->shared;
+    }
+
+    /**
+     * @param bool $shared
+     */
+    public function setShared(bool $shared)
+    {
+        $this->shared = $shared;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle(?string $title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLegend(): string
+    {
+        return $this->legend;
+    }
+
+    /**
+     * @param string $legend
+     */
+    public function setLegend(string $legend)
+    {
+        $this->legend = $legend;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreated(): \DateTime
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \DateTime $created
+     */
+    public function setCreated(\DateTime $created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdated(): \DateTime
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param \DateTime $updated
+     */
+    public function setUpdated(\DateTime $updated)
+    {
+        $this->updated = $updated;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFlag(): int
+    {
+        return $this->flag;
+    }
+
+    /**
+     * @param int $flag
+     */
+    public function setFlag(int $flag)
+    {
+        $this->flag = $flag;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRevisionVideo()
+    {
+        return $this->revisionVideo;
+    }
+
+    /**
+     * @param mixed $revisionVideo
+     */
+    public function setRevisionVideo($revisionVideo)
+    {
+        $this->revisionVideo = $revisionVideo;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBucketName()
+    {
+        return $this->bucketName;
+    }
+
+    /**
+     * @param string $bucketName
+     */
+    public function setBucketName(string $bucketName)
+    {
+        $this->bucketName = $bucketName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * @param string $key
+     */
+    public function setKey(string $key)
+    {
+        $this->key = $key;
+    }
+}

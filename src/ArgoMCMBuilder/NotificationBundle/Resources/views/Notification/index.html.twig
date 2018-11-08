@@ -1,0 +1,32 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}Alerts and Notifications{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'alerts_and_notifications' | trans({}, 'notifications') }}</h2>
+            <ol class="breadcrumb">
+
+                <li class="active">
+                    <strong>{{ 'alerts_and_notifications' | trans({}, 'notifications') }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="#" class="btn btn-primary">{{ 'alerts.action_button' | trans({}, 'notifications') }}</a>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent () }}
+
+{% endblock %}

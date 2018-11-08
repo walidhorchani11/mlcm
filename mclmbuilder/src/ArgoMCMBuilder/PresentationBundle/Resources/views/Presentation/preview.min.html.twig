@@ -1,0 +1,31 @@
+{% extends ':default:base-preview.html.twig' %}
+
+{% block title %}Preview || MCM Builder{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/preview_css/preview.css', absolute=true) }}">
+    <link rel="stylesheet" href="{{ asset('css/editorfonts.css', absolute=true) }}" >
+    {% if "merck" == env %}
+        <style> .sl-block .ref-container { opacity: 0; } </style>
+    {% endif %}
+{% endblock %}
+
+{% block slides %}
+    <div class="reveal">
+        <div class="slides"></div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
+    <script src="{{ asset('reveal/3.5.0/reveal.js') }}"></script>
+    <script>
+        var jsonParam   = {{ data.preSettings | raw }},
+            data        = {
+                'slides'    : {{ data.slides | raw }}
+            };
+    </script>
+    <script src="{{ asset('js/build/slides-preview.js') }}"></script>
+    <script src="{{ asset('js/presentation_js/iscroll.js') }}"></script>
+    <script src="{{ asset('js/presentation_js/vars_for_scroll.js') }}"></script>
+    <script src="{{ asset('js/plugins/reveal.js-menu/menu.js') }}"></script>
+{% endblock %}

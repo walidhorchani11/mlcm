@@ -1,0 +1,49 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'workflows' | trans({}, 'workflows') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div class="col-sm-12">{{ dump(twigPath) }}</div>
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'workflows' | trans({}, 'workflows') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <strong>{{ 'MCMBuilder' | trans({}, 'presentations') }} </strong>
+                </li>
+                <li>
+                    <strong> {{ 'administration'| trans({}, 'project') }} </strong>
+                </li>
+                <li class="active">
+                    <strong>{{ 'workflows' | trans({}, 'workflows') }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="#" class="btn btn-primary">{{ 'workflows.action_button' | trans({}, 'workflows') }}</a>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="col-sm-12 bg-danger" style="padding: 25px; margin-top: 3px;">
+                <h3>{{ 'workflows' | trans({}, 'workflows') }}</h3>
+                <ul>
+                    <li><a href="{{ path('workflow_create_new_workflow_mi') }}">{{ 'workflows.new_workflow' | trans({}, 'workflows') }} MI</a></li>
+                    <li><a href="{{ path('workflow_create_new_workflow_veeva') }}">{{ 'workflows.new_workflow' | trans({}, 'workflows') }} Veeva</a></li>
+                    <li><a href="{{ path('workflow_create_new_workflow_unspecified') }}">{{ 'workflows.new_workflow' | trans({}, 'workflows') }} Unspecified</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+{% endblock %}

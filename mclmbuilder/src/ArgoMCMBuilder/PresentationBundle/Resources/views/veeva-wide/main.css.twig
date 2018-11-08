@@ -1,0 +1,75 @@
+/* RESET CSS*/
+body,ul,li{ margin: 0; padding: 0;}
+body *{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/*@font-face {
+  font-family: 'avalon';
+  src: url('../shared/{{ shared }}/fonts/avalon.ttf') format('truetype');
+}*/
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../shared/{{ shared|raw }}/fonts/Montserrat-Regular.otf') format('truetype');
+}
+
+/* TEMPLATE CSS */
+#stage{
+    width: 1024px;height: 768px;
+    position: relative;
+    z-index: 1;
+}
+#stage .content{
+    width: 1024px;
+    height: 768px;
+    position: absolute;
+    top: 0;left: 0;
+    display: block;
+    overflow: hidden;
+}
+#stage #maskMenu{
+    width: 100%;
+    height: 65px;
+    position: absolute;
+    bottom: 0;
+    background: #204ddb;
+}
+
+#maskMenu{
+    width: 100%;
+    height: 65px;
+    position: absolute;
+    bottom: 0;
+    background: rgb(74, 86, 103);
+}
+a{
+    text-decoration: none !important;
+    cursor: pointer;
+}
+div[data-pdf-link]{
+    cursor: pointer;
+}
+.sl-block .video-placeholder {
+    z-index: 50;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    background-image: url(../shared/{{ shared|raw }}/theme/theme1/images/video-preview.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.sl-block[data-block-type="scrollabletext"] {
+    overflow: none !important;
+    overflow-x: auto;
+    display: block;
+}
+section video {
+    background-color: #000 !important;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="error_500" resname="error_500">
+        <source>error_500</source>
+        <target>Something is broken. Please e-mail us at support.mcmbuilder@argolife.fr and let us know what you were doing when this error occurred. We will fix it as soon as possible. Sorry for any inconvenience caused.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

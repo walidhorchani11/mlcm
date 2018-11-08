@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="ar" target-language="ar" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="workflows" resname="workflows">
+        <source>workflows</source>
+        <target>__Workflows</target>
+      </trans-unit>
+      <trans-unit id="workflows_list" resname="workflows.list">
+        <source>workflows.list</source>
+        <target>__Workflows list</target>
+      </trans-unit>
+      <trans-unit id="new_workflow" resname="workflows.new_workflow">
+        <source>workflows.new_workflow</source>
+        <target>__add new workflow</target>
+      </trans-unit>
+      <trans-unit id="workflows.action_button" resname="workflows.action_button">
+        <source>workflows.action_button</source>
+        <target>__This is action area</target>
+      </trans-unit>
+      <trans-unit id="workflows.administration" resname="workflows.administration">
+        <source>workflows.administration</source>
+        <target>__Administration</target>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

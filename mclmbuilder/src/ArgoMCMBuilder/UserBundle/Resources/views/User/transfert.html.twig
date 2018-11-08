@@ -1,0 +1,167 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}Users Transfert{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>User Role</h2>
+            <ol class="breadcrumb">
+                <li>
+                    MCM Builder
+                </li>
+                <li class="active">
+                    <strong>User Transfert</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+
+
+                    <div class="wrapper wrapper-content">
+                        <div class="row">
+                            <div class="ibox">
+                                <div class="ibox-tools">
+                                    <a href="{{ path('clm_users_list') }}" class="btn btn-primary btn-xs">Return to user list</a>
+                                </div>
+                                <div class="ibox-content">
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h2>To delete this user you have first transfer all the projects and the presentations that he owns to another user.</h2>
+                                                <br>
+                                                <h4>Do you want to transfer the ownership of all your presentations and projects or choose a selection to transfer its ownership to a specific users?</h4>
+                                                <br>
+                                                <div class="form-group">
+                                                    <input type="radio" name="ownerRadio" id="owner-all" checked=""> All projects and presentations
+                                                    <input type="radio" name="ownerRadio" id="owner-custom"> Select the CLM and the project to transfer
+                                                </div>
+                                                <br><hr>
+
+                                                <div class="transfert-owner-all" data-type="all">
+                                                        <form id="owner-all-form">
+                                                            <div class="form-group">
+                                                                <label for="newowner" class="required">Enter the new owner name or his email address </label>:
+                                                                <input type="text" id="newowner" name="newowner" required="required" class="form-control" value="" placeholder="Enter the new owner name or his email address" autocomplete="off"/>
+                                                                 <div id="suggesstion-box"></div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="submit" value="TRANSFER AND DELETE" class="btn btn-success pull-right">
+                                                            </div>
+                                                        </form>
+                                                </div>
+                                                <div class="transfert-owner-custom" data-type="custom" style="display: none">
+                                                    <div class="row">
+                                                            <div class="col-md-12">
+                                                                <form id="owner-custom-form">
+
+                                                                    <h2>Select the project or the CLM name to transfer its ownership to another user:</h2>
+                                                                    <table class="table table-striped table-bordered table-hover user-result-table" id="table_liste">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th width="10px"></th>
+                                                                            <th>Type</th>
+                                                                            <th>Project or Presentation name </th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {%  set i = 0 %}
+                                                                            {% for project in user.projects %}
+                                                                                {%  set i = i + 1 %}
+                                                                                <tr data-id="{{ i }}">
+                                                                                    <td><input type="checkbox" class="i-checks" name="input[{{ i }}}" id="input{{ i }}"></td>
+                                                                                    <td>Project</td>
+                                                                                    <td>{{ project.name }}</td>
+                                                                                    <td  style="display: none">{{ project.id }}</td>
+                                                                                </tr>
+                                                                            {% endfor %}
+                                                                            {% for presentation in user.presentations %}
+                                                                                {%  set i = i + 1 %}
+                                                                                <tr data-id="{{ i }}">
+                                                                                    <td><input type="checkbox"  class="i-checks" name="input[{{ i }}]" id="input{{ i }}"></td>
+                                                                                    <td>Presentation</td>
+                                                                                    <td>{{ presentation.name }}</td>
+                                                                                    <td  style="display: none">{{ presentation.id }}</td>
+                                                                                </tr>
+                                                                            {% endfor %}
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                    <div class="form-group">
+                                                                        <label for="newowner-custom" class="required">Enter the new owner name or his email address </label>:
+                                                                        <input type="text" id="newowner-custom" name="newowner-custom" required="required" class="form-control" value="" placeholder="Enter the new owner name or his email address" autocomplete="off"/>
+
+                                                                        <div id="suggesstion-box-custom"></div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="submit" value="SAVE AND SELECT THE REST  >>" class="btn btn-success pull-right">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <hr>
+                                                                <div class="clear-fix"><div>
+                                                                <h2>TRANSFER OVERVIEW</h2><br>
+                                                                <div class="message-table">No project and no CLM is transferred yet.</div>
+                                                                <table class="table table-striped table-bordered table-hover user-result-table-custom" style="display: none">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th width="10px"></th>
+                                                                            <th>Type</th>
+                                                                            <th>Project or Presentation name </th>
+                                                                            <th>The new owner</th>
+                                                                            <th>Owner Role</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="skeleton-table">
+
+                                                                    </tbody>
+                                                                </table>
+
+                                                                <div class="form-group">
+                                                                    <input type="button" value="TRANSFER AND DELETE" class="btn btn-success pull-right button-transfert">
+                                                                </div>
+
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                </div>
+                            <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent () }}
+    <script>
+     var users = [];
+     var AjaxTransferUser =  "{{ path('clm_users_transfert_ajax') }}";
+     var usersListPath   = "{{ path('clm_users_list') }}";
+     var userId           = "{{ user.id }}";
+     {% for u in users %}
+     users.push({
+         id: "{{ u.id }}",
+         value: "{{ u.fullName }}",
+         label: "{{ u.fullName }}",
+         role: "{{ u.roles[0] }}"
+     });
+     {% endfor %}
+    </script>
+    <script src="{{ asset('js/presentation/Transfer-owner-ship.js') }}"></script>
+{% endblock %}

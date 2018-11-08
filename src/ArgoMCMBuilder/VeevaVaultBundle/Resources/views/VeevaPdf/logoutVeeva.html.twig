@@ -1,0 +1,36 @@
+{% extends '::default/index.html.twig' %}
+    {% block title %}{{ 'Logout Veeva'|trans({}, 'veeva') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div class="wrapper wrapper-content">
+        <div class="ibox">
+            <div class="middle-box-veeva animated fadeInDown ibox-content form-flow-veeva">
+                <h2 class="text-center"><i class="fa fa-window-close" aria-hidden="true"></i> {{ 'Remove Vault Access'|trans({}, 'veeva') }}
+                </h2>
+                {{ 'You are going to remove your Veeva VAULT access. You will be not able to push content to VAULT.
+                    For your information, you will still be able to sign in to Vault again'|trans({}, 'veeva') }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent () }}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+.git*
+docs/
+examples/
+tests/
+src/browser-extensions/
+.DS_Store
+yarn.lock

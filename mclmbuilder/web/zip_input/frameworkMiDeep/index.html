@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DSA</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Status bar styles -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src="js/library/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/library/touchSwipe.min.js"></script>
+    <script type="text/javascript" src="js/library/iscroll.js"></script>
+    <script type="text/javascript" src="js/framework/app.js"></script>
+    <script src="js/library/velocity.min.js"></script>
+    <script src="js/library/jquery-ui.js"></script>
+    <style>
+        .reveal .slides > section, .reveal .slides > section > section {
+            display: block !important;
+        }
+        .reveal table.table-survey th, .reveal table.table-survey td ,
+        .reveal table.table-survey-radio th, .reveal table.table-survey-radio td {
+            border: 0 none;
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    var screens = {};
+    screens = {
+        '#S1_10': '<section data-id="a4c4360eeba35386f8da0b22e29ddc81"><div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 168px; top: 350px;" data-block-id="3af5f09a03a9e9938b58d281e9ee620a"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; position: relative; font-size: 170%;"><p>keep calm and <em><strong>CLM</strong></em></p> </div></div><div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 388px; top: 270px;" data-block-id="4aef86883b748ac96df16d3789acdbe6"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;"><p>Text</p></div></div><div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 448px; top: 328px;" data-block-id="6b131e9fbe0b536f0af984ea582580e0"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;"><p>Text</p></div></div><div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 440px; top: 383px;" data-block-id="ac64ef7f257d65602822f38a5e6d5b87"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;"><p>Text</p></div></div><div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 372px; top: 436px;" data-block-id="eec616329132ea25a5a4be8e5ecc93bb"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;"><p>Text</p></div></div><div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 307px; top: 471px;" data-block-id="c077019cf2b180bd4de6020f45d06a69"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16;"><p>Text</p></div></div><div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 227px; top: 495px;" data-block-id="a34d99aeb28d8894ff3a77e2a6bc90e4"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17;"><p>Text</p></div></div><div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 180.239px; height: 138px; left: 240px; top: 220px;" data-block-id="de08044e2b0364ba709c74fb60e2dcdb"><div class="sl-block-content" style="z-index: 18;"><img data-natural-width="1246" data-natural-height="954" data-src="ziki.jpg"></div></div></section>'
+    };
+    screens['#S1_20'] = screens['#S1_10'];
+    screens['#S1_30'] = screens['#S1_10'];
+    screens['#S1_40'] = screens['#S1_10'];
+    screens['#S1_50'] = screens['#S1_10'];
+
+
+    $(window).load(function () {
+        var listDiv = $('div.main');
+        listDiv.each(function (index) {
+            console.log("in");
+            $(this).prepend($('<div class="reveal"><div class="slides"></div></div>'));
+
+            if (index == 0) {
+                var content = $(screens['#S1_10']);
+                $(this).children().first().children().first().html(content);
+                resetSrc(content);
+            }
+        });
+        $("#S1_10").css('color', 'red');
+
+        
+        $(window).hammer().on('swipe click', function (event) {
+
+            var active = $('div.content.main.active');
+            var id = active.attr("id");
+            var content = $(screens["#" + id]);
+
+            active.children().first().children().first().html(content);
+            resetSrc(content);
+
+            $("#S1_10").css('color', 'red');
+            $("#S1_20").css('color', '#039426');
+            $("#S1_30").css('color', 'orange');
+            $("#S1_40").css('color', 'blueviolet');
+            $("#S1_50").css('color', '#b68d2b');
+        });
+
+
+        function resetSrc(content) {
+            var imgList = content.find('div[class^="sl-block"]').find('img');
+            imgList.each(function () {
+                $(this).attr('src', $(this).data('src'));
+            });
+        }
+
+    });
+</script>
+
+</body>
+</html>

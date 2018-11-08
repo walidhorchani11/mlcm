@@ -1,0 +1,375 @@
+{% extends '::default/editor.html.twig' %}
+    {% block title %}
+        {{ 'presentation.title.edit' | trans({}, 'presentations') }}|| {{ 'MCMBuilder' | trans({}, 'presentations') }}
+    {% endblock %}
+    {% block stylesheets %}
+        {{ parent() }}
+    {% endblock %}
+    {% block innerEditor %}
+        {% include "PresentationBundle:Presentation:navBar.html.twig" %}
+        {% include "PresentationBundle:Presentation:contentNav.html.twig" %}
+        {% include "PresentationBundle:Presentation:projector.html.twig" %}
+    {% endblock %}
+    {% block javascripts %}
+        {{ parent() }}
+        <script>
+            var SLConfig = {
+                "current_user": {
+                    "id": 562920,
+                    "username": "{{ user.fullname }}",
+                    "name": "{{ user.fullname }}",
+                    "description": null,
+                    "thumbnail_url": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50",
+                    "pro": true,
+                    "team_id": null,
+                    "settings": {
+                        "id": 407375,
+                        "present_controls": true,
+                        "present_upsizing": true,
+                        "present_notes": true,
+                        "editor_grid": true,
+                        "editor_snap": true,
+                        "developer_mode": true,
+                        "speaker_layout": null
+                    },
+                    "email": "{{ user.email }}",
+                    "notify_on_receipt": true,
+                    "billing_address": null,
+                    "editor_tutorial_completed": true,
+                    "manually_upgraded": false,
+                    "deck_user_editor_limit": 1
+                },
+                "deck": {
+                    "id": {{ data.id }},
+                    "slug": "",
+                    "title": "",
+                    "description": "",
+                    "visibility": "{{ data.visibility }}",
+                    "published_at": null,
+                    "sanitize_messages": null,
+                    "thumbnail_url": "https://s3.amazonaws.com/static.slid.es/images/default-deck-thumbnail.png",
+                    "view_count": 0,
+                    "user": {
+                        "id": 562920,
+                        "username": "{{ user.fullname }}",
+                        "name": "{{ user.fullname }}",
+                        "description": null,
+                        "thumbnail_url": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50",
+                        "pro": false,
+                        "team_id": null,
+                        "settings": {
+                            "id": 407375,
+                            "present_controls": true,
+                            "present_upsizing": true,
+                            "present_notes": true
+                        }
+                    },
+                    "background_transition": null,
+                    "transition": null,
+                    "theme_id": null,
+                    "theme_font": null,
+                    "theme_color": null,
+                    "auto_slide_interval": 0,
+                    "comments_enabled": true,
+                    "forking_enabled": false,
+                    "rolling_links": false,
+                    "center": false,
+                    "should_loop": false,
+                    "share_notes": null,
+                    "slide_number": "h/v",
+                    "rtl": false,
+                    "version": 0,
+                    "collaborative": null,
+                    "deck_user_editor_limit": 1,
+                    "data_updated_at": null,
+                    "access_token": null
+                }
+            };
+            $('#backup_pres').on('click',function () {
+                var url = Routing.generate('presentation_backup_version', {_locale: TWIG.currentLanguage, idRev: TWIG.idRev}, true);
+                document.location.href = url
+            });
+
+            $("#preview_presentation").click(function () {
+                var url = Routing.generate('presentations_preview', {_locale: TWIG.currentLanguage, idRev: TWIG.idRev}, true);
+                window.open(url);
+            });
+
+            $('#zip').click(function (e) {
+                e.preventDefault();
+                var slideIndex = 0;
+                while(slideIndex < $(".slides section").not(".stack").length){
+                    //console.log("Index: " + $(".slides section").not(".stack").eq(slideIndex).attr("data-screen-description"));
+                    if($(".slides section").not(".stack").eq(slideIndex).attr("data-screen-description") == undefined || $(".slides section").not(".stack").eq(slideIndex).attr("data-screen-description") == ""){
+                        //console.log("Index: " + slideIndex);
+                        $('#modal_empty_pageid').modal('show');
+                        $("#pageid_details").off("click").on("click", function(){
+                          document.location.href = "{{ path('download_pdf') }}";
+                          $('#modal_empty_pageid').modal('hide');
+                        });
+                        break;
+                    }
+                    slideIndex++;
+                }
+                if(slideIndex === Reveal.getTotalSlides()){
+                    $('#modal_download_zip').modal('show');
+                }
+            });
+
+
+            $(document).on('change', 'select#clm', function(e){
+                if (e.currentTarget.selectedIndex  == 0){
+                    $("#saveForm input[value='deep']").prop('checked', true).next().text("Mono sequence");
+                    $("#saveForm input[value='wide']").prop({'checked' : false, disabled : 'disabled' }).next().text("Multi sequence");
+                } else {
+                    $("#saveForm input[value='wide']").prop('checked', true).next().text("Wide content");
+                    $("#saveForm input[value='deep']").prop({'checked' : false, disabled : 'disabled' }).next().text("Deep content");
+                }
+            });
+            $('#printPdf').click(function (e) {
+                e.preventDefault();
+                $('#modal_download_pdf').modal('show');
+            });
+            $(document).ready(function(){
+                setTimeout(function(){
+                    $(".toolbar-add-block-option[data-block-type=html]").off("vclick").on("vclick", function () {
+                        $('.slide-option.html').trigger("click");
+                    });
+                }, 100);
+            });
+            /*******************************************************/
+        </script>
+        <script>
+            // Route contains generation pdf config
+            var Route = {};
+            Route.idRev = {{ idRev }};
+            Route.idPres = {{ idPres }};
+            Route.maxSizeZip = {{ max_size_zip }}
+            Route.alertStatus = "{{ 'presentationedit.message-alert-status-default' | trans({}, 'presentationedit') }}"
+            Route.alertStatusWarning ="{{ 'presentationedit.message-alert-status-warning' | trans({},
+            'presentationedit') }}"
+            Route.alertStatusDangerous ="{{ 'presentationedit.message-alert-status-dangerous' | trans({},
+            'presentationedit') }}"
+            Reveal.addEventListener( 'ready', function() {
+                Route.nbrSlides = Reveal.getTotalSlides();
+            });
+            $("section #wrapperMenuScroll").remove();
+        </script>
+        <script src="{{ asset('js/presentation/print-pdf-decktape.js') }}"></script>
+        <script>
+            {#{% if user.flagPres is empty %}#}
+            {#$(document).ready(function () #}{#}#}
+                {#$('#myModal2').modal(#}{#}#}
+                    {#backdrop: 'static',#}
+                    {#keyboard: false,#}
+                    {#show:     true#}
+                {#}) ;#}
+                {#var userId = {{ user.id }};#}
+                {#$('#fixLine').click(function () #}{#}#}
+                    {#$.ajax(#}{#}#}
+                        {#url: Routing.generate('change-flag', { idUser: userId }),#}
+                        {#success: function() #}{#}#}
+                            {#$('#myModal2').modal('hide');#}
+                        {#}#}
+                    {#});#}
+                {#})#}
+            {#})#}
+            {#{% endif %}#}
+            {% if PageIdToRemove is not empty %}
+            $('.slides section').each(function(){
+                $(this).attr('data-screen-description', '');
+            });
+            {% endif %}
+            {#{% if data.visibility is empty %}
+                $(document).ready(function () {
+                    $('#myModal2').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show:     true
+                    }) ;
+                    $('#fixLine').click(function () {
+                        $.when( $('#save_pres').click() ).done(function( x ) {
+                            $('#myModal2').modal('hide');
+                        });
+                    })
+                })
+            $('.sl-block > .block-style > .sl-block-content p > span , .sl-block > .block-style > .sl-block-content p > font , .sl-block > .block-style > .sl-block-content > table > tbody > tr > th , .sl-block > .block-style > .sl-block-content > table > tbody > tr > td').each(function () {
+                var superBlock = $(this);
+                superBlock.find('sup').each(function(){
+                    $(this).css('line-height' , parseInt($(this).css('line-height')) + "px");
+                });
+                superBlock.find('br').each(function(){
+                    $(this).css('line-height' , parseInt($(this).css('line-height')) + "px");
+                });
+                superBlock.find('strong').each(function(){
+                    $(this).css('line-height' , parseInt($(this).css('line-height')) + "px");
+                });
+            });
+            $('.sl-block > .block-style > .sl-block-content p > span , .sl-block > .block-style > .sl-block-content p > font , .sl-block > .block-style > .sl-block-content > table > tbody > tr > th > span , .sl-block > .block-style > .sl-block-content > table > tbody > tr > td > span')
+                .each(function () {
+                    var set = $(this);
+                    var spanLenght = set.find('span').length;
+
+                    if (spanLenght == 0){
+                        set.css('line-height', parseInt(set.css('line-height')) + "px");
+                    }else{
+                        set.find('span').each(function (pos) {
+                            if (pos == spanLenght - 1) {
+                                set.css('line-height',  parseInt($(this).css('line-height')) + "px");
+                            }
+                        })
+                    }
+                });
+            setTimeout(function () {
+                $('.sl-block > .block-style > .sl-block-content').each(function () {
+                    if ($(this).find('table').length == 0){
+                        var lineH = $(this).css('line-height');
+                        $(this).css('line-height', parseInt(lineH) + "px");
+                    }
+
+                });
+            },500);
+            {% endif %}#}
+        </script>
+        {#<script src="{{ asset('js/build/zipS3.js') }}"></script>#}
+        {#<script src="{{ asset('js/ejs') }}"></script>#}
+        <script>
+            {#/*var data = {#}
+                {#"slides"    : {{ data.slides | raw }},#}
+                {#"popin"     : {{ data.popin | raw }},#}
+                {#"linkedRef" : {{ data.linkedRef | raw }}#}
+            {#};#}
+            {#$(function(){#}
+                {#let textVideo       = 'Your browser does not support the video tag.',#}
+                    {#image           = `<img src="<%= content.data.src%>" <% if (content.data.attributes) { %> <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> <%}%>>`,#}
+                    {#video           = `<video id="video" <% if (content.data.attributes) { %> <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> <%}%> >#}
+                                            {#<source  src="<%= content.data.source %>">#}
+                                             {#${textVideo}#}
+                                        {#</video>`,#}
+                    {#text            = `<%- content.data %>`,#}
+                    {#table           = `<%- content.data.data%>`,#}
+                    {#shape           = `<svg <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> >#}
+                                           {#<%- content.data.data %>#}
+                                        {#</svg>`,#}
+                    {#linkedpopin     = `<div class="<%= block.linkedpopin.class %>" id="<%= block.linkedpopin.id %>" ><%-block.linkedpopin.data%></div>`,#}
+                    {#linkedscreen    = `<div class="<%= block.linkedscreen.class %>" id="<%= block.linkedscreen.id %>" ><%-block.linkedscreen.data%></div>`,#}
+                    {#blocks          = ` <div class="<%=content.class%>"  <% if (content.attributes) { %> <% Object.keys(content.attributes).forEach(function(key) { %> <%- key %> ="<%- content.attributes[key] %>"<% }); %> <%}%> style="<% if (content.style) { %> <% Object.keys(content.style).forEach(function(key) { %> <%- key %>:<%- content.style[key] %> ;<% }); %> <%}%>">#}
+
+                                            {#<% switch (type) {#}
+                                                {#case 'image' : %>#}
+                                                         {#${image}#}
+                                                    {#<% break;#}
+                                                {#case 'video' : %>#}
+                                                         {#${video}#}
+                                                    {#<% break;#}
+                                                {#case 'shape' : %>#}
+                                                        {#${shape}#}
+                                                    {#<% break;#}
+                                                {#case 'survey' : %>#}
+                                                       {#${text}#}
+                                                    {#<% break;#}
+                                                {#case 'text' : %>#}
+                                                        {#${text}#}
+                                                    {#<% break;#}
+                                                {#case 'scrollabletext' : %>#}
+                                                        {#${text}#}
+                                                    {#<% break;#}
+                                                {#case 'table' : %>#}
+                                                        {#${table}#}
+                                                    {#<% break;#}
+                                        {#} %>#}
+                                        {#</div>#}
+                                      {#`,#}
+                    {#surveryBlock    = `<% if (block.type == "survey") { %>#}
+                                              {#<div  class="<%= survey.class %>">#}
+                                                    {#<%- survey.data  %>#}
+                                              {#</div>#}
+                                        {#<% } %>`,#}
+                    {#children        = `<section class='<%=section.class%>' <% if (section.attributes) { %> <% Object.keys(section.attributes).forEach(function(key) { %> <%- key %> ="<%- section.attributes[key] %>"<% }); %> <%}%>>#}
+                                             {#<% blocks = section.blocks; childs = section.children %>#}
+                                             {#<% if (blocks) { %>#}
+                                               {#<% blocks.forEach(function(block){ %>#}
+                                                     {#<div class="<%= block.class %>" <% if (block.attributes) { %> <% Object.keys(block.attributes).forEach(function(key) { %> <%- key %> ="<%- block.attributes[key] %>"<% }); %> <%}%>#}
+                                                         {#<% if (block.style) { %> style="<% Object.keys(block.style).forEach(function(key) { %> <%- key %>:<%- block.style[key] %> ;<% }); %> " <%}%>#}
+                                                       {#>#}
+                                                         {#<div class="block-style"  <% if (block.blockStyle.style) { %>  style="<% Object.keys(block.blockStyle.style).forEach(function(key) { %> <%- key %>:<%- block.blockStyle.style[key] %> ;<% }); %>" <%}%>>#}
+                                                               {#<% content = block.blockStyle.blockcontent ; type =  block.type; survey = block.blockStyle.survey %>#}
+                                                                 {#${blocks}#}
+                                                                 {#${surveryBlock}#}
+                                                               {#<% if (block.linkedpopin != "") { %>${linkedpopin}<%}%>#}
+                                                               {#<% if (block.linkedscreen != "") { %>${linkedscreen}<%}%>#}
+                                                         {#</div>#}
+                                                     {#</div>#}
+                                               {#<%})%>#}
+                                             {#<% } %>#}
+                                    {#</section>`,#}
+                    {#$section        = `<% slides.forEach(function(section){ %>#}
+                                               {#<section class='<%=section.class%>' <% if (section.attributes) { %> <% Object.keys(section.attributes).forEach(function(key) { %> <%- key %> ="<%- section.attributes[key] %>"<% }); %> <%}%>>#}
+                                                        {#<% blocks = section.blocks; childs = section.children %>#}
+                                                        {#<% if(childs) { %>#}
+                                                            {#<% childs.forEach(function(section){ %>#}
+                                                                {#${children}#}
+                                                            {#<%})%>#}
+                                                        {#<%} else { %>#}
+                                                            {#<% if (blocks) { %>#}
+                                                              {#<% blocks.forEach(function(block){ %>#}
+                                                                    {#<div class="<%= block.class %>" <% if (block.attributes) { %> <% Object.keys(block.attributes).forEach(function(key) { %> <%- key %> ="<%- block.attributes[key] %>"<% }); %> <%}%>#}
+                                                                        {#<% if (block.style) { %> style="<% Object.keys(block.style).forEach(function(key) { %> <%- key %>:<%- block.style[key] %> ;<% }); %> " <%}%>#}
+                                                                      {#>#}
+                                                                        {#<div class="block-style"  <% if (block.blockStyle.style) { %>  style="<% Object.keys(block.blockStyle.style).forEach(function(key) { %> <%- key %>:<%- block.blockStyle.style[key] %> ;<% }); %>" <%}%>>#}
+                                                                              {#<% content = block.blockStyle.blockcontent ; type =  block.type; survey = block.blockStyle.survey %>#}
+                                                                                {#${blocks}#}
+                                                                                {#${surveryBlock}#}
+                                                                              {#<% if (block.linkedpopin != "") { %>${linkedpopin}<%}%>#}
+                                                                              {#<% if (block.linkedscreen != "") { %>${linkedscreen}<%}%>#}
+
+                                                                        {#</div>#}
+                                                                    {#</div>#}
+                                                              {#<%})%>#}
+                                                            {#<% } %>#}
+                                                        {#<% } %>#}
+                                               {#</section>#}
+                                          {#<% }); %>`,#}
+                    {#$popin          = `<% if (popins.length > 0 ) { %>#}
+                                          {#<% popins.forEach(function(section){ %>#}
+                                               {#<section class='<%=section.class%>' <% if (section.attributes) { %> <% Object.keys(section.attributes).forEach(function(key) { %> <%- key %> ="<%- section.attributes[key] %>"<% }); %> <%}%>#}
+                                                        {#<% if (section.style) { %> style="<% Object.keys(section.style).forEach(function(key) { %> <%- key %> :<%- section.style[key] %>;<% }); %>" <%}%>>#}
+                                                        {#<% blocks = section.blocks%>#}
+                                                          {#<% if (blocks) { %>#}
+                                                            {#<% blocks.forEach(function(block){ %>#}
+                                                                  {#<div class="<%= block.class %>" <% if (block.attributes) { %> <% Object.keys(block.attributes).forEach(function(key) { %> <%- key %> ="<%- block.attributes[key] %>"<% }); %> <%}%>#}
+                                                                      {#<% if (block.style) { %> style="<% Object.keys(block.style).forEach(function(key) { %> <%- key %>:<%- block.style[key] %> ;<% }); %> " <%}%>#}
+                                                                    {#>#}
+                                                                      {#<div class="block-style"  <% if (block.blockStyle.style) { %>  style="<% Object.keys(block.blockStyle.style).forEach(function(key) { %> <%- key %>:<%- block.blockStyle.style[key] %> ;<% }); %>" <%}%>>#}
+                                                                            {#<% content = block.blockStyle.blockcontent ; type =  block.type; survey = block.blockStyle.survey %>#}
+                                                                              {#${blocks}#}
+                                                                              {#${surveryBlock}#}
+                                                                      {#</div>#}
+                                                                  {#</div>#}
+                                                            {#<%})%>#}
+                                                          {#<% } %>#}
+                                               {#</section>#}
+                                          {#<% }); %>#}
+                                    {#<% } %>`,#}
+                    {#htmlSlides      = ejs.render($section, {slides: data.slides} );#}
+                    {#htmlPopin       = ejs.render($popin ,  {popins : data.popin});#}
+
+                {#$('.slides').prepend(htmlSlides);#}
+                {#$('.slidespop').prepend(htmlPopin);*/#}
+                function setAttributeHV(){
+                  setTimeout(function(){
+                    $(Reveal.getCurrentSlide()).attr('data-index-h',$('.slide-number .slide-number-a ').text())
+                    $(Reveal.getCurrentSlide()).attr('data-index-v',$('.slide-number .slide-number-b ').text())
+                  },50)
+                }
+                Reveal.addEventListener( 'ready', function( event ) {
+                     setAttributeHV()
+                });
+                Reveal.addEventListener( 'slidechanged', function( event ) {
+                     setAttributeHV()
+                });
+
+        </script>
+
+
+    {% endblock %}

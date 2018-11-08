@@ -1,0 +1,4 @@
+services:
+#    argo_mcm_builder_media.example:
+#        class: ArgoMCMBuilder\MediaBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="error_500" resname="error_500">
+        <source>error_500</source>
+        <target>Un problème est survenu. Merci de nous envoyer un e-mail à support.mcmbuilder@argolife.fr et de nous indiquer ce que vous êtiez entrain de faire quand le problème est apparu. Nous allons le réparer dès que possible. Nous sommes désolés pour la gêne occasionnée.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <header>
+            <tool tool-id="symfony" tool-name="Symfony"/>
+        </header>
+        <body>
+            <trans-unit id="companies" resname="companies">
+                <source>companies</source>
+                <target>Companies</target>
+            </trans-unit>
+            <trans-unit id="companies.names" resname="companies.names">
+                <source>companies.names</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="company" resname="companies">
+                <source>company</source>
+                <target>Company</target>
+            </trans-unit>
+            <trans-unit id="companies.list" resname="companies.list">
+                <source>companies.list</source>
+                <target>Companies list</target>
+            </trans-unit>
+            <trans-unit id="companies.agency" resname="companies.agency">
+                <source>companies.agency</source>
+                <target>Agencies</target>
+            </trans-unit>
+             <trans-unit id="companies.level" resname="companies.level">
+                <source>companies.levely</source>
+                <target>Level</target>
+            </trans-unit>
+            <trans-unit id="companies.add_new_company" resname="companies.add_new_company">
+                <source>companies.add_new_company</source>
+                <target>Add new company</target>
+            </trans-unit>
+            <trans-unit id="companies.edit_company" resname="companies.edit_company">
+                <source>companies.edit_company</source>
+                <target>Edit company</target>
+            </trans-unit>
+            <trans-unit id="companies.name" resname="companies.name">
+                <source>companies.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="companies.action" resname="companies.action">
+                <source>companies.action</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="companies.save" resname="companies.save">
+                <source>companies.save</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="companies.delete_confirm" resname="companies.delete_confirm">
+                <source>companies.delete_confirm</source>
+                <target>Are you sure do you want to remove this company %company% from the MCM Builder? you can not undo this action</target>
+            </trans-unit>
+            <trans-unit id="companies.delete_text" resname="companies.delete_text">
+                <source>companies.delete_text</source>
+                <target>All the CLM presentations related to this company will be removed completely from the MCM Builder</target>
+            </trans-unit>
+            <trans-unit id="companies.nbr_busers">
+                <source>nbr_busers</source>
+                <target>Number of Users</target>
+            </trans-unit>
+            <trans-unit id="companies.nbr_presentations">
+                <source>nbr_presentations</source>
+                <target>Number of CLM presentations</target>
+            </trans-unit>
+            <trans-unit id="name_mcm_app">
+                <source>name_mcm_app</source>
+                <target>MCM Builder</target>
+            </trans-unit>
+            <trans-unit id="add_company_name_mcm_app">
+                <source>add_company_name_mcm_app</source>
+                <target>MCM Builder</target>
+            </trans-unit>
+            <trans-unit id="edit_company_name_mcm_app">
+                <source>edit_company_name_mcm_app</source>
+                <target>MCM Builder</target>
+            </trans-unit>
+            <trans-unit id="retour">
+                <source>retour</source>
+                <target>Back</target>
+            </trans-unit>
+            <trans-unit id="pharma.company">
+                <source>pharma.company</source>
+                <target>PHARMA COMPANY</target>
+            </trans-unit>
+            <trans-unit id="choose.your.company">
+                <source>choose.your.company</source>
+                <target>Choose your company</target>
+            </trans-unit>
+            <trans-unit id="company.infoBulle.edit" resname="company.infoBulle.edit">
+                <source>company.infoBulle.edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="company.infoBulle.delete" resname="company.infoBulle.delete">
+                <source>company.infoBulle.delete</source>
+                <target>Delete</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

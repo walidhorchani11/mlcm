@@ -1,0 +1,47 @@
+.dl-horizontal a {
+    display: inline-block;
+    padding: 0 12px;
+}
+.dl-horizontal a i {
+    line-height: 30px;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+.feed-activity-list:hover {
+    background-color: #f5f5f5;
+}
+
+.lock:before {
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    top: 5px;
+    content: "\f023";
+    width: 5px;
+    font-size: 20px;
+    height: 5px;
+    right: -5px;
+}
+.unlock:before {
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    top: 5px;
+    content: "\f09c";
+    width: 5px;
+    font-size: 20px;
+    height: 5px;
+    right: -5px;
+}
+.separateur{
+    border-top: 3px solid #ada3a3;
+}
+.editPres{
+    color: #fff;background-color: #1d476b;border-color: #1d476b;
+}
+.duplicatePres{
+    color:#000000;
+}
+.addLocal{
+    color: #fff;background-color: #19c6d8;border-color: #19c6d8;
+}

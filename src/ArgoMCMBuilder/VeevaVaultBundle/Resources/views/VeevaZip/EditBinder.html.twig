@@ -1,0 +1,65 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}Edit Binder{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div class="wrapper wrapper-content">
+        <div class="ibox">
+            {% if response %}
+
+                <a href="{{ path('zip_veeva_steps', {'id_press': id_press,'id_binder': response}) }}"
+                   class="as-form btn btn-success"
+                   data-method="delete">
+                    <h3>
+                        {{ 'Edit Your Binder'|trans({}, 'button') }}
+                    </h3>
+                </a>
+
+            {% else %}
+                Retour Form Create Binder
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent () }}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

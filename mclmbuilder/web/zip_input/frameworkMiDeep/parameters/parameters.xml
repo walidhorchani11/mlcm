@@ -1,0 +1,10 @@
+<!--ID unique-->
+<Sequence Id="Amarel_DZ_201600301_v1" xmlns="urn:param-schema">
+    <Pages>
+        <Page pageid="S1_10"/>
+        <Page pageid="S1_20"/>
+      <!--  <Page pageid="S1_20_10"/>-->
+        <Page pageid="S1_30"/>
+        <Page pageid="S1_40"/>
+    </Pages>
+</Sequence>

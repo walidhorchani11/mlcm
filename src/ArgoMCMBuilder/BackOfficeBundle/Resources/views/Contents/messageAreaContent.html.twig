@@ -1,0 +1,13 @@
+<div id="message-area">
+	{% for type, messages in app.session.flashbag.all() %}
+		{% for message in messages %}
+			{% if type == 'fos_user_success'%}
+				{% set type = 'success' %}
+			{% endif %}
+			<div class="alert alert-{{ type }} alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<span class="glyphicon"></span>{{ message|trans|raw }}
+			</div>
+		{% endfor %}
+	{% endfor %}
+</div>

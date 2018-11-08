@@ -1,0 +1,97 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'projects.create.new.project'| trans({}, 'project') }} {{ parent() }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2> {{ 'projects.create.new.project'| trans({}, 'project') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <strong>{{ 'MCMBuilder' | trans({}, 'presentations') }} </strong>
+                </li>
+                <li>
+                    <strong> {{ 'projects'| trans({}, 'project') }} </strong>
+                </li>
+                <li class="active">
+                    <strong> {{ 'projects.create.new.project'| trans({}, 'project') }}</strong>
+                </li>
+            </ol>
+        </div>
+
+        <div class="wrapper wrapper-content">
+
+             <div class="ibox">
+                <div class="ibox-tools">
+                    <a href="{{ path('projects_actives_projects_list') }}" class="btn btn-primary btn-xs pull-right">{{ 'projects.back.projects_list' |trans({}, 'project') }}</a>
+                </div>
+                 <div class="ibox-content">
+
+            <div class="col-sm-12">
+                <div class="box box-primary">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        {{ form_start(projectForm,{'attr': {'id': 'form_project','class':'from_add'}}, {'action': path('projects_create_new_project'), 'method': 'POST'}) }}
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-xs-12">
+                                {{ form_label(projectForm.name) }}
+                                {{ form_widget(projectForm.name) }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-xs-12">
+                                {{ form_label(projectForm.company) }}
+                                {{ form_widget(projectForm.company) }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-xs-12">
+                                <p>In case you did not select any owner from the “Project owner” list, you will be assigned automatically as an owner for this project.</p>
+                                {{ form_label(projectForm.owner) }}
+                                {{ form_widget(projectForm.owner) }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-xs-12">
+                                {{ form_label(projectForm.startDate) }}
+                                {{ form_widget(projectForm.startDate) }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-xs-12">
+                                {{ form_label(projectForm.status) }}
+                                {{ form_widget(projectForm.status) }}
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <div class="row form-group">
+                                <div class="col-sm-12 col-xs-12 form-group">
+                                    {{ form_widget(projectForm.saveAndReturn) }}
+                                    {{ form_end(projectForm) }}
+                                    {{ form_end(projectForm) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+             <div class="clear-both"></div>
+        </div>
+
+    </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent () }}
+
+    <script src="{{ asset('js/project/newProject.js') }}"></script>
+    <script>
+        var waitPath = "{{ asset('img/wait.gif') }}";
+    </script>
+{% endblock %}

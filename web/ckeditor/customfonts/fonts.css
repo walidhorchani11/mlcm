@@ -1,0 +1,48 @@
+@font-face {
+   font-family: Merck;
+   src: url("/ckeditor/customfonts/Merck.ttf");
+}
+@font-face {
+   font-family: FuturaStd-CondensedLight;
+   src: url("/ckeditor/customfonts/FuturaStd-CondensedLight.otf");
+}
+/*@font-face {*/
+   /*font-family: ProximaNova-Bold;*/
+   /*src: url("/ckeditor/customfonts/ProximaNova-Bold.ttf");*/
+/*}*/
+/*@font-face {*/
+   /*font-family: ProximaNova-Regular;*/
+   /*src: url("/ckeditor/customfonts/ProximaNova-Regular.otf");*/
+/*}*/
+/*@font-face {*/
+   /*font-family: ProximaNova-Semibold;*/
+   /*src: url("/ckeditor/customfonts/ProximaNova-Semibold.otf");*/
+/*}*/
+/*@font-face {*/
+   /*font-family: MerckSansSerifPro;*/
+   /*src: url("/ckeditor/customfonts/MerckSansSerifPro.ttf");*/
+/*}*/
+/*@font-face {*/
+   /*font-family: MerckSansSerifPro-Bold;*/
+   /*src: url("/ckeditor/customfonts/MerckSansSerifPro-Bold.ttf");*/
+/*}*/
+@font-face {
+   font-family: "ProximaNova";
+   src: url("/ckeditor/customfonts/fonts/ProximaNova-Regular.otf");
+}
+@font-face {
+   font-family: "ProximaNovaBold";
+   src: url("/ckeditor/customfonts/fonts/MerckSansSerifPro-Bold.ttf");
+}
+@font-face {
+   font-family: "ProximaNovaSemibold";
+   src: url("/ckeditor/customfonts/fonts/ProximaNova-Semibold.otf");
+}
+@font-face {
+   font-family: "MerckPro";
+   src: url("/ckeditor/customfonts/fonts/MerckSansSerifPro.ttf");
+}
+@font-face {
+   font-family: "MerckBold";
+   src: url("/ckeditor/customfonts/fonts/MerckSansSerifPro-Bold.ttf");
+}

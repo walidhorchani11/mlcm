@@ -1,0 +1,96 @@
+#reference{
+    display: none;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(1,1,1,0.5);
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#reference #box{
+    /*position: absolute;
+    background: url(../shared/dev_framework_shared/theme/theme1/images/template_reference.png) center center / 376.5px 382.5px no-repeat;
+    width: 376.5px;height: 382.5px;
+    z-index: 901;
+    top: 312px;right: 18px;*/
+    top: 360px;
+    right: 18px;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    border-radius: 10px;
+    width: 600px;
+    height: 310px;
+    position: absolute;
+    z-index: 999;
+    padding: 20px;
+    right: 10px;
+    text-align: left;
+    bottom: 90px;
+    font-size: 15px;
+}
+#reference #scroller{
+    /*width: 316px;
+    height: 275px;
+    top: 87px;
+    position: absolute;
+    left: 14px;
+    font-family: "avalon";*/
+    width: 560px;
+    height: auto;
+    left: 21px;
+    margin-top: 20px;
+    font: 15px "Montserrat";
+    font-weight: normal !important;
+    max-height: 261px;
+    overflow: auto;
+}
+#reference [btnclose]{
+    background: url(../shared/dev_framework_shared/theme/theme1/images/template_btn_close.png) center center / 42px 42px no-repeat;
+    /*width: 42px;
+    height: 42px;
+    top: 4px;
+    left: 331px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 902;*/
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 60%;
+    top: 15px;
+    width: 30px;
+    text-align: center;
+    text-indent: 3000px;
+    line-height: 25px;
+    height: 30px;
+    color: #f5f5f5;
+    font-size: 0;
+    cursor: pointer;
+    position: absolute;
+    left: 93%;
+}
+#reference  #box .title {
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font: 20px "Montserrat";
+}
+#reference #box .bottom-arrow{
+    background: transparent none repeat scroll 0% 0%;
+    position: absolute;
+    border-top: 30px solid #f5f5f5;
+    border-bottom: 0px solid transparent;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    background-color: transparent;
+    border-width: 30px 15px 0px;
+    border-style: solid;
+    border-color: rgb(245, 245, 245) transparent transparent;
+    bottom: -30px;
+    right: 183px;
+}

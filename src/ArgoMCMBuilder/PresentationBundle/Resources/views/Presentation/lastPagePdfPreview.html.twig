@@ -1,0 +1,89 @@
+{% extends ':default:base-preview-pdf.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block slides %}
+    <div id="conteneur" class="last-page-presentations">
+        <div id="bandeau">
+            <div class="separ">
+                <div id="version"><span> {{ 'presentationedit.storyboard-version' | trans({}, 'presentationedit') }} {{ version }}</span> </div>
+                <div id="title-screen-name"></div>
+                <div id="title-page-id"></div>
+            </div>
+        </div>
+        <div id="contenu" >
+            <div class="reveal" id="menu">
+                <div id="tempReferences" style="display : none"></div>
+                <div class="slides" hidden="true" >
+                    <div class="BlockRcpOverlay" style="display: none;"></div>
+                    <div class="linked-pdf" id="boxRcp" style="display: none;">
+                        <div id="boxRcpClose"></div>
+                        <span class="arrow-after"></span>
+                    </div>
+                    <div id="textRcp">
+                        {% for pdf in pdfList %}
+                            {% set title = "" %}
+                            {% if pdf.title is not empty %}
+                                {% set title = pdf.title %}
+                            {% elseif pdf.labelMedia is not empty %}
+                                {% set title = pdf.labelMedia %}
+                            {% else %}
+                                {% set title = "link" ~ loop.index %}
+                            {% endif %}
+                            <div id="arcp"><a target="_blank" href="{{ pdf.url }}">{{ title }} </a></div>
+                        {% endfor %}
+                    </div>
+                    <div id="textRef">
+                        {% for ref in aReference %}
+                            {% set title = "" %}
+                            {% set description = "" %}
+                            {% if ref.title is not empty %}
+                                {% set title = ref.title %}
+                            {% endif %}
+                            {% if ref.description is not empty %}
+                                {% set description = ref.description %}
+                            {% endif %}
+                            <div id="aref">
+                                <span class="title-ref-lst"> {{ title}} </span>
+                                <span class="title-desc-lst">  {{ description|raw }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="note">
+                    <div class="note-item" id="survey">
+                        <div id="survey-title"></div>
+                        <div id="survey-select"></div>
+                        <div id="survey-radio"></div>
+                        <div id="survey-input"></div>
+                        <div id="survey-check"></div>
+                    </div>
+                    <div class="note-item" id="ref-note"></div>
+                    <div class="note-item" id="rcp"></div>
+                </div>
+            </div>
+        </div>
+        <div id="pied-page" >
+            <span class="pied_page_detail" > {{ companyName }} - {{ projectName }} - {{ presOwnerName }} </span>
+            <div id="number-page">
+                <span class="pagination">Page</span>
+            </div>
+            <div class="copyright">
+                <img src="{{ asset('preview_pdf/images/mcm-logo-footer.png') }}" alt="MCM Builder" class="mcm-logo-footer">
+                <span class=""> {{ 'presentationedit.copyright-pdf' | trans({}, 'presentationedit') }}</span>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+
+    {{ parent() }}
+    <script>
+        var TWIG = {};
+        TWIG.idRev = '{{ idRev }}';
+        TWIG.tabChecked = '{{ tabChecked }}';
+    </script>
+    <script src="{{ asset('reveal/last-slides.js') }}"></script>
+{% endblock %}

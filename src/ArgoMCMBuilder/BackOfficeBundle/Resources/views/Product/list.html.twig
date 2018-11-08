@@ -1,0 +1,45 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/dataTables/dataTables.colVis.css') }}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'products' | trans({}, 'products') }}</h2>
+            <ol class="breadcrumb">
+
+                <li class="active">
+                    <strong>{{ 'products' | trans({}, 'products') }} | {{ 'products.list' | trans({}, 'products') }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="#" class="btn btn-primary">{{ 'products.action_button' | trans({}, 'products') }}</a>
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content">
+            <div class="col-sm-12 bg-danger" style="padding: 25px; margin-top: 3px;">
+                <h3>{{ 'products' | trans({}, 'products') }}</h3>
+                <ul>
+                    <li><a href="{{ path('products_create_new_product') }}">{{ 'products.add_product' | trans({}, 'products') }}</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent () }}
+    <script src="{{ asset('js/plugins/dataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/dataTables/dataTables.colVis.js') }}"></script>
+    <script src="{{ asset('js/project/datatable.js') }}"></script>
+{% endblock %}

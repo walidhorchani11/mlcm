@@ -1,0 +1,9 @@
+model: ArgoMCMBuilder\UserBundle\Entity\Company
+fixtures:
+    company1:
+        name: Company1
+    company2:
+        name: Company2
+    company3:
+        name: Company3
+        parent: company1

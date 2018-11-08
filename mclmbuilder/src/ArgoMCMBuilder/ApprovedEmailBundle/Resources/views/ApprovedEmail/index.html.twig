@@ -1,0 +1,41 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}My emails templates{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-12">
+            <h2>{{ 'emails_templates' | trans({}, 'approuvedemail') }}</h2>
+
+            <ol class="breadcrumb">
+                <li class="active">
+                    <strong>{{ 'emails_templates' | trans({}, 'approuvedemail') }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="#" class="btn btn-primary">This is action area</a>
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content">
+            <div class="col-sm-12 bg-danger" style="padding: 25px; margin-top: 3px;">
+                <h3>{{ 'emails_templates.back_to_emails' | trans({}, 'approuvedemail') }}</h3>
+                <ul>
+                    <li><a href="{{ path('emails') }}">{{ 'emails_templates.back_to_emails' | trans({}, 'approuvedemail') }}</a></li>
+                    <li><a href="{{ path('projects_create_new_project') }}">{{ 'projects.create.new.project' |trans({}, 'project') }}</a></li>
+                    <li><a href="{{ path('products_create_new_product') }}">{{ 'products.add_product' | trans({}, 'products') }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent () }}
+
+{% endblock %}

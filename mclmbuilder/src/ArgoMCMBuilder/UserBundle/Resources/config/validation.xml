@@ -1,0 +1,231 @@
+<?xml version="1.0" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="ArgoMCMBuilder\UserBundle\Entity\User">
+        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
+            <option name="fields">emailCanonical</option>
+            <option name="errorPath">email</option>
+            <option name="message">fos_user.email.already_used</option>
+            <option name="groups">
+                <value>ClmRegistration</value>
+            </option>
+        </constraint>
+        <property name="email">
+            <constraint name="NotBlank">
+                <option name="message">fos_user.email.blank</option>
+                <option name="groups">
+                    <value>ClmRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">fos_user.email.short</option>
+                <option name="max">254</option>
+                <option name="maxMessage">fos_user.email.long</option>
+                <option name="groups">
+                    <value>ClmRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            <constraint name="Email">
+                <option name="message">fos_user.email.invalid</option>
+                <option name="groups">
+                    <value>ClmRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="file">
+            <constraint name="File">
+                <option name="mimeTypes">
+                    <value>image/gif</value>
+                    <value>image/jpeg</value>
+                    <value>image/png</value>
+                </option>
+                <option name="mimeTypesMessage">Invalid image extension</option>
+                <option name="maxSizeMessage">Invalid image size</option>
+                <option name="maxSize">2000000</option>
+                <option name="groups">
+                    <value>ClmRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="lastname">
+            <constraint name="NotBlank">
+                <option name="message">clm_user.lastname.blank</option>
+                <option name="groups">
+                    <value>ClmRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">255</option>
+                <option name="minMessage">clm_user.lastname.short</option>
+                <option name="groups">
+                    <value>ClmRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="firstname">
+            <constraint name="NotBlank">
+                <option name="message">clm_user.firstname.blank</option>
+                <option name="groups">
+                    <value>ClmRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">255</option>
+                <option name="minMessage">clm_user.firstname.short</option>
+                <option name="groups">
+                    <value>ClmRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="plainPassword">
+            <constraint name="NotBlank">
+                <option name="message">fos_user.password.blank</option>
+                <option name="groups">
+                    <value>ClmRegistration</value>
+                    <value>ResetPassword</value>
+                    <value>ChangePassword</value>
+                </option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/(?=^.{8,}$)(?=.*\d)(?=.*[a-zA-Z])(?!.*\s)[0-9a-zA-Z*$-+?_=!;:,%{}'.]*$/</option>
+                <option name="message">fos_user.new_password.regex</option>
+                <option name="groups">
+                    <value>ClmRegistration</value>
+                    <value>ChangePassword</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">8</option>
+                <option name="max">4096</option>
+                <option name="minMessage">fos_user.password.short</option>
+                <option name="groups">
+                    <value>ClmRegistration</value>
+                    <value>Profile</value>
+                    <value>ResetPassword</value>
+                    <value>ChangePassword</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="FOS\UserBundle\Model\Group">
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">fos_user.group.blank</option>
+                <option name="groups">Registration</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">fos_user.group.short</option>
+                <option name="max">255</option>
+                <option name="maxMessage">fos_user.group.long</option>
+                <option name="groups">Registration</option>
+            </constraint>
+        </property>
+    </class>
+
+    <!-- Propel classes. This should stay in sync with the Model classes -->
+
+    <class name="FOS\UserBundle\Propel\User">
+
+        <property name="username">
+            <constraint name="NotBlank">
+                <option name="message">fos_user.username.blank</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">fos_user.username.short</option>
+                <option name="max">255</option>
+                <option name="maxMessage">fos_user.username.long</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+        </property>
+
+        <property name="email">
+            <constraint name="NotBlank">
+                <option name="message">fos_user.email.blank</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">fos_user.email.short</option>
+                <option name="max">255</option>
+                <option name="maxMessage">fos_user.email.long</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            <constraint name="Email">
+                <option name="message">fos_user.email.invalid</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+        </property>
+
+        <property name="plainPassword">
+            <constraint name="NotBlank">
+                <option name="message">fos_user.password.blank</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>ResetPassword</value>
+                    <value>ChangePassword</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">4096</option>
+                <option name="minMessage">fos_user.password.short</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Profile</value>
+                    <value>ResetPassword</value>
+                    <value>ChangePassword</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="FOS\UserBundle\Propel\Group">
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">fos_user.group.blank</option>
+                <option name="groups">Registration</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">fos_user.group.short</option>
+                <option name="max">255</option>
+                <option name="maxMessage">fos_user.group.long</option>
+                <option name="groups">Registration</option>
+            </constraint>
+        </property>
+    </class>
+
+</constraint-mapping>

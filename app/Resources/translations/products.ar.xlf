@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="ar" target-language="ar" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="products" resname="products">
+        <source>products</source>
+        <target>__My products</target>
+      </trans-unit>
+      <trans-unit id="products.add_product" resname="products.add_product">
+        <source>products.add_product</source>
+        <target>__Add new product</target>
+      </trans-unit>
+      <trans-unit id="products.list" resname="products.list">
+        <source>products.list</source>
+        <target>__Products</target>
+      </trans-unit>
+      <trans-unit id="products.action_button">
+        <source>products.action_button</source>
+        <target>__This is action area</target>
+      </trans-unit>
+      <trans-unit id="add.new.product">
+        <source>add.new.product</source>
+        <target>__Add new product</target>
+      </trans-unit>
+      <trans-unit id="add.edit.product">
+        <source>add.edit.product</source>
+        <target>__Edit product</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

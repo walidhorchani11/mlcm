@@ -1,0 +1,6 @@
+model: ArgoMCMBuilder\BackOfficeBundle\Entity\Agence
+fixtures:
+    agence1:
+        name: agence1
+        created: "2017-01-25"
+        status: 10

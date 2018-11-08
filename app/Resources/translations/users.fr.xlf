@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <header>
+            <tool tool-id="symfony" tool-name="Symfony"/>
+        </header>
+        <body>
+            <trans-unit id="users.users" resname="users">
+                <source>users</source>
+                <target>Utilisateurs</target>
+            </trans-unit>
+            <trans-unit id="users.list" resname="users.list">
+                <source>users.list</source>
+                <target>Liste des utilisateurs</target>
+            </trans-unit>
+            <trans-unit id="users.add_new_user" resname="users.add_new_user">
+                <source>users.add_new_user</source>
+                <target>Ajouter un utilisateur</target>
+            </trans-unit>
+            <trans-unit id="users.company" resname="users.company">
+                <source>users.company</source>
+                <target>Compagnie</target>
+            </trans-unit>
+            <trans-unit id="users.appName" resname="users.appName">
+                <source>users.appName</source>
+                <target>MCM Builder</target>
+            </trans-unit>
+            <trans-unit id="users.username_search" resname="users.username_search">
+                <source>users.username_search</source>
+                <target>Recherche</target>
+            </trans-unit>
+            <trans-unit id="users.add_filter" resname="users.add_filter">
+                <source>users.add_filter</source>
+                <target>Ajouter un filtre</target>
+            </trans-unit>
+            <trans-unit id="users.edit_user" resname="users.edit_user">
+                <source>users.edit_user</source>
+                <target>Modifier l'utilisateur</target>
+            </trans-unit>
+            <trans-unit id="users.function" resname="users.function">
+                <source>users.function</source>
+                <target>Fonction</target>
+            </trans-unit>
+            <trans-unit id="users.names" resname="users.names">
+                <source>users.names</source>
+                <target>Nom des utilisateurs</target>
+            </trans-unit>
+            <trans-unit id="users.role" resname="users.role">
+                <source>users.role</source>
+                <target>Role</target>
+            </trans-unit>
+            <trans-unit id="users.action" resname="users.action">
+                <source>users.action</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="users.delete_confirm" resname="users.delete_confirm">
+                <source>users.delete_confirm</source>
+                <target>Etes-vous sûr de vouloir supprimer cet utilisateur?</target>
+            </trans-unit>
+            <trans-unit id="users.delete_text" resname="users.delete_text">
+                <source>users.delete_text</source>
+                <target>Etes-vous sûr de vouloir supprimer cet utilisateur?</target>
+            </trans-unit>
+            <trans-unit id="users.export" resname="users.export">
+                <source>users.export</source>
+                <target>Export</target>
+            </trans-unit>
+            <trans-unit id="users.search" resname="users.search">
+                <source>users.search</source>
+                <target>Recherche</target>
+            </trans-unit>
+            <trans-unit id="users.password_update" resname="users.password_update">
+                <source>users.password_update</source>
+                <target>Changer le mot de passe</target>
+            </trans-unit>
+            <trans-unit id="users.submit_more_filter" resname="users.submit_more_filter">
+                <source>users.submit_more_filter</source>
+                <target>Recherche</target>
+            </trans-unit>
+            <trans-unit id="users.more_filter" resname="users.more_filter">
+                <source>users.more_filter</source>
+                <target>Plus de recherche</target>
+            </trans-unit>
+            <trans-unit id="users.password.constraint" resname="users.password.constraint">
+                <source>users.password.constraint</source>
+                <target>Vous devriez créer un mot de passe contenant des majuscules, des minuscules, des chiffres, de symboles et des espaces
+                </target>
+            </trans-unit>
+            <trans-unit id="users.password.title" resname="users.password.title">
+                <source>users.password.title</source>
+                <target>Mot de passe oublié </target>
+            </trans-unit>
+            <trans-unit id="users.password.text" resname="users.password.text">
+                <source>users.password.text</source>
+                <target>Veuillez saisir votre adresse email de votre compte du MCM Builder pour réinitialiser votre mot de passe :</target>
+            </trans-unit>
+            <trans-unit id="users.password.resetting.text" resname="users.password.resetting.text">
+                <source>users.password.resetting.text</source>
+                <target>_
+                    Vous recevrez un email dans quelques instants contenant un lien qui vous permettra de réinitialiser votre mot de passe.
+                    Si vous ne recevez pas cet email, vérifiez vos spams.
+                    Vérifier que votre filtre de spam est configuré pour vous permettre de recevoir les emails provenants du MCM Builder.
+                </target>
+            </trans-unit>
+            <trans-unit id="users.remember" resname="users.remember">
+                <source>users.remember</source>
+                <target>Se souvenir de moi</target>
+            </trans-unit>
+            <trans-unit id="form.first_name" resname="form.first_name">
+                <source>form.first_name</source>
+                <target>Prénom</target>
+            </trans-unit>
+            <trans-unit id="form.last_name" resname="form.last_name">
+                <source>form.last_name</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="form.email" resname="form.email">
+                <source>form.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="form.occupation" resname="form.occupation">
+                <source>form.occupation</source>
+                <target>Fonction</target>
+            </trans-unit>
+            <trans-unit id="form.roles" resname="form.roles">
+                <source>form.roles</source>
+                <target>Roles</target>
+            </trans-unit>
+            <trans-unit id="Company" resname="Company">
+                <source>Company</source>
+                <target>Compagnie</target>
+            </trans-unit>
+            <trans-unit id="form.password" resname="form.password">
+                <source>form.password</source>
+                <target>Mot de passe</target>
+            </trans-unit>
+            <trans-unit id="form.password.submit" resname="form.password.submit">
+                <source>form.password.submit</source>
+                <target>Envoi du mot de passe</target>
+            </trans-unit>
+            <trans-unit id="form.password_confirmation" resname="form.password_confirmation">
+                <source>form.password_confirmation</source>
+                <target>Confirmation</target>
+            </trans-unit>
+            <trans-unit id="users.delProf" resname="users.delProf">
+                <source>users.delProfn</source>
+                <target>Supprimer la photo de profil et utiliser l'avatar CLM</target>
+            </trans-unit>
+            <trans-unit id="edit_user_retour" resname="edit_user_retour">
+                <source>edit_user_retour</source>
+                <target>Retour</target>
+            </trans-unit>
+            <trans-unit id="users.edit_user_del_avatar" resname="users.edit_user_del_avatar">
+                <source>users.edit_user_del_avatar</source>
+                <target>Supprimer la photo de profil et utiliser l'avatar CLM</target>
+            </trans-unit>
+            <trans-unit id="users.save" resname="users.save">
+                <source>users.save</source>
+                <target>Enregistrer</target>
+            </trans-unit>
+            <trans-unit id="retour" resname="retour">
+                <source>retour</source>
+                <target>Retour</target>
+            </trans-unit>
+            <trans-unit id="form.emptyVal" resname="form.emptyVal">
+                <source>form.emptyVal</source>
+                <target>Choisir votre Compagnie</target>
+            </trans-unit>
+            <trans-unit id="name_mcm_app" resname="name_mcm_app">
+                <source>name_mcm_app</source>
+                <target>MCM Builder</target>
+            </trans-unit>
+            <trans-unit id="users.edit_email" resname="users.edit_email">
+                <source>users.edit_email</source>
+                <target>Email :</target>
+            </trans-unit>
+            <trans-unit id="users.edit_occupation" resname="users.edit_occupation">
+                <source>users.edit_occupation</source>
+                <target>Profession :</target>
+            </trans-unit>
+            <trans-unit id="users.edit_profile" resname="users.edit_profile">
+                <source>users.edit_profile</source>
+                <target>Supprimer la photo de profil et utiliser l'avatar CLM</target>
+            </trans-unit>
+            <trans-unit id="profile.edit.submit" resname="profile.edit.submit">
+                <source>profile.edit.submit</source>
+                <target>Envoyer</target>
+            </trans-unit>
+            <trans-unit id="profile.name_mcm_app" resname="profile.name_mcm_app">
+                <source>profile.name_mcm_app</source>
+                <target>MCM Builder</target>
+            </trans-unit>
+            <trans-unit id="users.profile.edit" resname="users.profile.edit">
+                <source>users.profile.edit</source>
+                <target>Modifier le profil</target>
+            </trans-unit>
+            <trans-unit id="users.profile" resname="users.profile">
+                <source>users.profile</source>
+                <target>Profil</target>
+            </trans-unit>
+            <trans-unit id="ROLE_EDITOR" resname="ROLE_EDITOR">
+                <source>ROLE_EDITOR</source>
+                <target>Editeur</target>
+            </trans-unit>
+            <trans-unit id="ROLE_REVIEWER" resname="ROLE_REVIEWER">
+                <source>ROLE_REVIEWER</source>
+                <target>Relecteur</target>
+            </trans-unit>
+            <trans-unit id="ROLE_BASIC_USER" resname="ROLE_BASIC_USER">
+                <source>ROLE_BASIC_USER</source>
+                <target>Role basique</target>
+            </trans-unit>
+            <trans-unit id="ROLE_MANAGER" resname="ROLE_MANAGER">
+                <source>ROLE_MANAGER</source>
+                <target>Role manager</target>
+            </trans-unit>
+            <trans-unit id="ROLE_ADMIN" resname="ROLE_ADMIN">
+                <source>ROLE_ADMIN</source>
+                <target>Role administrateur</target>
+            </trans-unit>
+            <trans-unit id="ROLE_SUPER_ADMIN" resname="ROLE_SUPER_ADMIN">
+                <source>ROLE_SUPER_ADMIN</source>
+                <target>Role super administrateur</target>
+            </trans-unit>
+            <trans-unit id="form.choose.your.company" resname="form.choose.your.company">
+                <source>form.choose.your.company</source>
+                <target>Choisir votre Compagnie</target>
+            </trans-unit>
+            <trans-unit id="form.password.confirm" resname="form.password.confirm">
+                <source>form.password.confirm</source>
+                <target>Confirmation</target>
+            </trans-unit>
+            <trans-unit id="users.deletet-profile-picture-message" resname="users.deletet-profile-picture-message">
+                <source>users.deletet-profile-picture-message</source>
+                <target>Supprimer la photo de profil et utiliser l'avatar CLM</target>
+            </trans-unit>
+            <trans-unit id="user.infoBulle.edit" resname="user.infoBulle.edit">
+                <source>user.infoBulle.edit</source>
+                <target>Modifier</target>
+            </trans-unit>
+            <trans-unit id="user.infoBulle.delete" resname="user.infoBulle.delete">
+                <source>user.infoBulle.delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+            <trans-unit id="user.success.remove" resname="user.success.remove">
+                <source>user.success.remove</source>
+                <target>Utilisateur a été supprimer</target>
+            </trans-unit>
+            <trans-unit id="user.cookies.title" resname="user.cookies.title">
+                <source>user.cookies.title</source>
+                <target>TERMS AND CONDITIONS FOR MCM BUILDER</target>
+            </trans-unit>
+            <trans-unit id="user.cookies.freetrial" resname="user.cookies.freetrial">
+                <source>user.cookies.freetrial</source>
+                <target>FREE TRIAL ACCESS</target>
+            </trans-unit>
+            <trans-unit id="user.cookies.message1" resname="user.cookies.message1">
+                <source>user.cookies.message1</source>
+                <target>fr__I have read and agreed the MCM Builder access Terms and Conditions.</target>
+            </trans-unit>
+            <trans-unit id="user.cookies.message2" resname="user.cookies.message2">
+                <source>user.cookies.message2</source>
+                <target>fr__Please select the terms check box provided to indicate that you agree to the terms and conditions for MCM Builder free trial access.</target>
+            </trans-unit>
+            <trans-unit id="user.cookies.agree" resname="user.cookies.agree">
+                 <source>user.cookies.agree</source>
+                 <target>I agree</target>
+            </trans-unit>
+             <trans-unit id="user.yes" resname="user.yes">
+               <source>user.yes</source>
+               <target>fr__Active</target>
+             </trans-unit>
+             <trans-unit id="user.no" resname="user.no">
+               <source>user.no</source>
+               <target>fr__Waiting for terms validation</target>
+             </trans-unit>
+             <trans-unit id="user.status" resname="user.status">
+               <source>user.status</source>
+               <target>fr__status</target>
+             </trans-unit>
+        </body>
+    </file>
+</xliff>

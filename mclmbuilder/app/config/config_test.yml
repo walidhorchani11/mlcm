@@ -1,0 +1,4 @@
+# app/config/config_test.yml
+imports:
+    - { resource: config.yml }
+

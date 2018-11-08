@@ -1,0 +1,86 @@
+{% extends "UserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+{% block title %}CLM Builder | Login{% endblock %}
+{% block fos_user_content %}
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div class="login-inner">
+
+                <h1 class="logo-name">
+                    <img src="{{ asset('img/images/connexion/logo-connexion.png') }}" alt="MCM Builder" title="MCM Builder"/>
+                </h1>
+
+            </div>
+
+        {% if error.getCode() is defined and error.getCode() == 403 %}
+            <label class="error">{{ error.getMessage() }}</label>
+        {% elseif  error %}
+            <label class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</label>
+        {% endif %}
+            {#<form class="m-t form-horizontal ng-valid ng-dirty ng-valid-parse" role="form" action="{{ path("fos_user_security_check") }}" method="post">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="{{ 'form.email' | trans({}, 'users') }}" id="username" name="_username" value="{{ last_username }}" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="{{ 'form.password' | trans({}, 'users') }}" id="password" name="_password" required="required">
+                </div>
+                <div class="form-group text-left checkbox m-r-xs">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" >
+                    <label for="remember_me">{{ 'users.remember' | trans({}, 'users') }}</label>
+                    <span class="pull-right"><a href="{{ path("fos_user_resetting_request") }}"><small>{{ 'users.password.title' | trans({}, 'users') }}<span class="quest">?</span></small></a></span>
+                </div>
+                <div class="submit-form"><button type="submit" class="btn btn-primary btn-lg block  m-b" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}">Login</button></div>
+
+            </form>#}
+            
+            
+            {% if app.request.get('debug') == "1" %}
+
+			<form class="m-t form-horizontal ng-valid ng-dirty ng-valid-parse" role="form" action="{{ path("fos_user_security_check") }}" method="post">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="{{ 'form.email' | trans({}, 'users') }}" id="username" name="_username" value="{{ last_username }}" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="{{ 'form.password' | trans({}, 'users') }}" id="password" name="_password" required="required">
+                </div>
+                <div class="form-group text-left checkbox m-r-xs">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" >
+                    <label for="remember_me">{{ 'users.remember' | trans({}, 'users') }}</label>
+                    <span class="pull-right"><a href="{{ path("fos_user_resetting_request") }}"><small>{{ 'users.password.title' | trans({}, 'users') }}<span class="quest">?</span></small></a></span>
+                </div>
+                <div class="submit-form"><button type="submit" class="btn btn-primary btn-lg block  m-b" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}">Login</button></div>
+
+            </form>
+
+
+
+
+			{% endif %}
+            
+            
+            
+            
+
+            <div style="    color: #fff;
+    font-size: 23px;
+    width: 500px;
+        margin-left: -104px;">We are currently under maintenance. We will be back shortly</div>
+        <div class="row">
+
+            <div class="col-md-12 text-white text-center login-copyright">
+                <small>
+                    <strong>&copy; {{ 'now'|date('Y') }} {{ 'dashboard.copyright' |trans({}, 'dashboard') }}</strong>
+                </small>
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock fos_user_content %}
+

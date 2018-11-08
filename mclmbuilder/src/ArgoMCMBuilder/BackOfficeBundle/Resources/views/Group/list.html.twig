@@ -1,0 +1,40 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'groups' | trans({}, 'groups') }}</h2>
+            <ol class="breadcrumb">
+
+                <li class="active">
+                    <strong>{{ 'groups' | trans({}, 'groups') }} | {{ 'groups.list' | trans({}, 'groups') }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="#" class="btn btn-primary">This is action area</a>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="col-sm-12 bg-danger" style="padding: 25px; margin-top: 3px;">
+                <h3>{{ 'groups' | trans({}, 'groups') }}</h3>
+                <ul>
+                    <li><a href="{{ path('groups_create_new_group') }}">{{ 'groups.add_new_group' | trans({}, 'groups') }}</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent () }}
+
+{% endblock %}

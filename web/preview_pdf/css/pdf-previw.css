@@ -1,0 +1,452 @@
+/* Fonts */
+@font-face {
+  font-family: 'TwCenMT-Regular';
+  src: url('fonts/TwCenMT-Regular.eot?#iefix') format('embedded-opentype'),  url('fonts/TwCenMT-Regular.woff') format('woff'), url('fonts/TwCenMT-Regular.ttf')  format('truetype'), url('fonts/TwCenMT-Regular.svg#TwCenMT-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}@font-face {
+  font-family: 'TwCenMT-CondensedBold';
+  src: url('fonts/TwCenMT-CondensedBold.eot?#iefix') format('embedded-opentype'),  url('fonts/TwCenMT-CondensedBold.woff') format('woff'), url('fonts/TwCenMT-CondensedBold.ttf')  format('truetype'), url('fonts/TwCenMT-CondensedBold.svg#fonts/TwCenMT-CondensedBold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'TwCenMT-CondensedExtraBold';
+  src: url('fonts/TwCenMT-CondensedExtraBold.eot?#iefix') format('embedded-opentype'),  url('fonts/TwCenMT-CondensedExtraBold.woff') format('woff'), url('fonts/TwCenMT-CondensedExtraBold.ttf')  format('truetype'), url('fonts/TwCenMT-CondensedExtraBold.svg#fonts/TwCenMT-CondensedExtraBold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Cover page */
+#conteneur {
+    position: relative;
+    width: 1284px;
+    height: 724px;
+    margin: 0 auto;
+    /*padding-left: 30px;*/
+    padding-left: 0;
+    background: url(../images/bkg-pdf-pages.png) center bottom -13px no-repeat;
+    background-size: 100% auto;
+    font-family: "TwCenMT-Regular", sans-serif;
+}
+#conteneur .reveal .slides {
+    /*-webkit-transform: translate(-50%, -50%) scale(0.484375) !important;*/
+    -webkit-transform: translate(-50%, -50%) scale(0.731445313) !important;
+}
+#conteneur.cover-page {
+    text-align: center;
+    overflow: hidden;
+    padding-left: 0;
+    background: url(../images/bkg-cover-page.jpg) top -70px left 0 no-repeat;
+    background-size: 100% auto;
+}
+/*#conteneur * {
+    font-family: "TwCenMT-Regular", sans-serif;
+}*/
+#conteneur strong.title {
+    /*font-weight: bold;*/
+    font-family: "TwCenMT-CondensedBold", sans-serif;
+}
+.cover-page h1 {
+    margin-top: 45px;
+    font-size: 20px;
+    /*font-weight: bold;*/
+    font-family: "TwCenMT-CondensedBold", sans-serif !important;
+    line-height: normal;
+    letter-spacing: 4px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.cover-page h1 span {
+    letter-spacing: 15px;
+    font-family: "TwCenMT-CondensedBold", sans-serif !important;
+    padding-left: 10px;
+}
+.cover-page hr {
+    width: 26px;
+    height: 6px;
+    background: #f9af43;
+    border: none;
+    margin: 10px auto;
+}
+.cover-page .compagny-logo {
+    width: 250px;
+    height: 170px;
+    margin: 65px auto 0 auto;
+    position: relative;
+}
+.cover-page .compagny-logo img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+}
+.cover-page .storyboard-details {
+    max-width: 570px;
+    margin: 40px auto 0 auto;
+    line-height: 1.4;
+}
+.cover-page .mcm-logo {
+    width: 196px;
+    margin: 48px auto 0 auto;
+}
+.cover-page .mcm-logo img {
+    max-width: 100%;
+}
+
+/* PDF pages */
+#bandeau {
+    height: 68px;
+    width: 375px;
+    clear: both;
+    float: right;
+    overflow: hidden;
+    background: url(../images/bkg-hearder.png) right top no-repeat;
+    background-size: auto 100%;
+    padding-right: 25px;
+}
+#menu {
+    float: left;
+    text-align: inherit;
+    width: 753px;
+    height: 565px;
+}
+.last-page-presentations #menu {
+    height: 500px;
+}
+
+#commentaire {
+    float: left;
+    /*clear: both;*/
+    text-align: inherit;
+    /*width: 500px;*/
+    width: 753px;
+    height: 90px;
+    max-height: 90px;
+    margin-top: 10px;
+    background: #d1cfd3;
+    overflow: hidden;
+}
+#commentaire p {
+    padding: 0 20px 10px 20px;
+    margin-top: 10px;
+}
+#commentaire .title {
+    display: inline-block;
+    /*font-weight: bold;*/
+    font-family: "TwCenMT-CondensedBold", sans-serif;
+    font-style: italic;
+    font-size: 13px;
+    text-transform: uppercase;
+    line-height: 20px;
+    padding: 0 20px;
+    color: #ffffff;
+    background: #f79d10;
+}
+#contenu {
+    margin-left: 200px;
+    height: 400px;
+}
+.last-page-presentations #contenu {
+    height: 500px;
+}
+#conteneur.last-page-presentations {
+    padding-left: 30px;
+}
+.note {
+    /*width: 40.7%;*/
+    width: 374.44px;
+    float: right;
+    /*margin-left: 30px;*/
+    margin-left: 0;
+    margin-right: 133px;
+    margin-top: 15px;
+    font-size: 16px;
+}
+.note .note-item {
+    margin-bottom: 25px;
+    line-height: normal;
+    word-wrap: break-word;
+    color: #000000;
+}
+.note .note-item * {
+    color: #000000;
+}
+.note .note-item sup {
+    vertical-align: super;
+    font-size: 12px;
+}
+ .note .note-item .txt-italic {
+     font-style: italic;
+     font-family: Arial,Helvetica,sans-serif;
+ }
+.img-popin {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    position: relative;
+    margin-top: 40px !important;
+    -webkit-transform: translateY(50%);
+}
+.note .note-item strong.title {
+    text-transform: uppercase;
+}
+.note .note-item th, .note .note-item td {
+    border: 1px solid;
+}
+.note .note-item:empty {
+    margin-bottom: 0 !important;
+}
+.note ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+.note #ref-note strong:not(.title), .note #ref-note b:not(.title), .note #ref-note em:not(.title) {
+    font-weight: normal !important;
+    font-family: inherit !important;
+}
+.note #ref-note i:not(.title), .note #ref-note em:not(.title) {
+    font-style: normal !important;
+}
+.note #ref-note u:not(.title) {
+    text-decoration: none !important;
+}
+#pied-page {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: table;
+    width: 100%;
+    padding-left: 30px;
+    height: 45px;
+    color: #ffffff;
+}
+.pied_page_detail {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 9.75px;
+    font-style: italic;
+    width: 578px;
+}
+#number-page {
+    display: table-cell;
+    vertical-align: top;
+    font-size: 9.75px;
+    font-style: italic;
+    width: 85px;
+}
+.pagination {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    line-height: 50px;
+    color: #100e47;
+    background: #ffffff;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    position: absolute;
+    /*margin-left: 50px;*/
+    margin-top: -10px;
+    text-align: center;
+    font-size: 8.5px;
+}
+.separ {
+    clear: left;
+}
+#version {
+    float: right;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 16px;
+    /*font-weight: bold;*/
+    font-family: "TwCenMT-CondensedBold", sans-serif;
+}
+#company-name, #owner-name, #title-page-id, #title-key-message, #title-screen-name {
+    color: #46425f;
+    float: left;
+    line-height: normal;
+    text-transform: uppercase;
+    max-width: 420px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#company-name {
+    font-size: 20px;
+    letter-spacing: 20px;
+}
+#company-name span {
+    color: #f9af43;
+}
+/*#title-page-id, #title-key-message {
+    font-weight: bold;
+    font-family: "TwCenMT-CondensedBold", sans-serif;
+}*/
+#title-screen-name span {
+    color: #f4b93a;
+}
+#owner-name, #title-page-id, #title-key-message, #title-screen-name {
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    float: right;
+    clear: both;
+    color: #ffffff;
+}
+#owner-name, #title-page-id, #title-key-message, #title-screen-name, #version {
+    line-height: 23px;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    padding-left: 35px;
+    width: 350px;
+}
+.company-logo {
+    width: 95px;
+    display: table;
+    float: right;
+    height: 68px;
+    margin-right: 25px;
+}
+.company-logo span {
+    display: table-cell;
+    vertical-align: middle;
+}
+.company-logo img {
+    max-width: 100%;
+}
+#conteneur .reveal {
+    /*margin-top: 40px;*/
+    border: 2px solid #f79d10;
+}
+/*#conteneur .reveal .slides {
+    transform: translate(-50%, -50%) scale(0.48828125) !important;
+}*/
+.copyright {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    padding-right: 10px;
+    font-size: 8.5px;
+}
+img.mcm-logo-footer {
+    max-width: 95px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+.txt-style, .txt-style * {
+    display: inline-block;
+}
+
+/* last PDF preview page */
+#conteneur.last-page-presentations #contenu {
+    margin: 0;
+}
+#conteneur.last-page-presentations .reveal {
+    float: none;
+    clear: both;
+    width: auto;
+    border: none;
+}
+#conteneur.last-page-presentations .note {
+    float: none;
+    width: auto;
+    font-size: 16px;
+}
+#clm_flow_diagram_presentations {
+    /*width: 950px;
+    height: 672px;*/
+    width: 1150px;
+    height: 700px;
+}
+#clm_flow_diagram_presentations .pull-rigth {
+    padding: 2px;
+}
+.style-img-popin {
+    vertical-align: middle;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto !important;
+    bottom: 0
+}
+.style-div-popin {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+.reveal .sl-block .block-style {
+    position:relative;
+}
+
+.closePopinPdf{
+    float: right;
+}
+
+.reveal .sl-block .sl-block-content[data-animation-type-tap]{
+    display: none;
+    transition-duration:0s !important;
+    transition-delay:0s !important;
+}
+.reveal .sl-block .sl-block-content[data-animation-type-tap="fade-out-edit-tap"]{
+    display:block;
+    transition-duration:0s !important;
+    transition-delay:0s !important;
+}
+
+/* PDF wihout notes (only slides & comments) */
+.options-list-pdf .note {
+    /*display: none;*/
+    margin-right: 0;
+}
+.options-list-pdf #commentaire {
+    float: right;
+    clear: inherit;
+    width: 375px;
+    height: 582px;
+    max-height: 582px;
+    margin-top: 15px;
+}
+.options-list-pdf#conteneur .reveal {
+    width: 886px;
+    height: 665px;
+}
+.options-list-pdf#conteneur .reveal .slides {
+    -webkit-transform: translate(-50%, -50%) scale(0.861328125) !important;
+}
+
+/* PDF only slides */
+.comments-options-list-pdf .note {
+    display: none;
+}
+.comments-options-list-pdf #commentaire {
+    display: none;
+}
+.comments-options-list-pdf #menu {
+    width: 886px;
+    height: 665px;
+    float: none;
+}
+.comments-options-list-pdf#conteneur .reveal .slides, .comments-options-list-pdf#conteneur .reveal > .backgrounds, .options-list-pdf#conteneur .reveal > .backgrounds {
+    -webkit-transform: translate(-50%, -50%) scale(0.861328125) !important;
+}
+#conteneur .reveal > .backgrounds {
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    -webkit-transform: translate(-50%, -50%) scale(0.731445313) !important;
+}

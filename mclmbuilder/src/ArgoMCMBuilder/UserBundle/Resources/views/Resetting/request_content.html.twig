@@ -1,0 +1,41 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="passwordBox animated fadeInDown">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ibox-content">
+                <h2 class="font-bold text-center">{{ 'users.password.title' | trans({}, 'users') }}</h2>
+                <p>
+                    {{ 'users.password.text' | trans({}, 'users') }}
+                </p>
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <form class="m-t fos_user_resetting_request" role="form" action="{{ path('fos_user_resetting_send_email') }}" method="POST" >
+                            <div class="form-group">
+                                <label for="username">{{ 'form.email' | trans({}, 'users') }}</label>
+                                {% if invalid_username is defined %}
+                                    <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+                                    <input type="email" id="username" name="username" required="required" class="form-control" value="{{ invalid_username }}"/>
+                                {% else %}
+                                    <input type="email" id="username" name="username"  required="required" class="form-control" placeholder="name@mcmbuilder.com"/>
+                                {% endif %}
+                            </div>
+
+                            <button type="submit" class="btn btn-primary block full-width m-b">{{ 'resetting.request.submit'|trans }}</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12 text-white text-center">
+              <small>
+                    <strong>&copy; {{ 'now'|date('Y') }} {{ 'dashboard.copyright' |trans({}, 'dashboard') }}</strong>
+                </small>
+        </div>
+    </div>
+</div>

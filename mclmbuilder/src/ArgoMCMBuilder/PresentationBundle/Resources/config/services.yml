@@ -1,0 +1,74 @@
+services:
+  zip.mi_deep:
+      class: ArgoMCMBuilder\PresentationBundle\Services\MiDeepZipService
+      arguments: ["@filesystem", "@service_container"]
+      tags:
+          - { name: clm.zip }
+  zip.mi_deep_S3:
+      class: ArgoMCMBuilder\PresentationBundle\Services\MiDeepZipServiceS3
+      arguments: ["@filesystem", "@service_container", "@mcm.aws_media"]
+      tags:
+          - { name: clm.zip }
+  zip.veeva_wide:
+      class: ArgoMCMBuilder\PresentationBundle\Services\VeevaWideZipService
+      arguments: ["@filesystem", "@service_container"]
+      tags:
+          - { name: clm.zip }
+
+  zip.veeva_wide_S3:
+      class: ArgoMCMBuilder\PresentationBundle\Services\VeevaWideZipServiceS3
+      arguments: ["@filesystem", "@service_container", "@mcm.aws_media"]
+      tags:
+          - { name: clm.zip }
+
+  service.argomcmbuilder_presentation.presentation:
+        class: ArgoMCMBuilder\PresentationBundle\Services\PresentationService
+        arguments: ["@doctrine.orm.entity_manager", "@logger", "@translator", "@filesystem", "%main_directory%" ,"@service_container"]
+        tags:
+            - { name: monolog.logger, channel: PresentationService }
+
+  clm.print_pdf:
+      class: ArgoMCMBuilder\PresentationBundle\Services\PrintPdfService
+      arguments: ["%pdf_directory_print%", "%main_directory%", "@filesystem", "@service_container","@mailer","@templating","@security.context"]
+      tags:
+          - { name: clm.print }
+
+  clm.veeva_deep_zip:
+      class: ArgoMCMBuilder\PresentationBundle\Services\VeevaDeepZipService
+      arguments: ["@doctrine.orm.entity_manager", "@filesystem", "%zip_deep_directory%", "%veeva_deep_framework%", "@jms_serializer", "%web_directory%", "%thumbnails%"]
+      tags:
+          - { name: clm.zip }
+
+  clm.mi_deep_zip:
+      class: ArgoMCMBuilder\PresentationBundle\Services\MiDeepZipOldService
+      arguments: ["@doctrine.orm.entity_manager", "@filesystem", "%zip_deep_directory%", "%mi_deep_framework%", "@jms_serializer", "%web_directory%", "%media_directory%", "%css_merck%", "%thumbnails%", "%presentations_thumbnails%"]
+      tags:
+          - { name: clm.zip }
+
+  clm.mi_wide_zip:
+      class: ArgoMCMBuilder\PresentationBundle\Services\MiWideZipService
+      arguments: ["@filesystem", "%web_directory%"]
+      tags:
+          - { name: clm.zip }
+
+  mcm.save_slides:
+      class: ArgoMCMBuilder\PresentationBundle\Services\SaveSlideService
+      arguments: ["@service_container"]
+      tags:
+          - { name: clm.zip }
+
+  mcm.cloner_presentation:
+      class: ArgoMCMBuilder\PresentationBundle\Services\ClonerPresentationService
+      arguments: ["@doctrine.orm.entity_manager", "%web_directory%", "@filesystem", "%thumbnails%", "@service_container"]
+      
+  mcm.add_localisation:
+      class: ArgoMCMBuilder\PresentationBundle\Services\AddLocalisationService
+      arguments: ["@doctrine.orm.entity_manager", "@filesystem", "%thumbnails%", "@service_container"]
+
+  mcm.disconnect_localisation:
+      class: ArgoMCMBuilder\PresentationBundle\Services\DisconnectLocalisationService
+      arguments: ["@doctrine.orm.entity_manager", "@filesystem", "%thumbnails%", "@service_container"]
+
+  mcm.approve_master_presentation:
+      class: ArgoMCMBuilder\PresentationBundle\Services\ApproveMasterPresentation
+      arguments: ["@doctrine.orm.entity_manager", "@filesystem", "%thumbnails%", "@service_container"]

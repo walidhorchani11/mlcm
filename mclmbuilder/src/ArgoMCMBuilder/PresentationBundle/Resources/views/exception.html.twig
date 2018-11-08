@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="sl-root decks edit mz-applicationcache mz-history mz-localstorage mz-svg mz-opacity mz-rgba mz-backgroundsize mz-cssanimations mz-csstransforms mz-csstransforms3d mz-csstransitions mz-flexbox mz-flexboxlegacy mz-fullscreen loaded ua-linux ua-chrome has-visible-scrollbars is-new is-editing wf-montserrat-n4-inactive wf-inactive fonts-are-ready editor-loaded-successfully">
+<head>
+    <meta charset="UTF-8"/>
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    {% block stylesheets %}
+        <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+        <link href="{{ asset('js/build/css/main.css?124') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <style>
+            div.middle-box {
+                color: #ffffff;
+            }
+            div > h2 {
+                font-size: 100px;
+            }
+            div.exception {
+                color: #a5ff00;
+                background-color: #000000;
+                font-size: 13px;
+                padding: 28px;
+            }
+            pre {
+                border: none;
+            }
+        </style>
+    {% endblock %}
+
+    {% block body %}
+        <body>
+            {% if app.environment == 'dev' %}
+                {% if errorsMi is defined %}
+                    {{ dump(errorsMi) }}
+                {% endif %}
+
+                {% if errorsVeeva is defined %}
+                    {{ dump(errorsVeeva) }}
+                {% endif %}
+
+                {% if others is defined %}
+                    {{ dump(others) }}
+                {% endif %}
+            {% endif %}
+            <div class="middle-box text-center animated fadeInDown">
+                <h2>Oups!</h2>
+                <h3 class="font-bold">Sorry! Internal Error</h3>
+                <div class="error-desc">
+                    The server encountered something unexpected that didn't allow it to complete the request. We apologize.<br>
+                    You can go back to main page: <br>
+                    <a href="{{ path('presentations') }}" class="btn btn-primary m-t">Dashboard</a>
+                </div>
+            </div>
+        </body>
+    {% endblock %}
+
+    {% block javascripts %}
+        <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
+        <script src="{{ asset('js/plugins/toastr/toastr.min.js') }}"></script>
+        <script>
+            var msg = 'Download zip';
+            {% if msg is defined %}
+                 msg = '{{ msg }}';
+            {% endif %}
+
+            $(function () {
+                toastr.options = {
+                    closeButton: true,
+                    showMethod: 'slideDown',
+                    preventDuplicates: true,
+                    timeOut: 0
+                };
+                toastr['error']("Please contact our support team through support-mcmbuilder@argolife.fr",
+                    msg);
+            });
+        </script>
+    {% endblock %}
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="ar" target-language="ar" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="ac013f46622505aa20a5373d56636f00" resname="dashboard.copyright">
+        <source>dashboard.copyright</source>
+        <target>__dashboard.copyright</target>
+      </trans-unit>
+      <trans-unit id="dc7161be3dbf2250c8954e560cc35060" resname="dashboard">
+        <source>dashboard</source>
+        <target>__dashboard</target>
+      </trans-unit>
+      <trans-unit id="45d4c86841bf78091e60b55adf5ae185" resname="dashboard.home">
+        <source>dashboard.home</source>
+        <target>__dashboard.home</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

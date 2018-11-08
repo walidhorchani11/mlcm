@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="groups.groups">
+                <source>groups</source>
+                <target>Groupes</target>
+            </trans-unit>
+            <trans-unit id="groups_list">
+                <source>groups.list</source>
+                <target>Liste des groupes</target>
+            </trans-unit>
+            <trans-unit id="add_new_group">
+                <source>groups.add_new_group</source>
+                <target>Ajouter un groupe</target>
+            </trans-unit>
+            <trans-unit id="groups.name_group" resname="groups.name_group">
+                                <source>groups.name_group</source>
+                                <target>Nom du groupe</target>
+                  </trans-unit>
+                  <trans-unit id="groups.actions" resname="groups.actions">
+                                       <source>groups.actions</source>
+                                       <target>Actions</target>
+                         </trans-unit>
+        </body>
+    </file>
+</xliff>

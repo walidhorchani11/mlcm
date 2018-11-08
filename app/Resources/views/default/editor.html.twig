@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="sl-root decks edit mz-applicationcache mz-history mz-localstorage mz-svg mz-opacity mz-rgba mz-backgroundsize mz-cssanimations mz-csstransforms mz-csstransforms3d mz-csstransitions mz-flexbox mz-flexboxlegacy mz-fullscreen loaded ua-linux ua-chrome has-visible-scrollbars is-new is-editing wf-montserrat-n4-inactive wf-inactive fonts-are-ready editor-loaded-successfully">
+<head>
+    <meta charset="UTF-8"/>
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    {% block stylesheets %}
+        <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+        <link href="{{ asset('js/build/css/main.css?124') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        {#<link href="https://assets.slid.es/assets/slides/slides-1df814f963530a8557bab503c81c1049.css" media="all"#}
+              {#rel="stylesheet">#}
+        <!--<link rel="stylesheet" type="text/css"
+              href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">-->
+        <!-- Toastr style -->
+        <link href="{{ asset('css/plugins/ladda/ladda-themeless.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/media-mcm.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style-mcm.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/editorfonts.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/popins.css') }}" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/images/favicon.png') }}" />
+        <script src="{{ asset('js/presentation_js/html5shiv.js') }}"></script>
+        <script id="user-css-input" type="text/template"></script>
+    {% endblock %}
+    {% include "piwik.html.twig" %}
+</head>
+<body class="skin-1 inner-edit-pres mini-navbar">
+<div class="page-loader visible">
+    <img src="{{ asset('img/images/logo-mcm.gif') }}" width="201" height="113" alt="MCM Builder" class="mcm-loader" />
+    <!--<div class="page-loader-inner">
+        <p class="page-loader-message">Loading</p>
+        <div class=" sk-spinner sk-spinner-rotating-plane"></div>
+    </div>-->
+</div>
+<div id="wrapper">
+    {% block left_menu %}
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element"> <span>
+                                {% if app.user.picture %}
+                                    <img alt="image" class="img-circle" src="{{ asset(['uploads/users/', app.user.picture]|join) }}" width="48" height="48"/>
+                                {% else %}
+                                    <img alt="image" class="img-circle" src="{{ asset('avatar.png') }}" width="48" height="48"/>
+                                {% endif %}
+                             </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"></strong>
+                             </span> <span class="text-muted text-xs block">{{ app.user.firstname }} {{ app.user.lastname }}<b
+                                            class="caret"></b></span> </span> </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="{{ path('fos_user_profile_edit') }}">{{ 'users.profile' | trans({}, 'users') }}</a></li>
+                                <li><a href="{{ path('fos_user_change_password') }}">{{ 'users.password_update' | trans({}, 'users') }}</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                              <span class="avatar-profile">
+                                {% if app.user.picture %}
+                                    <img alt="image" class="img-circle"
+                                         src="{{ asset(['uploads/users/', app.user.picture]|join) }}" width="48"
+                                         height="48"/>
+                                {% else %}
+                                    <img alt="image" class="img-circle" src="{{ asset('avatar.png') }}" width="48"
+                                         height="48"/>
+                                {% endif %}
+                             </span>
+                        </div>
+                    </li>
+                    {{ knp_menu_render('backoffice_menu', { 'template': 'BackOfficeBundle:Menu:knp_menu.html.twig' }) }}
+                </ul>
+            </div>
+        </nav>
+    {% endblock left_menu %}
+    <div id="page-wrapper">
+        {{ include('@BackOffice/Contents/alert.html.twig') }}
+        <div class="ref-opt"></div>
+        <div class="ref-opt2"></div>
+        <div class="ref-opt3"></div>
+        <div class="ref-opt4"></div>
+        <div id='temp' style="display:none"></div>
+        <div id="top-header" class="row header-editor">
+            <div class="col-md-12 pre-space">
+                {% block header %}
+                    {% include "BackOfficeBundle:Contents:header.html.twig" %}
+                {% endblock header %}
+            </div>
+        </div>
+        {% block message_area %}
+            {% include "BackOfficeBundle:Contents:messageAreaContent.html.twig" %}
+        {% endblock message_area %}
+        {% block content %}
+            <div class="edit-pres-wrap">
+                <div class="page-wrapper">
+                    <!-- <div id="toast-container" class="toast-top-right save-toast-container" aria-live="polite"
+                         role="alert">
+                        <div class="toast toast-success">
+                            <div class="toast-progress"></div>
+                            <button type="button" class="toast-close-button" role="button">×</button>
+                            <div class="toast-message">{{ 'presentationedit.presentation-saved' | trans({}, 'presentationedit') }}</div>
+                        </div>
+                    </div> -->
+                    {% block innerEditor %}{% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+        {{ render(controller('VeevaVaultBundle:VeevaPdf:generalVaultConnect')) }}
+</div>
+{% block footer %}
+    {% include "BackOfficeBundle:Contents:footer.html.twig" %}
+{% endblock footer %}
+    <div id="pdf_preview" class=""></div>
+    {% block javascripts %}
+        <script>
+
+            var TWIG = {};
+            TWIG.currentLanguage = "{{ app.request.getLocale() }}";
+            TWIG.deleteuser = "{{ 'users.delete_confirm' | trans({}, 'users') }}";
+            TWIG.deleteusertext = "{{ 'users.delete_text' | trans({}, 'users') }}";
+            TWIG.deletecompanytext = "{{ 'companies.delete_text' | trans({}, 'companies') }}";
+            TWIG.deletecompany = "{{ 'companies.delete_confirm' | trans({}, 'companies') }}";
+            TWIG.activeproject = "{{ 'projects.list.popup.active' | trans({}, 'project') }}";
+            TWIG.archiveproject = "{{ 'projects.list.popup.archive' | trans({}, 'project') }}";
+            TWIG.disconnect = "{{ 'projects.list.popup.disconnect' | trans({}, 'project') }}";
+            TWIG.deletepres = "{{ 'projects.list.popup.deletepres' | trans({}, 'project') }}";
+            TWIG.btAddPdfName = "{{ 'presentationedit.pdf-add-Button' | trans({}, 'presentationedit') }}";
+            TWIG.idPres = "{{ idPres }}";
+            TWIG.idRev = "{{ idRev }}";
+            TWIG.idCompany = "{{ idCompany }}";
+            TWIG.companyName = "{{ companyName }}";
+            TWIG.companyParentName = "{{ companyParentName }}";
+            TWIG.thumbUrl = '{{ thumb_url }}';
+            TWIG.UrlUpload = "{{ path('ajax_upload_pdf', {idPres:idPres}) }}";
+            TWIG.ImgPdf = "{{ asset('img/images/icons/icon-pdf.png') }}";
+            TWIG.UrlDeletePdf = "{{ path('ajax_delete_pdf') }}";
+            TWIG.UrlShowUrlPdf = "{{ path('token=pdf', {id:'id'}) }}";
+            TWIG.UrlUpdateMediaEditor = "{{ path('editor_update_media') }}";
+            TWIG.urlBase = "{{ env }}";
+            TWIG.image_size = {{ image_size }};
+            TWIG.video_size = {{ video_size }};
+            TWIG.pdf_size = {{ pdf_size }};
+            TWIG.savePresUrl = "{{ path('presentation_ajax_save_pres', { 'idPres':idPres }) }}";
+            TWIG.saveREF = "{{ path('presentation_save_reference') }}";
+            TWIG.updateREF = "{{ path('presentation_revision_reference_update') }}";
+            TWIG.additionalTextTitle = "{{ 'presentationedit.additionalTextTitle' | trans({}, 'presentationedit') }}";
+            TWIG.logout = "{{ path('fos_user_security_logout') }}";
+            TWIG.title_session = "{{ 'presentationedit.title.session' | trans({}, 'presentationedit') }}";
+            TWIG.message_session = "{{ 'presentationedit.message.session' | trans({}, 'presentationedit') }}";
+            TWIG.font = "{{ 'presentationedit.fonts' | trans({}, 'presentationedit') }}";
+            TWIG.phantomjsmodels = "{{ phantomjs_models }}";
+            TWIG.cloneSubmenuUL = [];
+            TWIG.phantom_preview = "{{ phantom_preview }}";
+            TWIG.infoBulle         = {};
+            TWIG.infoBulle.text    = "{{ 'presentation.infoBulle.text'    | trans({}, 'presentationedit') }}";
+            TWIG.infoBulle.image   = "{{ 'presentation.infoBulle.image'   | trans({}, 'presentationedit') }}";
+            TWIG.infoBulle.video   = "{{ 'presentation.infoBulle.video'   | trans({}, 'presentationedit') }}";
+            TWIG.infoBulle.shape   = "{{ 'presentation.infoBulle.shape'   | trans({}, 'presentationedit') }}";
+            TWIG.infoBulle.line    = "{{ 'presentation.infoBulle.line'    | trans({}, 'presentationedit') }}";
+            TWIG.infoBulle.iframe  = "{{ 'presentation.infoBulle.iframe'  | trans({}, 'presentationedit') }}";
+            TWIG.infoBulle.table   = "{{ 'presentation.infoBulle.table'   | trans({}, 'presentationedit') }}";
+            TWIG.infoBulle.html    = "{{ 'presentation.infoBulle.html'   | trans({}, 'presentationedit') }}";
+            TWIG.infoBulle.math    = "{{ 'presentation.infoBulle.math'    | trans({}, 'presentationedit') }}";
+            TWIG.infoBulle.snippet = "{{ 'presentation.infoBulle.snippet' | trans({}, 'presentationedit') }}";
+            TWIG.infoBulle.survey  = "{{ 'presentation.infoBulle.survey'  | trans({}, 'presentationedit') }}";
+            TWIG.infoBulle.code    = "{{ 'presentation.infoBulle.code'    | trans({}, 'presentationedit') }}";
+            TWIG.upload = {};
+            TWIG.upload.text       = "{{ 'presentation.upload.text'        | trans({}, 'presentationedit') }}";
+            TWIG.upload.dragAndDrop= "{{ 'presentation.upload.dragAndDrop' | trans({'and' : '&'},'presentationedit')}}";
+            TWIG.upload.search     = "{{ 'presentation.upload.search'      | trans({},'presentationedit')}}";
+            TWIG.infoBulle.saveChange       = "{{ 'presentation.infobulle.saved' | trans({},'presentationedit')}}";
+            TWIG.infoBulle.changesSaved     = "{{ 'presentation.infobulle.changesSaved' | trans({}, 'presentationedit')}}";
+            TWIG.tostrSavePres              = "{{ 'presentation.tostrSavePres' | trans({}, 'presentationedit')}}";
+            TWIG.toolbar                    = {};
+            TWIG.toolbar.videoAction        = "{{ 'presentation.toolbar.videoAction' | trans({}, 'presentationedit')}}";
+            TWIG.toolbar.defaultPoster      = "{{ 'presentation.toolbar.defaultPoster' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.autoPlay           = "{{ 'presentation.toolbar.autoPlay' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.uploadVideoPoster  = "{{ 'presentation.toolbar.uploadVideoPoster' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.linkToScreen       = "{{ 'presentation.toolbar.linkToScreen' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.linkToPopin        = "{{ 'presentation.toolbar.linkToPopin' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.linkToPdf          = "{{ 'presentation.toolbar.linkToPdf' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.addQuestion        = "{{ 'presentation.toolbar.addQuestion' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.addResponse        = "{{ 'presentation.toolbar.addResponse' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.addInputField      = "{{ 'presentation.toolbar.addInputField' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.deleteBackground   = "{{ 'presentation.toolbar.deleteBackground' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.scrollableText     = "{{ 'presentation.toolbar.scrollableText' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options            = {};
+            TWIG.toolbar.options.columns    = "{{ 'presentation.toolbar.options.columns'  | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.rows       = "{{ 'presentation.toolbar.options.rows'  | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.header     = "{{ 'presentation.toolbar.options.header'  | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.cellPadding = "{{ 'presentation.toolbar.options.cellPadding' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.borderWidth = "{{ 'presentation.toolbar.options.borderWidth' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.borderColor = "{{ 'presentation.toolbar.options.borderColor' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.opacity     = "{{ 'presentation.toolbar.options.opacity' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.depth       = "{{ 'presentation.toolbar.options.depth'   | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.moveBAck    = "{{ 'presentation.toolbar.options.moveBAck' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.moveFront   = "{{ 'presentation.toolbar.options.moveFront' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.duplicate   = "{{ 'presentation.toolbar.options.duplicate' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.remove      = "{{ 'presentation.toolbar.options.remove' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.shape       = "{{ 'presentation.toolbar.options.shape' | trans({},  'presentationedit') }}";
+            TWIG.toolbar.options.animationType = "{{ 'presentation.toolbar.options.animationType' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.effect        = "{{ 'presentation.toolbar.options.effect' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.duration      = "{{ 'presentation.toolbar.options.duration' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.delay         = "{{ 'presentation.toolbar.options.delay' | trans({}, 'presentationedit') }}";
+            TWIG.toolbar.options.border        = "{{ 'presentation.toolbar.options.border' | trans({}, 'presentationedit') }}";
+            TWIG.popupEditHTML               = {};
+            TWIG.popupEditHTML.title         = "{{ 'presentation.popupEditHTML.title'      | trans({}, 'presentationedit') }}";
+            TWIG.popupEditHTML.slideClasses  = "{{ 'presentation.popupEditHTML.slideClasses' | trans({}, 'presentationedit') }}";
+            TWIG.popupEditHTML.cancel        = "{{ 'presentation.popupEditHTML.cancel'     | trans({}, 'presentationedit') }}";
+            TWIG.popupEditHTML.save          = "{{ 'presentation.popupEditHTML.save'       | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary = {};
+            TWIG.mediaLibrary.searchMsg      = "{{ 'presentation.mediaLibrary.searchMsg'       | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.noResultMsg    = "{{ 'presentation.mediaLibrary.noResultMsg'     | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.noTypeMsg      = "{{ 'presentation.mediaLibrary.noTypeMsg'       | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.noTagMsg       = "{{ 'presentation.mediaLibrary.noTagMsg'        | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.title          = "{{ 'presentation.mediaLibrary.title'           | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.creationDate   = "{{ 'presentation.mediaLibrary.creationDate'    | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.size           = "{{ 'presentation.mediaLibrary.size'            | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.legend         = "{{ 'presentation.mediaLibrary.legend'          | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.resolution     = "{{ 'presentation.mediaLibrary.resolution'      | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.save           = "{{ 'presentation.mediaLibrary.save'            | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.cancel         = "{{ 'presentation.mediaLibrary.cancel'          | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.header         = "{{ 'presentation.mediaLibrary.header'          | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.uploadBtn      = "{{ 'presentation.mediaLibrary.uploadBtn'       | trans({}, 'presentationedit') }}";
+            TWIG.mediaLibrary.searchInput    = "{{ 'presentation.mediaLibrary.searchInput'     | trans({}, 'presentationedit') }}";
+            TWIG.userid                      = "{{ app.user.id}}";
+            TWIG.zipMsg                      = "{{ 'presentationedit.zip-msg'     | trans({}, 'presentationedit') }}";
+            TWIG.route                       = "{{ path('presentation_download_zip', { 'idRev': idRev, 'clm': 'clmV','type': 'typeC' }) }}";
+            TWIG.dataPres                    = {
+                                                    "slides"    : {{ data.slides | raw }},
+                                                    "popin"     : {{ data.popin | raw }},
+                                                    "linkedRef" : {{ data.linkedRef | raw }}
+                                                };
+        </script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        <!-- Main scripts -->
+        <script src="{{ asset('js/editor/plugins/svginnerhtml.js') }}"></script>
+        <script src="{{ asset('js/build/libs.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/libs_dependencies.js') }}"></script>
+        <script src="{{ asset('js/build/sl_init.js') }}"></script>
+        <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+        <script src="{{ asset('js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/jquery-ui.js') }}"></script>
+        <script src="{{ asset('js/plugins/sweetalert/sweetalert.min.js') }}"></script>
+        <script src="{{ asset('js/plugins/dataTables/datatables.min.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/spectrum.min.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/jquery.stepper.js') }}"></script>
+        <script src="{{ asset('js/editor/custom_editor.js') }}"></script>
+
+        <script src="{{ asset('js/presentation_js/reveal.min.js') }}"></script>
+        <script src="{{ asset('js/plugins/toastr/toastr.min.js') }}"></script>
+        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+        <script src="{{ asset('ckeditor/adapters/jquery.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/bootstrap-select.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/custom.js') }}"></script>
+        <script src="{{ asset('js/custom.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/script_ref.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/iscroll.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/update_menu.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/edit-presentation.js') }}"></script>
+        <!--<script src="{{ asset('js/presentation_js/edit-survey.js') }}"></script>-->
+        <script src="{{ asset('js/plugins/pdfmake-master/build/pdfmake.min.js') }}"></script>
+        <script src="{{ asset('js/plugins/pdfmake-master/build/vfs_fonts.js') }}"></script>
+        <script src="{{ asset('js/plugins/pdfjs/build/pdf.js') }}"></script>
+        <script src="{{ asset('js/plugins/pdfjs/build/pdf.worker.js') }}"></script>
+        <script src="{{ asset('js/custom-mcm.js') }}"></script>
+        {#*************************************** Custom Js *************************************************/#}
+        <!-- <script src="{{ asset('js/presentation_js/save-pres.js') }}"></script> -->
+        <script src="{{ asset('js/presentation_js/save-reference.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/ref-actions.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/pdf-actions.js') }}"></script>
+        <script src="{{ asset('js/presentation/revision-history.js') }}"></script>
+        <script src="{{ asset('js/build/size-zip.js') }}"></script>
+        {#/*************************************** End Custom Js *************************************************/#}
+        <script src="{{ asset('js/build/main.js?123') }}"></script>
+        <script src="{{ asset('js/build/zipS3.js') }}"></script>
+        {# **************************  js deflate compress data *****************************************************#}
+        <script src="{{ asset('js/plugins/js-deflate-master/rawdeflate.js') }}"></script>
+        <script src="{{ asset('js/plugins/js-deflate-master/rawinflate.js') }}"></script>
+
+        {#<script src="{{ asset('js/alert.js') }}"></script>#}
+        <!-- <script src="{{ asset('js/js-cookie.js') }}"></script>
+        <script src="{{ asset('js/build/cronjob.js') }}"></script> -->
+        {# **************************  End js deflate compress data *************************************************#}
+        <script>
+            $.when($('.slides').length).then(function () {
+                $('.slides section:not(.popin)').each(function () {
+                    $(this).removeAttr('style');
+                })
+            });
+
+            var settings = {{ data.preSettings|raw }};
+            if(Object.keys(settings).length != 0)
+            {
+               TWIG.parameters = settings;
+            }
+            else
+            {
+                $.when($('#params_clm_edidtor').length).then(function () {
+                    var parameters = $('#params_clm_edidtor');
+                    TWIG.parameters =  {
+                        "id"                        : "params_clm_edidtor",
+                        "dataLogoPresUrl"           : parameters.attr('data-logo-pres-url'),
+                        "dataBgPresImg"             : parameters.attr('data-bg-pres-img'),
+                        "dataBgPresColor"           : parameters.attr('data-bg-pres-color'),
+                        "dataBgMenuColor"           : parameters.attr('data-bg-menu-color'),
+                        "dataFontMenuColor"         : parameters.attr('data-font-menu-color'),
+                        "dataMenuFont"              : parameters.attr('data-menu-font')     != undefined    ? parameters.attr('data-menu-font')  : "",
+                        "dataMenuFontname"          : parameters.attr('data-menu-fontname') != undefined    ? parameters.attr('data-menu-fontname') : "",
+                        "dataFontSizeSelect"        : parameters.attr('data-font-size-select'),
+                        "dataCurrentItemColor"      : parameters.attr('data-current-item-color'),
+                        "dataAllowSubmenu"          : parameters.attr('data-allow-submenu'),
+                        "dataHighlightMenu"         : parameters.attr('data-highlight-menu'),
+                        "dataBgPopupColor"          : parameters.attr('data-bg-popup-color'),
+                        "dataBgPopupImg"            : parameters.attr('data-bg-popup-img'),
+                        "dataPopupWidth"            : parameters.attr('data-popup-width'),
+                        "dataPopupHeight"           : parameters.attr('data-popup-height'),
+                        "dataRefWidth"              : parameters.attr('data-ref-width'),
+                        "dataRefHeight"             : parameters.attr('data-ref-height'),
+                        "dataBgRefColor"            : parameters.attr('data-bg-ref-color'),
+                        "dataBgRefImg"              : parameters.attr('data-bg-ref-img'),
+                        "dataBgRefOverlaycolor"     : parameters.attr('data-bg-ref-overlaycolor'),
+                        "dataTextRefColor"          : parameters.attr('data-text-ref-color'),
+                        "dataOverlayRefOpacity"     : parameters.attr(''),
+                        "dataBgBtnClose"            : parameters.attr('data-bg-btn-close'),
+                        "dataQuestionCounter"       : parameters.attr('data-question-counter'),
+                        "dataRespCounter"           : parameters.attr('data-resp-counter'),
+                        "dataFontUrlExist"          : parameters.attr('data-font-url-exist'),
+                        "dataTitleRefContent"       : parameters.attr('data-title-ref-content')  != undefined    ? parameters.attr('data-title-ref-content') :"",
+                        "dataAllowSubmenuwidth"     : parameters.attr('data-allow-submenuwidth') != undefined    ? parameters.attr('data-allow-submenuwidth')  :"",
+                        "dataFontSizeRefContent"    : parameters.attr('data-font-size-ref-content'),
+                        "dataMenuFontTitleRef"      : parameters.attr('data-menu-font-title-ref')      != undefined ? parameters.attr('data-menu-font-title-ref') : "",
+                        "dataMenuFontNameTitleRef"  : parameters.attr('data-menu-font-name-title-ref') != undefined ? parameters.attr('data-menu-font-name-title-ref') : "",
+                        "dataFontSizeTitleRef"      : parameters.attr('data-font-size-title-ref'),
+                        "dataLogoHomeUrl"           : parameters.attr('data-logo-home-url')     != undefined    ? parameters.attr('data-logo-home-url') :"",
+                        "dataLogoRefrsUrl"          : parameters.attr('data-logo-refrs-url')    != undefined    ? parameters.attr('data-logo-refrs-url') :"",
+                        "dataLogoRcpUrl"            : parameters.attr('data-logo-rcp-url')      != undefined    ? parameters.attr('data-logo-rcp-url'):""
+                    };
+                })
+            }
+            TWIG.userConnected = {
+                  'checkin'      : SL.editor.controllers.Appearence.convertDate(Date()),
+                  "presUrl"      : location.href,
+                  "saveHistory"  : []
+            }
+          </script>
+{% endblock %}
+
+</div>
+</body>
+</html>

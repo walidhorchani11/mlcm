@@ -1,0 +1,26 @@
+var flows = {
+    "flow1": [
+        {% if animation is defined %}
+            {
+                'theme': "{{ animation.theme }}",
+                'events': "{{ animation.events }}",
+                'easingSlideIn': "{{ animation.easingSlideIn }}",
+                'easingSlideOut': "{{ animation.easingSlideOut }}",
+                'easingRef': "{{ animation.easingRef }}",
+                'easingPop': "{{ animation.easingPop }}",
+                'rcp': "{{ animation.rcp }}"
+            },
+        {% endif %}
+        {% for screen in screens %}
+            {
+            "id": "{{ screen.id|raw }}",
+            "description": "{{ screen.description|replace({'"': '\\"'})|raw }}",
+            "chapter": "{{ screen.chapter|raw }}",
+            "ref": "{{ screen.ref|replace({'"': '\\"', "\n": "", "\r\n": "", "\t": "", "\n\r":""})|raw }}"
+            }
+            {% if not loop.last %}
+            ,
+            {% endif %}
+        {% endfor %}
+    ]
+};

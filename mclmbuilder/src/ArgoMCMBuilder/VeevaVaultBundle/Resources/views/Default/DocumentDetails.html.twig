@@ -1,0 +1,60 @@
+<center><h1>Document Details</h1></center>
+<br/>
+<h2>General</h2>
+<strong>{{ 'Name'|upper }} :</strong> {{ datas.document.name__v }}<br/>
+<strong>{{ 'Title'|upper }} :</strong> {{ datas.document.title__v }}<br/>
+<strong>{{ 'Type'|upper }} :</strong> {{ datas.document.type__v }}<br/>
+<strong>{{ 'Document Number'|upper }} :</strong> {{ datas.document.document_number__v }}<br/>
+<strong>{{ 'Last Modified By'|upper }} :</strong> {{ datas.document.last_modified_by__v }}<br/>
+<strong>{{ 'Version'|upper }} :</strong> {{ datas.document.minor_version_number__v }}<br/>
+<strong>{{ 'Lifecycle'|upper }} :</strong> {{ datas.document.lifecycle__v }}<br/>
+<strong>{{ 'Status'|upper }} :</strong> {{ datas.document.status__v }}<br/>
+{% for data in datas.document.country__v %}
+    <strong>{{ 'Country'|upper }} :</strong> {{ data }}<br/>
+{% endfor %}
+<h2>Product Information</h2>
+{% for data in datas.document.product__v %}
+    <strong>{{ 'Product'|upper }} :</strong> {{ data }}<br/>
+{% endfor %}
+<h2>Piece Details</h2>
+{% for data in datas.document.campaign__vs %}
+    <strong>{{ 'Campaign'|upper }} :</strong> {{ data }}<br/>
+{% endfor %}
+{% for data in datas.document.audience__vs %}
+    <strong>{{ 'Audience'|upper }} :</strong> {{ data }}<br/>
+{% endfor %}
+{% for data in datas.document.media__vs %}
+    <strong>{{ 'Media'|upper }} :</strong> {{ data }}<br/>
+{% endfor %}
+{% for data in datas.document.branding__vs %}
+    <strong>{{ 'Branding'|upper }} :</strong> {{ data }}<br/>
+{% endfor %}
+<strong>{{ 'Planned date of first use'|upper }} :</strong> {{ datas.document.planned_date_of_first_use__vs }}<br/>
+<strong>{{ 'Pi version'|upper }} :</strong> {{ datas.document.pi_version__vs }}<br/>
+{% for data in datas.document.prescribing_information_format__vs %}
+    <strong>{{ 'Prescribing information format'|upper }} :</strong> {{ data }}<br/>
+{% endfor %}
+<strong>{{ 'Fair Market Value'|upper }} :</strong> {{ datas.document.fair_market_value__vs }}<br/>
+{% for data in datas.document.creative_agency__vs %}
+    <strong>{{ 'Creative Agency'|upper }} :</strong> {{ data }}<br/>
+{% endfor %}
+{% for data in datas.document.other_agencies__vs %}
+    <strong>{{ 'Other agencies'|upper }} :</strong> {{ data }}<br/>
+{% endfor %}
+{% for data in datas.document.other_agencies__vs %}
+    <strong>{{ 'Creative Agency'|upper }} :</strong> {{ data }}<br/>
+{% endfor %}
+<strong>{{ 'Expiration Date'|upper }} :</strong> {{ datas.document.expiration_date__vs }}<br/>
+<strong>{{ 'Duration of Use (days)'|upper }} :</strong> {{ datas.document.duration_of_use_days__vs }}<br/>
+<strong>{{ 'Withdrawal Effective Date'|upper }} :</strong> {{ datas.document.withdrawal_effective_date__vs }}<br/>
+{% for data in datas.document.reason_for_withdrawal__vs %}
+    <strong>{{ 'Reason for Withdrawal'|upper }} :</strong> {{ data }}<br/>
+{% endfor %}
+<h2>MLR Details</h2>
+{% for data in datas.document.mlr_type__vs %}
+    <strong>{{ 'MLR Type'|upper }} :</strong> {{ data }}<br/>
+{% endfor %}
+<strong>{{ 'Planned MLR Start Date'|upper }} :</strong> {{ datas.document.planned_mlr_start_date__vs }}<br/>
+<strong>{{ 'Actual MLR Start Date'|upper }} :</strong> {{ datas.document.actual_mlr_start_date__vs }}<br/>
+<strong>{{ 'Mlr meeting date'|upper }} :</strong> {{ datas.document.mlr_meeting_date__vs }}<br/>
+<strong>{{ 'MLR Meeting Duration (hours)'|upper }} :</strong> {{ datas.document.mlr_meeting_duration_hours__vs }}<br/>

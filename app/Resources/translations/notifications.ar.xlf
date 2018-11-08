@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="ar" target-language="ar" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="dc86462c97eae02a3d54bf6738c56898" resname="alerts_and_notifications">
+        <source>alerts_and_notifications</source>
+        <target>__alerts_and_notifications</target>
+      </trans-unit>
+      <trans-unit id="d3aba9a2a0a2828db05742856ef6431e" resname="alerts.action_button">
+        <source>alerts.action_button</source>
+        <target>__alerts.action_button</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

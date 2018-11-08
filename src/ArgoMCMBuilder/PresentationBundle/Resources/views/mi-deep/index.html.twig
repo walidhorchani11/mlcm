@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Zip</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Status bar styles -->
+    <meta   name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta   name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link   rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src="js/library/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/library/touchSwipe.min.js"></script>
+    <script type="text/javascript" src="js/library/iscroll.js"></script>
+    <script type="text/javascript" src="js/framework/app.js"></script>
+    <link   rel="stylesheet" type="text/css" href="css/editor.css">
+    <script type="text/javascript" src="js/library/velocity.min.js"></script>
+    <script type="text/javascript" src="js/library/velocity.ui.min.js"></script>
+    <script type="text/javascript" src="js/library/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/library/ejs.min.js"></script>
+
+    <style>
+        /***************  CLM   *****************/
+        .reveal .slides > section, .reveal .slides > section > section {
+            display: block !important;
+        }
+        .reveal .slides > section.past, .reveal .slides > section.future, .reveal .slides > section > section.past, .reveal .slides > section > section.future {
+            opacity: 1;
+        }
+        div#menu_1_1_0, div#wrapperMenuScroll, .wrapper-submenu {
+            display: none !important;
+        }
+
+        /*#boxReference #scrollerRef p {*/
+            /*display: inline-block;*/
+        /*}*/
+    </style>
+
+</head>
+<body>
+{{ logoHtml|raw }}
+</body>
+</html>

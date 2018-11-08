@@ -1,0 +1,10 @@
+<div id="rcp">
+    <div id="box">
+        <div class="title">Document</div>
+        <div id="scroller">
+            <div><ul content></ul></div>
+        </div>
+        <div btnClose>{% set src   = '../shared/' ~ shared ~ '/theme/theme1/images/template_btn_close.png' %}{% set class = 'emptydata' %}{% if close is defined and close is not empty %}{% set src = '../shared/' ~ close %}{% set class = 'fulldata' %}{% endif %}<img src="{{ src|raw }}" class="{{ class }}"></div>
+        <div class="bottom-arrow"></div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<section <% if (slide.class) { %>class="<%= slide.class %>"<% } %><% if(slide.attributes) { Object.keys(slide.attributes).forEach(function(key, value){ %> <%= key %>="<%= slide.attributes[key] %>"<% }); } %><% if (slide.style) { %>style="<% Object.keys(slide.style).forEach(function(key, value){ %><%= key %>:<%= slide.style[key] %>;<% }); %>"<% } %>>
+    <% blocks = slide.blocks; %>
+    <% blocks.forEach(function(block){ %>
+        <%- include partials/block -%>
+    <% }); %>
+</section>

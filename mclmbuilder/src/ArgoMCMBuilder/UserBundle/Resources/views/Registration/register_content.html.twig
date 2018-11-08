@@ -1,0 +1,112 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="col-sm-12">
+        <button class="btn btn-default pull-right">
+            <a href="{{ path('clm_users_list') }}"> {{ 'retour'|trans }}</a>
+        </button>
+    </div>
+
+    <div class="col-sm-4">
+        <h2>{{ 'users.add_new_user' | trans({}, 'users') }}</h2>
+
+        <ol class="breadcrumb">
+            <li>
+                <strong>{{ 'name_mcm_app' | trans({}) }}</strong>
+            </li>
+            <li>
+                <strong> {{ 'administration'| trans({}, 'project') }} </strong>
+            </li>
+            <li>
+                <a href="{{ path('clm_users_list') }}">  <strong>{{ 'users' | trans({}, 'users') }}</strong></a>
+            </li>
+            <li class="active">
+                <strong>{{ 'users.add_new_user' | trans({}, 'users') }}</strong>
+            </li>
+        </ol>
+    </div>
+
+    <div class="wrapper wrapper-content">
+        <div class="col-sm-12">
+            {% for type, messages in app.session.flashBag.all %}
+                {% for message in messages %}
+                    <div class="{{ type }}">
+                        {{ message | trans({}, 'FOSUserBundle') }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+
+            {{ form_start(form, {'method': 'post', 'multipart':'true', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+            <div class="form-group">
+                {{ form_label(form.firstname, 'form.first_name',{ 'attr': {'class': 'control-label'} }) }}* :
+                {{ form_errors(form.firstname) }}
+                {{ form_widget(form.firstname) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.lastname, 'form.last_name',{ 'attr': {'class': 'control-label'} }) }}* :
+                {{ form_errors(form.lastname) }}
+                {{ form_widget(form.lastname) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.occupation, 'form.occupation',{ 'attr': {'class': 'control-label'} }) }}* :
+                {{ form_errors(form.occupation) }}
+                {{ form_widget(form.occupation) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.roles, 'form.roles',{ 'attr': {'class': 'control-label'} }) }}* :
+                {{ form_errors(form.roles) }}
+                {{ form_widget(form.roles) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.email, 'form.email',{ 'attr': {'class': 'control-label'} }) }}* :
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.plainPassword.first, 'form.password',{ 'attr': {'class': 'control-label'} }) }}* :
+                {{ form_errors(form.plainPassword.first) }}
+                {{ form_widget(form.plainPassword.first, { 'attr' : {'class': 'form-control'}} ) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.plainPassword.second, 'form.password.confirm',{ 'attr': {'class': 'control-label'} }) }}* :
+                {{ form_errors(form.plainPassword.second) }}
+                {{ form_widget(form.plainPassword.second, { 'attr' : {'class': 'form-control'}} ) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.company, 'Company',{ 'attr': {'class': 'control-label'} }) }}* :
+                {{ form_errors(form.company) }}
+                {{ form_widget(form.company) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_widget(form.file, { 'id': 'input-file' }) }}
+                {{ form_errors(form.file) }}
+                <a href="#" id="btn-file-reset"></a>{{ 'users.deletet-profile-picture-message' | trans({}, 'users') }}
+            </div>
+
+            <div class="form-group" >
+                <input type="submit" value="{{ 'save'|trans }}" class="btn btn btn-success pull-right"/>  {#registration.submit#}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
+    <script>
+        $('#btn-file-reset').on('click', function(e) {
+            var inputFile = $('#input-file');
+            inputFile.wrap('<form>').closest('form').get(0).reset();
+            inputFile.unwrap();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,20 @@
+<div class="<% if (content.class) { %><%= content.class %><% } %>" <% if (content.attributes) { Object.keys(content.attributes).forEach(function(key, value){ %><%= key %>="<%= content.attributes[key] %>" <% }); } %><% if (content.style) { %>style="<% Object.keys(content.style).forEach(function(key, value){ %><%= key %>:<%= content.style[key] %>;<% }); %>"<% } %>>
+<% if (content.data) { %>
+    <% switch (blockType) { case "text" : %>
+    <%- include blockTypes/text -%>
+    <% break; case "scrollabletext" : %>
+    <%- include blockTypes/scrollabletext -%>
+    <% break; case "image" : %>
+    <%- include blockTypes/image -%>
+    <% break; case "video" : %>
+    <%- include blockTypes/video -%>
+    <% break; case "shape" : %>
+    <%- include blockTypes/shape -%>
+    <% break; case "table" : %>
+    <%- include blockTypes/table -%>
+    <% break; case "survey" : %>
+    <%- include blockTypes/survey -%>
+    <% } %>
+<% } %>
+</div>
+<% if (block.blockStyle.survey) { %><div class="<%- block.blockStyle.survey.class %>"><%- block.blockStyle.survey.data %></div><% } %>

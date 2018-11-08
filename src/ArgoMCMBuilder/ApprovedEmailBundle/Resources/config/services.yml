@@ -1,0 +1,4 @@
+services:
+#    approuved_email.example:
+#        class: ArgoMCMBuilder\ApprouvedEmailBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

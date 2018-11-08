@@ -1,0 +1,15 @@
+services:
+   # MENU
+    app.backoffice_menu_builder:
+        class: ArgoMCMBuilder\BackOfficeBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", "@service_container", "@security.context"]
+
+    app.backoffice_menu:
+        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        factory: ["@app.backoffice_menu_builder", createMenu]
+        arguments: ["@request_stack"]
+        tags:
+            - { name: knp_menu.menu, alias: backoffice_menu } # The alias is what is used to retrieve the menu
+    app.env_by_client:
+        class: ArgoMCMBuilder\BackOfficeBundle\Services\EnvService
+        arguments: ["@service_container"]

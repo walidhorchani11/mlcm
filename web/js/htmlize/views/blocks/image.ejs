@@ -1,0 +1,3 @@
+<div class="<%= content.class %>" <% if (content.attributes) { %> <% Object.keys(content.attributes).forEach(function(key) { %> <%- key %> ="<%- content.attributes[key] %>"<% }); %> <%}%> style="<% if (content.style) { %> <% Object.keys(content.style).forEach(function(key) { %> <%- key %>:<%- content.style[key] %> ;<% }); %> <%}%>" >
+    <img src="<%= content.data.src%>" <% if (content.data.attributes) { %> <% Object.keys(content.data.attributes).forEach(function(key) { %> <%- key %> ="<%- content.data.attributes[key] %>"<% }); %> <%}%>>
+</div>

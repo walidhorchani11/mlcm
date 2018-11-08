@@ -1,0 +1,334 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="my_projects">
+                <source>projects</source>
+                <target>Mes projets</target>
+            </trans-unit>
+            <trans-unit id="settings">
+                <source>settings</source>
+                <target>Paramètres</target>
+            </trans-unit>
+            <trans-unit id="create_new_project">
+                <source>projects.create.new.project</source>
+                <target>Créer un projet</target>
+            </trans-unit>
+            <trans-unit id="project.project.name">
+                <source>project.project.name</source>
+                <target>NOM DU PROJET</target>
+            </trans-unit>
+            <trans-unit id="project.status">
+                <source>project.status</source>
+                <target>Statut</target>
+            </trans-unit>
+            <trans-unit id="project.startDate">
+                <source>project.startDate</source>
+                <target>DATE DE DEBUT</target>
+            </trans-unit>
+            <trans-unit id="project.territories">
+                <source>project.territories</source>
+                <target>Territoires</target>
+            </trans-unit>
+            <trans-unit id="project.company">
+                <source>project.company</source>
+                <target>Compagnie</target>
+            </trans-unit>
+            <trans-unit id="project.owner">
+                <source>project.owner</source>
+                <target>Propriétaire</target>
+            </trans-unit>
+            <trans-unit id="project.type">
+                <source>project.type</source>
+                <target>Type</target>
+            </trans-unit>
+            <trans-unit id="project.products">
+                <source>project.products</source>
+                <target>Produits</target>
+            </trans-unit>
+            <trans-unit id="project.clm">
+                <source>project.clm</source>
+                <target>CLM</target>
+            </trans-unit>
+            <trans-unit id="project.actions">
+                <source>project.actions</source>
+                <target>ACTIONS</target>
+            </trans-unit>
+            <trans-unit id="project.choose">
+                <source>project.choose</source>
+                <target>Choisir</target>
+            </trans-unit>
+            <trans-unit id="back_to_projects_list">
+                <source>projects.back.projects_list</source>
+                <target>Retour à la liste des projets</target>
+            </trans-unit>
+            <trans-unit id="projects.edit.project">
+                <source>projects.edit.project</source>
+                <target>Modifier le projet</target>
+            </trans-unit>
+            <trans-unit id="projects.details">
+                <source>projects.details</source>
+                <target>Mes projects détaillés</target>
+            </trans-unit>
+            <trans-unit id="project.details" resname="project.details">
+                <source>project.details</source>
+                <target>Mon projet détaillé</target>
+            </trans-unit>
+            <trans-unit id="projects.details.labels.status" resname="projects.details.labels.status">
+                <source>projects.details.labels.status</source>
+                <target>Statut:</target>
+            </trans-unit>
+            <trans-unit id="projects.details.labels.type" resname="projects.details.labels.type">
+                <source>projects.details.labels.type</source>
+                <target>Type de projet:</target>
+            </trans-unit>
+            <trans-unit id="projects.details.labels.created_by" resname="projects.details.labels.created_by">
+                <source>projects.details.labels.created_by</source>
+                <target>Créé par:</target>
+            </trans-unit>
+            <trans-unit id="projects.details.labels.created" resname="projects.details.labels.created">
+                <source>projects.details.labels.created</source>
+                <target>Créé à:</target>
+            </trans-unit>
+             <trans-unit id="projects.my.active.project" resname="projects.my.active.project">
+                 <source>projects.my.active.project</source>
+                 <target>Mes projets actifs</target>
+             </trans-unit>
+             <trans-unit id="projects.my.archive.project" resname="projects.my.archive.project">
+                 <source>projects.my.archive.project</source>
+                 <target>Mes projets archivés</target>
+             </trans-unit>
+            <trans-unit id="projects.details.labels.type_clm" resname="projects.details.labels.type_clm">
+                <source>projects.details.labels.type_clm</source>
+                <target>Type de CLM:</target>
+            </trans-unit>
+            <trans-unit id="projects.details.labels.list_product" resname="projects.details.labels.list_product">
+                <source>projects.details.labels.list_product</source>
+                <target>Liste des produits:</target>
+            </trans-unit>
+            <trans-unit id="projects.details.labels.last_update" resname="projects.details.labels.last_update">
+                <source>projects.details.labels.last_update</source>
+                <target>Dernière mise à jour:</target>
+            </trans-unit>
+            <trans-unit id="projects.details.labels.territories" resname="projects.details.labels.territories">
+                <source>projects.details.labels.territories</source>
+                <target>Territoires:</target>
+            </trans-unit>
+            <trans-unit id="projects.details.labels.participants" resname="projects.details.labels.participants">
+                <source>projects.details.labels.articipants</source>
+                <target>Participants:</target>
+            </trans-unit>
+            <trans-unit id="projects.details.labels.list_presentation"
+                        resname="projects.details.labels.list_presentation">
+                <source>projects.details.labels.list_presentation</source>
+                <target>Liste des présentations</target>
+            </trans-unit>
+            <trans-unit id="projects.details.labels.last_activity" resname="projects.details.labels.last_activity">
+                <source>projects.details.labels.last_activity</source>
+                <target>Dernière activité</target>
+            </trans-unit>
+            <trans-unit id="projects.details.labels.completed" resname="projects.details.labels.completed">
+                <source>projects.details.labels.completed</source>
+                <target>Terminé:</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.disconnect" resname="projects.list.popup.disconnect">
+                <source>projects.list.popup.disconnect</source>
+                <target>Etes-vous sûr de vouloir annuler cette présentation ?</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.disconnect.cancel">
+                <source>projects.list.popup.disconnect.cancel</source>
+                <target>Vous ne pouvez pas annuler cette action.</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.deletepres" resname="projects.list.popup.deletepres">
+                <source>projects.list.popup.deletepres</source>
+                <target>Etes-vous sûr de vouloir supprimer cette présentation ?</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.duplicate.title" resname="projects.list.popup.duplicate.title">
+                <source>projects.list.popup.duplicate.title</source>
+                <target>Voulez-vous vraiment dupliquer ce projet?</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.duplicate.message" resname="projects.list.popup.duplicate.message">
+                <source>projects.list.popup.duplicate.message</source>
+                <target>Vous ne pouvez pas annuler cette action!</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.duplicate.btconf" resname="projects.list.popup.duplicate.btconf">
+                <source>projects.list.popup.duplicate.btconf</source>
+                <target> Oui, dupliquez le!</target>
+            </trans-unit>
+             <trans-unit id="projects.list.popup.archive.title" resname="projects.list.popup.archive.title">
+                <source>projects.list.popup.archive.title</source>
+                <target>Voulez-vous vraiment activer ce projet?</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.archive.message" resname="projects.list.popup.archive.message">
+                <source>projects.list.popup.archive.message</source>
+                <target>En activant ce projet, vous pourrez éditer ses présentations CLM.</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.archive.btconf" resname="projects.list.popup.archive.btconf">
+                <source>projects.list.popup.archive.btconf</source>
+                <target>Oui, activez le!</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.active.title" resname="projects.list.popup.active.title">
+                <source>projects.list.popup.active.title</source>
+                <target>Voulez-vous vraiment archiver ce projet?</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.active.message" resname="projects.list.popup.active.message">
+                <source>projects.list.popup.active.message</source>
+                <target>En archivant ce projet, vous ne pourrez pas éditer ses présentations CLM.</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.active.btconf" resname="projects.list.popup.active.btconf">
+                <source>projects.list.popup.active.btconf</source>
+                <target>Oui, archiver le!</target>
+            </trans-unit>
+            <trans-unit id="projects.export_csv" resname="export.csv">
+                <source>export.csv</source>
+                <target>Export CSV</target>
+            </trans-unit>
+            <trans-unit id="projects.my_projects" resname="my_project">
+                <source>my_project</source>
+                <target>Mes projets</target>
+            </trans-unit>
+            <trans-unit id="projects.mcmbuilder" resname="MCMBuilder">
+                <source>MCMBuilder</source>
+                <target>CLM Builder</target>
+            </trans-unit>
+            <trans-unit id="projects.project.name" resname="project.name">
+                <source>project.name</source>
+                <target>Nom du projet</target>
+            </trans-unit>
+            <trans-unit id="projects.clm.software" resname="clm.software">
+                <source>clm.software</source>
+                <target>Logiciel CLM</target>
+            </trans-unit>
+
+            <trans-unit id="projects.clm.type" resname="clm.type">
+                <source>clm.type</source>
+                <target>Type de CLM</target>
+            </trans-unit>
+            <trans-unit id="projects.products" resname="clm.products">
+                <source>clm.products</source>
+                <target>Produits</target>
+            </trans-unit>
+
+            <trans-unit id="projects.territory" resname="clm.master_territory">
+                <source>clm.master_territory</source>
+                <target>Territoire maître</target>
+            </trans-unit>
+            <trans-unit id="projects.territories" resname="clm_territories">
+                <source>clm_territories</source>
+                <target>Territoires</target>
+            </trans-unit>
+            <trans-unit id="projects.approuved.presentation" resname="projects.approuved.presentation">
+                <source>projects.approuved.presentation</source>
+                <target>Etes-vous sûr de vouloir approuver cette présentation ?</target>
+            </trans-unit>
+            <trans-unit id="active" >
+                <source>Active</source>
+                <target>Actif</target>
+            </trans-unit>
+            <trans-unit id="archive" >
+                <source>Archive</source>
+                <target>Archive</target>
+            </trans-unit>
+            <trans-unit id="view" >
+                <source>view</source>
+                <target>Visualisation</target>
+            </trans-unit>
+            <trans-unit id="edit" >
+                <source>edit</source>
+                <target>Modifier</target>
+            </trans-unit>
+            <trans-unit id="project.owner.name">
+                <source>project.owner.name</source>
+                <target>PROPRIETAIRE</target>
+            </trans-unit>
+            <trans-unit id="project.filter.startDate">
+                <source>project.filter.startDate</source>
+                <target>Recherche par date début</target>
+            </trans-unit>
+            <trans-unit id="project.filter.pharmaCompany">
+                <source>project.filter.pharmaCompany</source>
+                <target>Recherche par Compagnie</target>
+            </trans-unit>
+            <trans-unit id="project.duplicate">
+                <source>project.duplicate</source>
+                <target>Dupliquer</target>
+            </trans-unit>
+            <trans-unit id="project.delete">
+                <source>delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+            <trans-unit id="projects.create.project" resname="projects.create.project">
+                <source>projects.create.project</source>
+                <target>Créer Projet</target>
+            </trans-unit>
+            <trans-unit id="choose_the_owner">
+                <source>choose_the_owner</source>
+                <target>Choisisser le propriétaire</target>
+            </trans-unit>
+            <trans-unit id="choose_your_company">
+                <source>choose_your_company</source>
+                <target>Choisisser votre compagnie</target>
+            </trans-unit>
+            <trans-unit id="enter_project_name">
+                <source>enter_project_name</source>
+                <target>nom du projet</target>
+            </trans-unit>
+            <trans-unit id="project.success.create">
+                <source>project.success.create</source>
+                <target>le projet a été créé avec succés</target>
+            </trans-unit>
+            <trans-unit id="projects.details.not_vailable_prez">
+                <source>projects.details.not_vailable_prez</source>
+                <target>aucune presentation disponible</target>
+            </trans-unit>
+            <trans-unit id="projects.details.create_presentation">
+                <source>projects.details.create_presentation</source>
+                <target>CREER PRESENTATION</target>
+            </trans-unit>
+            <trans-unit id="projects.create.edit.project" resname="projects.create.edit.project">
+                <source>projects.create.edit.project</source>
+                <target>Modifier projet</target>
+            </trans-unit>
+            <trans-unit id="projects.edit.go_previous_page">
+                <source>projects.edit.go_previous_page</source>
+                <target>RETOUR A LA PAGE PRECEDENTE</target>
+            </trans-unit>
+            <trans-unit id="projects.edit.confirm">
+                <source>projects.edit.confirm</source>
+                <target>CONFIRMER LES MODIFICATIONS</target>
+            </trans-unit>
+            <trans-unit id="sweetAlert.cancel.text">
+                <source>sweetAlert.cancel.text</source>
+                <target>Annuler</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.delete.title" resname="projects.list.popup.delete.title">
+                <source>projects.list.popup.delete.title</source>
+                <target>Etes-vous sûr de vouloir supprimer ce projet?</target>
+            </trans-unit>
+            <trans-unit id="projects.list.popup.delete.message" resname="projects.list.popup.delete.message">
+                <source>projects.list.popup.delete.message</source>
+                <target>Vous ne pouvez pas annuler cette action!</target>
+            </trans-unit>
+             <trans-unit id="projects.list.popup.delete.btconf" resname="projects.list.popup.delete.btconf">
+                <source>projects.list.popup.delete.btconf</source>
+                <target>Oui, supprimer le!</target>
+            </trans-unit>
+            <trans-unit id="projects.details.status.active" resname="projects.details.status.active">
+                <source>projects.details.status.active</source>
+                <target>Activé</target>
+            </trans-unit>
+            <trans-unit id="projects.details.status.archive" resname="projects.details.status.archive">
+                <source>projects.details.status.archive</source>
+                <target>Archivé</target>
+            </trans-unit>
+            <trans-unit id="project.activeBtn" resname="project.activeBtn">
+                <source>project.activeBtn</source>
+                <target>Activer</target>
+            </trans-unit>
+            <trans-unit id="project.archiveBtn" resname="project.archiveBtn">
+                <source>project.archiveBtn</source>
+                <target>Archiver</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

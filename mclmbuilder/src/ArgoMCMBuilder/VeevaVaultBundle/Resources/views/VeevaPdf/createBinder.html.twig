@@ -1,0 +1,278 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}
+    {% if id_binder is empty %}
+        {{ 'Create Binder'|trans({}, 'veeva') }}
+    {% else %}
+        {{ 'Create Document'|trans({}, 'veeva') }}
+    {% endif %}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/loder_steps/loder_steps.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/formfolw.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="container wrapper wrapper-content demo-content">
+        <div id="loader-wrapper">
+            <div id="loader-info">Please wait a moment for Veeva Vault PromoMats synchronization...</div>
+            <img src="{{ asset('img/images/logo-mcm.gif') }}" width="201" height="113" alt="MCM Builder" class="mcm-loader" />
+            <!--<div id="loader"></div>-->
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+
+        </div>
+        <div class="ibox">
+            {% if id_binder is empty %}
+                {% set css = 'form-zip-veeva' %}
+            {% else %}
+                {% set css = 'form-doc-veeva' %}
+            {% endif %}
+            <div class="ibox-content form-flow-veeva container {{ css }} form-inline">
+                <div id="veeva-action" class="pull-right">
+                    {#<a href="{{ path('veeva_profile') }}" title="Veeva Profile">#}
+
+                    {#{% for data in vaultUser.users %}
+                        {% if data.user.user_first_name__v %}
+                            <i class="fa fa-user"
+                               style="color: #000000 ;margin-right: 4px"></i>{{ data.user.user_first_name__v }}
+                        {% endif %}
+                        {% if data.user.user_last_name__v %}
+                            {{ data.user.user_last_name__v }}
+                        {% endif %}
+                    {% endfor %}
+                    #}{#   </a>#}{#
+                    |#}
+                   {# <a href="#" title="Sign out" data-toggle="modal"
+                       data-target="#disconnectModal"><i class="fa fa-sign-out"
+                                                         style="color: #fff"></i>
+                    </a>#}
+                </div>
+                {% if id_binder is empty %}
+                    <div class="text-center header-form-vault">
+                        <h1><i class="fa fa-folder-open"
+                               aria-hidden="true"></i> {{ 'Create Binder'|trans({}, 'veeva') }}</h1>
+                        <a href="#" data-toggle="tooltip" data-placement="right"
+                           title="Create Binder: this is the first step for pushing data to Veeva Vault PromoMats.">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            <small>  {{ 'Upload the PDF of your CLM presentation to Veeva Vault PromoMats.'|trans({}, 'veeva') }}</small>
+                        </a>
+                    </div>
+
+                {% else %}
+                    <div class="text-center header-form-vault">
+                        <h1><i class="fa fa-file-pdf-o"
+                               aria-hidden="true"></i> {{ 'Create Document'|trans({}, 'veeva') }}</h1>
+                        <a href="#" data-toggle="tooltip" data-placement="right"
+                           title="Create & Push Document(s): this is the second step for pushing data to Veeva Vault PromoMats.">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            <small>  {{ 'Upload the PDF of your CLM presentation to Veeva Vault PromoMats.'|trans({}, 'veeva') }}</small>
+                        </a>
+                    </div>
+
+                {% endif %}
+                {% include 'CraueFormFlowBundle:FormFlow:stepList.html.twig' %}
+                <div class="container disconnect-model">
+                    <!-- Modal -->
+                    <div class="modal fade" id="disconnectModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="center">Are you sure you want to disconnect from Veeva Vault PromoMats.</p>
+                                    <p class="center">If you click on continue, you will be not able to proceed with the push.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <a class="btn btn-default"
+                                       href="{{ path('logout_veeva', {'id_press':id_press ,'id_rev':id_rev}) }}"
+                                       title="Confirm">
+                                        Confirm
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {{ form_start(form) }}
+                {% if flow.getCurrentStepNumber() == 1 %}
+                    <div>
+                        {{ form_row(form) }}
+                    </div>
+                {% endif %}
+                {% if flow.getCurrentStepNumber() == 2 %}
+                    {% if app.session.flashBag.has('warning-differ') %}
+                        <div class="alert warning-differ">
+                            {% for msg in app.session.flashBag.get('warning-differ') %}
+                                {{ msg }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if id_binder is not empty %}
+                        <div id="exTab1" class="container">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <table class="table table-hover" id="presentation_table">
+                                        <thead>
+                                        <tr>
+                                            <th>{{ 'PDF' | trans({}, 'veeva') }}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="nav nav-pills">
+                                        {% for key, data in upload_pdf_tree %}
+                                            <tr id="tab-veeva">
+                                                <th><i class="fa fa-file-pdf-o" aria-hidden="true"
+                                                       style="color:#ff1a1a"></i> {{ data.Name }}
+                                                </th>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <small>Upload the PDF of your CLM presentation to Veeva Vault PromoMats.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endif %}
+                {% endif %}
+                {% if flow.getCurrentStepNumber() == 3 %}
+                    <div id="data-of-document">
+                        {% for key, data in data_sent %}
+                            {% if data is not iterable %}
+                                {% if data is not empty %}
+                                    <div><strong>{{ veeva_name(key)|upper }} </strong> :
+                                        {% if veeva_clean_word(data,key)  == false %}
+                                            {{ data }}
+                                        {% else %}
+                                            {{ veeva_clean_word(data,key) }}
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% if id_binder is not empty %}
+                        <div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"
+                             role="dialog" aria-hidden="true" data-backdrop="static">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="picto-header"></div>
+                                        <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-time">
+                    </span> {{ 'Your document has been pushed to Veeva Vault PromoMats.'|trans({}, 'veeva') }}</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-info progress-bar-striped active"
+                                                 style="width: 100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                {% endif %}
+
+                {{ form_rest(form) }}
+                <hr/>
+                <div id="result-error"></div>
+                {% if flow.getCurrentStepNumber() != 3 %}
+                    <div class="required-text">
+                        <small style="color: #e72207;margin-right: 21px">{{ '(*) Required Filed'|trans({}, 'veeva') }}</small>
+                    </div>
+                {% endif %}
+                <div class="bottom-form-veeva">
+                    {% if id_binder is empty %}
+                        {% include '@CraueFormFlow/FormFlow/buttons.html.twig' with {
+                        craue_formflow_button_class_finish: 'finishbinder btn btn-danger pull-right',
+                        craue_formflow_button_class_last: 'btn btn-primary btn-last pull-right',
+                        craue_formflow_button_class_back: 'btn btn-back pull-left',
+                        craue_formflow_button_class_reset: 'btn btn-warning hidden',
+                        craue_formflow_button_label_reset: 'reset',
+                        } %}
+                    {% else %}
+                        {% include '@CraueFormFlow/FormFlow/buttons.html.twig' with {
+                        craue_formflow_button_label_finish: 'Finish Document',
+                        craue_formflow_button_class_finish: 'finishdocument btn btn-danger pull-right',
+                        craue_formflow_button_class_last: 'btn btn-primary btn-last pull-right',
+                        craue_formflow_button_class_back: 'btn btn-back pull-left',
+                        craue_formflow_button_class_reset: 'btn btn-warning hidden',
+                        craue_formflow_button_label_reset: 'reset',
+                        } %}
+                    {% endif %}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent () }}
+    <script src="{{ asset('js/loder_steps/modernizr-2.6.2.min.js') }}"></script>
+    <script>
+
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('body').addClass('loaded');
+            }, 3000);
+
+            $('[data-toggle="tooltip"]').tooltip();
+            $("label:contains('Create binder step1')").hide();
+            $("#CreateBinderStep1 li:contains('This form has expired. Please submit it again.')").hide();
+        });
+    </script>
+    {% if id_binder is not empty %}
+        <script>
+            $('.finishdocument').click(
+                    function (e) {
+                        e.preventDefault();
+                        $('#myPleaseWait').modal('show');
+                        $.ajax({
+                                    type: "POST",
+                                    url: "{{ path('add_new_document') }}",
+                                    data: {'send': {{ data_sent|json_encode|raw }}, 'id_binder':{{ id_binder }},
+                                        'id_press':{{ id_press }},'id_rev':{{ id_rev }} },
+                                    success: function (data, dataType) {
+                                        $('#data-of-document').hide();
+                                        $("#result").html(data);
+                                        $('#myPleaseWait').modal('hide');
+                                        document.location.href = Routing.generate('projects_view', {_locale: TWIG.currentLanguage,id: {{idProject}}});
+                                    },
+
+                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                        $('#myPleaseWait').modal('hide');
+                                        document.location.href = Routing.generate('projects_view', {_locale: TWIG.currentLanguage,id: {{idProject}}});
+                                    }
+                                }
+                        )
+                    }
+            );
+
+        </script>
+    {% endif %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,197 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}ZIP Synchronization Dashboard{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <div class="wrapper wrapper-content veeva-dashboard">
+
+        <div class="container">
+            <div class="ibox float-e-margins">
+                <div id="veeva-action" class="pull-right">
+                    {#<a href="{{ path('veeva_profile') }}" title="Veeva Profile">#}
+
+                    {# {% for data in vaultUser.users %}
+                         {% if data.user.user_first_name__v %}
+                             <i class="fa fa-user"
+                                style="color: #000000 ;margin-right: 4px"></i>{{ data.user.user_first_name__v }}
+                         {% endif %}
+                         {% if data.user.user_last_name__v %}
+                             {{ data.user.user_last_name__v }}
+                         {% endif %}
+                     {% endfor %}
+                     #}{#   </a>#}{#
+                     |#}
+                    <a href="#" title="Sign out" data-toggle="modal"
+                       data-target="#disconnectModal2"><i class="fa fa-sign-out"
+                                                          style="color: #000000"></i>
+                    </a>
+                </div>
+                <div class="container disconnect-model">
+                    <!-- Modal -->
+                    <div class="modal fade" id="disconnectModal2" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="center">Are you sure you want to disconnect from Veeva Vault PromoMats.</p>
+                                    <p class="center">If you click on continue, you will be not able to proceed with the push.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <a class="btn btn-default"
+                                       href="{{ path('logout_veeva', {'id_press':id_press ,'id_rev':id_rev}) }}"
+                                       title="Confirm">
+                                        Confirm
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content ibox-heading">
+                    <small>
+                        You have already pushed the PDF file of your CLM presentation to Veeva Vault PromoMats.
+                        Please choose another action.
+                    </small>
+                    <br/>
+                    <small>
+                        This page presents the 5 last pushes done to Veeva Vault PromoMats. if you want more details go to Veeva Vault Plateform.
+                    </small>
+                </div>
+                <div class="ibox-content">
+
+                    {#  {% if true not in checkoutVaultMcm %}#}
+                    <a href="{{ path('veeva_steps', {'id_press': id_press}) }}"
+                       class="link-as-form"
+                       data-method="create">
+                        <i class="fa fa-plus-circle"
+                           aria-hidden="true"></i> {{ 'Create New Binder'|trans({}, 'button') }}
+                    </a>
+                    {#  {% endif %}#}
+                    <table class="table table-hover no-margins">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Code</th>
+                            <th class="text-center">Binder name</th>
+                            <th class="text-center">Owner</th>
+                            <th class="text-center">Created Date</th>
+                            <th class="text-center">Version</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Document(s)</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for key, entity in array %}
+
+                            {% if checkoutVaultMcm[entity.binderData.document.id] and key == 0 %}
+                                {% set css = 'active-vault' %}
+                            {% else %}
+                                {% set css = 'blocked-vault' %}
+                            {% endif %}
+                            {% if entity.binderData.document.status__v == "Approved" %}
+                                {% set css = 'blocked-vault' %}
+                            {% endif %}
+                            <tr class="{{ css }}">
+                                <td class="text-center">
+                                    {% if css == 'blocked-vault' %}
+                                        <a style="color: #30456a" href="#" data-toggle="tooltip" data-placement="right"
+                                           title="No Synchronise with Vault.">
+                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        </a>
+                                    {% endif %}
+                                    <small>
+                                        <a href="{{ veevaUrl }}/ui/#doc_info/{{ entity.binderData.document.id }}"
+                                           title="Vault link"
+                                           target="_blank"> {{ entity.binderData.document.document_number__v }}</a>
+                                    </small>
+                                </td>
+                                <td class="text-center">{{ entity.binderData.document.name__v }}</td>
+                                <td class="text-center">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    {% if entity.dataUser.data[0].user_first_name__v %}
+                                        {{ entity.dataUser.data[0].user_first_name__v }}
+                                    {% else %}
+                                        unknown
+                                    {% endif %}
+                                    {% if entity.dataUser.data[0].user_last_name__v %}
+                                        {{ entity.dataUser.data[0].user_last_name__v }}
+                                    {% else %}
+                                        unknown
+                                    {% endif %}
+                                </td>
+                                <td class="text-center"><i
+                                            class="fa fa-clock-o"></i>
+                                    {{ entity.binderData.document.document_creation_date__v|date("Y-m-d H:i:s","Europe/Paris") }}
+                                    <small>CET</small>
+                                </td>
+                                <td class="text-navy text-center">{{ entity.binderData.document.major_version_number__v }}
+                                    .{{ entity.binderData.document.minor_version_number__v }}</td>
+                                {% if entity.binderData.document.status__v == "Draft" %}
+                                    <td class="text-center"><span
+                                                class="label label-warning">{{ entity.binderData.document.status__v }}</span>
+                                    </td>
+                                {% else %}
+                                    <td class="text-center"><span
+                                                class="label label-primary">{{ entity.binderData.document.status__v }}</span>
+                                    </td>
+                                {% endif %}
+
+                                <td>
+                                    <ul>
+                                        {% for key,doc in entity.docData %}
+                                            <li>
+                                                <small>   {{ doc.codeDoc }} <span
+                                                            style="color: #1ab394">{{ doc.versionDoc }}</span></small>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+
+                                <td class="text-center">
+                                    {% if checkoutVaultMcm[entity.binderData.document.id]  and key == 0 %}
+                                        <a href="{{ path('synchro_document_pdf_mcm_veeva', {'id_press':id_press,'id_binder':entity.binderData.document.id }) }}">
+                                            <i class="fa fa-cog" aria-hidden="true"></i>
+                                            Update
+                                        </a>
+                                    {% else %}
+                                        <a href="#" class="disabled-link">
+                                            <i class="fa fa-ban" aria-hidden="true"></i>
+                                            Blocked
+                                        </a>
+                                    {% endif %}
+
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent () }}
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+{% endblock %}

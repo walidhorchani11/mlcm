@@ -1,0 +1,49 @@
+{% extends '::default/index.html.twig' %}
+    {% block title %}{{ 'User Veeva Details'|trans({}, 'veeva') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div class="wrapper wrapper-content">
+        <div class="ibox">
+            <div class="ibox-content form-flow-veeva container">
+                <h2>{{ 'User Veeva Details'|trans({}, 'veeva') }}</h2>
+
+                <ul>
+                    {% for data in datas.users %}
+                        {% if data.user.user_last_name__v %}<li><strong>{{ 'Last Name'|upper }} :</strong> {{ data.user.user_last_name__v }}</li>{% endif %}
+                        {% if data.user.user_first_name__v %}<li><strong>{{ 'First Name'|upper }} :</strong> {{ data.user.user_first_name__v }}  </li>{% endif %}
+                        {% if data.user.user_email__v %}<li><strong>{{ 'Email'|upper }} :</strong> {{ data.user.user_email__v }}</li>{% endif %}
+                        {% if data.user.company__v %} <li><strong>{{ 'Company'|upper }} :</strong> {{ data.user.company__v }}</li>{% endif %}
+                        {% if data.user.license_type__v %}     <li><strong>{{ 'License'|upper }} :</strong> {{ data.user.license_type__v }}</li>{% endif %}
+                        <div class="pull-right">
+                            <a href="#{#{{ path('reset_password', {'id': data.user.id}) }}#}" title="Reset Password"
+                               target="_blank">
+                                {{ 'Reset Password'|trans({}, 'veeva') }}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent () }}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

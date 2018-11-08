@@ -1,0 +1,79 @@
+<!-- Modal -->
+<div class="modal fade" id="vaultConnectModal" role="dialog">
+    <div class="modal-dialog form-flow-veeva animated fadeInDown">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+                    <div class="vault-url">VEEVA VAULT URL:<span>{{ veevaUrl }}</span></div>
+                </h4>
+
+            </div>
+            {% if app.session.get('TokenUserVeeva') %}
+
+
+            <div class="modal-body">
+                <p class="center">Are you sure you want to disconnect to Veeva VAULT.</p>
+                <p class="center">If you continue, you will be not able to continue the push.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-default"
+                   href="{{ path('logout_veeva_general') }}"
+                   title="Confirm">
+                    Confirm
+                </a>
+            </div>
+
+        </div>
+        {% else %}
+            <div class="general-connect">
+                {{ form_start(form) }}
+                {% if not form.vars.valid %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
+
+                {% if veevaUrl is not empty %}
+                    <div class="form-group email-veeva">
+                        <div class="vault-url">EMAIL:</div>
+                        {{ form_row(form.Email, {'attr': {'class': 'form-control','placeholder': 'Enter email'}}) }}
+                    </div>
+
+                    <div class="form-group password-veeva">
+                        <div class="vault-url">PASSWORD:</div>
+                        {{ form_row(form.Password, {'attr': {'class': 'form-control','id': 'pwd','placeholder': 'Enter password'}}) }}
+                    </div>
+                    <div class="modal-footer">
+                        <div class="login-btn">
+                            {{ form_row(form.Login, {'attr': {'class': 'btn btn-default'}}) }}
+
+
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger">
+                        ADD YOUR VEEVA <strong>URL CONNECTION!</strong>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+

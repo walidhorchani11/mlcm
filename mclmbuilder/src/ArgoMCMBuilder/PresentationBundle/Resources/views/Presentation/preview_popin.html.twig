@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="sl-root decks export loaded ua-phantomjs reveal-viewport theme-font-montserrat theme-color-white-blue">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ 'presentations.preview' | trans({}, 'presentations') }}
+        || {{ 'MCMBuilder' | trans({}, 'presentations') }}</title>
+    <meta name="description" content="Slides">
+    <meta content="authenticity_token" name="csrf-param"/>
+    <meta content="RbJ1+Qd6BjYXTomHj396N4j+KUauk3MQXaTYM89ic8s=" name="csrf-token"/>
+    <link rel="stylesheet" href="{{ asset('css/preview_css/preview.css', absolute=true) }}">
+    <link href="{{ asset('css/editorfonts.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/popins.css') }}" rel="stylesheet">
+    <style>
+        .theme-color-white-blue {
+            background: transparent !important;
+        }
+        .sf-toolbar, .progress{
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+<div class="reveal">
+    {% if "merck" in app.request.getSchemeAndHttpHost() %}
+        <style>
+            .sl-block .ref-container {
+                opacity: 0;
+            }
+        </style>
+    {% endif %}
+    <div class="slides">
+        <div class="BlockRcpOverlay" style="display: none"></div>
+    </div>
+</div>
+<script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
+<script src="{{ asset('reveal/3.5.0/reveal.js') }}"></script>
+<script>
+    var popinContent    = {{ data|json_encode|raw }},
+        popinWidth      = {{ width }},
+        popinHeight     = {{ height }},
+        popinId         = '{{ popinId }}';
+</script>
+<script src="{{ asset('js/build/popins-preview.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+/* RESET CSS*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+em {
+    font-style: italic !important;
+}
+
+strong {
+    font-weight: bold !important;
+}
+
+/* FRAMEWORK TEMPLATE */
+#stage {
+    width: 1024px;
+    height: 768px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#stage > .content {
+    width: 1024px;
+    height: 768px;
+    position: absolute;
+    /*z-index: 0;*/
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+#stage [data-link], #stage [data-popup], #stage [data-pdf] {
+    cursor: pointer;
+}
+
+/* FRAMEWORK TEMPLATE */
+/**SURVEY STYLE**/
+#tableau_radio th, #tableau_radio td, #tableau th, #tableau td {
+    text-align: left;
+    padding: 10px 0;
+    border-bottom: 0 none;
+    font-size: 20px;
+}
+
+.sl-block[data-block-type="text"] .ref-container {
+    /*position: initial;*/
+    /*top: inherit;*/
+    /*right: inherit;*/
+    /*display: inline-block;*/
+    /*vertical-align: top; !* margin-top: -26px; *!*/
+    /*font-size: 11px;*/
+    position: relative;
+    display: inline-block;
+    font-size: 11px;
+    line-height: 0 !important;
+    vertical-align: baseline !important;
+    top: -1em;
+    right: -0.3em;
+}
+
+.sl-block span.ref {
+    padding-right: 1px;
+    position: relative;
+}
+
+.sl-block span.ref:after {
+    content: ',';
+    /*position: absolute;*/
+    /*bottom: 0px;*/
+}
+
+.sl-block span.ref:last-child:after {
+    display: none;
+}
+
+.submit-btn-output p {
+    display: none;
+}
+
+.trackCurrentScreen {
+    position: absolute;
+    height: 50px;
+    width: 90% !important;
+    z-index: 99999999;
+}
+
+.sl-block .ref-container {
+    position: absolute;
+    top: -50px;
+    right: 0;
+}
+
+.sl-block .video-placeholder {
+    z-index: 50;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    background-image: url(../theme/theme1/images/video-preview.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+section video {
+    background-color: #000 !important;
+}
+
+video::-internal-media-controls-download-button {
+    display: none;
+}
+
+video::-webkit-media-controls-enclosure {
+    overflow: hidden;
+}
+
+video::-webkit-media-controls-panel {
+    width: calc(100% + 30px); /* Adjust as needed */
+}
+
+.sl-block-content.intialP > p {
+    font-size: 10px;
+
+}
+sub{
+    font-size: 60% !important;
+    vertical-align: sub !important;
+    position: static !important;
+    line-height: 0 !important;
+}
+sup:not(.ref-container) {
+    vertical-align: super!important;
+    line-height: 0 !important;
+    font-size: 60% !important;
+    position: static;
+}

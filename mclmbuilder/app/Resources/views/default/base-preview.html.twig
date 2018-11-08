@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html class="sl-root decks export loaded ua-phantomjs reveal-viewport theme-font-montserrat theme-color-white-blue">
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Slides">
+    <meta content="authenticity_token" name="csrf-param"/>
+    <meta content="RbJ1+Qd6BjYXTomHj396N4j+KUauk3MQXaTYM89ic8s=" name="csrf-token"/>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/preview_css/preview.css', absolute=true) }}">
+        <link rel="stylesheet" href="{{ asset('css/editorfonts.css', absolute=true) }}" >
+        <link href="{{ asset('preview_pdf/css/pdf-previw.css') }}" rel="stylesheet">
+        <link href="{{ asset('preview_pdf/css/reset.css') }}" rel="stylesheet">
+        {% if "merck" == env %}
+            <style>  .sl-block .ref-container { opacity: 0; } </style>
+        {% endif %}
+    {% endblock %}
+
+    {% include "piwik.html.twig" %}
+<body>
+    {% block slides %}
+    {% endblock %}
+
+    {% block javascripts %}
+
+        <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
+        <script>
+                var imgHighlight    = "{{ asset('img/selected.png')}}";
+                var itemColor       = "{% if data.menu %}{{ data.menu.itemColor }}{% endif %}";
+                var fontColor       = "{% if data.menu %}{{ data.menu.fontColor }}{% endif %}";
+                var highlight       = "{% if data.menu %}{{ data.menu.highlight }}{% endif %}";
+                var dataMenu        = '{% if data.menu %}{{ data.menu.data |raw }}{% endif %}';
+                var str             = dataMenu.slice(0, -1);
+                $('.slides').append($(str));
+        </script>
+        <script src="{{ asset('js/jquery-2.1.1.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                $(".sl-block").each(function () {
+                    var $SLblock = $(this);
+                    if ($SLblock.find('.sl-block-content').closest('.block-style').length == 0) {
+                        var z_index = $SLblock.find('.sl-block-content')[0].style.zIndex;
+                        $SLblock.find(".sl-block-content").wrapAll("<div class='block-style'></div>");
+                    }
+                    $SLblock.find(".block-style").css("z-index", z_index);
+                });
+            });
+        </script>
+        <script src="{{ asset('js/presentation_js/iscroll.js') }}"></script>
+        <script src="{{ asset('js/presentation_js/vars_for_scroll.js') }}"></script>
+        <script src="{{ asset('js/plugins/reveal.js-menu/menuPDFNotes.js') }}"></script>
+
+        {#<script src="{{ asset('reveal/tender.js') }}"></script>#}
+        {#<script src="{{ asset('reveal/sLConfig.js') }}"></script>#}
+        {#<script src="{{ asset('reveal/revealConfig.js') }}"></script>#}
+        {#<script src="{{ asset('reveal/removeWaste.js') }}"></script>#}
+        {#<script src="{{ asset('reveal/vertical-text.js') }}"></script>#}
+
+        {# ----- uglify, minify, ... ------ #}
+        <script src="{{ asset('reveal/build/pdf-text-vertical.js') }}"></script>
+        <script src="{{ asset('reveal/build/pdf-plugins.js') }}"></script>
+        <script src="{{ asset('reveal/build/pdf-actions.js') }}"></script>
+    {% endblock %}
+</body>
+</html>

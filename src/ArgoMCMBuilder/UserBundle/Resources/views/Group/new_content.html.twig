@@ -1,0 +1,47 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'groups' | trans({}, 'groups') }}</h2>
+            <ol class="breadcrumb">
+
+                <li class="active">
+                    <strong>{{ 'groups' | trans({}, 'groups') }} | {{ 'groups.add_new_group' | trans({}, 'groups') }}</strong>
+                </li>
+            </ol>
+        </div>
+
+        <div class="wrapper wrapper-content">
+            <div class="col-sm-12">
+                {{ form_start(form, { 'action': path('fos_user_group_new'), 'attr': { 'class': 'fos_user_group_new' } }) }}
+
+                <div class="form-group">
+                    {{ form_label(form.name, 'Name : ',{ 'attr': {'class': 'control-label'} }) }}
+                    {{ form_widget(form.name,{ 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.company, 'Company : ',{ 'attr': {'class': 'control-label'} }) }}
+                    {{ form_widget(form.company,{ 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.parent, 'Parent : ',{ 'attr': {'class': 'control-label'} }) }}
+                    {{ form_widget(form.parent,{ 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div>
+                    <input type="submit" value="{{ 'group.new.submit'|trans }}" class="btn" />
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+
+
+    </div>
+
+{% endblock content %}

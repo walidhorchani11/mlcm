@@ -1,0 +1,92 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'projects.create.edit.project'| trans({}, 'project') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'projects.create.edit.project'| trans({}, 'project') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <strong> {{ 'MCMBuilder' | trans({}, 'project') }}</strong>
+                </li>
+                <li>
+                    <strong>{{ 'projects'| trans({}, 'project') }} </strong>
+                </li>
+                <li class="active">
+                    <strong>{{ 'projects.create.edit.project'| trans({}, 'project') }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="{{ lastUrl }}" class="btn btn-primary">{{ 'projects.edit.go_previous_page' | trans({},
+                    'project') }}</a>
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content">
+            <div class="col-sm-12 bg-danger" >
+                <p>{{ 'projects.back.projects_list' |trans({}, 'project') }}</p>
+            </div>
+            <div class="col-sm-12">
+                <div class="box box-primary">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+
+                        {{ form_start(projectForm, {'attr': {'id': 'edit_project','class':'form_edit'}}) }}
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-xs-12">
+                                {{ form_row(projectForm.name) }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-xs-12">
+                                {{ form_row(projectForm.owner) }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-xs-12">
+                               <label>{{ 'project.company' | trans({}, 'project') }}:*</label></br>
+                                {{ project.company.name }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-xs-12">
+                                <label>{{ 'project.startDate' | trans({}, 'project') }}</label></br>
+                                {{ project.startDate|date('y-m-d') }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-xs-12">
+                                {{ form_row(projectForm.status) }}
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <div class="row form-group">
+                                <div class="col-sm-12 col-xs-12 form-group">
+                                    {{ form_row(projectForm.saveAndReturn) }}
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(projectForm) }}
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent () }}
+<script src="{{ asset('js/project/editProject.js') }}"></script>
+{% endblock %}

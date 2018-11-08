@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="products">
+                <source>products</source>
+                <target>Mes produits</target>
+            </trans-unit>
+            <trans-unit id="add_new_products">
+                <source>products.add_product</source>
+                <target>Ajouter un produit</target>
+            </trans-unit>
+            <trans-unit id="products_list">
+                <source>products.list</source>
+                <target>Produits</target>
+            </trans-unit>
+            <trans-unit id="products.action_button">
+                <source>products.action_button</source>
+                <target>C'est une zone de travail</target>
+            </trans-unit>
+            <trans-unit id="add.new.product">
+                <source>add.new.product</source>
+                <target>Ajouter un produit</target>
+            </trans-unit>
+             <trans-unit id="add.edit.product">
+                <source>add.edit.product</source>
+                <target>Modifier le produit</target>
+            </trans-unit>
+
+
+        </body>
+    </file>
+</xliff>

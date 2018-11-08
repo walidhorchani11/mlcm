@@ -1,0 +1,70 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'Newsletter' | trans({}, 'newsletter') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/plugins/summernote/summernote.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/summernote/summernote-bs3.css') }}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'Newsletter' | trans({}, 'newsletter') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    {{ 'MCMBuilder' | trans({}, 'media') }}
+                </li>
+                <li class="active">
+                    <strong>{{ 'Newsletter' | trans({}, 'newsletter') }}</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content">
+                <div class="ibox">
+                    <h1>Newsletter creation</h1>
+                    <div class="mail-box">
+                        <div class="mail-body">
+                            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                            <div class="form-group">
+                                {{ form_label(form.subject) }}
+                                <div class="col-sm-10">
+                                    {{ form_widget(form.subject) }}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="mail-text h-200">
+                                {{ form_widget(form.textMessage) }}
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <div class="mail-body text-right tooltip-demo">
+                                <a href="{{ path('newsletter_index') }}" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Back to the list"><i class="fa fa-times"></i> Back to the list</a>
+                                <input type="submit" value="Create"  class="btn btn-sm btn-primary" title="Create">
+
+                            </div>
+                            <div class="clearfix"></div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('js/plugins/summernote/summernote.min.js') }}"></script>
+        <script>
+            $(document).ready(function(){
+                $('.summernote').summernote({focus: false});
+            });
+        </script>
+    {% endblock %}
+

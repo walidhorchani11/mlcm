@@ -1,0 +1,303 @@
+#boxReference li span.i,
+[data-ref] .title {
+    font-style: italic
+}
+#menu .maxMenu a,
+#menu .subMenu a {
+    text-align: center;
+    vertical-align: middle
+}
+#menu {
+    position: absolute;
+    width: 1024px;
+    height: 55px;
+    bottom: 0;
+    z-index: 4;
+    padding-left: 12px
+}
+#menu .maxMenu,
+#menu .minMenu {
+    bottom: 0;
+    z-index: 1;
+    position: absolute
+}
+#menu .maxMenu {
+    width: 800px;
+    height: 54px;
+    left: 50px;
+    overflow: hidden
+}
+#layer,
+#menu .subMenu {
+    left: 0;
+    position: absolute
+}
+#menu .minMenu {
+    width: 240px;
+    height: 60px;
+    right: 0
+}
+#menu .maxMenu a {
+    height: 54px;
+    display: inline-block;
+    padding: 0 12px;
+    line-height: 55px
+}
+#menu a.home {
+    width: 28px;
+    height: 55px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url(theme/theme1/images/picto-home.png);
+    line-height: 55px;
+    display: block;
+    background-size: contain
+}
+#menu .subMenu.none {
+    display: none!important
+}
+#menu .subMenu a {
+    display: table-cell;
+    cursor: pointer;
+    height: 25px;
+    width: 151px;
+    padding-left: 10px;
+    padding-right: 10px
+}
+#boxPopup,
+#boxPopup #scrollerPop #textPopup {
+    font-family: avantGardeBook
+}
+#menu .subMenu {
+    top: -25px;
+    width: auto;
+    height: 25px;
+    z-index: 0;
+    line-height: 25px;
+    padding: 0 25px 0 0;
+    font-size: 14px;
+    display: none;
+    -webkit-transition: top .3s
+}
+#menu .subMenu.current {
+    display: block
+}
+#menu .subMenu.current.off {
+    top: 27px;
+    -webkit-transition: top .3s
+}
+#menu .subMenu.show {
+    display: block;
+    opacity: 1;
+    -webkit-transition: opacity .3s
+}
+#menu .minMenu a,
+#menu .minMenu div {
+    position: absolute;
+    cursor: pointer;
+    top: 25px
+}
+#menu .minMenu div.ref {
+    height: 30px;
+    width: 30px;
+    background: url(theme/theme1/images/ic-doc.png) center center no-repeat;
+    left: 120px;
+    background-size: contain !important;
+
+}
+#menu .minMenu div.doc {
+    height: 30px;
+    width: 30px;
+    background: url(theme/theme1/images/ic-ref.png) center center no-repeat;
+    left: 77px;
+    top: 25px;
+    background-size: contain !important;
+}
+[data-ref] .title {
+    text-decoration: underline;
+    font-weight: 700
+}
+#menu .logo {
+    position: absolute;
+    width: 90px;
+    height: 50px;
+    top: 3px;
+    right: 0;
+    padding-top: 3px;
+    padding-right: 10px;
+    text-align: right
+}
+#menu .logo img {
+    max-width: 100%;
+    vertical-align: middle;
+    max-height: 100%;
+    height: auto
+}
+#boxRcp,
+#boxReference {
+    background: center no-repeat #f5f5f5;
+    width: 566.5px;
+    height: 262px;
+    position: absolute;
+    right: 10px;
+    bottom: 95px;
+    box-sizing: border-box;
+    z-index: 1000;
+    border-radius: 10px
+}
+#boxRcp .arrow-after,
+#boxReference .arrow-after {
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-top: 30px solid #f5f5f5;
+    border-bottom: 0 solid transparent;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    background-color: transparent;
+    bottom: -29px;
+    right: 90px
+}
+#boxRcp .arrow-after {
+    right: 127px
+}
+#boxReference #scrollerRef,
+#textRcp {
+    padding: 10px;
+    position: absolute;
+    left: 200px;
+    margin-left: -190px;
+    overflow: hidden;
+    text-align: left;
+    color: #6a6a6a;
+    word-wrap: break-word;
+    width: 100%;
+    font-size: 14.7px
+}
+#scroller div:nth-child(2)>div {
+    background: #69A138!important
+}
+#boxReference li {
+    padding-bottom: 2px;
+    letter-spacing: 1
+}
+#boxReference li span.b {
+    font-weight: 700
+}
+#boxRcp #boxRcpClose,
+#boxReference #boxReferenceClose {
+    position: absolute;
+    z-index: 10000;
+    background: url(theme/theme1/images/close_ref.png) center center no-repeat;
+    top: 10px;
+    width: 30px;
+    text-align: center;
+    right: 10px;
+    line-height: 25px;
+    height: 30px;
+    /*border-radius: 50%;*/
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    background-size: 60%
+}
+#boxReference h3 {
+    border-bottom: 1px solid;
+    padding-bottom: 13px;
+    margin: 10px 20px
+}
+#boxReference #textReference {
+    padding-bottom: 20px
+}
+#layer {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    top: 0;
+    display: none;
+    opacity: 0
+}
+#layer[data-pop] {
+    z-index: 2
+}
+#layer[data-rcp],
+#layer[data-ref] {
+    z-index: 3
+}
+#boxPopup {
+    position: absolute;
+    width: 853px;
+    height: 601px;
+    left: 50%;
+    top: 51px;
+    margin-left: -426.5px;
+    box-sizing: border-box;
+    z-index: 999;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center
+}
+#boxPopup .close {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    right: 10px;
+    background: url(theme/theme1/images/close_ref.png) center center no-repeat
+}
+#boxPopup #scrollerPop {
+    position: absolute;
+    width: 824px;
+    height: 530px;
+    padding: 20px;
+    box-sizing: border-box;
+    top: 54px;
+    left: 16px;
+    margin-bottom: 50px
+}
+#boxPopup #scrollerPop #textPopup {
+    padding-bottom: 50px;
+    color: #000;
+    font-size: 20.15px
+}
+#menu,
+#menu .subMenu a {
+    font-family: Montserrat!important;
+    font-size: 15px!important;
+    overflow: hidden!important
+}
+#menu a.current {
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% auto
+}
+#menu a.home.current {
+    background-image: url(theme/theme1/images/picto-home-active.png)!important;
+    background-position: center center
+}
+#scrollmenu {
+    width: 800px
+}
+#scrollmenu #scroller {
+    width: 1670px
+}
+.scrollmenu1 {
+    width: 500px
+}
+.scroller1 {
+    width: 1300px
+}
+#menu a {
+    color: #fff!important
+}
+#menu,
+#menu .subMenu {
+    background-color: #4a5667!important
+}
+#menu a.current {
+    color: #3e8787!important
+}
+#menu {
+    display: block!important
+}

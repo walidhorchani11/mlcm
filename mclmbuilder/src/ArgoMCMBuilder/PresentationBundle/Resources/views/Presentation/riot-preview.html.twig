@@ -1,0 +1,177 @@
+ <script src="{{ asset('js/riot/riot+compiler.js') }}"></script>
+    <script type="riot/tag">
+     <raw>
+          this.root.innerHTML = opts.content;
+     </raw>
+        <slides>
+          <div class="slides">
+                <div class="BlockRcpOverlay" style="display: none"></div>
+                <div class="BlockRefsOverlay" style="display: none"></div>
+                <div class='BlockRef' style='display: none'><span class='ref-close-btn'>x</span><h3>Reference</h3><div class='wrapper-refs'></div><span class='arrow-after'></span></div>
+                <div class="linked-pdf" id="boxRcp" style="display: none;">
+                    <div id="textRcp">
+                         {% for pdf in pdfList %}
+                            {% set title = "" %}
+                            {% if pdf.title is not empty %}
+                                {% set title = pdf.title %}
+                            {% elseif pdf.labelMedia is not empty %}
+                                {% set title = pdf.labelMedia %}
+                            {% else %}
+                                {% set title = "link" ~ loop.index %}
+                            {% endif %}
+                                <a target="-_blank" href="{{ pdf.url }}">{{ title }}</a>
+                         {% endfor %}
+                    </div>
+                    <div id="boxRcpClose"></div>
+                    <span class="arrow-after"></span>
+                </div>
+
+            <section each='{items}' class="{class}" style="{style}" attributes="{attributes}">
+              <section if={children} each='{children}' class="{class}" style="{style}" attributes="{attributes}">
+                <div each='{blocks}' class="{class}" attributes="{attributes}" style="{style}">
+                  <div class="{blockStyle.class}" style={blockStyle.style}>
+                    <div
+                      class={blockStyle.blockcontent.class}
+                      attributes={blockStyle.blockcontent.attributes}
+                      style={blockStyle.blockcontent.style}
+                      if="{type === 'text' || type ==='scrollabletext'  || type === 'survey'}"
+                      data-is="raw"
+                      content={blockStyle.blockcontent.data}>
+                     </div>
+
+                    <div if="{type === 'survey'}" class={blockStyle.survey.class} data-is="raw" content={blockStyle.survey.data}></div>
+
+                    <div class="{blockStyle.blockcontent.class}"
+                     attributes={blockStyle.blockcontent.attributes}
+                     style={blockStyle.blockcontent.style} if="{type === 'table'}"
+                     data-is="raw"
+                     content={blockStyle.blockcontent.data.data}>
+                     </div>
+
+                    <div class={blockStyle.blockcontent.class} attributes={blockStyle.blockcontent.attributes} style={blockStyle.blockcontent.style} if="{type === 'image'}">
+                      <img src={blockStyle.blockcontent.data.src} attributes={blockStyle.blockcontent.data.attributes}/>
+                    </div>
+                    <div class={blockStyle.blockcontent.class} attributes={blockStyle.blockcontent.attributes} style={blockStyle.blockcontent.style} if="{type === 'video'}">
+                      <video id="video" attributes={blockStyle.blockcontent.data.attributes}>
+                        <source src={blockStyle.blockcontent.data.source}>
+                        {blockStyle.blockcontent.data.text}
+                      </video>
+                    </div>
+                    <div class={blockStyle.blockcontent.class} attributes={blockStyle.blockcontent.attributes} style={blockStyle.blockcontent.style} if="{type === 'shape'}">
+                      <svg
+                        attributes={blockStyle.blockcontent.attributes}
+                        data-is="raw"
+                        content={blockStyle.blockcontent.data.data}></svg>
+                    </div>
+                  </div>
+                  <div  if="{ linkedpopin != '' }" class={linkedpopin.class} id={linkedpopin.id} data-is="raw" content={linkedpopin.data}></div>
+                  <div  if="{ linkedscreen != '' }" class={linkedscreen.class} id={linkedscreen.id} data-is="raw" content={linkedscreen.data}></div>
+                </div>
+              </section>
+                <div each='{blocks}' class="{class}" attributes="{attributes}" style="{style}">
+                  <div class="{blockStyle.class}" style={blockStyle.style}>
+                    <div
+                      class={blockStyle.blockcontent.class}
+                      attributes={blockStyle.blockcontent.attributes}
+                      style={blockStyle.blockcontent.style}
+                      if="{type === 'text' || type ==='scrollabletext'  || type === 'survey'}"
+                      data-is="raw"
+                      content={blockStyle.blockcontent.data}>
+                     </div>
+
+                    <div if="{type === 'survey'}" class={blockStyle.survey.class} data-is="raw" content={blockStyle.survey.data}></div>
+
+                    <div class="{blockStyle.blockcontent.class}"
+                     attributes={blockStyle.blockcontent.attributes}
+                     style={blockStyle.blockcontent.style} if="{type === 'table'}"
+                     data-is="raw"
+                     content={blockStyle.blockcontent.data.data}>
+                     </div>
+
+                    <div class={blockStyle.blockcontent.class} attributes={blockStyle.blockcontent.attributes} style={blockStyle.blockcontent.style} if="{type === 'image'}">
+                      <img src={blockStyle.blockcontent.data.src} attributes={blockStyle.blockcontent.data.attributes}/>
+                    </div>
+                    <div class={blockStyle.blockcontent.class} attributes={blockStyle.blockcontent.attributes} style={blockStyle.blockcontent.style} if="{type === 'video'}">
+                      <video id="video" attributes={blockStyle.blockcontent.data.attributes}>
+                        <source src={blockStyle.blockcontent.data.source}>
+                        {blockStyle.blockcontent.data.text}
+                      </video>
+                    </div>
+                    <div class={blockStyle.blockcontent.class} attributes={blockStyle.blockcontent.attributes} style={blockStyle.blockcontent.style} if="{type === 'shape'}">
+                      <svg
+                        attributes={blockStyle.blockcontent.data.attributes}
+                        data-is="raw"
+                        content={blockStyle.blockcontent.data.data}></svg>
+                    </div>
+                  </div>
+                  <div  if="{ linkedpopin != '' }" class={linkedpopin.class} id={linkedpopin.id} data-is="raw" content={linkedpopin.data}></div>
+                  <div  if="{ linkedscreen != '' }" class={linkedscreen.class} id={linkedscreen.id} data-is="raw" content={linkedscreen.data}></div>
+                </div>
+              </section>
+
+          </div>
+        </slides>
+        <popup>
+          <div class="slidespop">
+                <section each='{popups}' class="{class}" style="{style}" attributes="{attributes}">
+                    <div each='{blocks}' class="{class}" attributes="{attributes}" style="{style}">
+
+                      <div class="{blockStyle.class}" style={blockStyle.style}>
+                         <div
+                          class={blockStyle.blockcontent.class}
+                          attributes={blockStyle.blockcontent.attributes}
+                          style={blockStyle.blockcontent.style}
+                          if="{type === 'text' || type ==='scrollabletext'  || type === 'survey'}"
+                          data-is="raw"
+                          content={blockStyle.blockcontent.data}>
+                         </div>
+
+                         <div if="{type === 'survey'}" class={blockStyle.survey.class} data-is="raw" content={blockStyle.survey.data}></div>
+
+                        <div class="{blockStyle.blockcontent.class}"
+                         attributes={blockStyle.blockcontent.attributes}
+                         style={blockStyle.blockcontent.style} if="{type === 'table'}"
+                         data-is="raw"
+                         content={blockStyle.blockcontent.data.data}>
+                         </div>
+
+                        <div class={blockStyle.blockcontent.class} attributes={blockStyle.blockcontent.attributes} style={blockStyle.blockcontent.style} if="{type === 'image'}">
+                          <img src={blockStyle.blockcontent.data.src} attributes={blockStyle.blockcontent.data.attributes}/>
+                        </div>
+                        <div class={blockStyle.blockcontent.class} attributes={blockStyle.blockcontent.attributes} style={blockStyle.blockcontent.style} if="{type === 'video'}">
+                          <video id="video" attributes={blockStyle.blockcontent.data.attributes}>
+                            <source src={blockStyle.blockcontent.data.source}>
+                            {blockStyle.blockcontent.data.text}
+                          </video>
+                        </div>
+                        <div class={blockStyle.blockcontent.class} attributes={blockStyle.blockcontent.attributes} style={blockStyle.blockcontent.style} if="{type === 'shape'}">
+                          <svg
+                            attributes={blockStyle.blockcontent.data.attributes}
+                            data-is="raw"
+                            content={blockStyle.blockcontent.data.data}></svg>
+                        </div>
+                  </div>
+                </section>
+          </div>
+        </popup>
+        <refs>
+            <div id="tempReferences " style="display:none">
+                <div class="refSection" each='{reference}' id="{data_id}"  >
+                        <div class="item-ref-wrapper">
+                            <div class="row-ref" each={Refs} >
+                                <span class="codeRef" data-is="raw" content={value}></span>
+                                <span class="descRef" data-is="raw" content={description} ></span>
+                            </div>
+                            <span if={additional_text.length} data-is="raw" content={additional_text}></span>
+                        </div>
+
+                </div>
+            </div>
+        </refs>
+
+     this.items       = data.slides;
+     this.popups      = data.popin;
+     this.reference   = data.linkedRef;
+     this.menu        = data.menu;
+
+</script>

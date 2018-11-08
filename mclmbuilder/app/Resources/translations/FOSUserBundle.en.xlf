@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="layout.logout" resname="layout.logout">
+        <source>layout.logout</source>
+        <target>Log Out</target>
+      </trans-unit>
+      <trans-unit id="form.password.confirm" resname="form.password.confirm">
+        <source>form.password.confirm</source>
+        <target>Confirmation</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

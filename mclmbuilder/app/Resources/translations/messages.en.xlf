@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="dashboard" resname="dashboard">
+        <source>dashboard</source>
+        <target>Dashboard</target>
+      </trans-unit>
+      <trans-unit id="my_projects" resname="My Projects">
+        <source>My Projects</source>
+        <target>My projects</target>
+      </trans-unit>
+      <trans-unit id="my_CLM_presentations" resname="My CLM Presentations">
+        <source>My CLM Presentations</source>
+        <target>My CLM presentations</target>
+      </trans-unit>
+      <trans-unit id="my_active_CLM" resname="My active CLM">
+        <source>My active CLM</source>
+        <target>My active CLM</target>
+      </trans-unit>
+      <trans-unit id="create_new_CLM" resname="Create new CLM">
+        <source>Create new CLM</source>
+        <target>Create new CLM</target>
+      </trans-unit>
+      <trans-unit id="my_archived_CLM" resname="My archived CLM">
+        <source>My archived CLM</source>
+        <target>My archived CLM</target>
+      </trans-unit>
+      <trans-unit id="my_emails_templates" resname="My Emails Templates">
+        <source>My Emails Templates</source>
+        <target>My emails templates</target>
+      </trans-unit>
+      <trans-unit id="alerts_and_notifications" resname="Alerts and Notifications">
+        <source>Alerts and Notifications</source>
+        <target>Alerts and notifications</target>
+      </trans-unit>
+      <trans-unit id="administration" resname="Administration">
+        <source>Administration</source>
+        <target>Administration</target>
+      </trans-unit>
+      <trans-unit id="workflows" resname="Workflows">
+        <source>Workflows</source>
+        <target>Workflows</target>
+      </trans-unit>
+      <trans-unit id="companies" resname="Companies">
+        <source>Companies</source>
+        <target>Companies</target>
+      </trans-unit>
+      <trans-unit id="territories" resname="Territories">
+        <source>Territories</source>
+        <target>Territories</target>
+      </trans-unit>
+      <trans-unit id="groups" resname="Groups">
+        <source>Groups</source>
+        <target>Groups</target>
+      </trans-unit>
+      <trans-unit id="users" resname="Users">
+        <source>Users</source>
+        <target>Users</target>
+      </trans-unit>
+      <trans-unit id="products" resname="Products">
+        <source>Products</source>
+        <target>Products</target>
+      </trans-unit>
+      <trans-unit id="media_library" resname="Mediathéque">
+        <source>Mediathéque</source>
+        <target>Media libraries</target>
+      </trans-unit>
+      <trans-unit id="welcome_to_clm">
+        <source>welcome_to_clm</source>
+        <target>Welcome to CLM Builder</target>
+      </trans-unit>
+      <trans-unit id="name_mcm_app">
+              <source>name_mcm_app</source>
+              <target>MCM Builder</target>
+      </trans-unit>
+      <trans-unit id="save">
+        <source>save</source>
+        <target>Save</target>
+      </trans-unit>
+      <trans-unit id="retour">
+        <source>retour</source>
+        <target>Return</target>
+      </trans-unit>
+      <trans-unit id="french">
+        <source>french</source>
+        <target>french</target>
+      </trans-unit>
+      <trans-unit id="english">
+        <source>english</source>
+        <target>english</target>
+      </trans-unit>
+      <trans-unit id="choose">
+        <source>choose</source>
+        <target>choose</target>
+      </trans-unit>
+      <trans-unit id="all.presentation">
+        <source>All presentations</source>
+        <target>__All presentations</target>
+      </trans-unit>
+      <trans-unit id="connected.user">
+        <source>Connected users</source>
+        <target>__Connected users</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

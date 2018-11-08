@@ -1,0 +1,21 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: prodmcm.cluster-c8qjh79useqj.eu-west-1.rds.amazonaws.com
+    database_port: 3306
+    database_name: preprod_mcmbuilder
+    database_user: ppdmcmbuilder
+    database_password: EBGdGcy5pLbtSur
+    mailer_transport: gmail
+    mailer_host: smtp.gmail.com
+    mailer_user: noreply@mcm-builder.com
+    mailer_password: 3G7&H5Sc{us(x
+    mailer_encryption: ssl
+    mailer_port: 465
+    secret: 02c766c11aabcd9b1c08b5f17fd24ebb2684ec94
+    session_handler_redis_save_path: 'redis://mcm-cache-prod.ykgzdt.0001.euw1.cache.amazonaws.com'
+    presentations_thumbnails: presentations_thumbnails
+    pdf_directory: '.eu-west-1.argolife.internal'
+    piwik_disabled: true
+    phantom_preview: ''
+    s3_domain: 'https://s3-eu-west-1.amazonaws.com'
+    translation: true

@@ -1,0 +1,74 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'companies.edit_company' | trans({}, 'companies') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'companies.edit_company' | trans({}, 'companies') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <strong>{{ 'MCMBuilder' | trans({}, 'presentations') }} </strong>
+                </li>
+                <li>
+                    <strong> {{ 'administration'| trans({}, 'project') }} </strong>
+                </li>
+                <li>
+                    <strong><a href="{{ path('clm_company_list') }}">
+                            {{ 'companies' | trans({}, 'companies') }}</a></strong>
+                </li>
+                <li class="active">
+                    <strong>{{ 'companies.edit_company' | trans({}, 'companies') }}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-sm-4 ed-btn-c">
+            <button class="btn btn-primary btn-xs pull-right">
+                <a href="{{ path('clm_company_list') }}"> {{ 'retour'|trans({}, 'companies') }}</a>
+            </button>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="ibox">
+            <div class="ibox-content">
+                <div class="col-sm-12  pre-space">
+                    {{ form_start(form, {'action': path('clm_company_edit',{id:company.id}), 'method': 'POST'}) }}
+                    {{ form_errors(form) }}
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{{ 'companies.name' | trans({}, 'companies') }}</label>
+                        {{ form_widget(form.name) }}
+                        {{ form_errors(form.name) }}
+                    </div>
+                    {#<div class="form-group">#}
+                    {#<label class="col-sm-3 control-label">{{ 'companies.agency' | trans({}, 'companies') }}</label>#}
+                    {#{{ form_widget(form.agencies) }}#}
+                    {#{{ form_errors(form.agencies) }}#}
+                    {#</div>#}
+                    <div>
+                        <label class="col-sm-3 control-label">{{ 'companies.level' | trans({}, 'companies') }}</label>
+                        {{ form_widget(form.parent, {'attr':{'disabled':'disabled'}}) }}
+                        {{ form_errors(form.parent) }}
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{{ 'Veeva Url' | trans({}, 'companies') }}</label>
+                        {{ form_widget(form.veevaUrl) }}
+                        {{ form_errors(form.veevaUrl) }}
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{{ 'Veeva Api' | trans({}, 'companies') }}</label>
+                        {{ form_widget(form.veevaApi) }}
+                        {{ form_errors(form.veevaApi) }}
+                    </div>
+                    <div>
+                        <input type="submit" value="{{ 'companies.save'| trans({}, 'companies') }}"
+                               class="btn btn-success pull-right"/>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+                <div class="clear-both"></div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

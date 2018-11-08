@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('preview_pdf/css/pdf-previw.css') }}" rel="stylesheet">
+    <link href="{{ asset('preview_pdf/css/reset.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="container" id="clm_flow_diagram_presentations">
+    {{ htmlCode|raw  }}
+</div>
+
+</body>
+<script src="{{ asset('preview_pdf/js/flow_diagram_resize.js') }}"></script>
+</html>

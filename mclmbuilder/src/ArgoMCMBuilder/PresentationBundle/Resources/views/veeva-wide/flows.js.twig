@@ -1,0 +1,17 @@
+flows = {
+    "flow1": [
+        {% for screen in screens %}
+        {
+            "id": "{{ screen.id|raw }}",
+            "description": "{{ screen.description|replace({'"': '\\"', "\n": "", "\r\n": "", "\t": "", "\n\r":"", "'": "\\'"})|raw }}",
+            "chapter": "{{ screen.chapter|raw }}",
+            "ref": '{{ screen.ref|replace({'"': '\\"', "\n": "", "\r\n": "", "\t": "", "\n\r":"", "'": "\\'"})|raw }}',
+            "theme": '{{ screen.theme|raw }}',
+            "doc": '{{ screen.doc|raw }}'
+        }
+        {% if not loop.last %}
+            ,
+        {% endif %}
+        {% endfor %}
+    ]
+};

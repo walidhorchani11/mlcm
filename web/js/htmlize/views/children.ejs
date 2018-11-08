@@ -1,0 +1,8 @@
+
+<% childrens.forEach(function(section){ %>
+    <section class="<%= section.class %>" <% if (section.attributes) { %> <% Object.keys(section.attributes).forEach(function(key) { %> <%- key %> ="<%- section.attributes[key] %>"<% }); %> <%}%>  style="<% if (section.styles) { %> <% Object.keys(section.styles).forEach(function(key) { %> <%- key %>:<%- section.styles[key] %> ;<% }); %> <%}%>">
+      <% if (section.blocks){%>
+          <%- include(dirname + '/views/block', {blocks: section.blocks , path: dirname}); %>
+       <%}%>
+    </section>
+  <% }); %>

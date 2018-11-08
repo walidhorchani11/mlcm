@@ -1,0 +1,74 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+            ROLE_NO_NAVIGATION:  ROLE_NO_NAVIGATION
+            ROLE_BASIC_USER:     ROLE_BASIC_USER
+            ROLE_MANAGER:        ROLE_BASIC_USER
+            ROLE_ADMIN:          ROLE_MANAGER
+            ROLE_SUPER_ADMIN:    ROLE_ADMIN
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        in_memory:
+            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            user_checker: app.user_checker
+            form_login:
+                provider:             fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                login_path:           fos_user_security_login
+                use_forward:          false
+                check_path:           fos_user_security_check
+                failure_path:         null
+                default_target_path:  terms_conditions
+                remember_me:          true
+
+            remember_me:
+                secret: %secret%
+                lifetime: 300000000
+                path: /
+                domain: ~
+
+            logout:
+                path:                  fos_user_security_logout
+                target:                /
+            anonymous:    true
+
+    access_denied_url: fos_user_security_logout
+    always_authenticate_before_granting: true
+    access_control:
+        - { path: ^/[^/]+/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/[^/]+/register, role: ROLE_ADMIN }
+        - { path: ^/[^/]+/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/[^/]+/admin/, role: [ROLE_ADMIN,ROLE_MANAGER,ROLE_BASIC_USER] }
+        - { path: ^/[^/]+/my-clm-presentations/[^/]+/preview-pdf, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/[^/]+/my-clm-presentations/[^/]+/[^/]+/[^/]+/[^/]+/popin, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/[^/]+/my-clm-presentations/, role: [ROLE_ADMIN,ROLE_MANAGER,ROLE_BASIC_USER] }
+        - { path: ^/[^/]+/projects, role: [ROLE_ADMIN,ROLE_MANAGER,ROLE_BASIC_USER] }
+        - { path: ^/[^/]+/terms, role: [ROLE_ADMIN,ROLE_MANAGER, ROLE_BASIC_USER, ROLE_NO_NAVIGATION] }
+        - { path: ^/[^/]+/media, role: [ROLE_ADMIN,ROLE_MANAGER] }
+        - { path: ^/[^/]+/product/product/getProductsByCompany, role: [ROLE_ADMIN,ROLE_MANAGER, ROLE_BASIC_USER] }
+        - { path: ^/[^/]+/product/, role: [ROLE_ADMIN] }
+        - { path: ^/[^/]+/login-veeva, role: [ROLE_ADMIN,ROLE_MANAGER, ROLE_BASIC_USER] }
+        - { path: ^/[^/]+/zip-veeva-steps/[^/]+, role: [ROLE_ADMIN,ROLE_MANAGER, ROLE_BASIC_USER] }
+        - { path: ^/[^/]+/pdf-veeva-steps/[^/]+, role: [ROLE_ADMIN,ROLE_MANAGER, ROLE_BASIC_USER] }
+        - { path: ^/[^/]+/dashboard-vault-pdf/[^/]+, role: [ROLE_ADMIN,ROLE_MANAGER, ROLE_BASIC_USER] }
+        - { path: ^/[^/]+/dashboard-vault-zip/[^/]+, role: [ROLE_ADMIN,ROLE_MANAGER, ROLE_BASIC_USER] }
+        - { path: ^/[^/]+/retrieve-media, role: [ROLE_ADMIN,ROLE_MANAGER, ROLE_BASIC_USER] }
+        - { path: ^/[^/]+/faq, role: [ROLE_ADMIN,ROLE_MANAGER, ROLE_BASIC_USER] }
+
+

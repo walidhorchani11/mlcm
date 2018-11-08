@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="media.new_media">
+        <source>media.new_media</source>
+        <target>Créer un média</target>
+      </trans-unit>
+      <trans-unit id="media.add_new_media">
+       <source>media.add_new_media</source>
+       <target>Ajouter un média</target>
+      </trans-unit>
+      <trans-unit id="media.all_media">
+        <source>media.all_media</source>
+        <target>Tous les médias</target>
+      </trans-unit>
+      <trans-unit id="media.title_media">
+        <source>media.title_media</source>
+        <target>Bibliothèque || MCM Builder</target>
+      </trans-unit>
+      <trans-unit id="media.mcmbuilder" resname="MCMBuilder">
+        <source>MCMBuilder</source>
+        <target>MCM Builder</target>
+      </trans-unit>
+      <trans-unit id="media.file_size_message">
+        <source>media.file_size_message</source>
+        <target>Les fichiers PDF dépassants %pdf_size% mb, les images dépassants %image_size% mb et les videos dépassants %video_size% ne seront pas téléchargés !</target>
+      </trans-unit>
+      <trans-unit id="media.add_new_media_title">
+        <source>media.add_new_media_title</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="media.add_new_media_projects">
+        <source>media.add_new_media_projects</source>
+        <target>Projets</target>
+      </trans-unit>
+      <trans-unit id="media.add_new_media_presentation">
+        <source>media.add_new_media_presentation</source>
+        <target>Présentation</target>
+      </trans-unit>
+      <trans-unit id="media.add_new_media_submit">
+        <source>media.add_new_media_submit</source>
+        <target>Ajouter</target>
+      </trans-unit>
+      <trans-unit id="media.detail">
+        <source>media.detail</source>
+        <target>Détails</target>
+      </trans-unit>
+      <trans-unit id="media.detail_title">
+        <source>media.detail_title</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="media.detail_presentation">
+        <source>media.detail_presentation</source>
+        <target>Présentation</target>
+      </trans-unit>
+      <trans-unit id="media.detail_format">
+        <source>media.detail_format</source>
+        <target>Format</target>
+      </trans-unit>
+      <trans-unit id="media.detail_size">
+        <source>media.detail_size</source>
+        <target>Taille</target>
+      </trans-unit>
+      <trans-unit id="media.detail_resolution">
+        <source>media.detail_resolution</source>
+        <target>Résolution</target>
+      </trans-unit>
+      <trans-unit id="media.detail_creation_date">
+        <source>media.detail_creation_date</source>
+        <target>Date de création</target>
+      </trans-unit>
+      <trans-unit id="media.detail_update_date">
+        <source>media.detail_update_date</source>
+        <target>Date de mise à jour</target>
+      </trans-unit>
+      <trans-unit id="media.list_media">
+        <source>media.list_media</source>
+        <target>Bibliothèque</target>
+      </trans-unit>
+        <trans-unit id="media.delete_file_message">
+            <source>media.delete_file_message</source>
+            <target>Êtes vous sûr(e) de vouloir supprimer ce fichier ?</target>
+        </trans-unit>
+        <trans-unit id="media.delete_file_message_yes">
+            <source>media.delete_file_message</source>
+            <target>Oui, supprime le !</target>
+        </trans-unit>
+        <trans-unit id="media.delete_file_message_no">
+            <source>media.delete_file_message</source>
+            <target>Annuler</target>
+        </trans-unit>
+        <trans-unit id="media.title">
+            <source>media.title</source>
+            <target>Bibliothèque</target>
+        </trans-unit>
+        <trans-unit id="media.replace_file_message">
+            <source>media.replace_file_message</source>
+            <target>Êtes vous sûr(e) de vouloir remplacer ce fichier ?</target>
+        </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,45 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'territories' | trans({}, 'territories') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'territories' | trans({}, 'territories') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <strong>{{ 'MCMBuilder' | trans({}, 'presentations') }} </strong>
+                </li>
+                <li>
+                    <strong> {{ 'administration'| trans({}, 'project') }} </strong>
+                </li>
+                <li class="active">
+                    <strong> {{ 'territories' | trans({}, 'territories') }} </strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="#" class="btn btn-primary">{{ 'territories.action_button' | trans({}, 'territories') }}</a>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="col-sm-12 bg-danger" style="padding: 25px; margin-top: 3px;">
+                <h3>{{ 'territories' | trans({}, 'territories') }}</h3>
+                <ul>
+                    <li><a href="{{ path('territory_create_new_territory') }}">{{ 'territories.add_new_territory' | trans({}, 'territories') }}</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent () }}
+
+{% endblock %}

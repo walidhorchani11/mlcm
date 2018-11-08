@@ -1,0 +1,197 @@
+{% extends '::default/index.html.twig' %}
+{% trans_default_domain "presentations" %}
+{% block title %}{{  'presentations.my_active_clm_presentations' | trans({}, 'presentations') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/dataTables/dataTables.colVis.css') }}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-6">
+            <h2>{{  'presentations.my_active_clm_presentations' | trans({}, 'presentations') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <strong>{{ 'MCMBuilder' | trans({}, 'presentations') }}</strong>
+                </li>
+                <li>
+                    <strong>{{ 'MyPresentations' | trans({}, 'presentations') }}</strong>
+                </li>
+                <li class="active">
+                    <strong>{{  'presentations.my_active_clm_presentations' | trans({}, 'presentations') }}</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+
+        <div class="ibox">
+           {# {% if is_granted('ROLE_MANAGER') %}
+            <div class="ibox-tools">
+                <a href="{{ path('create_new_pres') }}" class="btn btn-primary btn-xs">{{ 'presentations.new_clm_presentation' | trans({}, 'presentations') }}</a>
+            </div>
+            {% endif %}#}
+            {# *********************** modal more filter ******************** #}
+
+            <div class="modal" id="modal_moreFilter" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content animated fadeIn">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">{{ 'presentations.search.more' | trans({}, 'presentations') }}</h4>
+                        </div>
+                        <div class="modal-body" >
+                            <form id="myForm">
+                                <div>
+                                    <label for="company">{{ 'presentations.pharmacompany' | trans({}, 'presentations') }} : </label>
+                                    <select name="company" id="company" class="form-control col-md-4">
+                                        <option value="" selected>{{ 'all' | trans({}, 'presentations') }}</option>
+                                    </select>
+                                </div>
+                                {#<div>#}
+                                    {#<label for="agency">{{ 'presentations.pharmaagency' | trans({}, 'presentations') }} : </label>#}
+                                    {#<select name="agency" id="agency" class="form-control col-md-4">#}
+                                        {#<option value="" selected>{{ 'all' | trans({}, 'presentations') }}</option>#}
+                                    {#</select>#}
+                                {#</div>#}
+                                <div>
+                                    <label for="project">{{ 'proj-name' | trans({}, 'presentations') }} : </label>
+                                    <select name="project" id="project" class="form-control col-md-4">
+                                        <option value="" selected>{{ 'all' | trans({}, 'presentations') }}</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="owner">{{ 'owner' | trans({}, 'presentations') }} : </label>
+                                    <select name="owner" id="owner" class="form-control col-md-4">
+                                        <option value="" selected>{{ 'all' | trans({}, 'presentations') }}</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="territory">{{ 'presentations.territory' | trans({}, 'presentations') }} : </label>
+                                    <select name="territory" id="territory" class="form-control col-md-4">
+                                        <option value="" selected>{{ 'all' | trans({}, 'presentations') }}</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" style="color:#ffffff; background-color: #087308;">
+                                {{ 'presentation.search' | trans({}, 'presentations') }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {#********************** end modal filter ************************#}
+            <div class="ibox-content">
+
+                <div class="row presentationtTopindex">
+                    <div class="col-md-4 inner-div">
+                        <label for="presentationName">{{ 'presentations.clm-presentation.name' | trans({}, 'presentations') }} : </label>
+                        <input type="text" name="presentationName" id="presentationName" placeholder="{{ 'presentations.clm-presentation' | trans({}, 'presentations') }}" class="form-control stylish-it">
+                    </div>
+                    <div class="col-md-8 inner-div right">
+                        {% if is_granted('ROLE_MANAGER') %}
+                            <a href="{{ path('create_new_pres') }}" class="btn btn-primary btn-xs btn-create-pres-updated">{{ 'presentations.new_clm_presentation' | trans({}, 'presentations') }}</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {#<div class="col-sm-4 form-group">
+                    <label for="presentationName">{{ 'presentations.clm-presentation.name' | trans({}, 'presentations') }} : </label>
+                    <input type="text" name="presentationName" id="presentationName" placeholder="{{ 'presentations.clm-presentation' | trans({}, 'presentations') }}" class="form-control">
+                </div>#}
+                <div class=" col-md-12 frm-col-spec"  style="padding-bottom: 10px;">
+
+                    <div class=" col-sm-3">
+                        <label for="status">{{ 'status' | trans({}, 'presentations') }} : </label>
+                        <select name="status" id="status" class="form-control">
+                            <option value="" selected>{{ 'all' | trans({}, 'presentations') }}</option>
+                        </select>
+                    </div>
+                    <div class=" col-sm-3">
+                        <label for="clmType">{{ 'type' | trans({}, 'presentations') }} : </label>
+                        <select name="clmType" id="clmType" class="form-control">
+                            <option value="" selected>{{ 'all' | trans({}, 'presentations') }}</option>
+                        </select>
+                    </div>
+                    {% if "argolife" not in app.request.getSchemeAndHttpHost() %}
+                    {#<div class=" col-sm-3">#}
+                        {#<label for="product">{{ 'pres-products' | trans({}, 'presentations') }} : </label>#}
+                        {#<select name="product" id="product" class="form-control">#}
+                            {#<option value="" selected>{{ 'all' | trans({}, 'presentations') }}</option>#}
+                        {#</select>#}
+                    {#</div>#}
+                    {% endif %}
+                    <div class="pull-right col-sm-2">
+                        <label for="product"></label>
+                        <a type="button" class="btn btn-primary btn-success form-control" id="moreFilter" />{{ 'presentations.addFilter' | trans({}, 'presentations') }}</a>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <table id="presentation_table" class="table table-striped table-bordered table-hover" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>{{ 'name' | trans({}, 'presentations') }}</th>
+                            <th>{{ 'proj-name' | trans({}, 'presentations') }}</th>
+                            {#<th style="display: none">{{ 'pres-products' | trans({}, 'presentations') }}</th>#}
+                            <th>{{ 'type' | trans({}, 'presentations') }}</th>
+                            <th>{{ 'presentations.territory' | trans({}, 'presentations') }}</th>
+                            <th>{{ 'status' | trans({}, 'presentations') }}</th>
+                            <th>{{ 'version' | trans({}, 'presentations') }}</th>
+                            <th>{{ 'owner' | trans({}, 'presentations') }}</th>
+                            <th>{{ 'creation.date' | trans({}, 'presentations') }}</th>
+                            <th>{{ 'action' | trans({}, 'presentations') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="blc-csv">
+                    <a href="{{ path('presentations_export_list',{'isActive':'20'}) }}">{{ 'export.csv' | trans({}, 'project') }}</a>
+
+                </div>
+                <div class="clear-both"></div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent () }}
+    <script>
+        var TWIG = {};
+        TWIG.currentLanguage = "{{ app.request.getLocale() }}";
+        TWIG.route = "presentations";
+        TWIG.twigParent = 'active';
+        TWIG.dataTable = {};
+        TWIG.dataTable.edit = '{{ 'dataTable.edit'|trans }}';
+        TWIG.dataTable.editForm = '{{ 'dataTable.editForm'|trans }}';
+        TWIG.dataTable.delete = '{{ 'dataTable.delete'|trans }}';
+        TWIG.dataTable.duplicate = '{{ 'dataTable.duplicate'|trans }}';
+        TWIG.dataTable.play = '{{ 'dataTable.play'|trans }}';
+        TWIG.sweetAlert = {};
+        TWIG.sweetAlert.title = '{{ 'sweetAlert.active.title'|trans }}';
+        TWIG.sweetAlert.text = '{{ 'sweetAlert.active.text'|trans }}'
+        TWIG.sweetAlert.deleteTitle = '{{ 'sweetAlert.delete.title'|trans }}';
+        TWIG.sweetAlert.deleteText = '{{ 'sweetAlert.delete.text'|trans }}';
+        TWIG.sweetAlert.duplicateTitle = '{{ 'sweetAlert.duplicate.title'|trans }}';
+        TWIG.sweetAlert.duplicateText = '{{ 'sweetAlert.duplicate.text'|trans }}';
+        TWIG.sweetAlert.confirmButton = '{{ 'sweetAlert.active.confirm_button'|trans }}';
+        TWIG.presentationbuttonfilter  = "{{ 'presentations.select-data-start' | trans({}, 'presentations') }}";
+        TWIG.presentationbuttontext  = "{{ 'presentations.add-data-to-table' | trans({}, 'presentations') }}";
+        TWIG.presentationAll = "{{ 'all' | trans({}, 'presentations') }}";
+        TWIG.urlTestModeEdit = "{{ path('test_mode_edit_pres') }}"
+    </script>
+    <script src="{{ asset('js/plugins/dataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/dataTables/dataTables.colVis.js') }}"></script>
+    <script src="{{ asset('js/project/datatable.js') }}"></script>
+    <script src="{{ asset('js/presentations-index-ajax-dataTable.js') }}"></script>
+{% endblock %}

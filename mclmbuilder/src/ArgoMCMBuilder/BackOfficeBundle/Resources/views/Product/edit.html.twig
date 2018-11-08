@@ -1,0 +1,52 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'add.edit.product' | trans({}, 'products') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'add.edit.product' | trans({}, 'products') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <strong>{{ 'MCMBuilder' | trans({}, 'presentations') }} </strong>
+                </li>
+                <li>
+                    <strong> {{ 'administration'| trans({}, 'project') }} </strong>
+                </li>
+                <li>
+                    <a href="{{ path('products') }}"><strong>{{ 'products.list' | trans({}, 'products') }} </strong></a>
+                </li>
+                <li class="active">
+                    <strong>{{ 'add.edit.product' | trans({}, 'products') }}</strong>
+                </li>
+            </ol>
+        </div>
+
+        <div class="col-sm-4 ed-btn-c">
+            <button class="btn btn-primary btn-xs pull-right">
+                <a href="{{ path('products') }}"> Retour</a>
+            </button>
+        </div>
+    </div>
+        <div class="wrapper wrapper-content">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="col-sm-12 pre-space">
+                        {{ form_start(edit_form) }}
+                        {{ form_widget(edit_form) }}
+
+                        <div>
+                        <input type="submit" value="Save" class="btn btn-success pull-right"/>
+                        </div>
+                    </div>
+                            {{ form_end(edit_form) }}
+                    <div class="clear-both"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+{% endblock content %}

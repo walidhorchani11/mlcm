@@ -1,0 +1,437 @@
+{% extends '::default/index.html.twig' %}
+{% block title %}{{ 'projects.details' | trans({}, 'project') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/project_view.css') }}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>{{ 'project.details' | trans({}, 'project') }}</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <strong>{{ 'MCMBuilder' | trans({}, 'project') }}</strong>
+                </li>
+                <li>
+                    <strong>{{ 'projects' | trans({}, 'project') }}</strong>
+                </li>
+                <li class="active">
+                    <strong>{{ 'project.details' | trans({}, 'project') }}</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content animated fadeInUp project-details-page" id="views-container">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="m-b-md">
+                                    {% if is_granted('ROLE_SUPER_ADMIN') or project.owner.id == app.user.id or (
+                                    (is_granted('ROLE_MANAGER') or is_granted
+                                    ('ROLE_ADMIN') ) and project.company.id in listCompId  ) %}
+                                        {% if project.status == "20" %}
+                                            <a href="{{ path('projects_create_edit_project', { 'id':project.id}) }}" class="btn btn-primary pull-right">{{ 'projects.edit.project' | trans({}, 'project') }}</a>
+                                        {% endif %}
+                                    {% endif %}
+                                    <h2 class="pro-title">{{ project.name }}</h2>
+                                </div>
+                                <dl class="dl-horizontal">
+                                    <dt>{{ 'projects.details.labels.status' | trans({}, 'project') }}</dt>
+                                    <dd>
+                                        {% if project.status == "20" %}
+                                            <span class="label label-primary">{{ 'projects.details.status.active' |
+                                                trans({}, 'project') }}</span>
+                                        {% else %}
+                                            <span class="label label-warning">{{ 'projects.details.status.archive' |
+                                                trans({}, 'project') }}</span>
+                                        {% endif %}
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <dl class="dl-horizontal">
+                                    <dt>{{ 'projects.details.labels.created_by' | trans({}, 'project') }}</dt> <dd>{{ project.owner.firstName }} {{ project.owner.lastName }}</dd>
+                                </dl>
+                            </div>
+                            <div class="col-lg-5" id="cluster_info">
+                                <dl class="dl-horizontal" >
+
+                                    <dt>{{ 'projects.details.labels.created' | trans({}, 'project') }}</dt> <dd> {{ project.startDate|date('y-m-d') }}</dd>
+                                    <dd class="project-people">
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="row m-t-sm">
+                            <div class="col-lg-12 " id="views-content">
+                                <div class="panel blank-panel">
+                                    <div class="panel-heading">
+                                        <div class="panel-options">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tab-1" data-toggle="tab">{{ 'projects.details.labels.list_presentation' | trans({}, 'project') }}</a></li>
+                                                {% if ((is_granted('ROLE_MANAGER') or is_granted('ROLE_ADMIN')) and  project.company.id in listCompId ) or is_granted('ROLE_SUPER_ADMIN') or project.owner.id == app.user.id %}
+                                                    <a href="{{ path
+                                                    ('create_new_pres',
+                                                    {idProject:project.id}) }}" style="color: #fff;background-color: #337ab7; border-color: #2e6da4;float: right" class="btn btn-primary">{{
+                                                        'projects.details.create_presentation' | trans({}, 'project') }}</a>
+                                                {% endif %}
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab-1">
+                                                <div class="ibox-title"></div>
+                                                {% if listMasterPres|length == 0 and listStandardPres|length == 0 %}
+                                                    {{ 'projects.details.not_vailable_prez' | trans({}, 'project') }}
+                                                {% endif %}
+
+                                                {% if listMasterPres|length > 0 %}
+                                                    {% for masterItem in  listMasterPres %}
+                                                        {% set excludeTerritories = [] %}
+                                                        {% set excludeTerritories = excludeTerritories|merge([masterItem.territory.id]) %}
+
+                                                        <div class="feed-activity-list">
+                                                            <div class="feed-element">
+                                                                <div class="project-details-actions col-lg-5 pull-right">
+                                                                    <dl class="dl-horizontal">
+
+                                                                        <dd style="float: right;">
+                                                                            {% if ((is_granted('ROLE_MANAGER') or is_granted('ROLE_ADMIN')) and  masterItem.company.id in listCompId ) or is_granted('ROLE_SUPER_ADMIN')  or masterItem.owner.id == app.user.id or project.owner.id == app.user.id%}
+                                                                                {% if masterItem.status != "Approved" and project.status == "20" and masterItem.isActive == 20%}
+                                                                                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')  or masterItem.owner.id == app.user.id or project.owner.id == app.user.id%}
+                                                                                        <a href="javascript:void(0)"
+                                                                                           data-id="{{ masterItem.id }}"
+                                                                                           data-name="{{ masterItem.name }}"
+                                                                                           data-count = "{{ masterItem.children|length }}"
+                                                                                           data-href="{{ path('presentations_approve_master') }}"
+                                                                                           data-toggle="tooltip" data-original-title="Approved" title="Approve your presentation" class="approvedList"><i class="fa fa-check"></i></a>
+                                                                                    {% endif %}
+                                                                                    <a data-original-title="Edit the content of the CLM presentation" class="edit_pres" data-id="{{ masterItem.id }}" data-href="{{ path('presentations_edit_presentation', { 'idPres': masterItem.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+                                                                                {% endif %}
+                                                                                <a href="javascript:void(0)" data-href="{{ path('presentations_duplicate', {'idPres': masterItem.id} ) }}" title="Duplicate" data-id="{{ masterItem.id }}" class="pres-duplicate" ><i class="fa fa-copy duplicatePres" aria-hidden="true"></i> </a>
+                                                                            {% endif %}
+                                                                            {% if masterItem.status == "Approved" %}
+                                                                                <a class="download_zip
+                                                                                test_mode_edit" data-id="{{
+                                                                                masterItem.id }}"  data-href="{{ path('presentation_download_zip', {'idRev': masterItem.revisions | last.id, 'clm': 'mi', 'type': 'deep'}) }}" title="Download Zip"><i class="fa fa-file-zip-o" style="color:#cc706e" aria-hidden="true"></i> </a>
+                                                                            {% endif %}
+                                                                            {% if masterItem.getUrlExists (masterItem.revisions | last.id) %}
+                                                                                <a class="test_mode_edit" data-id="{{
+                                                                                masterItem.id }}" data-href="{{ asset('slides-pdf') }}/{{ masterItem.revisions | last.id}}/{{ masterItem.revisions | last.id}}.pdf" target="_blank" title="Download pdf"><i class="fa fa-file-pdf-o" style="color:#cc706e " aria-hidden="true"></i> </a>
+                                                                            {% endif %}
+                                                                            {% if ((is_granted('ROLE_MANAGER') or is_granted('ROLE_ADMIN')) and  masterItem.company.id in listCompId ) or is_granted('ROLE_SUPER_ADMIN')  or masterItem.owner.id == app.user.id or project.owner.id == app.user.id%}
+                                                                                {% if project.status == "20" and masterItem.isActive == 20 %}
+
+                                                                                         {% if masterItem.status != "Approved"%}
+                                                                                             <a href="{{ path('projects_users_role', { 'id': masterItem.id}) }}" title="Edit Viewers/Editors"><i class="fa fa-user-md" style="color: tomato"></i> </a>
+                                                                                             <a href="{{ path('edit_form_pres', { 'idPres': masterItem.id}) }}" title="Edit the detail information of the CLM presentation"><i class="fa fa-eye" style="color: #13daec"></i> </a>
+                                                                                         {% endif %}
+                                                                                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')  or masterItem.owner.id == app.user.id or project.owner.id == app.user.id%}
+                                                                                            <a href="javascript:void(0)" class="delete_pres" data-toggle="tooltip" data-original-title="Delete Presentation" data-href="{{ path('project_delete_presentation',{project:project.id , id:masterItem.id}) }}" title="Delete Presentation"><i class="p-trash-icon" style="color: #695444"></i> </a>
+                                                                                        {% endif %}
+                                                                                    {% endif %}
+                                                                                {% endif %}
+                                                                                <a href="{{ path('presentations_preview', {'idRev': masterItem.revisions | last.id}) }}" title="Preview" target="_blank"><i class="fa fa-play" style="color: #04c633"></i> </a> </dd>
+
+
+                                                                    </dl>
+                                                                </div>
+                                                                <a href="#" class="pull-left">
+                                                                    {% if (masterItem.thumbnailPath != "") and ("s3" in masterItem.thumbnailPath) %}
+                                                                        <img alt="image" src="{{ masterItem.thumbnailPath }}" class="img-responsive">
+                                                                    {% elseif masterItem.thumbnailPath != "" %}
+                                                                        <img alt="image" src="{{ app.request.schemeAndHttpHost ~ "/" ~ masterItem.thumbnailPath }}" class="img-responsive">
+                                                                    {% else %}
+                                                                        <img src="{{ asset('img/no_thumb.jpg') }}" class="img-responsive">
+                                                                    {% endif %}
+                                                                </a>
+                                                                <a data-toggle="tab" href="#presentation-{{ masterItem.id }}" class="client-link">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-4 {% if masterItem.lock == 10 %} unlock {% else %} lock {% endif %}">
+                                                                            <h2>{{ masterItem.name }}</h2>
+                                                                            <dl class="dl-horizontal">
+                                                                                <dt>Type Of Presentation:</dt> <dd> {{ masterItem.type }}
+                                                                                <dt>Presentation Status:</dt> <dd>{{ masterItem.status }}</dd>
+                                                                                <dt>Version number:</dt> <dd>{{ masterItem.version }}</dd>
+                                                                                <dt>Owner Name:</dt> <dd>{{ masterItem.owner.fullName }} </dd>
+                                                                                <dt>Creation Date:</dt> <dd>{{ masterItem.creationDate | date('d-m-Y') }}</dd>
+                                                                            </dl>
+                                                                            {% if  masterItem.isActive == 20 %}
+                                                                                {% if is_granted('ROLE_SUPER_ADMIN') or
+                                                                                project.owner.id          == app.user.id or
+                                                                                masterItem.owner.id       == app.user.id or
+                                                                                ( (is_granted('ROLE_MANAGER') or is_granted('ROLE_ADMIN') ) and  project.company.id in listCompId  ) %}
+                                                                                    <a  class="btn btn-primary addLocal" id="{{ masterItem.id }}" data-comp = "{{ masterItem.company.id }}">+ {{ 'addLocalisation' | trans({}, 'project') }}</a>
+                                                                                    {% if masterItem.status != "Approved" %}
+                                                                                        <a href="{{ path('edit_form_pres', { 'idPres':masterItem.id}) }}" class="btn btn-primary editPres">{{ 'presentations.editDetail' | trans({}, 'presentations') }}</a>
+                                                                                    {% endif %}
+                                                                                {% endif %}
+                                                                            {% endif %}
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+
+                                                        {% if masterItem.children | length >0 %}
+                                                            {% for localisationItem in  masterItem.children %}
+                                                                {% if is_granted('ROLE_SUPER_ADMIN') or
+                                                                    project.owner.id          == app.user.id or
+                                                                    masterItem.owner.id       == app.user.id or
+                                                                    localisationItem.owner.id == app.user.id or
+                                                                    app.user in localisationItem.editors     or
+                                                                    app.user in localisationItem.viewers     or
+                                                                    ( (is_granted('ROLE_MANAGER') or is_granted('ROLE_ADMIN') ) and  project.company.id in listCompId  ) %}
+                                                                {% set excludeTerritories = excludeTerritories|merge([localisationItem.territory.id]) %}
+                                                                <div class="feed-activity-list">
+                                                                    <div class="feed-element">
+                                                                        <div class="project-details-actions col-lg-5 pull-right">
+                                                                            <dl class="dl-horizontal">
+                                                                                {% if localisationItem.lock == 20 and localisationItem.status == 'Wait for master approval' %}
+                                                                                    {% if project.status == "20" %}
+                                                                                        {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')  or masterItem.owner.id == app.user.id or project.owner.id == app.user.id%}
+                                                                                        <dd style="float: right;">
+                                                                                            <a href="javascript:void(0)" class="disconnect_pres" data-toggle="tooltip" data-original-title="Disconnect Presentation" data-href="{{ path('project_disconnect_presentation',{idMaster:masterItem.id , idLocal:localisationItem.id}) }}" title="Disconnect Presentation"><i class="fa fa-code-fork" style="color: #FF7E00"></i> </a>
+                                                                                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')  or masterItem.owner.id == app.user.id or project.owner.id == app.user.id%}
+                                                                                                 <a href="javascript:void(0)" class="delete_pres" data-toggle="tooltip" data-original-title="Delete Presentation" data-href="{{ path('project_delete_presentation',{project:project.id , id:localisationItem.id}) }}" title="Delete Presentation"><i class="p-trash-icon" style="color: #695444"></i> </a></dd>
+                                                                                            {% endif %}
+                                                                                        {% endif %}
+                                                                                    {% endif %}
+                                                                                {% else %}
+                                                                                    <dd style="float: right;">
+                                                                                        {% if is_granted ('ROLE_MANAGER') or is_granted('ROLE_ADMIN') or is_granted ('ROLE_SUPER_ADMIN')  or masterItem.owner.id == app.user.id or project.owner.id == app.user.id or localisationItem.owner.id == app.user.id %}
+                                                                                           {% if localisationItem.status != "Approved" and project.status == "20" and localisationItem.isActive == 20%}
+                                                                                               {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')  or masterItem.owner.id == app.user.id or project.owner.id == app.user.id%}
+                                                                                                 <a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Approved" data-href="{{ path('presentations_approve_localAndStandard', { 'idProject': project.id , 'idPres':localisationItem.id}) }}" class="approved" title="Approuve your presentation"><i class="fa fa-check"></i> </a>
+                                                                                               {% endif %}
+                                                                                               <a class="edit_pres" data-id="{{ localisationItem.id }}" data-href="{{ path('presentations_edit_presentation', { 'idPres': localisationItem.id}) }}" title="Edit CLM"><i class="fa fa-pencil" style="color: #13daec"></i> </a>
+
+                                                                                           {% endif %}
+
+                                                                                        {% endif %}
+                                                                                        {% if localisationItem.status == "Approved" %}
+                                                                                            <a class="download_zip test_mode_edit" data-id="{{ localisationItem.id }}"  data-href="{{ path('presentation_download_zip', {'idRev': localisationItem.revisions[0].id, 'clm': 'mi', 'type': 'deep'}) }}" title="Download Zip"><i class="fa fa-file-zip-o" style="color:#cc706e" aria-hidden="true"></i> </a>
+                                                                                        {% endif %}
+                                                                                    {% if masterItem.getUrlExists (masterItem.revisions | last.id) %}
+                                                                                        <a class="test_mode_edit" data-id="{{ localisationItem.id }}" data-href="{{ asset('slides-pdf') }}/{{ masterItem.revisions | last.id}}/{{  masterItem.revisions | last.id}}.pdf" target="_blank" title="Download pdf"><i class="fa fa-file-pdf-o" style="color:#cc706e " aria-hidden="true"></i> </a>
+                                                                                    {% endif %}
+                                                                                    {% if is_granted('ROLE_MANAGER')   or is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')  or masterItem.owner.id == app.user.id or project.owner.id ==  app.user.id or localisationItem.owner.id == app.user.id%}
+                                                                                        {% if project.status == "20" and localisationItem.status != "Approved" and localisationItem.isActive == 20%}
+                                                                                        <a href="{{ path('projects_users_role', { 'id': localisationItem.id}) }}" title="Edit Viewers/Editors"><i class="fa fa-user-md" style="color: tomato"></i> </a>
+                                                                                        <a href="{{ path('edit_form_pres', { 'idPres':localisationItem.id}) }}" title="Edit CLM"><i class="fa fa-eye" style="color: #13daec"></i> </a>
+
+                                                                                        {% endif %}
+                                                                                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')  or masterItem.owner.id == app.user.id or project.owner.id == app.user.id%}
+                                                                                            <a href="javascript:void(0)" class="delete_pres" data-toggle="tooltip" data-original-title="Delete Presentation" data-href="{{ path('project_delete_presentation',{project:project.id , id:localisationItem.id}) }}" title="Delete Presentation"><i class="p-trash-icon" style="color: #695444"></i> </a>
+                                                                                        {% endif %}
+                                                                                    {% endif %}
+                                                                                        <a href="{{ path('presentations_preview', {'idRev': localisationItem.revisions | last.id}) }}" title="Preview" target="_blank"><i class="fa fa-play" style="color: #04c633"></i> </a> </dd>
+                                                                                {% endif %}
+                                                                            </dl>
+                                                                        </div>
+                                                                        <a href="#" class="pull-left">
+                                                                            {% if (localisationItem.thumbnailPath != "") and ("s3" in localisationItem.thumbnailPath) %}
+                                                                                <img alt="image" src="{{ localisationItem.thumbnailPath }}" class="img-responsive">
+                                                                            {% elseif localisationItem.thumbnailPath != "" %}
+                                                                                <img alt="image" src="{{ app.request.schemeAndHttpHost ~ "/" ~ localisationItem.thumbnailPath }}" class="img-responsive">
+                                                                            {% else %}
+                                                                                <img src="{{ asset('img/no_thumb.jpg') }}" class="img-responsive">
+                                                                            {% endif %}
+                                                                        </a>
+                                                                        <a data-toggle="tab" href="#presentation-{{ localisationItem.id }}" class="client-link">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-4 {% if localisationItem.lock == 10 %} unlock {% else %} lock {% endif %}">
+                                                                                    <h2>{{ localisationItem.name }}</h2>
+                                                                                    <dl class="dl-horizontal">
+                                                                                        <dt>Type Of Presentation:</dt> <dd> {{ localisationItem.type }}
+                                                                                        <dt>Presentation Status:</dt> <dd>{{ localisationItem.status }}</dd>
+                                                                                        <dt>Version number:</dt> <dd>{{ localisationItem.version }}</dd>
+                                                                                        <dt>Owner Name:</dt> <dd>{{ localisationItem.owner.fullName }}</dd>
+                                                                                        <dt>Creation Date:</dt> <dd>{{ localisationItem.creationDate | date('d-m-Y') }}</dd>
+                                                                                    </dl>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                    {% endif %}
+                                                            {% endfor %}
+                                                            <hr class="separateur">
+                                                        {% endif %}
+                                                        {#*********************************************************  Modal add localisation **********************************************#}
+                                                        <div class="modal inmodal" id="add_local{{ masterItem.id }}" tabindex="-1"
+                                                             role="dialog" aria-hidden="true" style="display: none;">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content animated fadeIn">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close"
+                                                                                data-dismiss="modal"><span
+                                                                                    aria-hidden="true">×</span><span
+                                                                                    class="sr-only">Close</span>
+                                                                        </button>
+                                                                        <h4 class="modal-title">Add Localization</h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form action="{{ path('project_add_localisation', { 'id':masterItem.id, 'idProject':project.id}) }}"
+                                                                              id="myForm" method="post">
+
+                                                                            <label>Choose a territory</label>
+                                                                            <select name="territories" class="form-control" required>
+                                                                                <option value="">Choose</option>
+                                                                                {% for territory in territories %}
+                                                                                    {% if territory.id not in excludeTerritories %}
+                                                                                        <option value="{{ territory.id }}">{{ territory.name }}</option>
+                                                                                    {% endif %}
+                                                                                {% endfor %}
+                                                                            </select>
+                                                                            <label>Choose a Company</label>
+                                                                            <select name="company" class="form-control companyLoc">
+                                                                                <option value="">Choose</option>
+
+                                                                            </select>
+                                                                            <input type="submit" class="btn btn-success" value="Create Localisation" />
+
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {#*********************************************** end modal ***************************************************#}
+
+                                                    {% endfor %}
+                                                {% endif %}
+                                                <div class="ibox-title"></div>
+                                                {% if listStandardPres|length > 0 %}
+                                                    {% for standardItem in listStandardPres %}
+
+                                                        <div class="feed-activity-list">
+                                                            <div class="feed-element">
+                                                                <div class="project-details-actions col-lg-5 pull-right">
+                                                                    <dl class="dl-horizontal">
+                                                                        <dt></dt>
+
+
+                                                                        <dd style="float: right;">
+                                                                            {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')  or standardItem.owner.id == app.user.id or app.user in standardItem.editors or project.owner.id == app.user.id%}
+                                                                                {% if standardItem.status != "Approved" and project.status == "20" and standardItem.isActive == 20%}
+                                                                                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')  or standardItem.owner.id == app.user.id or app.user in standardItem.editors or project.owner.id == app.user.id%}
+                                                                                        <a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Approved" data-href="{{ path('presentations_approve_localAndStandard', { 'idProject': project.id , 'idPres':standardItem.id}) }}" class="approved" title="Approuve your presentation"><i class="fa fa-check"></i> </a>
+                                                                                        <a class="edit_pres" data-id="{{ standardItem.id }}" data-href="{{ path('presentations_edit_presentation', { 'idPres': standardItem.id}) }}" title="Edit CLM"><i class="fa fa-pencil" style="color: #13daec"></i> </a>
+                                                                                    {% endif %}
+                                                                                {% endif %}
+                                                                            {% endif %}
+                                                                            {% if ((is_granted('ROLE_MANAGER') or is_granted('ROLE_ADMIN')) and  standardItem.company.id in listCompId ) or is_granted('ROLE_SUPER_ADMIN')  or standardItem.owner.id == app.user.id %}
+
+                                                                                <a href="javascript:void(0)" data-href="{{ path('presentations_duplicate', {'idPres': standardItem.id}) }}" title="Duplicate" data-id="{{ standardItem.id }}" class="pres-duplicate"><i class="fa fa-copy duplicatePres" aria-hidden="true"></i> </a>
+                                                                            {% endif %}
+                                                                                {% if standardItem.status == "Approved" %}
+                                                                                    <a class="download_zip test_mode_edit" data-id="{{ standardItem.id }}"  data-href="{{ path('presentation_download_zip', {'idRev': standardItem.revisions[0].id, 'clm': 'mi', 'type': 'deep'}) }}" title="Download Zip"><i class="fa fa-file-zip-o" style="color:#cc706e" aria-hidden="true"></i> </a>
+                                                                                {% endif %}
+                                                                                {% if standardItem.getUrlExists (standardItem.revisions[0].id) %}
+                                                                                    <a class="test_mode_edit" data-id="{{ standardItem.id }}" data-href="{{ asset('slides-pdf') }}/{{ standardItem.revisions[0].id}}/{{ standardItem.revisions[0].id}}.pdf" target="_blank" title="Download pdf"><i class="fa fa-file-pdf-o" style="color:#cc706e " aria-hidden="true"></i> </a>
+                                                                                {% endif %}
+                                                                            {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')  or standardItem.owner.id == app.user.id or project.owner.id == app.user.id%}
+                                                                                {% if project.status == "20" and standardItem.status != "Approved" and standardItem.isActive == 20%}
+                                                                                    <a href="{{ path('projects_users_role', { 'id': standardItem.id}) }}" title="Edit Viewers/Editors"><i class="fa fa-user-md" style="color: tomato"></i> </a>
+                                                                                    <a href="{{ path('edit_form_pres',{idPres:standardItem.id}) }}" title="Edit CLM"><i class="fa fa-eye" style="color: #13daec"></i> </a>
+                                                                                {% endif %}
+                                                                                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')  or standardItem.owner.id == app.user.id or project.owner.id == app.user.id%}
+                                                                                    <a href="javascript:void(0)" class="delete_pres" data-toggle="tooltip" data-original-title="Delete Presentation" data-href="{{ path('project_delete_presentation',{project:project.id , id:standardItem.id}) }}" title="Delete Presentation"><i class="p-trash-icon" style="color: #695444"></i> </a>
+                                                                                {% endif %}
+                                                                            {% endif %}
+                                                                                <a href="{{ path('presentations_preview', {'idRev': standardItem.revisions | last.id}) }}" title="Preview" target="_blank"><i class="fa fa-play" style="color: #04c633"></i> </a>
+
+                                                                         {#       <a href="{{ path('veeva_steps',{'id_press': standardItem.id}) }}" title="Preview" target="_blank"><i class="fa fa-exchange" style="color: #000000"></i> </a>#}
+
+                                                                            </dd>
+
+
+                                                                    </dl>
+                                                                </div>
+                                                                <a href="#" class="pull-left">
+                                                                    {% if (standardItem.thumbnailPath != "") and ("s3" in standardItem.thumbnailPath) %}
+                                                                        <img alt="image" src="{{ standardItem.thumbnailPath }}" class="img-responsive">
+                                                                    {% elseif standardItem.thumbnailPath != "" %}
+                                                                        <img alt="image" src="{{ app.request.schemeAndHttpHost ~ "/" ~ standardItem.thumbnailPath }}" class="img-responsive">
+                                                                    {% else %}
+                                                                        <img src="{{ asset('img/no_thumb.jpg') }}" class="img-responsive">
+                                                                    {% endif %}
+                                                                </a>
+                                                                <a data-toggle="tab" href="#presentation-{{ standardItem.id }}" class="client-link">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-4 {% if standardItem.lock == 10 %} unlock {% else %} lock {% endif %}">
+                                                                            <h2>{{ standardItem.name }}</h2>
+                                                                            <dl class="dl-horizontal">
+                                                                                <dt>Type Of Presentation:</dt> <dd> {{ standardItem.type }}
+                                                                                <dt>Presentation Status:</dt> <dd>{{ standardItem.status }}</dd>
+                                                                                <dt>Owner Name:</dt> <dd>{{ standardItem.owner.fullName }}</dd>
+                                                                                <dt>Creation Date:</dt> <dd>{{ standardItem.creationDate | date('d-m-Y') }}</dd>
+                                                                            </dl>
+                                                                            {% if standardItem.status != "Approved" and standardItem.isActive == 20 %}
+                                                                                <a href="{{ path('edit_form_pres', { 'idPres':standardItem.id}) }}" class="btn btn-primary editPres">{{ 'presentations.editDetail' | trans({}, 'presentations') }}</a>
+                                                                            {% endif %}
+                                                                        </div>
+
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="separateur">
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade in modal-pres" id="modal_approve_presentation" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div  class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">×</span><span class="sr-only">{{ 'presentationedit.close' | trans({}, 'presentationedit') }}</span>
+                        </button>
+                        <h4 class="modal-title">Approve Presentation</h4>
+
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" id="saveForm">
+
+                            <div class="status">The CLM presentation approval is in progress. Please wait until the unlock of all your CLM localisations will finish </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="ladda-button ladda-button-save btn btn-primary" id="backup_pres"
+                                data-dismiss="modal">close
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        var urlCompanyTerritory = "{{ path('get_company_by_master') }}";
+        var urlGetLocalisations = "{{ path('get_list_ocalisations') }}";
+        var waitPath = "{{ asset('img/loading.gif') }}";
+    </script>
+    {{ parent () }}
+    <script src="{{ asset('js/plugins/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('js/presentation/approve-presentation.js') }}"></script>
+{% endblock %}

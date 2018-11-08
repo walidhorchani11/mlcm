@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="alerts_and_notifications.alerts_and_notifications">
+                <source>alerts_and_notifications</source>
+                <target>Alertes and notifications</target>
+            </trans-unit>
+            <trans-unit id="alerts.action_button" resname="alerts.action_button">
+                <source>alerts.action_button</source>
+                <target>C'est une zone de travail</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

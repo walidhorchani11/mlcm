@@ -1,0 +1,20 @@
+model: ArgoMCMBuilder\ProjectBundle\Entity\Project
+fixtures:
+    project1:
+        name: project1
+        status: 20
+        company: company1
+        startDate: "2017-01-25"
+        endDate: "2017-01-25"
+    project2:
+        name: project2
+        status: 20
+        company: company1
+        startDate: "2017-01-25"
+        endDate: "2017-01-25"
+    project3:
+        name: project3
+        status: 20
+        company: company2
+        startDate: "2017-01-25"
+        endDate: "2017-01-25"
